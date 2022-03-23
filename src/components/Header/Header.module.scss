@@ -1,0 +1,40 @@
+@import "src/shared/styles/utils";
+
+$font_type0: 17px "Montserrat", serif;
+
+.root {
+    @include flex-column;
+}
+
+.txt {
+    @include font-face($font_type0, rgb(57, 57, 57), 0px);
+    position: relative;
+    flex: 0 0 auto;
+    height: min-content;
+    margin: 0px 0px 0px 4px;
+}
+
+.grayTxt {
+    @include font-face($font_type0, rgb(151, 151, 151), 0px);
+    height: min-content;
+}
+
+.group1 {
+    @include flex-column;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    height: min-content;
+}
+
+.flex1 {
+    display: flex;
+    gap: 5px;
+    position: relative;
+    height: min-content;
+    width: 86.09%;
+    margin: 22px auto;
+}
+
+.flexSpacer {
+    flex:  698px;
+}

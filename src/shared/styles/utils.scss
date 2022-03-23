@@ -1,0 +1,10 @@
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin font-face($font, $color, $letterSpacing: 0px) {
+    font: $font;
+    color: $color;
+    letter-spacing: $letterSpacing;
+}
