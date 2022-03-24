@@ -35,7 +35,9 @@ export const Header = () => {
 
             <div className={css.group2}>
                 <div className={css.group2_left}>
-                    <img src={zeonLogo} alt="zeonLogo"/>
+                    <Link to="/">
+                        <img src={zeonLogo} alt="zeonLogo"/>
+                    </Link>
                 </div>
                 <div className={css.group2_right}>
                     <div className={css.group2_right_item1}>

@@ -1,5 +1,5 @@
 import {SLIDER_CARDS_RECEIVED} from "src/shared/state/constants/actionTypes"
-
+import {Api} from "src/shared/utils/api/api";
 
 /**
  * @param {any[]} images
@@ -16,18 +16,13 @@ export const sliderCardsReceived = (images) =>
 export const loadHomeSlideCards = () => {
     return async (dispatch, getState) => {
         try {
-            // TODO: query to API
-            // Пока загрузил картинки сюда https://trio-lyro.imgbb.com
-            // вход через trio.bone@gmail.com
-
-            const images = [
-                {url: `https://i.ibb.co/zNSmhCT/slice-Image.png`, link: ``},
-                {url: `https://i.ibb.co/zNSmhCT/slice-Image.png`, link: `https://trio-lyro.imgbb.com`},
-                {url: `https://i.ibb.co/zNSmhCT/slice-Image.png`, link: `https://trio-lyro.imgbb.com`},
-                {url: `https://i.ibb.co/zNSmhCT/slice-Image.png`, link: `https://trio-lyro.imgbb.com`}
-            ]
-            dispatch(sliderCardsReceived(images));
-
+            const response = await Api.getHomeSliderImages();
+            if (response.status === 200) {
+                console.log("loadHomeSlideCards success", response.data);
+                dispatch(sliderCardsReceived(response.data.images));
+            } else {
+                console.log("loadHomeSlideCards error", response.status);
+            }
         } catch (err) {
             console.log("loadHomeSlideCards error", err);
         }
