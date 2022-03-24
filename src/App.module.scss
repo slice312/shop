@@ -1,0 +1,14 @@
+@import "shared/styles/global";
+
+
+.container {
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+    @media (max-width: $md1+px) {
+        max-width: 750px;
+    }
+    @media (max-width: $md2+px) {
+        max-width: none;
+        padding: 0 10px;
+    }
+}

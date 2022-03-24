@@ -1,27 +1,24 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Index} from "./components/Header";
+import {Routes, Route} from "react-router-dom";
+import {Header} from "./components/Header";
 import {Home} from "./components/Home";
-import css from "./App.module.css";
-import {Provider} from "react-redux";
-import {store} from "src/shared/state/store";
+import {About} from "./components/About";
+import {Collections} from "./components/Collections";
+import {News} from "./components/News";
 
-const App = () => {
+import css from "./App.module.scss";
+
+
+export const App = () => {
     return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <div className={css.container}>
-                    <Index/>
+        <div className={css.container}>
+            <Header/>
 
-                    <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        {/*    <Route path="/register" element={<Register/>}/>*/}
-                        {/*    <Route path="/login" element={<Login/>}/>*/}
-                    </Routes>
-                </div>
-            </BrowserRouter>
-        </Provider>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/about" element={<About/>}/>
+                <Route path="/collections" element={<Collections/>}/>
+                <Route path="/news" element={<News/>}/>
+            </Routes>
+        </div>
     );
 }
-
-
-export default App;

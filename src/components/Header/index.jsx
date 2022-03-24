@@ -1,33 +1,35 @@
-import css from "./Header.module.scss";
 import zeonLogo from "src/assets/img/zeon_logo.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 import searchIcon from "src/assets/icons/search.svg";
+import css from  "./Header.module.scss";
+import {NavLink, Link} from "react-router-dom";
 
 
-
-export const Index = () => {
+export const Header = () => {
+    console.log("Header render");
     return (
         <header className={css.root}>
             <div className={css.group1}>
                 <div className={css.group1_left}>
-                    <div className={css.txt}>
+                    <Link to="/about">
                         О нас
-                    </div>
-                    <div className={css.txt}>
+                    </Link>
+                    <Link to="/collections">
                         Коллекции
-                    </div>
-                    <div className={css.txt}>
+                    </Link>
+                    <Link to="/news">
                         Новости
-                    </div>
+                    </Link>
                 </div>
+
                 <div className={css.group1_right}>
-                    <div className={css.grayTxt}>
+                    <span className={css.grayTxt}>
                         Тел:
-                    </div>
-                    <div className={css.txt}>
+                    </span>
+                    <span>
                         +996 000 00 00 00
-                    </div>
+                    </span>
                 </div>
             </div>
 
