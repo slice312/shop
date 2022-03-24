@@ -1,40 +1,116 @@
 @import "src/shared/styles/utils";
 
-$font_type0: 17px "Montserrat", serif;
+$font_type0: 17px "Montserrat", Helvetica, Arial, serif;
 
 .root {
-    @include flex-column;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
 }
+
+.group1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 22px 0 22px 0;
+}
+.group1_left {
+    display: flex;
+    gap: 24px;
+}
+.group1_right {
+    display: flex;
+}
+
 
 .txt {
     @include font-face($font_type0, rgb(57, 57, 57), 0px);
-    position: relative;
-    flex: 0 0 auto;
-    height: min-content;
     margin: 0px 0px 0px 4px;
 }
 
 .grayTxt {
     @include font-face($font_type0, rgb(151, 151, 151), 0px);
-    height: min-content;
 }
 
-.group1 {
-    @include flex-column;
-    background-color: rgb(255, 255, 255);
-    position: relative;
-    height: min-content;
-}
 
-.flex1 {
+.group2 {
     display: flex;
-    gap: 5px;
-    position: relative;
-    height: min-content;
-    width: 86.09%;
-    margin: 22px auto;
+    flex-direction: row;
 }
 
-.flexSpacer {
-    flex:  698px;
+.group2_left {
+    padding: 9px 0;
+}
+
+.group2_right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 22px 0;
+}
+
+.group2_right_item1 {
+    width: 60%;
+    height: 44px;
+    margin-left: 34px;
+}
+
+.inputWrap {
+    display: flex;
+    flex-direction: row;
+    border: 1px;
+    border-color: #515151;
+    border-style: solid;
+    width: 100%;
+    height: 100%;
+    background-color: #F8F8F8;
+
+    input {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background-color: #F8F8F8;
+
+    }
+    button {
+        background: transparent;
+        border: none;
+    }
+}
+
+.group2_right_item2 {
+    @include font-face($font_type0, rgb(57, 57, 57), 0px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    height: 44px;
+    margin-left: 34px;
+    img {
+        height: 24px;
+        width: 24px;
+    }
+    span {
+        margin-left: 10px;
+    }
+}
+
+.group2_right_item3 {
+    @include font-face($font_type0, rgb(57, 57, 57), 0px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    margin-left: 20px;
+
+    img {
+        height: 24px;
+        width: 24px;
+    }
+    span {
+        margin-left: 10px;
+    }
 }

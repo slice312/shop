@@ -1,30 +1,25 @@
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import {Header} from "./components/Header/Header";
+import {Index} from "./components/Header";
+import {Home} from "./components/Home";
+import css from "./App.module.css";
+import {Provider} from "react-redux";
+import {store} from "src/shared/state/store";
 
 const App = () => {
     return (
-        <BrowserRouter>
-            <Header/>
+        <Provider store={store}>
+            <BrowserRouter>
+                <div className={css.container}>
+                    <Index/>
 
-            <div id="carouselExampleSlidesOnly" className="carousel slide" data-bs-ride="carousel">
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                        <img src="" className="d-block w-100" alt="mo"/>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="" className="d-block w-100" alt="das."/>
-                    </div>
-                    <div className="carousel-item">
-                        <img src="" className="d-block w-100" alt="gfdg"/>
-                    </div>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        {/*    <Route path="/register" element={<Register/>}/>*/}
+                        {/*    <Route path="/login" element={<Login/>}/>*/}
+                    </Routes>
                 </div>
-            </div>
-            <Routes>
-                {/*<Route path="/" element={<Home/>}/>*/}
-                {/*    <Route path="/register" element={<Register/>}/>*/}
-                {/*    <Route path="/login" element={<Login/>}/>*/}
-            </Routes>
-        </BrowserRouter>
+            </BrowserRouter>
+        </Provider>
     );
 }
 
