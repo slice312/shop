@@ -3,7 +3,7 @@ import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 import searchIcon from "src/assets/icons/search.svg";
 import css from  "./Header.module.scss";
-import {NavLink, Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 
 export const Header = () => {

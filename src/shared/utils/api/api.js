@@ -27,7 +27,6 @@ const mockApi = new MockAdapter(instance, {delayResponse: 100});
 
 
 const getHomeSliderImages = async () => {
-
     return await instance.get("/slider/images");
 }
 mockApi.onGet("/slider/images")

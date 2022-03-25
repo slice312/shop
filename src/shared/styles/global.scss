@@ -1,6 +1,5 @@
-
-
-
+// Обнулуние
+@import "null";
 
 // Шрифт по умолчанию
 $fontFamily: "Montserrat";
@@ -9,8 +8,12 @@ $textColorPrimary: #393939;
 
 
 // Переменные
+$minWidth: 320px;
 $maxWidthContainer: 1195;
 $md1: $maxWidthContainer + 12;
 $md2: 991.98;
 $md3: 767.98;
 $md4: 479.98;
+
+
+

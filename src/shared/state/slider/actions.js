@@ -1,4 +1,4 @@
-import {SLIDER_CARDS_RECEIVED} from "src/shared/state/constants/actionTypes"
+import {SLIDER_CARDS_RECEIVED} from "src/shared/state/constants/actionTypes";
 import {Api} from "src/shared/utils/api/api";
 
 /**
@@ -11,7 +11,7 @@ export const sliderCardsReceived = (images) =>
 
 /**
  * ThunkCreator.
- * @return {(function(dispatch, getState): void)} - Загружает картник для свайпера на главной странице
+ * Загружает картник для слайдера на главной странице.
  */
 export const loadHomeSlideCards = () => {
     return async (dispatch, getState) => {

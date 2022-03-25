@@ -4,6 +4,7 @@ import {Home} from "./components/Home";
 import {About} from "./components/About";
 import {Collections} from "./components/Collections";
 import {News} from "./components/News";
+import {Card} from "./components/Card";
 
 import css from "./App.module.scss";
 
@@ -12,6 +13,7 @@ export const App = () => {
     return (
         <div className={css.container}>
             <Header/>
+            <Card/>
 
             <Routes>
                 <Route path="/" element={<Home/>}/>
