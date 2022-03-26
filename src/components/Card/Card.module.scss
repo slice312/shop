@@ -1,49 +1,82 @@
 @import "src/shared/styles/global";
 @import "src/shared/styles/mixins";
 
+
 $fontTitle: 400 normal 14px $fontFamily;
 $fontPrice: 500 normal 16px $fontFamily;
-$fontForOldPrice: 300, Light normal 14px $fontFamily;
+$fontForOldPrice: 300 normal 14px $fontFamily;
 $fontSizeLabel: 400 normal 13px $fontFamily;
 
-
+$cardHeight: 536px;
 
 
 .root {
     width: 286px;
-    height: 536px;
+    height: $cardHeight;
     margin: auto;
+    position: relative;
 
-    .name {
-        @include font-face($fontTitle, $textColorPrimary, 17px);
+    img.photo {
+        height: 81.5%;
     }
-    .price {
-        @include font-face($fontPrice, $textColorPrimary, 20px);
+
+    .favoriteButton {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 13.5px;
+        right: 12px;
+        background-color: transparent;
+        :hover {
+            transform: scale(1.15);
+            cursor: pointer;
+        }
     }
-    .oldPrice {
-        @include font-face($fontForOldPrice, #ADADAD, 17.07px); // TODO: не сделал
-        text-decoration: line-through;
-        margin-left: 6px;
-    }
-    .size {
-        @include font-face($fontSizeLabel, #7C7C7C, 16px);
-    }
-    .buttons {
-        width: 70%;
+
+    .description {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
+        height: 18.5%;
+        padding: 6px 8px;
 
-        button {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
 
-            &.active {
-                width: 13px;
-                height: 13px;
-                outline: 1px solid #D1D1D1 ;
-                box-shadow: 1px 1px 2px 1px #D1D1D1;
+        .name {
+            @include font-face($fontTitle, $textColorPrimary, 17.07px);
+        }
+
+        .price {
+            @include font-face($fontPrice, $textColorPrimary, 19.5px);
+        }
+
+        .oldPrice {
+            @include font-face($fontForOldPrice, #ADADAD, 17.07px);
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .size {
+            @include font-face($fontSizeLabel, #7C7C7C, 15.85px);
+        }
+
+        .buttons {
+            //display: flex;
+            //flex-direction: row;
+            width: 100%;
+            overflow: hidden;
+
+            button {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                margin-right: 16.86px;
+
+                &.active {
+                    width: 13px;
+                    height: 13px;
+                    outline: 1px solid #D1D1D1;
+                    box-shadow: 1px 1px 2px 1px #D1D1D1;
+                }
             }
         }
     }
