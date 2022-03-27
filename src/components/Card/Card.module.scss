@@ -5,7 +5,8 @@
 $fontTitle: 400 normal 14px $fontFamily;
 $fontPrice: 500 normal 16px $fontFamily;
 $fontForOldPrice: 300 normal 14px $fontFamily;
-$fontSizeLabel: 400 normal 13px $fontFamily;
+$fontLabelSize: 400 normal 13px $fontFamily;
+$fontDiscountPercent: 500 normal 12px $fontFamily;
 
 $cardHeight: 536px;
 
@@ -14,22 +15,68 @@ $cardHeight: 536px;
     width: 286px;
     height: $cardHeight;
     margin: auto;
-    position: relative;
 
-    img.photo {
+    .photo {
         height: 81.5%;
-    }
+        position: relative;
 
-    .favoriteButton {
-        width: 24px;
-        height: 24px;
-        position: absolute;
-        top: 13.5px;
-        right: 12px;
-        background-color: transparent;
-        :hover {
-            transform: scale(1.15);
-            cursor: pointer;
+        .discountBadge {
+            .discountTriangle {
+                width: 0;
+                height: 0;
+                position: absolute;
+                left: -0px;
+                top: -0px;
+                border-top: 50px solid #E5271B;
+                border-right: 50px solid transparent;
+            }
+
+            .discountValue {
+                @include font-face($fontDiscountPercent, #FFFFFF, 15px);
+                position: absolute;
+                left: 3px;
+                top: 8px;
+                transform: rotate(-45deg);
+
+            }
+        }
+
+        .favoriteButton {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 13.5px;
+            right: 12px;
+            background-color: transparent;
+
+            :hover {
+                transform: scale(1.15);
+                cursor: pointer;
+            }
+        }
+
+        .sliderWrap {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 8px 8px;
+
+            .slider {
+                height: 3px;
+                display: flex;
+                flex-direction: row;
+                button {
+                    background-color: transparent;
+                    height: 100%;
+                    width: 100%;
+                    &.active {
+                        background-color: #FFFFFF;
+                    }
+                    &:not(.active):hover {
+                        background-color: #808080;
+                    }
+                }
+            }
         }
     }
 
@@ -39,7 +86,6 @@ $cardHeight: 536px;
         justify-content: space-between;
         height: 18.5%;
         padding: 6px 8px;
-
 
         .name {
             @include font-face($fontTitle, $textColorPrimary, 17.07px);
@@ -56,12 +102,10 @@ $cardHeight: 536px;
         }
 
         .size {
-            @include font-face($fontSizeLabel, #7C7C7C, 15.85px);
+            @include font-face($fontLabelSize, #7C7C7C, 15.85px);
         }
 
         .buttons {
-            //display: flex;
-            //flex-direction: row;
             width: 100%;
             overflow: hidden;
 

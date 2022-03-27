@@ -15,9 +15,16 @@ export const Card = () => {
     }
     return (
         <div className={css.root}>
-            <img className={css.photo} src={cardImg} alt="cardImg"/>
+            <div className={css.photo}>
+                <img src={cardImg} alt="cardImg"/>
 
-            <FavButton isFavorite={isFavorite} onClick={handler}/>
+
+                <DiscountBadge discount={50}/>
+
+                <FavButton isFavorite={isFavorite} onClick={handler}/>
+                <Slider/>
+            </div>
+
             <div className={css.description}>
                 <div className={css.name}>
                     Вечернее платье
@@ -61,3 +68,25 @@ const FavButton = ({isFavorite, onClick}) => {
         </div>
     );
 }
+
+const DiscountBadge = ({discount}) => {
+    return (
+        <div className={css.discountBadge}>
+            <div className={css.discountTriangle}/>
+            <div className={css.discountValue}>{discount}%</div>
+        </div>
+    );
+};
+
+const Slider = () => {
+    return (
+        <div className={css.sliderWrap}>
+            <div className={css.slider}>
+                <button className={css.active} type="button"/>
+                <button type="button"/>
+                <button type="button"/>
+                <button type="button"/>
+            </div>
+        </div>
+    );
+};
