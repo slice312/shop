@@ -87,7 +87,7 @@ $cardHeight: 536px;
         height: 18.5%;
         padding: 6px 8px;
 
-        .name {
+        .title {
             @include font-face($fontTitle, $textColorPrimary, 17.07px);
         }
 
@@ -105,7 +105,7 @@ $cardHeight: 536px;
             @include font-face($fontLabelSize, #7C7C7C, 15.85px);
         }
 
-        .buttons {
+        .colors {
             width: 100%;
             overflow: hidden;
 
@@ -114,13 +114,7 @@ $cardHeight: 536px;
                 height: 8px;
                 border-radius: 50%;
                 margin-right: 16.86px;
-
-                &.active {
-                    width: 13px;
-                    height: 13px;
-                    outline: 1px solid #D1D1D1;
-                    box-shadow: 1px 1px 2px 1px #D1D1D1;
-                }
+                border: 1px solid #D1D1D1;
             }
         }
     }

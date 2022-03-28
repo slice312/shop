@@ -1,5 +1,5 @@
 import {SLIDER_CARDS_RECEIVED} from "src/shared/state/constants/actionTypes";
-import {Api} from "src/shared/utils/api/api";
+import {Api} from "src/shared/utils/api";
 
 /**
  * @param {any[]} images
