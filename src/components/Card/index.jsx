@@ -1,20 +1,9 @@
 import React from "react";
-import css from "./Card.module.scss";
-import cardImg from "src/assets/mock/cards/card1.png";
+import {Carousel} from "react-bootstrap";
 import filledHearIcon from "src/assets/icons/filled-heart.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
-import {Api} from "src/shared/utils/api"
+import "./styles.scss";
 
-
-export const GetCard = () => {
-    React.useEffect(async () => {
-        const resp = await Api.getBestsellers(8);
-        console.log(resp);
-    }, []);
-    return (
-        <div></div>
-    );
-};
 
 
 export const Card = (
@@ -24,44 +13,49 @@ export const Card = (
         discount,
         isFavorite,
         size,
-        imgSrc,
+        images,
         colors
     }) => {
 
-    const priceWithDiscount = price - price * discount / 100;
+    const priceWithDiscount = Math.round(price - price * discount / 100);
+    const roundedDiscount = Math.round(discount);
 
 
     const handler = () => {
-        console.log("cliocl");
+        console.log("click FavButton");
     }
+
+
     return (
-        <div className={css.root}>
-            <div className={css.photo}>
-                <img src={imgSrc} alt="imgSrc"/>
-
-
-                <DiscountBadge discount={discount}/>
+        <div className="card__container">
+            <div className="photo">
+                <ImageSlides images={images}/>
+                {
+                    (roundedDiscount > 0)
+                        ? <DiscountBadge discount={roundedDiscount}/>
+                        : null
+                }
 
                 <FavButton isFavorite={isFavorite} onClick={handler}/>
-                <Slider/>
+                {/*<Slider/>*/}
             </div>
 
-            <div className={css.description}>
-                <div className={css.title}>
+            <div className="description">
+                <div className="title">
                     {title}
                 </div>
                 <div>
-                    <span className={css.price}>{priceWithDiscount} c</span>
+                    <span className="price">{priceWithDiscount} c</span>
                     {
-                        (discount > 0)
-                            ? <span className={css.oldPrice}>{price} c</span>
+                        (roundedDiscount > 0)
+                            ? <span className="oldPrice">{price} c</span>
                             : null
                     }
                 </div>
-                <div className={css.size}>
+                <div className="size">
                     Размер: {size}
                 </div>
-                <div className={css.colors}>
+                <div className="colors">
                     {
                         colors.map((x, i) =>
                             <button key={i} type="button" style={{backgroundColor: x}}/>
@@ -74,11 +68,34 @@ export const Card = (
 };
 
 
+const ImageSlides = ({images}) => {
+    if (images.length === 1) {
+        const img = images[0];
+        return (
+            <img src={img} alt={img}/>
+        );
+    }
+
+    return (
+        <Carousel interval={1000} controls={false}>
+            {
+                images.map((x, i) => {
+                    return (
+                        <Carousel.Item key={i}>
+                            <img className="d-block w-100" src={x} alt={x}/>
+                        </Carousel.Item>
+                    );
+                })
+            }
+        </Carousel>
+    );
+};
+
 const FavButton = ({isFavorite, onClick}) => {
 
     // TODO: получается click area немного выходит за иконку, потому что div прямоугольной формы
     return (
-        <div className={css.favoriteButton} onClick={onClick}>
+        <div className="favoriteButton" onClick={onClick}>
             {
                 isFavorite
                     ? <img src={filledHearIcon} alt="filledHearIcon"/>
@@ -90,22 +107,10 @@ const FavButton = ({isFavorite, onClick}) => {
 
 const DiscountBadge = ({discount}) => {
     return (
-        <div className={css.discountBadge}>
-            <div className={css.discountTriangle}/>
-            <div className={css.discountValue}>{discount}%</div>
+        <div className="discountBadge">
+            <div className="discountTriangle"/>
+            <div className="discountValue">{discount}%</div>
         </div>
     );
 };
 
-const Slider = () => {
-    return (
-        <div className={css.sliderWrap}>
-            <div className={css.slider}>
-                <button className={css.active} type="button"/>
-                <button type="button"/>
-                <button type="button"/>
-                <button type="button"/>
-            </div>
-        </div>
-    );
-};

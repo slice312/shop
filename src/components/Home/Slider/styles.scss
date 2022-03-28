@@ -1,0 +1,25 @@
+.home__slider {
+    padding-bottom: 20px;
+
+    .carousel {
+        .carousel-indicators [data-bs-target] {
+            width: 8px !important;
+            height: 8px !important;
+            border: 1px solid black !important;
+            border-radius: 50%;
+            background: none;
+        }
+
+        .carousel-indicators {
+            margin-bottom: -15px !important;
+
+            .active {
+                background: #000 !important;
+            }
+        }
+
+        .carousel-item {
+            transition: transform 900ms ease, opacity 10s ease-out;
+        }
+    }
+}

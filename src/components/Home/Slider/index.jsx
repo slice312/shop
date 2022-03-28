@@ -2,7 +2,8 @@ import React from "react";
 import {Carousel} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {loadHomeSlideCards} from "src/shared/state/slider/actions";
-import "./carousel.scss";
+import "./styles.scss";
+
 
 
 export const Slider = () => {
@@ -11,19 +12,21 @@ export const Slider = () => {
 
     React.useEffect(() => {
         dispatch(loadHomeSlideCards());
-    }, []);
+    }, [dispatch]);
 
     return (
-        <Carousel interval={4000} controls={false}>
-            {
-                images.map((x, i) => {
-                    return (
-                        <Carousel.Item>
-                            <img className="d-block w-100" src={x.src} alt={x.src}/>
-                        </Carousel.Item>
-                    )
-                })
-            }
-        </Carousel>
+        <div className="home__slider">
+            <Carousel interval={4000} controls={false}>
+                {
+                    images.map((x, i) => {
+                        return (
+                            <Carousel.Item key={i}>
+                                <img className="d-block w-100" src={x.src} alt={x.src}/>
+                            </Carousel.Item>
+                        );
+                    })
+                }
+            </Carousel>
+        </div>
     );
 };

@@ -13,7 +13,6 @@ export const App = () => {
     return (
         <div className={css.container}>
             <Header/>
-            <GetCard/>
 
             <Routes>
                 <Route path="/" element={<Home/>}/>

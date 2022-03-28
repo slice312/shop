@@ -1,6 +1,7 @@
 import React from "react";
 import {Slider} from "./Slider";
 import css from "./Home.module.scss";
+import {Bestsellers} from "./Bestsellers";
 
 
 export const Home = () => {
@@ -9,10 +10,7 @@ export const Home = () => {
     return (
         <div>
             <Slider/>
-            <div>
-
-            </div>
-
+            <Bestsellers/>
         </div>
     );
 };
