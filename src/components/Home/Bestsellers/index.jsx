@@ -10,7 +10,7 @@ import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detec
 
 
 export const Bestsellers = () => {
-
+    //test
     return (
         <div>
             <h2>Хиты продаж</h2>
