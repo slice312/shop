@@ -4,7 +4,7 @@ import {Home} from "./components/Home";
 import {About} from "./components/About";
 import {Collections} from "./components/Collections";
 import {News} from "./components/News";
-import {GetCard} from "./components/Card";
+import {CardDetail} from "./components/CardDetail";
 
 import css from "./App.module.scss";
 
@@ -19,6 +19,7 @@ export const App = () => {
                 <Route path="/about" element={<About/>}/>
                 <Route path="/collections" element={<Collections/>}/>
                 <Route path="/news" element={<News/>}/>
+                <Route path="/cards/:id" element={<CardDetail/>}/>
             </Routes>
         </div>
     );

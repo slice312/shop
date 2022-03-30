@@ -9,7 +9,7 @@ const initialState = {
     images: [],
 };
 
-const sliderCardsReceived = (state ,action) => ({
+const sliderCardsReceived = (state, action) => ({
     images: action.payload
 });
 

@@ -8,13 +8,18 @@ const getHomeSliderImages = async () => {
 }
 
 const getBestsellers = async (limit, offset = 0) => {
-    return await axiosInstance.get(`bestsellers?limit=${limit}&offset=${offset}`);
+    return await axiosInstance.get(`cards/bestsellers?limit=${limit}&offset=${offset}`);
+};
+
+const getNovelties = async (limit, offset = 0) => {
+    return await axiosInstance.get(`cards/novelties?limit=${limit}&offset=${offset}`);
 };
 
 
 export const Api = {
     getHomeSliderImages,
-    getBestsellers
+    getBestsellers,
+    getNovelties
 };
 
 

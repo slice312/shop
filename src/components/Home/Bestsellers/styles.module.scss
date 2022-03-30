@@ -1,0 +1,35 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 24px $fontFamily;
+$fontButton: 500 normal 13px $fontFamily;
+
+
+.root {
+    margin-top: 40px;
+    .title {
+        @include font-face($fontTitle, $textColorPrimary, 29.26px);
+        text-align: center;
+    }
+
+    .buttonDiv {
+        display: flex;
+        justify-content: center;
+        margin: 16px 0;
+
+        button {
+            @include font-face($fontButton, #FFFFFF, 16px);
+            background-color: #1D1D1B;
+            width: 107px;
+            height: 32px;
+        }
+    }
+}
+
+
+.desktop{
+    display: flex;
+    flex-wrap: wrap;
+}
+

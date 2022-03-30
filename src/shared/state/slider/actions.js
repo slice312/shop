@@ -11,7 +11,7 @@ export const sliderCardsReceived = (images) =>
 
 /**
  * ThunkCreator.
- * Загружает картник для слайдера на главной странице.
+ * Загружает картинки для слайдера на главной странице.
  */
 export const loadHomeSlideCards = () => {
     return async (dispatch, getState) => {

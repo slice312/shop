@@ -1,6 +1,7 @@
 import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import thunkMiddleWare from "redux-thunk";
 import {sliderImagesReducer} from "./slider/reducer";
+import {cardsReducer} from "./cards/reducer";
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -14,7 +15,9 @@ const enhancer = composeEnhancers(
 );
 
 const reducers = combineReducers({
-    homeSlider: sliderImagesReducer
+    homeSlider: sliderImagesReducer,
+    cards: cardsReducer
 });
+
 
 export const store = createStore(reducers, enhancer);

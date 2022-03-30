@@ -20,10 +20,14 @@ export const Card = (
     const priceWithDiscount = Math.round(price - price * discount / 100);
     const roundedDiscount = Math.round(discount);
 
+    // TODO: пока для вида сделал такой костыль, позже придумать как свазать с апи
+    const [favState, setFavState] = React.useState(isFavorite);
+
 
     const handler = () => {
         console.log("click FavButton");
-    }
+        setFavState(prev => !prev);
+    };
 
 
     return (
@@ -36,8 +40,7 @@ export const Card = (
                         : null
                 }
 
-                <FavButton isFavorite={isFavorite} onClick={handler}/>
-                {/*<Slider/>*/}
+                <FavButton isFavorite={favState} onClick={handler}/>
             </div>
 
             <div className="description">
@@ -77,7 +80,7 @@ const ImageSlides = ({images}) => {
     }
 
     return (
-        <Carousel interval={1000} controls={false}>
+        <Carousel interval={null} controls={false}>
             {
                 images.map((x, i) => {
                     return (
@@ -92,7 +95,6 @@ const ImageSlides = ({images}) => {
 };
 
 const FavButton = ({isFavorite, onClick}) => {
-
     // TODO: получается click area немного выходит за иконку, потому что div прямоугольной формы
     return (
         <div className="favoriteButton" onClick={onClick}>

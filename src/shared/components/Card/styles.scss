@@ -1,6 +1,5 @@
-@import "src/shared/styles/global";
-@import "src/shared/styles/mixins";
-
+@import "../../styles/global";
+@import "../../styles/mixins";
 
 
 $fontTitle: 400 normal 14px $fontFamily;
@@ -10,7 +9,6 @@ $fontLabelSize: 400 normal 13px $fontFamily;
 $fontDiscountPercent: 500 normal 12px $fontFamily;
 
 $cardHeight: 536px;
-
 
 
 .card__container {
