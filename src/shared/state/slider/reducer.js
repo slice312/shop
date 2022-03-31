@@ -1,5 +1,5 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {SLIDER_CARDS_RECEIVED} from "src/shared/state/constants/actionTypes"
+import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/constants/actionTypes"
 
 
 /**
@@ -9,13 +9,13 @@ const initialState = {
     images: [],
 };
 
-const sliderCardsReceived = (state, action) => ({
+const sliderImagesReceived = (state, action) => ({
     images: action.payload
 });
 
 
 export const sliderImagesReducer = createReducer(initialState, builder => {
     return builder
-        .addCase(SLIDER_CARDS_RECEIVED, sliderCardsReceived)
+        .addCase(SLIDER_IMAGES_RECEIVED, sliderImagesReceived)
         .addDefaultCase(state => state);
 });

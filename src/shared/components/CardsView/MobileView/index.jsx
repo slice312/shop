@@ -2,11 +2,9 @@ import React from "react";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/scss";
 import array from "lodash/array";
-import {Card} from "src/shared/components/Card";
 
 
-
-export const MobileView = ({cards}) => {
+export const MobileView = ({cards, CardElement}) => {
     const rows = array.chunk(cards, 4);
     return (
         <div>
@@ -18,7 +16,7 @@ export const MobileView = ({cards}) => {
                                 row.map((card, cardN) => {
                                     return (
                                         <SwiperSlide key={cardN}>
-                                            <Card {...card}/>
+                                            <CardElement {...card}/>
                                         </SwiperSlide>
                                     );
                                 })

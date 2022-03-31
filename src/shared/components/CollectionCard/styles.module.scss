@@ -1,0 +1,50 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 15px $fontFamily;
+$fontButton: 500 normal 14px $fontFamily;
+
+
+.root {
+    width: 286px;
+    height: 374px;
+
+    .photo {
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        .title {
+            @include font-face($fontTitle, $colorWhite, 18.29px);
+            position: absolute;
+            bottom: 12px;
+        }
+    }
+
+    .buttonDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        height: 44px;
+        background-color: $colorPrimary;
+        @include font-face($fontButton, $colorWhite, 17.07px);
+        color: $colorWhite;
+
+        &:hover {
+            color: $colorPrimary;
+            background-color: $colorWhite;
+            cursor: pointer;
+
+            img {
+                filter: brightness(0%);
+            }
+        }
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}

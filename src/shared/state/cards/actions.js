@@ -7,14 +7,12 @@ import {
 import {Api} from "src/shared/utils/api";
 
 
-export const cardsBestSellersReset = () =>
-    ({type: CARDS_BESTSELLERS_RESET});
+export const cardsBestSellersReset = () => ({type: CARDS_BESTSELLERS_RESET});
 
 export const cardsBestsellersPushed = (cards) =>
     ({type: CARDS_BESTSELLERS_PUSHED, payload: cards});
 
-export const cardsNoveltiesReset = () =>
-    ({type: CARDS_NOVELTIES_RESET});
+export const cardsNoveltiesReset = () => ({type: CARDS_NOVELTIES_RESET});
 
 export const cardsNoveltiesPushed = (cards) =>
     ({type: CARDS_NOVELTIES_PUSHED, payload: cards});

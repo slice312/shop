@@ -1,7 +1,7 @@
 import React from "react";
 import {Carousel} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {loadHomeSlideCards} from "src/shared/state/slider/actions";
+import {loadHomeSliderImages} from "src/shared/state/slider/actions";
 import "./styles.scss";
 
 
@@ -11,7 +11,7 @@ export const Slider = () => {
     const images = useSelector(state => state.homeSlider.images);
 
     React.useEffect(() => {
-        dispatch(loadHomeSlideCards());
+        dispatch(loadHomeSliderImages());
     }, [dispatch]);
 
     return (
@@ -21,7 +21,7 @@ export const Slider = () => {
                     images.map((x, i) => {
                         return (
                             <Carousel.Item key={i}>
-                                <img className="d-block w-100" src={x.src} alt={x.src}/>
+                                <img className="d-block w-100" src={x.image} alt={x.image}/>
                             </Carousel.Item>
                         );
                     })

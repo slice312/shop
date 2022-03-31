@@ -15,11 +15,14 @@ const getNovelties = async (limit, offset = 0) => {
     return await axiosInstance.get(`cards/novelties?limit=${limit}&offset=${offset}`);
 };
 
+const getCollections = async (limit, offset = 0) => {
+    return await axiosInstance.get(`collections?limit=${limit}&offset=${offset}`);
+};
+
 
 export const Api = {
     getHomeSliderImages,
     getBestsellers,
-    getNovelties
+    getNovelties,
+    getCollections
 };
-
-

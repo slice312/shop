@@ -5,7 +5,6 @@ import {About} from "./components/About";
 import {Collections} from "./components/Collections";
 import {News} from "./components/News";
 import {CardDetail} from "./components/CardDetail";
-
 import css from "./App.module.scss";
 
 
@@ -13,7 +12,6 @@ export const App = () => {
     return (
         <div className={css.container}>
             <Header/>
-
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/about" element={<About/>}/>
@@ -23,4 +21,4 @@ export const App = () => {
             </Routes>
         </div>
     );
-}
+};

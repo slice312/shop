@@ -20,16 +20,14 @@ $fontButton: 500 normal 13px $fontFamily;
 
         button {
             @include font-face($fontButton, #FFFFFF, 16px);
-            background-color: #1D1D1B;
+            background-color: $colorPrimary;
             width: 107px;
             height: 32px;
+
+            &:hover {
+                background-color: $colorWhite;
+                color: $colorPrimary;
+            }
         }
     }
 }
-
-
-.desktop{
-    display: flex;
-    flex-wrap: wrap;
-}
-

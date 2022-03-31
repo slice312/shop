@@ -1,25 +1,27 @@
-import {SLIDER_CARDS_RECEIVED} from "src/shared/state/constants/actionTypes";
+import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/constants/actionTypes";
 import {Api} from "src/shared/utils/api";
 
+
 /**
+ * /TODO
  * @param {any[]} images
  * @return {{payload, type: string}}
  */
-export const sliderCardsReceived = (images) =>
-    ({type: SLIDER_CARDS_RECEIVED, payload: images});
+export const sliderImagesReceived = (images) =>
+    ({type: SLIDER_IMAGES_RECEIVED, payload: images});
 
 
 /**
  * ThunkCreator.
  * Загружает картинки для слайдера на главной странице.
  */
-export const loadHomeSlideCards = () => {
+export const loadHomeSliderImages = () => {
     return async (dispatch, getState) => {
         try {
             const response = await Api.getHomeSliderImages();
             if (response.status === 200) {
                 console.log("loadHomeSlideCards success", response.data);
-                dispatch(sliderCardsReceived(response.data.images));
+                dispatch(sliderImagesReceived(response.data.images));
             } else {
                 console.log("loadHomeSlideCards error", response.status);
             }

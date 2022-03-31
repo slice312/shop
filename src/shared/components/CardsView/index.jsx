@@ -4,14 +4,14 @@ import {DesktopView} from "./DesktopView";
 import {MobileView} from "./MobileView";
 
 
-
-export const CardsView = ({cards}) => {
+export const CardsView = ({cards, CardElement}) => {
+    // TODO: React.lazy почитать сделать так же, если оно тут
     return (
         <div>
             {
                 isMobile
-                    ? <MobileView cards={cards}/>
-                    : <DesktopView cards={cards}/>
+                    ? <MobileView cards={cards} CardElement={CardElement}/>
+                    : <DesktopView cards={cards} CardElement={CardElement}/>
             }
         </div>
     );

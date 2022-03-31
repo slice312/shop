@@ -1,5 +1,5 @@
-@import "../../styles/global";
-@import "../../styles/mixins";
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
 
 
 $fontTitle: 400 normal 14px $fontFamily;
@@ -8,12 +8,10 @@ $fontForOldPrice: 300 normal 14px $fontFamily;
 $fontLabelSize: 400 normal 13px $fontFamily;
 $fontDiscountPercent: 500 normal 12px $fontFamily;
 
-$cardHeight: 536px;
-
 
 .card__container {
     width: 286px;
-    height: $cardHeight;
+    height: 536px;
 
     .photo {
         height: 81.5%;
@@ -36,7 +34,6 @@ $cardHeight: 536px;
                 left: 3px;
                 top: 8px;
                 transform: rotate(-45deg);
-
             }
         }
 

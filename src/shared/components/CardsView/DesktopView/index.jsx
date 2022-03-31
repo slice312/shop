@@ -1,15 +1,13 @@
 import React from "react";
-import {Card} from "src/shared/components/Card";
 import css from "./styles.module.scss";
 
 
-
-export const DesktopView = ({cards}) => {
+export const DesktopView = ({cards, CardElement}) => {
     return (
         <div className={css.root}>
             {
                 cards.map((card, i) =>
-                    <Card key={i} {...card}/>
+                    <CardElement key={i} {...card}/>
                 )
             }
         </div>

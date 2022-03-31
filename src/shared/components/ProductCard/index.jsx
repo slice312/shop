@@ -5,8 +5,7 @@ import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import "./styles.scss";
 
 
-
-export const Card = (
+export const ProductCard = (
     {
         title,
         price,

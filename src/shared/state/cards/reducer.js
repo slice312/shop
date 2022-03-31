@@ -7,7 +7,7 @@ import {
 } from "src/shared/state/constants/actionTypes";
 
 
-/**
+/** // TODO: добавить jsdoc typedef
  * @property {any} bestsellers
  * @property {any} novelties
  */
