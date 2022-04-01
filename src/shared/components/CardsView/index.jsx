@@ -5,7 +5,7 @@ import {MobileView} from "./MobileView";
 
 
 export const CardsView = ({cards, CardElement}) => {
-    // TODO: React.lazy почитать сделать так же, если оно тут
+    // TODO: React.lazy почитать сделать так же, если оно тут подойдет
     return (
         <div>
             {

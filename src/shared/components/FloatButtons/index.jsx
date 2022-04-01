@@ -1,15 +1,17 @@
 import React from "react";
+import {useSelector} from "react-redux";
 import css from "./styles.module.scss";
 import arrowUpIcon from "src/assets/icons/arrow-up.svg";
 import chatIcon from "src/assets/icons/chat.svg"
 import xmarkIcon from "src/assets/icons/x-mark.svg"
 import telegramIcon from "src/assets/icons/telegram-fill.svg";
 import whatsappIcon from "src/assets/icons/ant-design_whats-app-outlined.svg";
-import callIcon from "src/assets/icons/call.svg";
-import {Modal, Button} from "react-bootstrap"
+import telephoneIcon from "src/assets/icons/telephone.svg";
+import {RequestCallbackModal} from "../RequestCallbackModal";
 
 
 export const FloatButtons = () => {
+
     const [isOpen, setIsOpen] = React.useState(false);
 
     const scrollToTop = () => {
@@ -36,40 +38,41 @@ export const FloatButtons = () => {
 
 
 const MainPanel = ({isOpen}) => {
-    const handle = () => ({});
+    const {telegramUrl, whatsappUrl} = useSelector(state => state.siteCommonInfo);
+
+    const [isOpenCallModal, setIsOpenCallModal] = React.useState(false);
+
+    const btnCallClick = () => {
+        setIsOpenCallModal(true);
+    };
+
+    const telegramRedirectClick = () => window.open(telegramUrl, "_blank");
+    const whatsappRedirectClick = () => window.open(whatsappUrl, "_blank");
+
+
     return (
         <React.Fragment>
             {isOpen
                 ? (
                     <div className={css.panel}>
-                        <button className={css.telegram} type="button" onClick={handle}>
+                        <button className={css.telegram} type="button" onClick={telegramRedirectClick}>
                             <img src={telegramIcon} alt="telegramIcon"/>
                         </button>
-                        <button className={css.whatsapp} type="button" onClick={handle}>
+                        <button className={css.whatsapp} type="button" onClick={whatsappRedirectClick}>
                             <img src={whatsappIcon} alt="whatsappIcon"/>
                         </button>
-                        <button className={css.call} type="button" onClick={handle}>
-                            <img src={callIcon} alt="callIcon"/>
+                        <button className={css.call} type="button" onClick={btnCallClick}>
+                            <img src={telephoneIcon} alt="callIcon"/>
                         </button>
                     </div>
                 )
                 : null
             }
-
-            <Modal show={false} onHide={() => console.log("hide")}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => console.log("close")}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={() => console.log("clise")}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {
+                isOpenCallModal
+                    ? <RequestCallbackModal onClose={() => setIsOpenCallModal(false)}/>
+                    : null
+            }
         </React.Fragment>
     );
 };

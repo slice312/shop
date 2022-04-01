@@ -1,5 +1,6 @@
 import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import thunkMiddleWare from "redux-thunk";
+import {commonSiteInfoReducer} from "./commonSiteInfo/reducer";
 import {sliderImagesReducer} from "./slider/reducer";
 import {cardsReducer} from "./cards/reducer";
 import {collectionsReducer} from "./collections/reducer";
@@ -16,9 +17,10 @@ const enhancer = composeEnhancers(
 );
 
 const reducers = combineReducers({
+    siteCommonInfo: commonSiteInfoReducer,
     homeSlider: sliderImagesReducer,
     cards: cardsReducer,
-    collections: collectionsReducer
+    collections: collectionsReducer,
 });
 
 

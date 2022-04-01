@@ -8,6 +8,7 @@ $fontButton: 500 normal 13px $fontFamily;
 
 .root {
     margin-top: 40px;
+
     .title {
         @include font-face($fontTitle, $textColorPrimary, 29.26px);
         text-align: center;
@@ -24,9 +25,11 @@ $fontButton: 500 normal 13px $fontFamily;
             width: 107px;
             height: 32px;
 
-            &:hover {
-                background-color: $colorWhite;
-                color: $colorPrimary;
+            @media (hover: hover) {
+                &:hover {
+                    background-color: $colorWhite;
+                    color: $colorPrimary;
+                }
             }
         }
     }

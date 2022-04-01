@@ -23,6 +23,18 @@ export const mockIt = (instance) => {
         };
     };
 
+    // запрос на получение общей информации сайта
+    mockApi
+        .onGet(/common-site-info/)
+        .reply(config => {
+            return [200, DB.commonSiteInfo];
+        });
+
+    // запрос "заказать обратный звонок"
+    mockApi
+        .onPut(/callback\?phone=.+&name=.+/)
+        .reply(config => [200, {message: "success"}]);
+
     // запрос к карточкам товаров Хиты продаж и Новинки
     mockApi
         .onGet(/cards\/bestsellers\?limit=.+&offset=.+/)

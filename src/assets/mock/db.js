@@ -5,6 +5,14 @@
  */
 
 
+const commonSiteInfo = {
+    headerLogo: `https://i.ibb.co/GccphHv/zeot-ithub-logo.png`,
+    phoneNumber: "+996 777 37 55 66",
+    telegramUrl: `https://t.me/s/sputnik_kgz_main`,
+    whatsappUrl: `https://wa.me`
+};
+
+
 const slides = [
     {
         image: `https://i.ibb.co/MpsHH8m/slide1.png`,
@@ -202,6 +210,7 @@ const cards = [
 
 
 export const DB = {
+    commonSiteInfo,
     slides,
     cards,
     collections

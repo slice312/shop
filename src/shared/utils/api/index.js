@@ -19,10 +19,24 @@ const getCollections = async (limit, offset = 0) => {
     return await axiosInstance.get(`collections?limit=${limit}&offset=${offset}`);
 };
 
+const putRequestCallBack = async (phoneNumber, name) => {
+    return await axiosInstance.put(`callback?phone=${phoneNumber}&name=${name}`);
+};
 
+const getCommonSiteInfo = async () => {
+    return await axiosInstance.get("common-site-info")
+};
+
+
+// TODO: разбить на группы
 export const Api = {
     getHomeSliderImages,
     getBestsellers,
     getNovelties,
-    getCollections
+    getCollections,
+
+    siteService: {
+        putRequestCallBack,
+        getCommonSiteInfo
+    }
 };

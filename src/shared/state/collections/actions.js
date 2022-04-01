@@ -12,7 +12,7 @@ export const collectionsPushed = (collections) =>
 
 /**
  * ThunkCreator.
- * Загружает коллекци.
+ * Загружает коллекции.
  */
 export const pushCollections = (batchSize) => {
     return async (dispatch, getState) => {

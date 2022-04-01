@@ -1,0 +1,71 @@
+@import "../../styles/global";
+@import "../../styles/mixins";
+
+
+$fontHeader: 600 normal 20px $fontFamily;
+$fontSubHeader: 400 normal 18px $fontFamily;
+$fontInput: 400 normal 14px $fontFamily;
+$fontButton: 500 normal 14px $fontFamily;
+
+
+.root {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    .closeButton {
+        background-color: transparent;
+        align-self: flex-end;
+    }
+
+    .header {
+        @include font-face($fontHeader, $textColorPrimary, 125%);
+    }
+
+    .subHeader {
+        @include font-face($fontSubHeader, $textColorPrimary, 15px);
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+        .input {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 13.5px 0 13.5px 12px;
+            border: 1px solid #DCDCDC;
+            border-radius: 3px;
+
+            img {
+                width: 24px;
+                height: 24px;
+            }
+
+            input {
+                @include font-face($fontInput, $textColorPrimary, 17.07px);
+                margin: 0 8px;
+                width: 100%;
+
+                &::placeholder {
+                    color: #BEBEBE;
+                }
+            }
+        }
+
+        button {
+            @include font-face($fontButton, $colorWhite, 17.07px);
+            background-color: $colorPrimary;
+            padding: 14px 0 13px 0;
+            margin-top: 2px;
+
+            &:hover {
+                background-color: #BEBEBE;
+            }
+        }
+    }
+}
+

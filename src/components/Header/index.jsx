@@ -1,3 +1,4 @@
+import {useSelector} from "react-redux";
 import searchIcon from "src/assets/icons/search.svg";
 import css from  "./Header.module.scss";
 import {Link} from "react-router-dom";
@@ -7,6 +8,8 @@ import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 
 
 export const Header = () => {
+    const {headerLogo, phoneNumber} = useSelector(state => state.siteCommonInfo);
+
     console.log("Header render");
     return (
         <header className={css.root}>
@@ -28,7 +31,7 @@ export const Header = () => {
                         Тел:
                     </span>
                     <span>
-                        +996 000 00 00 00
+                        {phoneNumber}
                     </span>
                 </div>
             </div>
@@ -36,7 +39,7 @@ export const Header = () => {
             <div className={css.group2}>
                 <div className={css.group2_left}>
                     <Link to="/">
-                        <img src={zeonLogo} alt="zeonLogo"/>
+                        <img src={headerLogo} alt="headerLogo"/>
                     </Link>
                 </div>
                 <div className={css.group2_right}>
