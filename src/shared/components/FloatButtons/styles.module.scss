@@ -1,0 +1,46 @@
+.root {
+    position: fixed;
+    z-index: 2;
+    right: 5%;
+    bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+
+    button {
+        width: 44px;
+        height: 44px;
+        border-radius: 6px;
+        &:hover {
+            transform: scale(1.15);
+        }
+    }
+
+    .panel {
+        display: flex;
+        flex-direction: row;
+        gap: 6px;
+
+        .telegram {
+            background-color: #0088CC;
+        }
+        .whatsapp {
+            background-color: #25D366;
+        }
+        .call {
+            background-color: #27AE60;
+        }
+    }
+
+    .controlButtons {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-left: 10px;
+
+        button {
+            background-color: transparent;
+        }
+    }
+}

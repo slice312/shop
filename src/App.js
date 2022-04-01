@@ -1,5 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 import {Header} from "./components/Header";
+import {Footer} from "./components/Footer";
 import {Home} from "./components/Home";
 import {About} from "./components/About";
 import {Collections} from "./components/Collections";
@@ -19,6 +20,7 @@ export const App = () => {
                 <Route path="/news" element={<News/>}/>
                 <Route path="/cards/:id" element={<CardDetail/>}/>
             </Routes>
+            <Footer/>
         </div>
     );
 };
