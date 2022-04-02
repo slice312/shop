@@ -31,3 +31,6 @@ export const pushCollections = (batchSize) => {
         }
     };
 };
+
+
+// TODO: не надо каждый раз из базы брать

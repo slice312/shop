@@ -5,3 +5,13 @@
     line-height: $lineHeight;
     letter-spacing: $letterSpacing;
 }
+
+/**
+   Применят css праивила если устройство поддерживает hover эффект,
+   т. е все кроме планшетов, телефонов
+ */
+@mixin ifHover{
+    @media (hover: hover) {
+        @content
+    }
+}

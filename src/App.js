@@ -13,20 +13,30 @@ import css from "./App.module.scss";
 
 
 export const App = () => {
+    console.log("App render");
     const dispatch = useDispatch();
     React.useEffect(() => void dispatch(setCommonSiteInfo()), [dispatch]);
 
     return (
-        <div className={css.container}>
-            <Header/>
-            <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/about" element={<About/>}/>
-                <Route path="/collections" element={<Collections/>}/>
-                <Route path="/news" element={<News/>}/>
-                <Route path="/cards/:id" element={<CardDetail/>}/>
-            </Routes>
-            <Footer/>
-        </div>
+        <React.Fragment>
+            <div className={css.headerContainer}>
+                <div className={css.limitContainer}>
+                    <Header/>
+                </div>
+            </div>
+
+            <div className={css.contentContainer}>
+                <div className={css.limitContainer}>
+                    <Routes>
+                        <Route path="/" element={<Home/>}/>
+                        <Route path="/about" element={<About/>}/>
+                        <Route path="/collections" element={<Collections/>}/>
+                        <Route path="/news" element={<News/>}/>
+                        <Route path="/cards/:id" element={<CardDetail/>}/>
+                    </Routes>
+                    <Footer/>
+                </div>
+            </div>
+        </React.Fragment>
     );
 };

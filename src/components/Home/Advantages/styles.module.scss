@@ -18,9 +18,11 @@ $fontCardDesc: 400 normal 14px $fontFamily;
     .cards {
         display: flex;
         flex-wrap: wrap;
+        gap: 8px;
 
         .card {
             padding: 24px 12px 49px 12px;
+            background-color: $colorWhite;
 
             .container {
                 display: flex;

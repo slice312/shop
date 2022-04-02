@@ -6,22 +6,25 @@ import {
 
 
 /** // TODO: добавить jsdoc typedef
- * @property {any} bestsellers
- * @property {any} novelties
+ * @property {any} collections
+ * @property {number} totalQty
  */
 const initialState = {
-    collections: []
+    collections: [],
+    totalQty: 0
 };
 
 
 const collectionsReset = (state, action) => ({
     ...state,
     collections: [],
+    totalQty: 0
 });
 
 const collectionsPushed = (state, action) => ({
     ...state,
-    collections: [...state.collections, ...action.payload]
+    collections: [...state.collections, ...action.payload.collections],
+    totalQty: action.payload.totalQty
 });
 
 

@@ -25,7 +25,7 @@ $fontButton: 500 normal 13px $fontFamily;
             width: 107px;
             height: 32px;
 
-            @media (hover: hover) {
+            @include ifHover {
                 &:hover {
                     background-color: $colorWhite;
                     color: $colorPrimary;

@@ -55,7 +55,10 @@ export const mockIt = (instance) => {
         .onGet(/collections\?limit=.+&offset=.+/)
         .reply(config => {
             const params = parseQueryParams(config);
-            const data = array.take(DB.collections, params.limit);
+            const data = {
+                collections: array.take(DB.collections, params.limit),
+                totalQty: 123// DB.collections.length TODO: так надо
+            };
             return [200, data];
         });
 };

@@ -1,9 +1,11 @@
-@import "shared/styles/global";
+@import "src/shared/styles/global";
 
 
-.container {
+.limitContainer {
     max-width: $maxWidthContainer + px;
     margin: 0 auto;
+    padding: 10px;
+
     @media (max-width: $md1+px) {
         max-width: 750px;
     }
@@ -12,3 +14,12 @@
         padding: 0 10px;
     }
 }
+
+.headerContainer {
+    background-color: $colorWhite;
+}
+
+.contentContainer {
+    background-color: $colorMainBackground;
+}
+

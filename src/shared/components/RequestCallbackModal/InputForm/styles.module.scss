@@ -52,7 +52,7 @@ $fontButton: 500 normal 14px $fontFamily;
                 padding: 13.5px 0 13.5px 12px;
 
                 &::placeholder {
-                    color: #BEBEBE;
+                    color: $colorGray;
                 }
             }
         }
@@ -69,7 +69,7 @@ $fontButton: 500 normal 14px $fontFamily;
             margin-top: 2px;
 
             &:hover {
-                background-color: #BEBEBE;
+                background-color: $colorGray;
             }
         }
     }

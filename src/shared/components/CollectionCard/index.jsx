@@ -1,5 +1,5 @@
 import React from "react";
-import arrowIcon from "src/assets/icons/arrow-right.svg";
+import arrowIcon from "src/assets/icons/arrow-right-white.svg";
 import css from "./styles.module.scss";
 
 
