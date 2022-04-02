@@ -9,6 +9,8 @@ import {Collections} from "./components/Collections";
 import {News} from "./components/News";
 import {CardDetail} from "./components/CardDetail";
 import {setCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
+import {FloatButtons} from "src/shared/components/FloatButtons";
+
 import css from "./App.module.scss";
 
 
@@ -19,6 +21,7 @@ export const App = () => {
 
     return (
         <React.Fragment>
+            <FloatButtons/>
             <div className={css.headerContainer}>
                 <div className={css.limitContainer}>
                     <Header/>

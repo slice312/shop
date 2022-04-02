@@ -1,0 +1,59 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 24px $fontFamily;
+$fontDescription: 500 normal 15px $fontFamily;
+
+
+.root {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+
+    .images {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .column1 {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+        }
+
+        .column2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 430px;
+
+        .container {
+            background-color: $colorWhite;
+            padding: 12px 24px;
+
+            .title {
+                @include font-face($fontTitle, $textColorPrimary, 29px);
+                align-self: flex-start;
+            }
+
+            .description {
+                @include font-face($fontDescription, $textColorGray, 24px);
+            }
+        }
+    }
+}

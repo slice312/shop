@@ -2,7 +2,6 @@ import {useSelector} from "react-redux";
 import searchIcon from "src/assets/icons/search.svg";
 import css from  "./Header.module.scss";
 import {Link} from "react-router-dom";
-import zeonLogo from "src/assets/img/zeon_logo.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 
