@@ -18,10 +18,10 @@ export const setCommonSiteInfo = () => {
                 console.log("setCommonSiteInfo success", response.data);
                 dispatch(commonSiteInfoReceived(response.data));
             } else {
-                console.log("setCommonSiteInfo error", response.status);
+                console.error("setCommonSiteInfo error", response.status);
             }
         } catch (err) {
-            console.log("setCommonSiteInfo error", err);
+            console.error("setCommonSiteInfo error", err);
         }
     };
 };

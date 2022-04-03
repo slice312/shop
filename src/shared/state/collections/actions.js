@@ -24,10 +24,10 @@ export const pushCollections = (batchSize) => {
                 console.log("pushCollections success", response.data);
                 dispatch(collectionsPushed(response.data));
             } else {
-                console.log("pushCollections error", response.status);
+                console.error("pushCollections error", response.status);
             }
         } catch (err) {
-            console.log("pushCollections error", err);
+            console.error("pushCollections error", err);
         }
     };
 };

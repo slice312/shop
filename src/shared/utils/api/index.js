@@ -24,8 +24,14 @@ const putRequestCallBack = async (phoneNumber, name) => {
 };
 
 const getCommonSiteInfo = async () => {
-    return await axiosInstance.get("common-site-info")
+    return await axiosInstance.get("common-site-info");
 };
+
+const getPublicOffer = async () => {
+    return await axiosInstance.get("public-offer");
+};
+
+// TODO: ПОИСК https://stackoverflow.com/questions/51726391/how-to-create-a-search-field-in-reactjs
 
 
 // TODO: разбить на группы
@@ -37,6 +43,7 @@ export const Api = {
 
     siteService: {
         putRequestCallBack,
-        getCommonSiteInfo
+        getCommonSiteInfo,
+        getPublicOffer
     }
 };

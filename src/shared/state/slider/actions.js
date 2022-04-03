@@ -23,10 +23,10 @@ export const loadHomeSliderImages = () => {
                 console.log("loadHomeSlideCards success", response.data);
                 dispatch(sliderImagesReceived(response.data.images));
             } else {
-                console.log("loadHomeSlideCards error", response.status);
+                console.error("loadHomeSlideCards error", response.status);
             }
         } catch (err) {
-            console.log("loadHomeSlideCards error", err);
+            console.error("loadHomeSlideCards error", err);
         }
     };
 };

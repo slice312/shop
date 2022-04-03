@@ -30,6 +30,13 @@ export const mockIt = (instance) => {
             return [200, DB.commonSiteInfo];
         });
 
+    // запрос на получение текста публичной оферты
+    mockApi
+        .onGet(/public-offer/)
+        .reply(config => {
+            return [200, DB.publicOfferText];
+        });
+
     // запрос "заказать обратный звонок"
     mockApi
         .onPut(/callback\?phone=.+&name=.+/)

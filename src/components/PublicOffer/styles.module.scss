@@ -1,0 +1,23 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 24px $fontFamily;
+$fontText: 300 normal 14px $fontFamily;
+
+
+.root {
+
+    .title {
+        @include font-face($fontTitle, $textColorPrimary, 29px);
+    }
+
+    .text {
+        @include font-face($fontText, #5B5B5B, 23px);
+        background-color: $colorWhite;
+        padding: 16px;
+        margin-top: 18px;
+        white-space:pre-wrap;
+        word-wrap:break-word;
+    }
+}

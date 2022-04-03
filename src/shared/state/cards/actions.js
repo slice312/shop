@@ -32,10 +32,10 @@ export const pushCardsBestsellers = (batchSize) => {
                 console.log("pushCardsBestsellers success", response.data);
                 dispatch(cardsBestsellersPushed(response.data));
             } else {
-                console.log("pushCardsBestsellers error", response.status);
+                console.error("pushCardsBestsellers error", response.status);
             }
         } catch (err) {
-            console.log("pushCardsBestsellers error", err);
+            console.error("pushCardsBestsellers error", err);
         }
     };
 };
@@ -55,10 +55,10 @@ export const pushCardsNovelties = (batchSize) => {
                 console.log("pushCardsNovelties success", response.data);
                 dispatch(cardsNoveltiesPushed(response.data));
             } else {
-                console.log("pushCardsNovelties error", response.status);
+                console.error("pushCardsNovelties error", response.status);
             }
         } catch (err) {
-            console.log("pushCardsNovelties error", err);
+            console.error("pushCardsNovelties error", err);
         }
     };
 };
