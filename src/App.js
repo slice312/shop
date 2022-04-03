@@ -11,6 +11,8 @@ import {CardDetail} from "./components/CardDetail";
 import {setCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
 import {FloatButtons} from "src/shared/components/FloatButtons";
 import {PublicOffer} from "./components/PublicOffer";
+import {Help} from "./components/Help";
+
 
 import css from "./App.module.scss";
 
@@ -38,6 +40,7 @@ export const App = () => {
                         <Route path="/news" element={<News/>}/>
                         <Route path="/cards/:id" element={<CardDetail/>}/>
                         <Route path="/public-offer" element={<PublicOffer/>}/>
+                        <Route path="/help" element={<Help/>}/>
                     </Routes>
                     <Footer/>
                 </div>

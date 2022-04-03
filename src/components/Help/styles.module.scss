@@ -1,0 +1,41 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 24px $fontFamily;
+$fontQuestion: 400 normal 16px $fontFamily;
+$fontAnswer: 300 normal 14px $fontFamily;
+
+
+.root {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    flex-wrap: wrap;
+
+    .image {
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        flex-grow: 1;
+
+        .title {
+            @include font-face($fontTitle, $textColorPrimary, 29px);
+        }
+
+        .question {
+            @include font-face($fontQuestion, $textColorPrimary, 19.5px);
+        }
+
+        .answer {
+            @include font-face($fontAnswer, #354455, 22.4px);
+        }
+    }
+}
