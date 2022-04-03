@@ -13,6 +13,9 @@ import lodash from "lodash";
 
 const COLLECTION_BATCH_SIZE = 8;
 
+const VISIBLE_PAGES = 4; // TODO: rename
+
+
 export const Collections = () => {
     const {collections, totalQty} = useSelector(state => state.collections);
     const [pageNum, setPageNum] = React.useState(0);
@@ -30,11 +33,10 @@ export const Collections = () => {
 
     };
     const prevPageClick = () => {
-        setPageNum(prev => prev -1);
-
+        setPageNum(prev => prev - 1);
     };
 
-    const pageCount = 6//Math.ceil(totalQty / COLLECTION_BATCH_SIZE);
+    const pageCount = Math.ceil(totalQty / COLLECTION_BATCH_SIZE);
     let pageSelectorElements = [];
 
 
@@ -44,10 +46,11 @@ export const Collections = () => {
         </div>
     );
 
-    //pageNum = 5
+    const batchNumber = Math.floor(pageNum / VISIBLE_PAGES)
+    const start = batchNumber * VISIBLE_PAGES
     const elements = lodash.take(lodash.range(pageCount), 4)
         .map((_, i) => {
-            const num = i;
+            const num = start + i;
             return (
                 <div key={num}
                      className={cn(css.item, (num === pageNum) ? css.active : null)}
@@ -69,15 +72,17 @@ export const Collections = () => {
         );
     }
 
-    pageSelectorElements.push(
-        <div className={css.item} onClick={() => setPageNum(pageCount - 1)}>
-            {pageCount}
-        </div>
-        ,
-        <div className={css.item} onClick={nextPageClick}>
-            <img src={arrowRightIcon} alt="arrowRightIcon"/>
-        </div>
-    );
+    if (start + VISIBLE_PAGES < pageCount) {
+        pageSelectorElements.push(
+            <div className={css.item} onClick={() => setPageNum(pageCount - 1)}>
+                {pageCount}
+            </div>
+            ,
+            <div className={css.item} onClick={nextPageClick}>
+                <img src={arrowRightIcon} alt="arrowRightIcon"/>
+            </div>
+        );
+    }
 
 
 
@@ -93,9 +98,6 @@ export const Collections = () => {
                 {
                     pageSelectorElements
                 }
-                {/*<div className={css.item}>*/}
-                {/*    <img src={arrowRightIcon} alt="arrowRightIcon"/>*/}
-                {/*</div>*/}
             </div>
         </div>
     );
