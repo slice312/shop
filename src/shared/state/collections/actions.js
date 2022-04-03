@@ -7,8 +7,7 @@ import {Api} from "src/shared/utils/api";
 
 export const collectionsReset = () => ({type: COLLECTIONS_RESET});
 
-export const collectionsPushed = (collections) =>
-    ({type: COLLECTIONS_PUSHED, payload: collections});
+export const collectionsPushed = (data) => ({type: COLLECTIONS_PUSHED, payload: data});
 
 /**
  * ThunkCreator.
@@ -31,6 +30,3 @@ export const pushCollections = (batchSize) => {
         }
     };
 };
-
-
-// TODO: не надо каждый раз из базы брать

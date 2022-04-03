@@ -68,6 +68,15 @@ export const mockIt = (instance) => {
             };
             return [200, data];
         });
+
+    // запрос к новостям
+    mockApi
+        .onGet(/news\?limit=.+&offset=.+/)
+        .reply(config => {
+            const params = parseQueryParams(config);
+            const data = array.take(DB.news, params.limit);
+            return [200, data];
+        });
 };
 
 

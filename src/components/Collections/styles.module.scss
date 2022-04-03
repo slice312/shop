@@ -7,7 +7,7 @@ $fontPageButton: 500 normal 16px Inter;
 
 
 .root {
-    padding-top: 32px;
+    padding-top: 12px;
 
     .title {
         @include font-face($fontTitle, $textColorPrimary, 29px);

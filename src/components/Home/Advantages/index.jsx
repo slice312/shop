@@ -38,7 +38,7 @@ export const Advantages = () => {
             </div>
             <div className={css.cards}>
                 {
-                    cards.map((data, i) => <AdvantageCard {...data}/>)
+                    cards.map((data, i) => <AdvantageCard key={i} {...data}/>)
                 }
             </div>
         </div>

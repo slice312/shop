@@ -1,0 +1,26 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 24px $fontFamily;
+$fontNewsTitle: 600 normal 16px $fontFamily;
+$fontNewsText: 300 normal 14px $fontFamily;
+
+
+.root {
+    display: flex;
+    flex-direction: column;
+    padding-top: 12px;
+
+
+    .title {
+        @include font-face($fontTitle, $textColorPrimary, 29px);
+        margin-bottom: 18px;
+    }
+
+    .news {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+}

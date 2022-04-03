@@ -1,0 +1,53 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontNewsTitle: 600 normal 16px $fontFamily;
+$fontNewsText: 300 normal 14px $fontFamily;
+
+
+.card {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    background-color: $colorWhite;
+
+    .image {
+        min-width: 15%;
+        height: auto;
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+
+    .textBlock {
+        padding-left: 16px;
+
+        .title {
+            @include font-face($fontNewsTitle, $textColorPrimary, 19.5px);
+        }
+
+        .text {
+            @include font-face($fontNewsText, #5B5B5B, 23.1px);
+            margin-top: 6px;
+
+        }
+    }
+}
+
+
+@media (max-width: $md4+px) {
+    .card {
+        flex-direction: column;
+        align-items: center;
+
+        .image {
+
+        }
+        .textBlock {
+            margin-top: 16px;
+        }
+    }
+}

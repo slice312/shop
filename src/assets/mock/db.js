@@ -12,6 +12,7 @@ const commonSiteInfo = {
     whatsappUrl: `https://wa.me`
 };
 
+
 const publicOfferText = `Sit ullamcorper at gravida quis feugiat. Laoreet leo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque felis enim dui id cum. At pellentesque diam nulla ac amet quisque quis. Est consectetur ullamcorper curabitur quis viverra hac molestie. Elit pulvinar congue ut amet adipiscing felis tincidunt. Amet quis varius aliquam hendrerit tempus. Sed sit diam quis scelerisque congu econgu econgu econguecongu econguecon guecon guecon guecong ueconguecong uec ongue.
 Sit ullamcorper at gravida quis feugiat. Laoreet leo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque  Sit ullamcorper at gravida quis feugiat. Laoreet leo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque felis enim dui id cum. At pellentesque diam nulla ac amet quisque quis. Est consectetur ullamcorper curabitur quis viverra hac molestie. Elit pulvinar congue ut amet adipiscing felis tincidunt. Amet quis varius aliquam hendrerit tempus. Sed sit diam quis 
 
@@ -230,11 +231,154 @@ const cards = [
 ];
 
 
+const NEWS_TEXT = `Sit ullamcorper at gravida quis feugiat. Laoreet 
+leo dolor, dui eget sit viverra justo, malesuada. 
+eo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque felis enim dui id cum. At pellentesque diam nulla ac amet quisque quis. Est consectetur ullamcorper curabitur quis viverra hac molestie. Elit pulvinar congue ut amet adipiscing felis tincidunt. Amet quis varius aliquam hendrerit tempus. Sed sit diam quis scelerisque congu econgu econgu econguecongu econguecon guecon guecon guecong ueconguecong uec ongue.
+Sit ullamcorper at gravida quis feugiat. Laoreet leoeo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque felis enim dui id cum. At pellentesque diam nulla ac amet quisque quis. Est consectetur ullamcorper curabitur quis viverra hac molestie. Elit pulvinar congue ut amet adipiscing felis tincidunt. Amet quis varius aliquam hendrerit tempus. Sed sit diam quis scelerisque congu econgu econgu econguecongu econguecon guecon guecon guecong ueconguecong uec ongue.
+Sit ullamcorper at gravida quis feugiat. Laoreet leo
+Viverra pharetra, augue neque felis enim dui id cum. At pellentesque diam nulla ac amet quisque quis. Est consectetur ullamcorper curabitur quis viverra hac molestie. Elit pulvinar congue ut amet adipiscing felis tincidunt. Amet quis varius aliquam hendrerit tempus. Sed sit diam quis scelerisque congu econgu econgu econguecongu econguecon guecon guecon guecong ueconguecong uec ongue.
+Sit ullamcorper at gravida quis feugiat. Laoreet leo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque  Sit ullamcorper at gravida quis feugiat. Laoreet leo dolor, dui eget sit viverra justo, malesuada. Viverra pharetra, augue neque felis enim dui id cum. At pellentesque diam nulla ac amet quisque quis. Est consectetur ullamcorper curabitur quis viverra hac molestie. Elit pulvinar congue ut amet adipiscing felis tincidunt. Amet quis varius aliquam hendrerit tempus. Sed sit diam quis `;
+
+const news = [
+    {
+        title: "Обновления обновите",
+        image: `https://i.ibb.co/9wxkCcQ/news1.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Платья красные",
+        image: `https://i.ibb.co/P1w6VzD/news2.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Externally added files",
+        image: `https://i.ibb.co/LvN15MT/news3.png`,
+        text: NEWS_TEXT,
+    },
+
+    {
+        title: "Lorem ipsum",
+        image: `https://i.ibb.co/bLxcv1s/news4.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Screen-readers already announce",
+        image: `https://i.ibb.co/y8jcVcQ/news5.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Обновления обновите",
+        image: `https://i.ibb.co/9wxkCcQ/news1.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Платья красные",
+        image: `https://i.ibb.co/P1w6VzD/news2.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Externally added files",
+        image: `https://i.ibb.co/LvN15MT/news3.png`,
+        text: NEWS_TEXT,
+    },
+
+    {
+        title: "Lorem ipsum",
+        image: `https://i.ibb.co/bLxcv1s/news4.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Screen-readers already announce",
+        image: `https://i.ibb.co/y8jcVcQ/news5.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Обновления обновите",
+        image: `https://i.ibb.co/9wxkCcQ/news1.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Платья красные",
+        image: `https://i.ibb.co/P1w6VzD/news2.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Externally added files",
+        image: `https://i.ibb.co/LvN15MT/news3.png`,
+        text: NEWS_TEXT,
+    },
+
+    {
+        title: "Lorem ipsum",
+        image: `https://i.ibb.co/bLxcv1s/news4.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Screen-readers already announce",
+        image: `https://i.ibb.co/y8jcVcQ/news5.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Обновления обновите",
+        image: `https://i.ibb.co/9wxkCcQ/news1.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Платья красные",
+        image: `https://i.ibb.co/P1w6VzD/news2.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Externally added files",
+        image: `https://i.ibb.co/LvN15MT/news3.png`,
+        text: NEWS_TEXT,
+    },
+
+    {
+        title: "Lorem ipsum",
+        image: `https://i.ibb.co/bLxcv1s/news4.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Screen-readers already announce",
+        image: `https://i.ibb.co/y8jcVcQ/news5.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Обновления обновите",
+        image: `https://i.ibb.co/9wxkCcQ/news1.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Платья красные",
+        image: `https://i.ibb.co/P1w6VzD/news2.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Externally added files",
+        image: `https://i.ibb.co/LvN15MT/news3.png`,
+        text: NEWS_TEXT,
+    },
+
+    {
+        title: "Lorem ipsum",
+        image: `https://i.ibb.co/bLxcv1s/news4.png`,
+        text: NEWS_TEXT,
+    },
+    {
+        title: "Screen-readers already announce",
+        image: `https://i.ibb.co/y8jcVcQ/news5.png`,
+        text: NEWS_TEXT,
+    },
+];
+
+
 
 export const DB = {
     commonSiteInfo,
     publicOfferText,
     slides,
     cards,
-    collections
+    collections,
+    news
 };

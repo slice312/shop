@@ -8,6 +8,8 @@ export const CARDS_BESTSELLERS_PUSHED = "CARDS_BESTSELLERS_PUSHED";
 export const CARDS_NOVELTIES_RESET = "CARDS_NOVELTIES_RESET";
 export const CARDS_NOVELTIES_PUSHED = "CARDS_NOVELTIES_PUSHED";
 
-// TODO: не знаю пока как, возможно подругому надо будет
 export const COLLECTIONS_RESET = "COLLECTIONS_RESET";
 export const COLLECTIONS_PUSHED = "COLLECTIONS_PUSHED";
+
+export const NEWS_RESET = "NEWS_RESET";
+export const NEWS_PUSHED = "NEWS_PUSHED";

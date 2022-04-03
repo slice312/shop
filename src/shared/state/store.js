@@ -4,6 +4,8 @@ import {commonSiteInfoReducer} from "./commonSiteInfo/reducer";
 import {sliderImagesReducer} from "./slider/reducer";
 import {cardsReducer} from "./cards/reducer";
 import {collectionsReducer} from "./collections/reducer";
+import {newsReducer} from "./news/reducer";
+
 
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -21,6 +23,7 @@ const reducers = combineReducers({
     homeSlider: sliderImagesReducer,
     cards: cardsReducer,
     collections: collectionsReducer,
+    news: newsReducer
 });
 
 
