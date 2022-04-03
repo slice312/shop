@@ -3,8 +3,7 @@ import {COMMON_SITE_INFO_RECEIVED} from "src/shared/state/constants/actionTypes"
 
 
 /**
- * TODO: typedef
- * @type {{whatsappUrl: string, headerLogo: string, phoneNumber: string, telegramUrl: string}}
+ * @type {CommonSiteInfo}
  */
 const initialState = {
     headerLogo: "",

@@ -13,10 +13,22 @@ const getHomeSliderImages = async () => {
     return await axiosInstance.get("slider/images");
 };
 
+/**
+ * Получение товаров категории "Хиты продаж".
+ * @param {number} limit - Максимальное кол-во объектов в ответе
+ * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @return {Promise<AxiosResponse<ProductCardInfo[]>>}
+ */
 const getBestsellers = async (limit, offset = 0) => {
     return await axiosInstance.get(`cards/bestsellers?limit=${limit}&offset=${offset}`);
 };
 
+/**
+ * Получение товаров категории "Новинки".
+ * @param {number} limit - Максимальное кол-во объектов в ответе
+ * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @return {Promise<AxiosResponse<ProductCardInfo[]>>}
+ */
 const getNovelties = async (limit, offset = 0) => {
     return await axiosInstance.get(`cards/novelties?limit=${limit}&offset=${offset}`);
 };
@@ -26,8 +38,9 @@ const getCollections = async (limit, offset = 0) => {
 };
 
 /**
- * @param limit
- * @param offset
+ * Получение новостей.
+ * @param {number} limit - Максимальное кол-во объектов в ответе
+ * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
  * @return {Promise<AxiosResponse<NewsInfo[]>>}
  */
 const getNews = async (limit, offset = 0) => {
@@ -38,6 +51,10 @@ const putRequestCallBack = async (phoneNumber, name) => {
     return await axiosInstance.put(`callback?phone=${phoneNumber}&name=${name}`);
 };
 
+/**
+ * Получение общей информации о сайте.
+ * @return {Promise<AxiosResponse<CommonSiteInfo>>}
+ */
 const getCommonSiteInfo = async () => {
     return await axiosInstance.get("common-site-info");
 };
