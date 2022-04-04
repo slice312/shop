@@ -1,5 +1,6 @@
 import MockAdapter from "axios-mock-adapter";
 import array from "lodash/array";
+import lo from "lodash";
 import {DB} from "src/assets/mock/db";
 
 
@@ -63,8 +64,10 @@ export const mockIt = (instance) => {
         .reply(config => {
             const params = parseQueryParams(config);
             const data = {
-                collections: array.take(DB.collections, params.limit),
-                totalQty: 123// DB.collections.length TODO: так надо
+                collections: lo.chain(DB.collections)
+                    .drop(params.offset)
+                    .take(params.limit),
+                totalQty:  DB.collections.length
             };
             return [200, data];
         });

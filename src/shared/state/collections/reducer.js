@@ -5,8 +5,8 @@ import {
 } from "src/shared/state/constants/actionTypes";
 
 
-/** // TODO: добавить jsdoc typedef
- * @property {any} collections
+/**
+ * @property {CollectionInfo[]} collections
  * @property {number} totalQty
  */
 const initialState = {

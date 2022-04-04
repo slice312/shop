@@ -1,0 +1,41 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+$fontTitle: 500 normal 24px $fontFamily;
+$fontPageButton: 500 normal 16px Inter;
+
+
+.pagesContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 10px;
+
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        @include font-face($fontPageButton, $textColorGray, 19.36px);
+        background-color: $colorWhite;
+        cursor: pointer;
+
+        &.active {
+            background-color: $colorPrimary;
+            color: $colorWhite;
+        }
+
+        @include ifHover {
+            &:hover:not(.active):not(.dots){
+                background-color: $colorGray;
+                color: $colorWhite;
+            }
+        }
+    }
+
+    .dots {
+        cursor: default;
+    }
+}

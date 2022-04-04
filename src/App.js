@@ -8,6 +8,7 @@ import {About} from "./components/About";
 import {Collections} from "./components/Collections";
 import {News} from "./components/News";
 import {CardDetail} from "./components/CardDetail";
+import {CollectionDetail} from "./components/CollectionDetail";
 import {setCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
 import {FloatButtons} from "src/shared/components/FloatButtons";
 import {PublicOffer} from "./components/PublicOffer";
@@ -39,6 +40,7 @@ export const App = () => {
                         <Route path="/collections" element={<Collections/>}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/cards/:id" element={<CardDetail/>}/>
+                        <Route path="/collections/:id" element={<CollectionDetail/>}/>
                         <Route path="/public-offer" element={<PublicOffer/>}/>
                         <Route path="/help" element={<Help/>}/>
                     </Routes>

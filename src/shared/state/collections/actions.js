@@ -11,7 +11,7 @@ export const collectionsPushed = (data) => ({type: COLLECTIONS_PUSHED, payload: 
 
 /**
  * ThunkCreator.
- * Загружает коллекции.
+ * Загружает коллекции, добавляя новые объекты в существующим.
  */
 export const pushCollections = (batchSize) => {
     return async (dispatch, getState) => {
@@ -27,6 +27,27 @@ export const pushCollections = (batchSize) => {
             }
         } catch (err) {
             console.error("pushCollections error", err);
+        }
+    };
+};
+
+/**
+ * ThunkCreator.
+ * Загружает коллекции, перезаписывая старый state.
+ */
+export const loadCollections = (limit, offset) => {
+    return async (dispatch, getState) => {
+        try {
+            const response = await Api.getCollections(limit, offset);
+            if (response.status === 200) {
+                console.log("loadCollections success", response.data);
+                dispatch(collectionsReset());
+                dispatch(collectionsPushed(response.data));
+            } else {
+                console.error("loadCollections error", response.status);
+            }
+        } catch (err) {
+            console.error("loadCollections error", err);
         }
     };
 };

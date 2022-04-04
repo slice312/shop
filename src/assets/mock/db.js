@@ -56,52 +56,81 @@ const collections = [
     {
         id: "7c2e5296-9591-4966-a142-3127c6dd64c6",
         title: "Повседневная одежда",
-        image: `https://i.ibb.co/gSxBcST/collection1.png`
+        image: `https://i.ibb.co/gSxBcST/collection1.png`,
+        products: [
+            "cbca4382-982c-4b6a-be80-b56e4f368d33",
+            "33957cdf-d608-40cc-a756-92be27f34c73",
+            "ea3bc321-36ea-4699-a932-2f07181f78e2"
+        ]
     },
     {
         id: "340b401f-b19e-4326-9501-55e0494b10e8",
         title: "Одежда на пляж",
-        image: `https://i.ibb.co/DDdt7JJ/collection2.png`
+        image: `https://i.ibb.co/DDdt7JJ/collection2.png`,
+        products: [
+            "c2abba86-2aad-40ac-b3a6-e0f6e637bdf6",
+            "88bbba72-2b4e-401d-ba88-1518393c5dc0",
+            "72b9c4de-fd30-4f25-bc35-3955c2ba7c98"
+        ]
     },
     {
         id: "ab33cb91-5840-4c85-bacc-fa3585e0a2e7",
         title: "Юбки",
-        image: `https://i.ibb.co/wcFsrZh/collection3.png`
+        image: `https://i.ibb.co/wcFsrZh/collection3.png`,
+        products: [
+            "c2abba86-2aad-40ac-b3a6-e0f6e637bdf6",
+            "88bbba72-2b4e-401d-ba88-1518393c5dc0",
+            "72b9c4de-fd30-4f25-bc35-3955c2ba7c98"
+        ]
     },
     {
         id: "95860924-6788-4d9a-bf54-7bb4c601ff57",
         title: "Джинсы",
-        image: `https://i.ibb.co/6szJ1xH/collection4.png`
+        image: `https://i.ibb.co/6szJ1xH/collection4.png`,
+        products: [
+            "cbca4382-982c-4b6a-be80-b56e4f368d33",
+            "33957cdf-d608-40cc-a756-92be27f34c73",
+            "ea3bc321-36ea-4699-a932-2f07181f78e2",
+            "c2abba86-2aad-40ac-b3a6-e0f6e637bdf6",
+            "88bbba72-2b4e-401d-ba88-1518393c5dc0",
+            "72b9c4de-fd30-4f25-bc35-3955c2ba7c98"
+        ]
     },
     {
         id: "414a7f58-1ef5-4b1b-9785-876cb05e1809",
         title: "Коллекция лето 2020",
-        image: `https://i.ibb.co/TW3ZJwx/collection5.png`
+        image: `https://i.ibb.co/TW3ZJwx/collection5.png`,
+        products: []
     },
     {
         id: "5de74e7b-0149-4345-b53f-fbdccef0e9a0",
         title: "Коллекция осень 2020",
-        image: `https://i.ibb.co/6szJ1xH/collection4.png`
+        image: `https://i.ibb.co/6szJ1xH/collection4.png`,
+        products: []
     },
     {
         id: "b405f6cc-310f-4e66-a11c-79091bb84181",
         title: "Коллекция зима 2020",
-        image: `https://i.ibb.co/TW3ZJwx/collection5.png`
+        image: `https://i.ibb.co/TW3ZJwx/collection5.png`,
+        products: []
     },
     {
         id: "9774232c-609f-4a1a-ad13-5354d7755bdd",
         title: "Коллекция весна 2020",
-        image: `https://i.ibb.co/gSxBcST/collection1.png`
+        image: `https://i.ibb.co/gSxBcST/collection1.png`,
+        products: []
     },
     {
         id: "2481a5d8-a603-4a02-8f7b-0016ef1a2ae5",
         title: "Платья",
-        image: `https://i.ibb.co/6mGq1p7/collection6.png`
+        image: `https://i.ibb.co/6mGq1p7/collection6.png`,
+        products: []
     },
     {
         id: "3f25ef76-77a8-4bb6-9ae1-a54ae8cc15e8",
         title: "Для выезда на природу",
-        image: `https://i.ibb.co/DDdt7JJ/collection2.png`
+        image: `https://i.ibb.co/DDdt7JJ/collection2.png`,
+        products: []
     },
 ];
 

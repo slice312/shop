@@ -1,4 +1,3 @@
-
 /**
  * @global
  * @typedef CommonSiteInfo - Общая информация о сайте
@@ -23,6 +22,16 @@
  * @property {string} title - Заголовок
  * @property {string} image - Ссылка на картинку
  * @property {string} text - Текст новости
+ */
+
+
+/**
+ * @global
+ * @typedef CollectionInfo - Коллекция
+ * @property {string} id - Уникальный ключ (GUID)
+ * @property {string} title - Заголовок
+ * @property {string} image - Ссылка на картинку
+ * @property {string[]} products - Список id товаров {@link ProductCardInfo}, входящих в коллекцию
  */
 
 

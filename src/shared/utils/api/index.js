@@ -33,6 +33,17 @@ const getNovelties = async (limit, offset = 0) => {
     return await axiosInstance.get(`cards/novelties?limit=${limit}&offset=${offset}`);
 };
 
+/**
+ * @typedef CollectionsResponse
+ * @property {CollectionInfo[]} collections
+ * @property {number} totalQty
+ */
+/**
+ * Получение коллекций товаров.
+ * @param {number} limit - Максимальное кол-во объектов в ответе
+ * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @return {Promise<AxiosResponse<CollectionsResponse>>}
+ */
 const getCollections = async (limit, offset = 0) => {
     return await axiosInstance.get(`collections?limit=${limit}&offset=${offset}`);
 };
