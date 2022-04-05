@@ -45,17 +45,45 @@ export const mockIt = (instance) => {
 
     // запрос к карточкам товаров Хиты продаж и Новинки
     mockApi
-        .onGet(/cards\/bestsellers\?limit=.+&offset=.+/)
+        .onGet(/products\/bestsellers\?limit=.+&offset=.+/)
         .reply(config => {
             const params = parseQueryParams(config);
             const data = array.take(DB.cards, params.limit);
             return [200, data];
         })
-        .onGet(/cards\/novelties\?limit=.+&offset=.+/)
+        .onGet(/products\/novelties\?limit=.+&offset=.+/)
         .reply(config => {
             const params = parseQueryParams(config);
             const data = array.take(DB.cards, params.limit);
             return [200, data];
+        });
+
+    // запрос к продуктам
+    mockApi
+        .onGet(/products\/(?!collection)/)
+        .reply(config => {
+            const params = /products\/(.+)/
+                .exec(config.url);
+            const id = params[1];
+            const product = DB.cards.find(x => x.id === id);
+            if (product)
+                return [200, product];
+            else
+                return [404, null];
+        });
+
+    // запрос к продуктам с фильтрацией по коллекции
+    mockApi
+        .onGet(/products\/collection\/(.+)/) // TODO: limit offset тут непока не исользуются
+        .reply(config => {
+            const id = /collection\/(.+)\?/
+                .exec(config.url)[1]
+            const params = parseQueryParams(config);
+            const products =  lo.chain(DB.cards.filter(x => x.collectionId === id))
+                .drop(params.offset)
+                .take(params.limit);
+
+            return [200, products];
         });
 
     // запрос к коллекциям

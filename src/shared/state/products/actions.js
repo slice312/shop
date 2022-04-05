@@ -1,21 +1,21 @@
 import {
-    CARDS_BESTSELLERS_RESET,
-    CARDS_BESTSELLERS_PUSHED,
-    CARDS_NOVELTIES_RESET,
-    CARDS_NOVELTIES_PUSHED
+    PRODUCTS_BESTSELLERS_RESET,
+    PRODUCTS_BESTSELLERS_PUSHED,
+    PRODUCTS_NOVELTIES_RESET,
+    PRODUCTS_NOVELTIES_PUSHED
 } from "src/shared/state/constants/actionTypes";
 import {Api} from "src/shared/utils/api";
 
 
-export const cardsBestSellersReset = () => ({type: CARDS_BESTSELLERS_RESET});
+export const cardsBestSellersReset = () => ({type: PRODUCTS_BESTSELLERS_RESET});
 
-export const cardsBestsellersPushed = (cards) =>
-    ({type: CARDS_BESTSELLERS_PUSHED, payload: cards});
+export const cardsBestsellersPushed = (products) =>
+    ({type: PRODUCTS_BESTSELLERS_PUSHED, payload: products});
 
-export const cardsNoveltiesReset = () => ({type: CARDS_NOVELTIES_RESET});
+export const cardsNoveltiesReset = () => ({type: PRODUCTS_NOVELTIES_RESET});
 
-export const cardsNoveltiesPushed = (cards) =>
-    ({type: CARDS_NOVELTIES_PUSHED, payload: cards});
+export const cardsNoveltiesPushed = (products) =>
+    ({type: PRODUCTS_NOVELTIES_PUSHED, payload: products});
 
 
 /**
@@ -26,7 +26,7 @@ export const pushCardsBestsellers = (batchSize) => {
     return async (dispatch, getState) => {
         try {
             const state = getState();
-            const loaded = state.cards.bestsellers.length;
+            const loaded = state.products.bestsellers.length;
             const response = await Api.getBestsellers(batchSize, loaded);
             if (response.status === 200) {
                 console.log("pushCardsBestsellers success", response.data);
@@ -49,7 +49,7 @@ export const pushCardsNovelties = (batchSize) => {
     return async (dispatch, getState) => {
         try {
             const state = getState();
-            const loaded = state.cards.bestsellers.length;
+            const loaded = state.products.bestsellers.length;
             const response = await Api.getNovelties(batchSize, loaded);
             if (response.status === 200) {
                 console.log("pushCardsNovelties success", response.data);

@@ -1,0 +1,15 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+$fontTitle: 600 normal 24px $fontFamily;
+
+.root {
+    .title {
+        @include font-face($fontTitle, $textColorPrimary, 29px);
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+}

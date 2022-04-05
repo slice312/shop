@@ -1,4 +1,5 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import {Carousel} from "react-bootstrap";
 import filledHearIcon from "src/assets/icons/filled-heart.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
@@ -7,6 +8,7 @@ import "./styles.scss";
 
 export const ProductCard = (
     {
+        id,
         title,
         price,
         discount,
@@ -22,6 +24,8 @@ export const ProductCard = (
     // TODO: пока для вида сделал такой костыль, позже придумать как свазать с апи
     const [favState, setFavState] = React.useState(isFavorite);
 
+    const navigate = useNavigate();
+    const redirectToProductPage = () => navigate(`/products/${id}`);
 
     const handler = () => {
         console.log("click FavButton");
@@ -32,17 +36,16 @@ export const ProductCard = (
     return (
         <div className="card__container">
             <div className="photo">
-                <ImageSlides images={images}/>
+                <ImageSlides images={images} onClick={redirectToProductPage}/>
                 {
                     (roundedDiscount > 0)
                         ? <DiscountBadge discount={roundedDiscount}/>
                         : null
                 }
-
                 <FavButton isFavorite={favState} onClick={handler}/>
             </div>
 
-            <div className="description">
+            <div className="description" onClick={redirectToProductPage}>
                 <div className="title">
                     {title}
                 </div>
@@ -70,21 +73,20 @@ export const ProductCard = (
 };
 
 
-const ImageSlides = ({images}) => {
+const ImageSlides = ({images, onClick}) => {
     if (images.length === 1) {
         const img = images[0];
         return (
             <img src={img} alt={img}/>
         );
     }
-
     return (
-        <Carousel interval={null} controls={false}>
+        <Carousel interval={null} controls={false} >
             {
                 images.map((x, i) => {
                     return (
                         <Carousel.Item key={i}>
-                            <img className="d-block w-100" src={x} alt={x}/>
+                            <img className="d-block w-100" src={x} alt={x} onClick={onClick}/>
                         </Carousel.Item>
                     );
                 })

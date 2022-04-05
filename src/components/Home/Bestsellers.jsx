@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {pushCardsBestsellers, cardsBestSellersReset} from "src/shared/state/cards/actions";
+import {pushCardsBestsellers, cardsBestSellersReset} from "src/shared/state/products/actions";
 import {ProductCard} from "src/shared/components/ProductCard";
 import {CardsContainer} from "./CardsContainer";
 
@@ -9,7 +9,7 @@ const CARDS_BATCH_SIZE = 8;
 
 
 export const Bestsellers = () => {
-    const bestsellerCards = useSelector(state => state.cards.bestsellers);
+    const bestsellerCards = useSelector(state => state.products.bestsellers);
     const dispatch = useDispatch();
 
     React.useEffect(() => {

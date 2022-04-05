@@ -31,7 +31,6 @@
  * @property {string} id - Уникальный ключ (GUID)
  * @property {string} title - Заголовок
  * @property {string} image - Ссылка на картинку
- * @property {string[]} products - Список id товаров {@link ProductCardInfo}, входящих в коллекцию
  */
 
 
@@ -39,13 +38,16 @@
  * @global
  * @typedef ProductCardInfo - Карточка товара (одежда)
  * @property {string} id - Уникальный ключ (GUID)
+ * @property {string} id - Внешней ключ (GUID) к коллекции {@link CollectionInfo}
  * @property {string} title - Название
+ * @property {string} vendorCode - Артикул
  * @property {number} price - Цена
  * @property {number} discount - Скидка
  * @property {boolean} isFavorite - Признак "Избранный"
  * @property {string} size - Размер одежды
  * @property {string[]} images - Ссылки на изображения товара
  * @property {string[]} colors - Цвета товара
+ * @property {string} description - Описание товара
  */
 
 export {};

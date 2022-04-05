@@ -20,7 +20,7 @@ const getHomeSliderImages = async () => {
  * @return {Promise<AxiosResponse<ProductCardInfo[]>>}
  */
 const getBestsellers = async (limit, offset = 0) => {
-    return await axiosInstance.get(`cards/bestsellers?limit=${limit}&offset=${offset}`);
+    return await axiosInstance.get(`products/bestsellers?limit=${limit}&offset=${offset}`);
 };
 
 /**
@@ -30,8 +30,17 @@ const getBestsellers = async (limit, offset = 0) => {
  * @return {Promise<AxiosResponse<ProductCardInfo[]>>}
  */
 const getNovelties = async (limit, offset = 0) => {
-    return await axiosInstance.get(`cards/novelties?limit=${limit}&offset=${offset}`);
+    return await axiosInstance.get(`products/novelties?limit=${limit}&offset=${offset}`);
 };
+
+const getProduct = async (id) => {
+    return await axiosInstance.get(`products/${id}`);
+};
+
+const getProductsByCollection = async (collectionId, limit, offset) => {
+    return await axiosInstance.get(`products/collection/${collectionId}?limit=${limit}&offset=${offset}`);
+};
+
 
 /**
  * @typedef CollectionsResponse
@@ -84,6 +93,8 @@ export const Api = {
     getHomeSliderImages,
     getBestsellers,
     getNovelties,
+    getProduct,
+    getProductsByCollection,
     getCollections,
     getNews,
 

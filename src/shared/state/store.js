@@ -2,7 +2,7 @@ import {applyMiddleware, combineReducers, createStore, compose} from "redux";
 import thunkMiddleWare from "redux-thunk";
 import {commonSiteInfoReducer} from "./commonSiteInfo/reducer";
 import {sliderImagesReducer} from "./slider/reducer";
-import {cardsReducer} from "./cards/reducer";
+import {productsReducer} from "./products/reducer";
 import {collectionsReducer} from "./collections/reducer";
 import {newsReducer} from "./news/reducer";
 
@@ -21,7 +21,7 @@ const enhancer = composeEnhancers(
 const reducers = combineReducers({
     siteCommonInfo: commonSiteInfoReducer,
     homeSlider: sliderImagesReducer,
-    cards: cardsReducer,
+    products: productsReducer,
     collections: collectionsReducer,
     news: newsReducer
 });
