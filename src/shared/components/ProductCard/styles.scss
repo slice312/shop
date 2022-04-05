@@ -3,22 +3,20 @@
 
 
 $fontTitle: 400 normal 14px $fontFamily;
-$fontPrice: 500 normal 16px $fontFamily;
+$fontPrice: 600 normal 16px $fontFamily;
 $fontForOldPrice: 300 normal 14px $fontFamily;
 $fontLabelSize: 400 normal 13px $fontFamily;
 $fontDiscountPercent: 500 normal 12px $fontFamily;
 
 
 .card__container {
-    width: 286px;
-    height: 536px;
+    flex-basis: 286px;
 
     &:hover {
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     }
 
     .photo {
-        height: 81.5%;
         position: relative;
 
         .discountBadge {
@@ -55,16 +53,23 @@ $fontDiscountPercent: 500 normal 12px $fontFamily;
             }
         }
 
+        .image {
+            width: 100%;
+            aspect-ratio: 0.637;
+        }
+
         .carousel {
-            .carousel-indicators  {
+            .carousel-indicators {
                 margin: 0 10px 0 10px !important;
             }
+
             .carousel-indicators [data-bs-target] {
                 width: 100% !important;
 
                 &.active {
                     background-color: #737373 !important;
                 }
+
                 &:hover {
                     background-color: #808080 !important;
                 }
@@ -80,28 +85,33 @@ $fontDiscountPercent: 500 normal 12px $fontFamily;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 18.5%;
         padding: 6px 8px;
 
         .title {
             @include font-face($fontTitle, $textColorPrimary, 17.07px);
         }
 
-        .price {
-            @include font-face($fontPrice, $textColorPrimary, 19.5px);
-        }
+        .priceDiv {
+            margin-top: 6px;
 
-        .oldPrice {
-            @include font-face($fontForOldPrice, #ADADAD, 17.07px);
-            text-decoration: line-through;
-            margin-left: 6px;
+            .price {
+                @include font-face($fontPrice, $textColorPrimary, 19.5px);
+                margin-top: 6px;
+            }
+
+            .oldPrice {
+                @include font-face($fontForOldPrice, #ADADAD, 17.07px);
+                text-decoration: line-through;
+            }
         }
 
         .size {
             @include font-face($fontLabelSize, #7C7C7C, 15.85px);
+            margin-top: 6px;
         }
 
         .colors {
+            margin-top: 6px;
             width: 100%;
             overflow: hidden;
 

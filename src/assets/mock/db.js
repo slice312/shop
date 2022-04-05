@@ -120,7 +120,8 @@ const cards = [
             `https://i.ibb.co/fGGXMQG/card1.png`,
             `https://i.ibb.co/fGGXMQG/card1.png`,
             `https://i.ibb.co/fGGXMQG/card1.png`,
-            `https://i.ibb.co/fGGXMQG/card1.png`
+            `https://i.ibb.co/fGGXMQG/card1.png`,
+            `https://i.ibb.co/nrCDzJW/brenda.jpg`
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],

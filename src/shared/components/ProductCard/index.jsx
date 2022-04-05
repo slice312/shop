@@ -49,7 +49,7 @@ export const ProductCard = (
                 <div className="title">
                     {title}
                 </div>
-                <div>
+                <div className="priceDiv">
                     <span className="price">{priceWithDiscount} c</span>
                     {
                         (roundedDiscount > 0)
@@ -77,7 +77,7 @@ const ImageSlides = ({images, onClick}) => {
     if (images.length === 1) {
         const img = images[0];
         return (
-            <img src={img} alt={img}/>
+            <img className="image" src={img} alt={img}/>
         );
     }
     return (
@@ -86,7 +86,7 @@ const ImageSlides = ({images, onClick}) => {
                 images.map((x, i) => {
                     return (
                         <Carousel.Item key={i}>
-                            <img className="d-block w-100" src={x} alt={x} onClick={onClick}/>
+                            <img className="image" src={x} alt={x} onClick={onClick}/>
                         </Carousel.Item>
                     );
                 })
