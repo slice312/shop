@@ -74,7 +74,7 @@ export const mockIt = (instance) => {
 
     // запрос к продуктам с фильтрацией по коллекции
     mockApi
-        .onGet(/products\/collection\/(.+)/) // TODO: limit offset тут непока не исользуются
+        .onGet(/products\/collection\/(.+)/) // TODO: offset тут пока не исользуются
         .reply(config => {
             const id = /collection\/(.+)\?/
                 .exec(config.url)[1]

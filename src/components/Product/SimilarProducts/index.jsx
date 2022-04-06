@@ -1,24 +1,26 @@
 import React from "react";
-import css from "./styles.module.scss";
+import lo from "lodash";
 import {Api} from "src/shared/utils/api";
-import {ProductCard} from "../../../shared/components/ProductCard";
+import {ProductCard} from "src/shared/components/ProductCard";
+import css from "./styles.module.scss";
+
+
+const PRODUCTS_LIMIT = 5;
 
 
 export const SimilarProducts = ({collectionId}) => {
     const [products, setProducts] = React.useState([]);
-    console.log("SimilarProducts", collectionId);
 
+    // TODO: не знаю надо ли все пихать в redux и запрос в thunk, пока сделал тут потому что времени нет
     React.useEffect(() => {
-        console.log("EFFECT", collectionId);
         if (!collectionId)
             return;
         (async () => {
             try {
-                const response = await Api.getProductsByCollection(collectionId, 5, 0);
+                const response = await Api.getProductsByCollection(collectionId, PRODUCTS_LIMIT, 0);
                 if (response.status === 200) {
                     console.log("getProductsByCollection success");
                     setProducts(response.data);
-                    console.log(response.data);
                 } else {
                     console.error("getProductsByCollection error", response.status);
                 }
@@ -28,22 +30,18 @@ export const SimilarProducts = ({collectionId}) => {
         })();
     }, [collectionId]);
 
+
     return (
         <div className={css.root}>
             <div className={css.title}>
                 Похожие товары
             </div>
-            <div className={css.container}>
+            <div className={css.cardContainer}>
                 {
-                    products.map((x, i) => {
-                        return (
-                            <ProductCard {...x}/>
-                        );
-                    })
-
+                    lo.take(products, PRODUCTS_LIMIT)
+                        .map((x, i) => <ProductCard key={i} {...x}/>)
                 }
             </div>
         </div>
-
     );
 };

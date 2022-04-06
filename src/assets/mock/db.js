@@ -113,6 +113,7 @@ const cards = [
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 2700,
+        qty: 5,
         discount: 50,
         isFavorite: true,
         size: "42-50",
@@ -125,6 +126,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -135,8 +138,9 @@ const cards = [
         title: "Ночное платье",
         vendorCode: "Платье PL984/dakota",
         price: 2500,
+        qty: 5,
         discount: 35,
-        isFavorite: false,
+        isFavorite: true,
         size: "42-50",
         images: [
             `https://i.ibb.co/93xGpFf/card2.png`,
@@ -150,6 +154,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -160,6 +166,7 @@ const cards = [
         title: "Красное",
         vendorCode: "Платье PL984/dakota",
         price: 5700,
+        qty: 5,
         discount: 0,
         isFavorite: true,
         size: "42-50",
@@ -170,6 +177,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -180,6 +189,7 @@ const cards = [
         title: "Платок",
         vendorCode: "Платье PL984/dakota",
         price: 7800,
+        qty: 5,
         discount: 44,
         isFavorite: false,
         size: "45-50",
@@ -188,6 +198,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -198,6 +210,7 @@ const cards = [
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 1365,
+        qty: 5,
         discount: 0,
         isFavorite: false,
         size: "42-50",
@@ -207,6 +220,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -217,6 +232,7 @@ const cards = [
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 3700,
+        qty: 5,
         discount: 0,
         isFavorite: false,
         size: "42-50",
@@ -225,6 +241,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -235,6 +253,7 @@ const cards = [
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 4200,
+        qty: 5,
         discount: 40,
         isFavorite: true,
         size: "42-50",
@@ -245,6 +264,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -255,6 +276,7 @@ const cards = [
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
+        qty: 5,
         discount: 0,
         isFavorite: false,
         size: "42-50",
@@ -266,6 +288,8 @@ const cards = [
         ],
         colors: ["#73A39D", "#84CC4C", "#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -276,6 +300,7 @@ const cards = [
         title: "Кековое платье",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
+        qty: 5,
         discount: 0,
         isFavorite: false,
         size: "42-50",
@@ -287,6 +312,8 @@ const cards = [
         ],
         colors: ["#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
         description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
             "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
             " качества и актуального стиля."
@@ -434,7 +461,6 @@ const news = [
         text: NEWS_TEXT,
     },
 ];
-
 
 
 export const DB = {

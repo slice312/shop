@@ -1,0 +1,10 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $colorWhite;
+}

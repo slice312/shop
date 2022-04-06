@@ -1,9 +1,20 @@
+@import "./global";
 
+// TODO: удалить
 @mixin font-face($font, $color, $lineHeight, $letterSpacing: 0px) {
     font: $font;
     color: $color;
     line-height: $lineHeight;
     letter-spacing: $letterSpacing;
+}
+
+
+@mixin font-Montserrat($size, $weight, $lineHeight, $color: $textColorPrimary) {
+    font-family: $fontFamily;
+    font-size: $size;
+    font-weight: $weight;
+    line-height: $lineHeight;
+    color: $color;
 }
 
 /**
