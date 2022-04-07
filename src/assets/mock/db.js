@@ -6,10 +6,15 @@
 
 
 const commonSiteInfo = {
+    companyName: "Developed by Zeon 2022",
     headerLogo: `https://i.ibb.co/GccphHv/zeot-ithub-logo.png`,
-    phoneNumber: "+996 777 37 55 66",
+    footerLogo: `https://i.ibb.co/kmBVMkG/zeot-ithub-logo-white.png`,
+    mainPhoneNumber: "+996 777 37 55 66",
+    extraPhoneNumbers: ["+996 500 123 456", "+996 555 123 456"],
+    email: "zeon_shop@gmail.com",
     telegramUrl: `https://t.me/s/sputnik_kgz_main`,
-    whatsappUrl: `https://wa.me`
+    whatsappUrl: `https://wa.me`,
+
 };
 
 
