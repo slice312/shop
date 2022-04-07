@@ -4,7 +4,7 @@
 
 .root {
     .title {
-        @include font-Montserrat(24px, 500, 29.26px);
+        @include font-default(24px, 500, 29.26px);
     }
 
     .cardContainer {

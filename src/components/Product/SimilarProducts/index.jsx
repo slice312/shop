@@ -20,7 +20,7 @@ export const SimilarProducts = ({collectionId}) => {
                 const response = await Api.getProductsByCollection(collectionId, PRODUCTS_LIMIT, 0);
                 if (response.status === 200) {
                     console.log("getProductsByCollection success");
-                    setProducts(response.data);
+                    setProducts(response.data.products);
                 } else {
                     console.error("getProductsByCollection error", response.status);
                 }

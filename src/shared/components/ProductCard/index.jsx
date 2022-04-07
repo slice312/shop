@@ -6,6 +6,10 @@ import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import "./styles.scss";
 
 
+// TODO: переписать это
+/*
+Сюда надо thunk который будет при добавлении в избранное будет делать диспатн который будет изменять глобал массив products
+ */
 export const ProductCard = (
     {
         id,
@@ -17,7 +21,6 @@ export const ProductCard = (
         images,
         colors
     }) => {
-
     const priceWithDiscount = Math.round(price - price * discount / 100);
     const roundedDiscount = Math.round(discount);
 

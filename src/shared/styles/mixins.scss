@@ -9,7 +9,7 @@
 }
 
 
-@mixin font-Montserrat($size, $weight, $lineHeight, $color: $textColorPrimary) {
+@mixin font-default($size, $weight, $lineHeight, $color: $textColorPrimary) {
     font-family: $fontFamily;
     font-size: $size;
     font-weight: $weight;

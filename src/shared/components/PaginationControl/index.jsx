@@ -41,7 +41,7 @@ export class PaginationControl extends React.Component {
         const buttons = [];
 
         buttons.push(
-            <div className={css.item} onClick={this.prevPageClick}>
+            <div key="arrowLeft" className={css.item} onClick={this.prevPageClick}>
                 <img src={arrowLeftIcon} alt="arrowLeftIcon"/>
             </div>
         );
@@ -67,17 +67,17 @@ export class PaginationControl extends React.Component {
 
         if (startIndexInPage + this.props.pageSize < this.props.totalItemsQty) {
             buttons.push(
-                <div className={cn(css.item, css.dots)}>
+                <div key="3dots" className={cn(css.item, css.dots)}>
                     ...
                 </div>,
-                <div className={css.item} onClick={() => this.props.onActiveItemChanged(this.props.totalItemsQty - 1)}>
+                <div key="totalQty" className={css.item} onClick={() => this.props.onActiveItemChanged(this.props.totalItemsQty - 1)}>
                     {this.props.totalItemsQty}
                 </div>
             );
         }
 
         buttons.push(
-            <div className={css.item} onClick={this.nextPageClick}>
+            <div key="arrowRight" className={css.item} onClick={this.nextPageClick}>
                 <img src={arrowRightIcon} alt="arrowRightIcon"/>
             </div>
         );

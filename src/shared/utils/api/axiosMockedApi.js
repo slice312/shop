@@ -79,11 +79,14 @@ export const mockIt = (instance) => {
             const id = /collection\/(.+)\?/
                 .exec(config.url)[1]
             const params = parseQueryParams(config);
-            const products =  lo.chain(DB.cards.filter(x => x.collectionId === id))
-                .drop(params.offset)
-                .take(params.limit);
+            const data = {
+                products: lo.chain(DB.cards.filter(x => x.collectionId === id))
+                    .drop(params.offset)
+                    .take(params.limit),
+                totalQty: DB.cards.length
+            };
 
-            return [200, products];
+            return [200, data];
         });
 
     // запрос к коллекциям
@@ -95,7 +98,7 @@ export const mockIt = (instance) => {
                 collections: lo.chain(DB.collections)
                     .drop(params.offset)
                     .take(params.limit),
-                totalQty:  DB.collections.length
+                totalQty: DB.collections.length
             };
             return [200, data];
         });

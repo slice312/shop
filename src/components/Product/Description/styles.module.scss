@@ -39,19 +39,19 @@
         padding: 20px;
 
         .title {
-            @include font-Montserrat(24px, 500, 29.26px);
+            @include font-default(24px, 500, 29.26px);
         }
 
         .vendor {
             margin-top: 18px;
 
             .vendorLabel {
-                @include font-Montserrat(14px, 500, 14px);
+                @include font-default(14px, 500, 14px);
             }
 
             .vendorValue {
                 margin-left: 6px;
-                @include font-Montserrat(14px, 400, 14px);
+                @include font-default(14px, 400, 14px);
             }
         }
 
@@ -61,7 +61,7 @@
             flex-direction: row;
 
             .colorLabel {
-                @include font-Montserrat(14px, 500, 17.07px);
+                @include font-default(14px, 500, 17.07px);
             }
 
             .colorButtons {
@@ -94,11 +94,11 @@
 
         .price {
             margin-top: 18px;
-            @include font-Montserrat(24px, 400, 29.26px);
+            @include font-default(24px, 400, 29.26px);
 
             .oldPrice {
                 margin-left: 6px;
-                @include font-Montserrat(16px, 500, 19.5px, $textColorGray);
+                @include font-default(16px, 500, 19.5px, $textColorGray);
                 text-decoration: line-through;
             }
         }
@@ -107,12 +107,12 @@
             margin-top: 18px;
 
             .title {
-                @include font-Montserrat(16px, 500, 19.5px);
+                @include font-default(16px, 500, 19.5px);
             }
 
             .text {
                 margin-top: 6px;
-                @include font-Montserrat(14px, 400, 25.2px, #6A6A6A);
+                @include font-default(14px, 400, 25.2px, #6A6A6A);
             }
         }
 
@@ -123,12 +123,12 @@
             justify-content: space-between;
 
             .propsLabel {
-                @include font-Montserrat(14px, 500, 17.07px);
+                @include font-default(14px, 500, 17.07px);
             }
 
             .propsValue {
                 margin-left: 6px;
-                @include font-Montserrat(14px, 400, 17.07px);
+                @include font-default(14px, 400, 17.07px);
             }
         }
 
@@ -168,7 +168,7 @@
 
                 span {
                     margin-left: 5px;
-                    @include font-Montserrat(14px, 500, 17.07px, $colorWhite);
+                    @include font-default(14px, 500, 17.07px, $colorWhite);
                 }
             }
 
