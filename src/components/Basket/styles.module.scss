@@ -1,0 +1,20 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    padding-top: 11px;
+    padding-bottom: 96px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $colorMainBackground;
+
+    .productContainer {
+        width: 100%;
+    }
+
+    .orderInfo {
+        margin-left: 16px;
+    }
+}

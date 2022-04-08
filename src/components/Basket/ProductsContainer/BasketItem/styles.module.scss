@@ -1,0 +1,97 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.item {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 12px;
+    background-color: $colorWhite;
+
+    img {
+        width: 112px;
+        height: 142px;
+    }
+
+    .buttonClose {
+        position: absolute;
+        top: 17px;
+        right: 17px;
+
+        img {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    .description {
+        margin-left: 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .title {
+            @include font-default(14px, 400, 17.07px);
+        }
+
+        .size {
+            @include font-default(13px, 400, 15.85px, #7C7C7C);
+
+            .sizeValue {
+                margin-left: 4px;
+            }
+        }
+
+        .color {
+            @include font-default(13px, 400, 15.85px, #7C7C7C);
+        }
+
+        .price {
+            .priceWithDiscount {
+                @include font-default(18px, 500, 21.94px);
+            }
+
+            .oldPrice {
+                margin-left: 6px;
+                @include font-default(14px, 400, 17.07px, #ADADAD);
+                text-decoration: line-through;
+            }
+        }
+
+        .qtyButtons {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+
+            .button {
+                width: 32px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #EFEFEF;
+                background-color: #F8F8F8;
+                border-radius: 6px;
+
+                .minusIcon {
+                    width: 12px;
+                    height: 1.98px;
+                }
+
+                .plusIcon {
+                    width: 12px;
+                    height: 12px;
+                }
+            }
+
+            .qtyLabel {
+                width: 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @include font-default(16px, 600, 19.5px);
+            }
+        }
+    }
+}
