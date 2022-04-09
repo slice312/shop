@@ -48,13 +48,18 @@ export const mockIt = (instance) => {
         .onGet(/products\/bestsellers\?limit=.+&offset=.+/)
         .reply(config => {
             const params = parseQueryParams(config);
-            const data = array.take(DB.cards, params.limit);
+            const data = lo.chain(DB.cards)
+                .drop(params.offset)
+                .take(params.limit);
             return [200, data];
         })
         .onGet(/products\/novelties\?limit=.+&offset=.+/)
         .reply(config => {
             const params = parseQueryParams(config);
-            const data = array.take(DB.cards, params.limit);
+            const data = lo.chain(DB.cards.slice())
+                .reverse()
+                .drop(params.offset)
+                .take(params.limit);
             return [200, data];
         });
 

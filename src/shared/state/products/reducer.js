@@ -1,47 +1,83 @@
 import {createReducer} from "@reduxjs/toolkit";
+import lo from "lodash";
+import {Categories} from "src/shared/constants";
 import {
-    PRODUCTS_BESTSELLERS_RESET,
+    PRODUCTS_RESET,
     PRODUCTS_BESTSELLERS_PUSHED,
-    PRODUCTS_NOVELTIES_RESET,
     PRODUCTS_NOVELTIES_PUSHED
-} from "src/shared/state/constants/actionTypes";
+} from "src/shared/state/actionTypes";
+import {Enum} from "src/shared/utils";
 
 
 /**
- * @property {ProductCardInfo[]} bestsellers
- * @property {ProductCardInfo[]} novelties
+ * @typedef ProductCardInfo
+ * @property {ProductInfo} product
+ * @property {Categories} category
+ */
+/**
+ * @property {ProductCardInfo[]} products
  */
 const initialState = {
-    bestsellers: [],
-    novelties: []
+    products: []
 };
 
-const productsBestsellersReset = (state, action) => ({
+
+const productsReset = (state, action) => ({
     ...state,
-    bestsellers: [],
+    products: []
 });
 
-const productsBestsellersPushed = (state, action) => ({
-    ...state,
-    bestsellers: [...state.bestsellers, ...action.payload]
-});
 
-const productsNoveltiesReset = (state, action) => ({
-    ...state,
-    novelties: [],
-});
+const productsBestsellersPushed = (state, action) => {
+    return productsPushed(state, action, Categories.Bestsellers);
+};
 
-const productsNoveltiesPushed = (state, action) => ({
-    ...state,
-    novelties: [...state.novelties, ...action.payload]
-});
+
+const productsNoveltiesPushed = (state, action) => {
+    return productsPushed(state, action, Categories.Novelties);
+};
+
+
+const productsPushed = (state, action, category) => {
+    const payload = action.payload
+        .map(x => ({
+            product: x,
+            category: category
+        }));
+
+    const modifiedExistedProducts = lo.intersectionWith(state.products, payload, productCardInfoEqualityComparer)
+        .map(x => {
+            if (Enum.hasFlag(x.category, category))
+                return x;
+            return {
+                ...x,
+                category: x.category | category
+            };
+        });
+    const prevProducts = lo.differenceWith(state.products, modifiedExistedProducts, productCardInfoEqualityComparer);
+    const newProducts = lo.differenceWith(payload, modifiedExistedProducts, productCardInfoEqualityComparer);
+
+    return {
+        ...state,
+        products: [
+            ...prevProducts,
+            ...modifiedExistedProducts,
+            ...newProducts
+        ]
+    };
+};
+
+
+const productCardInfoEqualityComparer = (obj1, obj2) => {
+    return obj1 && obj2
+        && obj1.product?.id === obj2.product?.id;
+};
 
 
 export const productsReducer = createReducer(initialState, builder => {
     return builder
-        .addCase(PRODUCTS_BESTSELLERS_RESET, productsBestsellersReset)
+        .addCase(PRODUCTS_RESET, productsReset)
         .addCase(PRODUCTS_BESTSELLERS_PUSHED, productsBestsellersPushed)
-        .addCase(PRODUCTS_NOVELTIES_RESET, productsNoveltiesReset)
         .addCase(PRODUCTS_NOVELTIES_PUSHED, productsNoveltiesPushed)
         .addDefaultCase(state => state);
 });

@@ -1,4 +1,4 @@
-import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/constants/actionTypes";
+import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/actionTypes";
 import {Api} from "src/shared/utils/api";
 
 

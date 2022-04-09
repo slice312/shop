@@ -17,7 +17,7 @@ const getHomeSliderImages = async () => {
  * Получение товаров категории "Хиты продаж".
  * @param {number} limit - Максимальное кол-во объектов в ответе
  * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
- * @return {Promise<AxiosResponse<ProductCardInfo[]>>}
+ * @return {Promise<AxiosResponse<ProductInfo[]>>}
  */
 const getBestsellers = async (limit, offset = 0) => {
     return await axiosInstance.get(`products/bestsellers?limit=${limit}&offset=${offset}`);
@@ -27,7 +27,7 @@ const getBestsellers = async (limit, offset = 0) => {
  * Получение товаров категории "Новинки".
  * @param {number} limit - Максимальное кол-во объектов в ответе
  * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
- * @return {Promise<AxiosResponse<ProductCardInfo[]>>}
+ * @return {Promise<AxiosResponse<ProductInfo[]>>}
  */
 const getNovelties = async (limit, offset = 0) => {
     return await axiosInstance.get(`products/novelties?limit=${limit}&offset=${offset}`);
@@ -39,7 +39,7 @@ const getProduct = async (productId) => {
 
 /**
  * @typedef ProductsResponse
- * @property {ProductCardInfo[]} products
+ * @property {ProductInfo[]} products
  * @property {number} totalQty
  */
 /**

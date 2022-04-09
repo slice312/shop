@@ -2,7 +2,7 @@ import {createReducer} from "@reduxjs/toolkit";
 import {
     NEWS_RESET,
     NEWS_PUSHED
-} from "src/shared/state/constants/actionTypes";
+} from "src/shared/state/actionTypes";
 
 
 /**

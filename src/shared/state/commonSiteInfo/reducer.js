@@ -1,5 +1,5 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {COMMON_SITE_INFO_RECEIVED} from "src/shared/state/constants/actionTypes";
+import {COMMON_SITE_INFO_RECEIVED} from "src/shared/state/actionTypes";
 
 
 /**

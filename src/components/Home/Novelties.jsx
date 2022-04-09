@@ -1,8 +1,10 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {pushCardsNovelties, cardsNoveltiesReset} from "src/shared/state/products/actions";
-import {ProductCard} from "src/shared/components/ProductCard";
+import {pushProductNovelties} from "src/shared/state/products/actions";
+import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import {CardsContainer} from "./CardsContainer";
+import {Utils} from "src/shared/utils";
+import {Categories} from "src/shared/constants";
 
 
 const CARDS_BATCH_SIZE = 4;
@@ -10,19 +12,20 @@ const NEXT_CARDS_BATCH_SIZE = 8;
 
 
 export const Novelties = () => {
-    const noveltiesCards = useSelector(state => state.products.novelties);
     const dispatch = useDispatch();
+    const noveltiesCards = Utils.filterProductsByCategory(
+        useSelector(state => state.productsState.products),
+        Categories.Novelties
+    );
 
     React.useEffect(() => {
-        if (!noveltiesCards?.length)
-            dispatch(pushCardsNovelties(CARDS_BATCH_SIZE));
-
-        return () => void dispatch(cardsNoveltiesReset());
-    }, [dispatch]);
+        if (!noveltiesCards.length)
+            dispatch(pushProductNovelties(CARDS_BATCH_SIZE));
+    }, []);
 
 
     const loadMoreClick = () => {
-        dispatch(pushCardsNovelties(NEXT_CARDS_BATCH_SIZE));
+        dispatch(pushProductNovelties(NEXT_CARDS_BATCH_SIZE));
     };
 
 
@@ -31,7 +34,7 @@ export const Novelties = () => {
             title="Новинки"
             cards={noveltiesCards}
             onButtonLoadClick={loadMoreClick}
-            CardElement={ProductCard}
+            CardElement={ProductCardWrapper}
         />
     );
 };

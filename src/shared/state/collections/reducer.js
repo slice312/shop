@@ -2,7 +2,7 @@ import {createReducer} from "@reduxjs/toolkit";
 import {
     COLLECTIONS_RESET,
     COLLECTIONS_PUSHED
-} from "src/shared/state/constants/actionTypes";
+} from "src/shared/state/actionTypes";
 
 
 /**

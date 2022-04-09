@@ -30,7 +30,7 @@ export const App = () => {
 
     return (
         <React.Fragment>
-            {/*<FloatButtons/> TODO: вернуть обратно*/}
+            <FloatButtons/>
             <div className={css.headerContainer}>
                 <div className={css.limitContainer}>
                     <Header/>

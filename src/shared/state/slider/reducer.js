@@ -1,5 +1,5 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/constants/actionTypes"
+import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/actionTypes"
 
 
 /**

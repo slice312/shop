@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {Api} from "src/shared/utils/api";
 import css from "./styles.module.scss";
 import {CardsView} from "src/shared/components/CardsView";
-import {ProductCard} from "src/shared/components/ProductCard";
+import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import {PaginationControl} from "src/shared/components/PaginationControl";
 
 
@@ -22,7 +22,7 @@ export const Collection = () => {
                 if (response.status === 200) {
                     console.log("getProductsByCollection success");
                     setProducts(response.data.products);
-                    totalPageQty = response.data.totalQty
+                    totalPageQty = response.data.totalQty; // TODO: всчего количество итемов, rename
                 } else {
                     console.error("getProductsByCollection error", response.status);
                 }
@@ -40,7 +40,7 @@ export const Collection = () => {
             <div className={css.title}>
                 Коллекции
             </div>
-            <CardsView cards={products} CardElement={ProductCard}/>
+            <CardsView cards={products} CardElement={ProductCardWrapper}/>
             <div className={css.paginator}>
                 <PaginationControl
                     pageSize={PRODUCTS_BATCH_SIZE}

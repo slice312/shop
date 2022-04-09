@@ -21,7 +21,7 @@ const enhancer = composeEnhancers(
 const reducers = combineReducers({
     siteCommonInfo: commonSiteInfoReducer,
     homeSlider: sliderImagesReducer,
-    products: productsReducer,
+    productsState: productsReducer,
     collections: collectionsReducer,
     news: newsReducer
 });

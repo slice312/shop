@@ -12,28 +12,29 @@ import "./styles.scss";
  */
 export const ProductCard = (
     {
-        id,
+        product,
+        onFavoriteToggle
+    }) => {
+
+    const {    id,
         title,
         price,
         discount,
         isFavorite,
         size,
         images,
-        colors
-    }) => {
+        colors} = product
+
     const priceWithDiscount = Math.round(price - price * discount / 100);
     const roundedDiscount = Math.round(discount);
 
-    // TODO: пока для вида сделал такой костыль, позже придумать как свазать с апи
-    const [favState, setFavState] = React.useState(isFavorite);
 
+
+    // TODO: убрать от сюда
     const navigate = useNavigate();
     const redirectToProductPage = () => navigate(`/products/${id}`);
 
-    const handler = () => {
-        console.log("click FavButton");
-        setFavState(prev => !prev);
-    };
+
 
 
     return (
@@ -45,7 +46,7 @@ export const ProductCard = (
                         ? <DiscountBadge discount={roundedDiscount}/>
                         : null
                 }
-                <FavButton isFavorite={favState} onClick={handler}/>
+                <FavButton isFavorite={isFavorite} onClick={onFavoriteToggle}/>
             </div>
 
             <div className="description" onClick={redirectToProductPage}>

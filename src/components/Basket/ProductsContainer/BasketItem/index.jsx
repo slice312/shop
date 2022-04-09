@@ -16,6 +16,7 @@ export const BasketItem = ({image, title, size, price, discount, color}) => {
             <div className={css.buttonClose}>
                 <img src={xmarkIcon} alt="xmarkIcon"/>
             </div>
+
             <div className={css.description}>
                 <div className={css.title}>
                     {title}
@@ -33,8 +34,8 @@ export const BasketItem = ({image, title, size, price, discount, color}) => {
                 <div className={css.price}>
                     <span className={css.priceWithDiscount}>{priceWithDiscount}</span>
                     <span className={css.oldPrice}>{price}</span>
-
                 </div>
+
                 <div className={css.qtyButtons}>
                     <div className={css.button}>
                         <img className={css.minusIcon} src={minusIcon} alt={minusIcon}/>
@@ -45,7 +46,6 @@ export const BasketItem = ({image, title, size, price, discount, color}) => {
                     <div className={css.button}>
                         <img className={css.plusIcon} src={plusIcon} alt={plusIcon}/>
                     </div>
-
                 </div>
             </div>
         </div>

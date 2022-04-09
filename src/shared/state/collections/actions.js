@@ -1,7 +1,7 @@
 import {
     COLLECTIONS_RESET,
     COLLECTIONS_PUSHED
-} from "src/shared/state/constants/actionTypes";
+} from "src/shared/state/actionTypes";
 import {Api} from "src/shared/utils/api";
 
 

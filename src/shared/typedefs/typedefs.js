@@ -36,7 +36,7 @@
 
 /**
  * @global
- * @typedef ProductCardInfo - Карточка товара (одежда)
+ * @typedef ProductInfo - Карточка товара (одежда) //TODO rename to ProductInfo
  * @property {string} id - Уникальный ключ (GUID)
  * @property {string} collectionId - Внешней ключ (GUID) к коллекции {@link CollectionInfo}
  * @property {string} title - Название
