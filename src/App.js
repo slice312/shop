@@ -1,6 +1,8 @@
 import React from "react";
 import {Routes, Route} from "react-router-dom";
 import {useDispatch} from "react-redux";
+import {isMobile} from "react-device-detect";
+
 import {Header} from "./shared/components/Header";
 import {Footer} from "./shared/components/Footer";
 import {Home} from "./components/Home";
@@ -15,7 +17,7 @@ import {FloatButtons} from "src/shared/components/FloatButtons";
 import {PublicOffer} from "./components/PublicOffer";
 import {Help} from "./components/Help";
 
-
+import {useLocation} from "react-router-dom";
 import css from "./App.module.scss";
 
 
@@ -24,9 +26,11 @@ export const App = () => {
     const dispatch = useDispatch();
     React.useEffect(() => void dispatch(setCommonSiteInfo()), [dispatch]);
 
+    const location = useLocation();
+
     return (
         <React.Fragment>
-            <FloatButtons/>
+            {/*<FloatButtons/> TODO: вернуть обратно*/}
             <div className={css.headerContainer}>
                 <div className={css.limitContainer}>
                     <Header/>
@@ -46,7 +50,16 @@ export const App = () => {
                         <Route path="/public-offer" element={<PublicOffer/>}/>
                         <Route path="/help" element={<Help/>}/>
                     </Routes>
-                    <Footer/>
+                </div>
+            </div>
+
+            <div className={css.footerContainer}>
+                <div className={css.limitContainer}>
+                    {
+                        (location.pathname === "/basket" && isMobile)
+                            ? null
+                            : <Footer/>
+                    }
                 </div>
             </div>
         </React.Fragment>

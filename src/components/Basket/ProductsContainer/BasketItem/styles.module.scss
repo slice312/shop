@@ -44,7 +44,26 @@
         }
 
         .color {
+            display: flex;
+            flex-direction: row;
             @include font-default(13px, 400, 15.85px, #7C7C7C);
+
+            .colorValueWrap {
+                margin-left: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 18px;
+                height: 18px;
+                border: 1px solid #D6D6D6;
+
+                .colorValue {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 6px;
+                    border: 1px solid #D1D1D1;
+                }
+            }
         }
 
         .price {

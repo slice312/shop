@@ -20,7 +20,7 @@
         .labels {
             display: flex;
             flex-direction: column;
-                gap: 12px;
+            gap: 12px;
             @include font-default(14px, 400, 17.07px, $textColorGray);
         }
 
@@ -29,6 +29,10 @@
             flex-direction: column;
             gap: 12px;
             @include font-default(14px, 400, 17.07px);
+
+            span {
+                align-self: flex-end;
+            }
         }
     }
 

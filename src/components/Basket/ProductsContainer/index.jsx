@@ -16,6 +16,7 @@ export const ProductsContainer = () => {
                               size={x.size}
                               price={x.price}
                               discount={x.discount}
+                              color={x.colors[7]}
                         />
                     );
                 })

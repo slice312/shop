@@ -2,45 +2,41 @@
 @import "src/shared/styles/mixins";
 
 
-.root {
+$fixedContainerHeight: 161px;
 
-    .title {
-        margin-bottom: 16px;
-        @include font-default(14px, 500, 17.07px);
+
+// Чтобы при скроллинге до самого низа, fixed контейнер не закрывал часть контента,
+// я добавил фейковый контейнер с той же высотой что и у fixed.
+.fakeContainer {
+    height: $fixedContainerHeight;
+}
+
+.additionalFixed {
+    position: fixed;
+    bottom: $fixedContainerHeight - 1;
+    left: 0;
+    width: 100%;
+    padding: 18px 16px 0 16px;
+    background-color: $colorWhite;
+
+    hr.line {
+        background-color: transparent;
+        background-image: linear-gradient(to right, black 53%, rgba(255, 255, 255, 0) 0%);
+        background-position: bottom;
+        background-size: 13px 1px;
+        background-repeat: repeat-x;
     }
+}
 
-    .info {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+.mainFixed {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: $fixedContainerHeight;
+    padding: 18px 16px;
+    background-color: $colorWhite;
 
-        .labels {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            @include font-default(14px, 400, 17.07px, $textColorGray);
-        }
-
-        .values {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            @include font-default(14px, 400, 17.07px);
-        }
-    }
-
-    .lineDiv {
-        margin-top: 24px;
-        margin-bottom: 24px;
-
-        hr.line {
-            background-color: transparent;
-            background-image: linear-gradient(to right, black 53%, rgba(255, 255, 255, 0) 0%);
-            background-position: bottom;
-            background-size: 13px 1px;
-            background-repeat: repeat-x;
-        }
-    }
 
     .total {
         .label {
@@ -49,6 +45,7 @@
     }
 
     .buttonInfo {
+        margin-top: 16px;
         width: 100%;
         height: 32px;
         display: flex;
@@ -60,6 +57,7 @@
     }
 
     .buttonOrder {
+        margin-top: 16px;
         width: 100%;
         height: 44px;
         display: flex;
@@ -67,5 +65,35 @@
         align-items: center;
         @include font-default(14px, 500px, 17.07px, $colorWhite);
         background-color: $colorRed;
+    }
+}
+
+
+.title {
+    margin-bottom: 16px;
+    @include font-default(14px, 500, 17.07px);
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .labels {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        @include font-default(14px, 400, 17.08px, $textColorGray);
+    }
+
+    .values {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        @include font-default(14px, 400, 17.07px);
+
+        span {
+            align-self: flex-end;
+        }
     }
 }

@@ -5,7 +5,7 @@ import minusIcon from "src/assets/icons/minus.svg";
 import plusIcon from "src/assets/icons/plus.svg";
 
 
-export const BasketItem = ({image, title, size, price, discount}) => {
+export const BasketItem = ({image, title, size, price, discount, color}) => {
     const priceWithDiscount = Math.round(price - price * discount / 100);
 
     return (
@@ -25,8 +25,10 @@ export const BasketItem = ({image, title, size, price, discount}) => {
                     <span className={css.sizeValue}>{size}</span>
                 </div>
                 <div className={css.color}>
-                    <span>Цвет:</span>
-                {/*    TODO: добавить выбранный цвет*/}
+                    <div>Цвет:</div>
+                    <div className={css.colorValueWrap}>
+                        <div className={css.colorValue} style={{backgroundColor: color}}/>
+                    </div>
                 </div>
                 <div className={css.price}>
                     <span className={css.priceWithDiscount}>{priceWithDiscount}</span>

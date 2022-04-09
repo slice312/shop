@@ -16,7 +16,6 @@ export const Footer = () => {
 
     return (
         <div className={css.root}>
-
             <div className={css.container}>
                 <div className={css.blocks}>
                     <div className={css.logo}>

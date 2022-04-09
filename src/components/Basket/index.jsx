@@ -8,7 +8,7 @@ export const Basket = () => {
     return (
         <div className={css.root}>
             <div className={css.productContainer}>
-                {/*<ProductsContainer/>*/}
+                <ProductsContainer/>
             </div>
             <div className={css.orderInfo}>
                 <OrderInfo/>
