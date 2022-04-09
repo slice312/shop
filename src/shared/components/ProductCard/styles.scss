@@ -1,6 +1,9 @@
 @import "src/shared/styles/global";
 @import "src/shared/styles/mixins";
 
+// TODO: отрефакторить, шрифты, маргины
+// 1 позиция во вне, 2 размеры самого элемента, 3 позиционирование контента
+// в таком порядке описать свойства, цвета бордеры неважно поэтому в конце
 
 $fontTitle: 400 normal 14px $fontFamily;
 $fontPrice: 600 normal 16px $fontFamily;
@@ -117,7 +120,6 @@ $fontDiscountPercent: 500 normal 12px $fontFamily;
 
             button {
                 width: 8px;
-
                 height: 8px;
                 border-radius: 50%;
                 margin-right: 16.86px;

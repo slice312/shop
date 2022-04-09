@@ -26,7 +26,7 @@ export const BasketItem = ({image, title, size, price, discount}) => {
                 </div>
                 <div className={css.color}>
                     <span>Цвет:</span>
-
+                {/*    TODO: добавить выбранный цвет*/}
                 </div>
                 <div className={css.price}>
                     <span className={css.priceWithDiscount}>{priceWithDiscount}</span>

@@ -9,6 +9,8 @@ import telegramIcon from "src/assets/icons/telegram.svg";
 import instagramIcon from "src/assets/icons/instagram.svg";
 import whatsappIcon from "src/assets/icons/whatsapp.svg";
 
+
+// TODO: отрефакторить
 export const Footer = () => {
     const info = useSelector(state => state.siteCommonInfo);
 

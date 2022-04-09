@@ -3,18 +3,33 @@
 
 
 .root {
-    padding-top: 11px;
-    padding-bottom: 96px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     background-color: $colorMainBackground;
+    padding: 11px 0 96px 0;
 
     .productContainer {
         width: 100%;
     }
 
     .orderInfo {
+        position: sticky;
+        align-self: flex-start;
+        top: 0;
         margin-left: 16px;
+    }
+}
+
+@media (max-width: $md4+px) {
+    .root {
+        display: flex;
+        flex-direction: column;
+        padding: 24px 16px 0 16px;
+
+        .orderInfo {
+            width: 100%;
+            margin-left: 0;
+        }
     }
 }

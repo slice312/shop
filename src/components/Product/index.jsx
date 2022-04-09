@@ -6,6 +6,9 @@ import {Description} from "./Description";
 import css from "./styles.module.scss";
 
 
+
+// TODO: тут надо отдельно сделать компонент для мобилки
+
 export const Product = () => {
     const params = useParams();
     const [product, setProduct] = React.useState({});

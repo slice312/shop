@@ -95,3 +95,36 @@
         }
     }
 }
+
+
+@media (max-width: $md4+px) {
+    .item {
+        img {
+            width: 96px;
+            height: 172px;
+        }
+
+        .description {
+            margin-left: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap:8px;
+
+            .price {
+                .priceWithDiscount {
+                    @include font-default(16px, 500, 19.5px);
+                }
+
+                .oldPrice {
+                    @include font-default(12px, 400, 14.63px, #ADADAD);
+                }
+            }
+        }
+
+        .qtyButtons {
+            position: absolute;
+            bottom: 12px;
+        }
+    }
+}

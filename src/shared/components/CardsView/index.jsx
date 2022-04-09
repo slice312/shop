@@ -7,12 +7,12 @@ import {MobileView} from "./MobileView";
 export const CardsView = ({cards, CardElement}) => {
     // TODO: React.lazy почитать сделать так же, если оно тут подойдет
     return (
-        <div>
+        <React.Fragment>
             {
                 isMobile
                     ? <MobileView cards={cards} CardElement={CardElement}/>
                     : <DesktopView cards={cards} CardElement={CardElement}/>
             }
-        </div>
+        </React.Fragment>
     );
 };

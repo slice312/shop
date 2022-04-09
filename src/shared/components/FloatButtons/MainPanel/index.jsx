@@ -11,8 +11,8 @@ export const MainPanel = () => {
     const {telegramUrl, whatsappUrl} = useSelector(state => state.siteCommonInfo);
     const [isOpenCallModal, setIsOpenCallModal] = React.useState(false);
 
-    const telegramRedirectClick = () => window.open(telegramUrl, "_blank");
-    const whatsappRedirectClick = () => window.open(whatsappUrl, "_blank");
+    const telegramRedirectClick = () => window.open(telegramUrl, "_blank", "noopener");
+    const whatsappRedirectClick = () => window.open(whatsappUrl, "_blank", "noopener");
     const btnTelephoneClick = () => setIsOpenCallModal(true);
 
 

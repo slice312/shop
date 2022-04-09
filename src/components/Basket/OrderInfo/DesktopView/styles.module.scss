@@ -7,19 +7,6 @@
     padding: 24px;
     background-color: $colorWhite;
 
-    .lineDiv {
-        margin-top: 24px;
-        margin-bottom: 24px;
-
-        hr.line {
-            background-color: transparent;
-            background-image: linear-gradient(to right, black 53%, rgba(255, 255, 255, 0) 0%);
-            background-position: bottom;
-            background-size: 13px 1px;
-            background-repeat: repeat-x;
-        }
-    }
-
     .title {
         margin-bottom: 16px;
         @include font-default(14px, 500, 17.07px);
@@ -33,7 +20,7 @@
         .labels {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+                gap: 12px;
             @include font-default(14px, 400, 17.07px, $textColorGray);
         }
 
@@ -42,6 +29,19 @@
             flex-direction: column;
             gap: 12px;
             @include font-default(14px, 400, 17.07px);
+        }
+    }
+
+    .lineDiv {
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        hr.line {
+            background-color: transparent;
+            background-image: linear-gradient(to right, black 53%, rgba(255, 255, 255, 0) 0%);
+            background-position: bottom;
+            background-size: 13px 1px;
+            background-repeat: repeat-x;
         }
     }
 
@@ -65,5 +65,11 @@
                 }
             }
         }
+    }
+}
+
+@media (max-width: $md4+px) {
+    .root {
+        width: 100%;
     }
 }

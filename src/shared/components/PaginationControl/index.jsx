@@ -19,17 +19,21 @@ export class PaginationControl extends React.Component {
         super(props);
         this.prevPageClick = this.prevPageClick.bind(this);
         this.nextPageClick = this.nextPageClick.bind(this);
+        // TODO: дублирование логики убрать
         this.pageIndex = Math.floor(this.props.activeItemIndex / this.props.pageSize);
     }
+
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         this.pageIndex = Math.floor(this.props.activeItemIndex / this.props.pageSize);
     }
 
+
     prevPageClick() {
         const itemIndex = lo.clamp(this.pageIndex * this.props.pageSize - 4, 0, this.props.totalItemsQty - 1);
         this.props.onActiveItemChanged(itemIndex);
     }
+
 
     nextPageClick() {
         const itemIndex = lo.clamp(this.pageIndex * this.props.pageSize + 4, 0, this.props.totalItemsQty - 1);
