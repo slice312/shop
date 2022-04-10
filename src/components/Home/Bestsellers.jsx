@@ -1,10 +1,10 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
+import {Categories} from "src/shared/constants";
 import {pushProductsBestsellers} from "src/shared/state/products/actions";
+import {Utils} from "src/shared/utils";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import {CardsContainer} from "./CardsContainer";
-import {Utils} from "src/shared/utils";
-import {Categories} from "src/shared/constants";
 
 
 const CARDS_BATCH_SIZE = 8;
@@ -12,16 +12,13 @@ const CARDS_BATCH_SIZE = 8;
 
 export const Bestsellers = () => {
     const dispatch = useDispatch();
-    const bestsellerCards = Utils.filterProductsByCategory(
-        useSelector(state => state.productsState.products),
-        Categories.Bestsellers
-    );
-
+    const {products, bestSellersIsFetching} = useSelector(state => state.productsState);
+    const bestsellerCards = Utils.filterProductsByCategory(products, Categories.Bestsellers);
 
     React.useEffect(() => {
-        if (!bestsellerCards.length)
+        if (!bestsellerCards.length && !bestSellersIsFetching)
             dispatch(pushProductsBestsellers(CARDS_BATCH_SIZE));
-    }, []);
+    }, [products]);
 
 
     const loadMoreClick = () => {
@@ -29,7 +26,6 @@ export const Bestsellers = () => {
     };
 
 
-    // TODO: вернуть
     return (
         <CardsContainer
             title="Хиты продаж"

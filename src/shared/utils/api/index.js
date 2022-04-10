@@ -79,6 +79,12 @@ const getNews = async (limit, offset = 0) => {
     return await axiosInstance.get(`news?limit=${limit}&offset=${offset}`);
 };
 
+
+const setProductFavoriteFlag = async (productId, isFavorite) => {
+        return await axiosInstance.put(`products/${productId}?favorite=${isFavorite}`);
+};
+
+
 const putRequestCallBack = async (phoneNumber, name) => {
     return await axiosInstance.put(`callback?phone=${phoneNumber}&name=${name}`);
 };
@@ -101,6 +107,8 @@ const getPublicOffer = async () => {
 
 
 // TODO: разбить на группы
+// TODO: тут у меня нейминг неправильный, всеему остальному коду не нужно знать какой http глагол использутся
+// поэтому просто переименовать на логичные именя описаывающие действия
 export const Api = {
     getHomeSliderImages,
     getBestsellers,
@@ -109,6 +117,10 @@ export const Api = {
     getProductsByCollection,
     getCollections,
     getNews,
+
+    product: {
+        setProductFavoriteFlag
+    },
 
     siteService: {
         putRequestCallBack,

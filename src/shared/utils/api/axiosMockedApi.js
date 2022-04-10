@@ -57,7 +57,6 @@ export const mockIt = (instance) => {
         .reply(config => {
             const params = parseQueryParams(config);
             const data = lo.chain(DB.cards.slice())
-                .reverse()
                 .drop(params.offset)
                 .take(params.limit);
             return [200, data];
@@ -115,6 +114,23 @@ export const mockIt = (instance) => {
             const params = parseQueryParams(config);
             const data = array.take(DB.news, params.limit);
             return [200, data];
+        });
+
+
+    // TODO поправить
+    // putRequestCallBack
+    mockApi
+        .onPut(/products\/.+\?favorite=.+/)
+        .reply(config => {
+            const [_, productId, isFavorite] = /products\/(.+)\?favorite=(.+)/
+                .exec(config.url);
+            const product = DB.cards.find(x => x.id === productId);
+            if (product) {
+                product.isFavorite = isFavorite === "true";
+                return [200, "success"];
+            }
+            else
+                return [404, `product with id ${productId} not found`];
         });
 };
 

@@ -1,22 +1,33 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import PropTypes from "prop-types";
 import {Carousel} from "react-bootstrap";
 import filledHearIcon from "src/assets/icons/filled-heart.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import "./styles.scss";
 
 
-// TODO: переписать это
-/*
-Сюда надо thunk который будет при добавлении в избранное будет делать диспатн который будет изменять глобал массив products
- */
-export const ProductCard = (
-    {
+const propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        discount: PropTypes.number.isRequired,
+        isFavorite: PropTypes.bool.isRequired,
+        size: PropTypes.string.isRequired,
+        images: PropTypes.arrayOf(PropTypes.string).isRequired,
+        colors: PropTypes.arrayOf(PropTypes.string).isRequired
+    }).isRequired
+};
+
+
+export const ProductCard = (    {
         product,
-        onFavoriteToggle
+        onFavoriteToggle,
+        onCardClick
     }) => {
 
-    const {    id,
+    const {
+        id,
         title,
         price,
         discount,
@@ -29,18 +40,10 @@ export const ProductCard = (
     const roundedDiscount = Math.round(discount);
 
 
-
-    // TODO: убрать от сюда
-    const navigate = useNavigate();
-    const redirectToProductPage = () => navigate(`/products/${id}`);
-
-
-
-
     return (
         <div className="card__container">
             <div className="photo">
-                <ImageSlides images={images} onClick={redirectToProductPage}/>
+                <ImageSlides images={images} onClick={onCardClick}/>
                 {
                     (roundedDiscount > 0)
                         ? <DiscountBadge discount={roundedDiscount}/>
@@ -49,7 +52,7 @@ export const ProductCard = (
                 <FavButton isFavorite={isFavorite} onClick={onFavoriteToggle}/>
             </div>
 
-            <div className="description" onClick={redirectToProductPage}>
+            <div className="description" onClick={onCardClick}>
                 <div className="title">
                     {title}
                 </div>
@@ -76,12 +79,13 @@ export const ProductCard = (
     );
 };
 
+ProductCard.propTypes = propTypes;
 
 const ImageSlides = ({images, onClick}) => {
     if (images.length === 1) {
         const img = images[0];
         return (
-            <img className="image" src={img} alt={img}/>
+            <img className="image" src={img} alt={img} onClick={onClick}/>
         );
     }
     return (
@@ -98,6 +102,7 @@ const ImageSlides = ({images, onClick}) => {
         </Carousel>
     );
 };
+
 
 const FavButton = ({isFavorite, onClick}) => {
     // TODO: получается click area немного выходит за иконку, потому что div прямоугольной формы

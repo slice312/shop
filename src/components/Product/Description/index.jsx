@@ -9,7 +9,7 @@ import filledHeartIcon from "src/assets/icons/filled-heart-white.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart-white.svg";
 
 
-export const Description = ({product, isFavorite, onChangedFavorite}) => {
+export const Description = ({product, onChangedFavorite}) => {
     const navigate = useNavigate();
     const [selectedImage, setSelectedImage] = React.useState("");
     const [selectedColor, setSelectedColor] = React.useState("");
@@ -21,7 +21,6 @@ export const Description = ({product, isFavorite, onChangedFavorite}) => {
     }, [product])
 
     const openImage = (imgSrc) => setSelectedImage(imgSrc);
-    const toggleFavorite = () => onChangedFavorite(!isFavorite);
 
     // TODO: реализовать добавление в корзину
     const addRemoveFromBasket = () => {
@@ -107,9 +106,9 @@ export const Description = ({product, isFavorite, onChangedFavorite}) => {
                                 {inBasket ? "Перейти в корзину" : "Добавить в корзину"}
                             </span>
                         </div>
-                        <div className={cn(css.buttonFavorite, css.buttonHovered)} onClick={toggleFavorite}>
+                        <div className={cn(css.buttonFavorite, css.buttonHovered)} onClick={onChangedFavorite}>
                             {
-                                isFavorite
+                                product.isFavorite
                                     ? <img src={filledHeartIcon} alt="filledHeartIcon"/>
                                     : <img src={emptyHeartIcon} alt="emptyHeartIcon"/>
                             }

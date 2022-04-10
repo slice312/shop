@@ -1,0 +1,17 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    .title {
+        @include font-default(24px, 500, 29.26px);
+    }
+
+    .cardContainer {
+        margin-top: 16px;
+        margin-bottom: 64px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+}

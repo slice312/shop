@@ -1,35 +1,9 @@
 import React from "react";
-import lo from "lodash";
-import {Api} from "src/shared/utils/api";
-import {ProductCard} from "src/shared/components/ProductCard";
+import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import css from "./styles.module.scss";
 
 
-const PRODUCTS_LIMIT = 5;
-
-
-export const SimilarProducts = ({collectionId}) => {
-    const [products, setProducts] = React.useState([]);
-
-    // TODO: не знаю надо ли все пихать в redux и запрос в thunk, пока сделал тут потому что времени нет
-    React.useEffect(() => {
-        if (!collectionId)
-            return;
-        (async () => {
-            try {
-                const response = await Api.getProductsByCollection(collectionId, PRODUCTS_LIMIT, 0);
-                if (response.status === 200) {
-                    console.log("getProductsByCollection success");
-                    setProducts(response.data.products);
-                } else {
-                    console.error("getProductsByCollection error", response.status);
-                }
-            } catch (err) {
-                console.error("getProductsByCollection error", err);
-            }
-        })();
-    }, [collectionId]);
-
+export const SimilarProducts = ({products}) => {
 
     return (
         <div className={css.root}>
@@ -38,8 +12,7 @@ export const SimilarProducts = ({collectionId}) => {
             </div>
             <div className={css.cardContainer}>
                 {
-                    lo.take(products, PRODUCTS_LIMIT)
-                        .map((x, i) => <ProductCard key={i} {...x}/>)
+                    products.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
                 }
             </div>
         </div>

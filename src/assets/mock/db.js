@@ -764,3 +764,5 @@ export const DB = {
     collections,
     news
 };
+
+window.DB = DB;
