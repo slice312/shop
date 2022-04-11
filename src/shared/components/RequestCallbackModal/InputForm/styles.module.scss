@@ -67,7 +67,7 @@ $fontButton: 500 normal 14px $fontFamily;
             background-color: $colorPrimary;
             padding: 14px 0 13px 0;
             margin-top: 2px;
-            @include whiteBlackButtonHover;
+            @include hoverWhiteBlackButton;
         }
     }
 }

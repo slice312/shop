@@ -1,7 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {CardsView} from "src/shared/components/CardsView";
 import css from "./styles.module.scss";
 
+
+const propTypes = {
+    title: PropTypes.string.isRequired,
+    cards: PropTypes.array.isRequired,
+    onButtonLoadClick: PropTypes.func.isRequired,
+    CardElement: PropTypes.elementType.isRequired
+};
 
 export const CardsContainer = (
     {
@@ -23,3 +31,5 @@ export const CardsContainer = (
         </div>
     );
 };
+
+CardsContainer.propTypes = propTypes;

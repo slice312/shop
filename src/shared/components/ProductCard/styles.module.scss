@@ -1,0 +1,96 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    flex-basis: 286px;
+    @include hoverCard;
+
+    .photo {
+        position: relative;
+
+        .discountBadge {
+
+            .discountTriangle {
+                width: 0;
+                height: 0;
+                position: absolute;
+                left: -0px;
+                top: -0px;
+                border-top: 50px solid $colorRed;
+                border-right: 50px solid transparent;
+            }
+
+            .discountValue {
+                position: absolute;
+                left: 3px;
+                top: 8px;
+                transform: rotate(-45deg);
+                @include font-default(12px, 500, 14.63px, $textColorWhite);
+            }
+        }
+
+        .favoriteButton {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            top: 13.5px;
+            right: 12px;
+            background-color: transparent;
+
+            @include ifHover {
+                &:hover {
+                    transform: scale(1.15);
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 6px 8px;
+
+        .title {
+            @include font-default(14px, 400, 17.07px);
+        }
+
+        .priceDiv {
+            margin-top: 6px;
+
+            .price {
+                margin-top: 6px;
+                @include font-default(16px, 500, 19.5px);
+            }
+
+            .oldPrice {
+                margin-left: 6px;
+                @include font-default(14px, 300, 17.07px, #ADADAD);
+                text-decoration: line-through;
+            }
+        }
+
+        .size {
+            margin-top: 6px;
+            @include font-default(13px, 400, 15.85px, #7C7C7C);
+        }
+
+        .colors {
+            margin-top: 6px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+
+            .button {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                margin-right: 16.86px;
+                border: 1px solid #D1D1D1;
+            }
+        }
+    }
+}

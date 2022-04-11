@@ -27,15 +27,23 @@
     }
 }
 
-@mixin whiteBlackButtonHover {
+// Дефолтный hover эффект для черных кнопок с белым шрифтом.
+@mixin hoverWhiteBlackButton {
     @include ifHover {
         &:hover {
             background-color: $colorGray;
-            color: $textColorPrimary // $colorPrimary;
+            color: $textColorPrimary;
+            @content;
         }
     }
 }
 
-
-
-// TODO: добавить сюда общий hover эффект для кнопок, который кнопки делает серыми
+// Дефолтный hover эффект для карточек товаров, коллекций.
+@mixin hoverCard {
+    @include ifHover {
+        &:hover {
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+            @content;
+        }
+    }
+}

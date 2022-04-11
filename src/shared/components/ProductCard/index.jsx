@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Carousel} from "react-bootstrap";
+import {ImageSlides} from "./ImageSlides";
+import css from "./styles.module.scss";
 import filledHearIcon from "src/assets/icons/filled-heart.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
-import "./styles.scss";
 
 
 const propTypes = {
@@ -16,15 +16,12 @@ const propTypes = {
         size: PropTypes.string.isRequired,
         images: PropTypes.arrayOf(PropTypes.string).isRequired,
         colors: PropTypes.arrayOf(PropTypes.string).isRequired
-    }).isRequired
+    }).isRequired,
+    onFavoriteToggle: PropTypes.func,
+    onCardClick: PropTypes.func
 };
 
-export const ProductCard = (    {
-        product,
-        onFavoriteToggle,
-        onCardClick
-    }) => {
-
+export const ProductCard = ({product, onFavoriteToggle, onCardClick}) => {
     const {
         id,
         title,
@@ -33,14 +30,16 @@ export const ProductCard = (    {
         isFavorite,
         size,
         images,
-        colors} = product
+        colors
+    } = product
 
     const priceWithDiscount = Math.round(price - price * discount / 100);
     const roundedDiscount = Math.round(discount);
 
+
     return (
-        <div className="card__container">
-            <div className="photo">
+        <div className={css.root}>
+            <div className={css.photo}>
                 <ImageSlides images={images} onClick={onCardClick}/>
                 {
                     (roundedDiscount > 0)
@@ -50,25 +49,25 @@ export const ProductCard = (    {
                 <FavButton isFavorite={isFavorite} onClick={onFavoriteToggle}/>
             </div>
 
-            <div className="description" onClick={onCardClick}>
-                <div className="title">
+            <div className={css.description} onClick={onCardClick}>
+                <div className={css.title}>
                     {title}
                 </div>
-                <div className="priceDiv">
-                    <span className="price">{priceWithDiscount} c</span>
+                <div className={css.priceDiv}>
+                    <span className={css.price}>{priceWithDiscount} c</span>
                     {
                         (roundedDiscount > 0)
-                            ? <span className="oldPrice">{price} c</span>
+                            ? <span className={css.oldPrice}>{price} c</span>
                             : null
                     }
                 </div>
-                <div className="size">
+                <div className={css.size}>
                     Размер: {size}
                 </div>
-                <div className="colors">
+                <div className={css.colors}>
                     {
                         colors.map((x, i) =>
-                            <button key={i} type="button" style={{backgroundColor: x}}/>
+                            <div key={i} className={css.button} style={{backgroundColor: x}}/>
                         )
                     }
                 </div>
@@ -79,33 +78,10 @@ export const ProductCard = (    {
 
 ProductCard.propTypes = propTypes;
 
-const ImageSlides = ({images, onClick}) => {
-    if (images.length === 1) {
-        const img = images[0];
-        return (
-            <img className="image" src={img} alt={img} onClick={onClick}/>
-        );
-    }
-    return (
-        <Carousel interval={null} controls={false} >
-            {
-                images.map((x, i) => {
-                    return (
-                        <Carousel.Item key={i}>
-                            <img className="image" src={x} alt={x} onClick={onClick}/>
-                        </Carousel.Item>
-                    );
-                })
-            }
-        </Carousel>
-    );
-};
-
 
 const FavButton = ({isFavorite, onClick}) => {
-    // TODO: получается click area немного выходит за иконку, потому что div прямоугольной формы
     return (
-        <div className="favoriteButton" onClick={onClick}>
+        <div className={css.favoriteButton} onClick={onClick}>
             {
                 isFavorite
                     ? <img src={filledHearIcon} alt="filledHearIcon"/>
@@ -115,12 +91,21 @@ const FavButton = ({isFavorite, onClick}) => {
     );
 }
 
+FavButton.propTypes = {
+    isFavorite: PropTypes.bool.isRequired,
+    onClick: PropTypes.func
+};
+
+
 const DiscountBadge = ({discount}) => {
     return (
-        <div className="discountBadge">
-            <div className="discountTriangle"/>
-            <div className="discountValue">{discount}%</div>
+        <div className={css.discountBadge}>
+            <div className={css.discountTriangle}/>
+            <div className={css.discountValue}>{discount}%</div>
         </div>
     );
 };
 
+DiscountBadge.propTypes = {
+    discount: PropTypes.number.isRequired
+};

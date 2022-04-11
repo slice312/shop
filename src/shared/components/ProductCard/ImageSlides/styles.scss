@@ -1,0 +1,28 @@
+.productCard__imageSlides {
+    .carousel {
+        .carousel-indicators {
+            margin: 0 10px 0 10px !important;
+        }
+
+        .carousel-indicators [data-bs-target] {
+            width: 100% !important;
+
+            &.active {
+                background-color: #737373 !important;
+            }
+
+            &:hover {
+                background-color: #808080 !important;
+            }
+        }
+
+        .carousel-item {
+            transition: transform 900ms ease, opacity 10s ease-out;
+        }
+    }
+}
+
+.image {
+    width: 100%;
+    aspect-ratio: 0.637;
+}

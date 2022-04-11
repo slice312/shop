@@ -10,9 +10,7 @@ $fontButton: 500 normal 14px $fontFamily;
     width: 286px;
     height: 374px;
 
-    &:hover {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-
+    @include hoverCard {
         .buttonDiv {
             color: $colorPrimary;
             background-color: $colorWhite;

@@ -20,7 +20,7 @@
             height: 32px;
             background-color: $colorPrimary;
             @include font-default(13px, 500, 15.85px, $textColorWhite);
-            @include whiteBlackButtonHover;
+            @include hoverWhiteBlackButton;
         }
     }
 }
