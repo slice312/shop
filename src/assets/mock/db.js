@@ -14,7 +14,6 @@ const commonSiteInfo = {
     email: "zeon_shop@gmail.com",
     telegramUrl: `https://t.me/s/sputnik_kgz_main`,
     whatsappUrl: `https://wa.me`,
-
 };
 
 

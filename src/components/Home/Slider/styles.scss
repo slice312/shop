@@ -1,3 +1,6 @@
+@import "src/shared/styles/global";
+
+
 .home__slider {
     padding-bottom: 20px;
 
@@ -20,6 +23,21 @@
 
         .carousel-item {
             transition: transform 900ms ease, opacity 10s ease-out;
+        }
+    }
+
+    .slideImg {
+        max-width: 100%;
+        max-height: 488px;
+        object-fit: cover;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: $md4 + px) {
+    .home__slider {
+        .slideImg {
+            height: 298px;
         }
     }
 }

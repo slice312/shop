@@ -1,21 +1,22 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/actionTypes"
+import {HOME_AD_SLIDE_IMAGES_RECEIVED} from "src/shared/state/actionTypes"
 
 
 /**
- * @property {SlideImage[]} images
+ * @property {AdSlideImage[]} slides
  */
 const initialState = {
-    images: [],
+    slides: []
 };
 
-const sliderImagesReceived = (state, action) => ({
-    images: action.payload
+
+const homeAdSlidesReceived = (state, action) => ({
+    slides: action.payload
 });
 
 
-export const sliderImagesReducer = createReducer(initialState, builder => {
+export const homeAdSlideImagesReducer = createReducer(initialState, builder => {
     return builder
-        .addCase(SLIDER_IMAGES_RECEIVED, sliderImagesReceived)
+        .addCase(HOME_AD_SLIDE_IMAGES_RECEIVED, homeAdSlidesReceived)
         .addDefaultCase(state => state);
 });

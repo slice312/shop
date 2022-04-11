@@ -31,8 +31,21 @@ const filterProductsByCategory = (products, category) => {
 };
 
 
+/**
+ * Открывает ссылку в новом окне.
+ * @param {string} url
+ */
+const openUrlInNewWindow = (url) => {
+    if (url)
+        window.open(url, "_blank", "noopener,noreferrer");
+};
 
+
+/**
+ * Объект, содержащий общие методы для всего проекта.
+ */
 export const Utils = {
     Enum,
-    filterProductsByCategory
+    filterProductsByCategory,
+    openUrlInNewWindow
 };

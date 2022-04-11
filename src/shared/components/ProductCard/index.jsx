@@ -19,7 +19,6 @@ const propTypes = {
     }).isRequired
 };
 
-
 export const ProductCard = (    {
         product,
         onFavoriteToggle,
@@ -38,7 +37,6 @@ export const ProductCard = (    {
 
     const priceWithDiscount = Math.round(price - price * discount / 100);
     const roundedDiscount = Math.round(discount);
-
 
     return (
         <div className="card__container">

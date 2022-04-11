@@ -2,35 +2,31 @@
 @import "src/shared/styles/mixins";
 
 
-$fontTitle: 500 normal 24px $fontFamily;
-$fontButton: 500 normal 13px $fontFamily;
-
-
 .root {
     margin-top: 40px;
 
     .title {
-        @include font-face($fontTitle, $textColorPrimary, 29.26px);
+        @include font-default(24px, 500, 29.26px);
         text-align: center;
     }
 
     .buttonDiv {
+        margin: 16px 0;
         display: flex;
         justify-content: center;
-        margin: 16px 0;
 
         button {
-            @include font-face($fontButton, #FFFFFF, 16px);
-            background-color: $colorPrimary;
             width: 107px;
             height: 32px;
-
-            @include ifHover {
-                &:hover {
-                    background-color: $colorGray;
-                    color: $colorPrimary;
-                }
-            }
+            background-color: $colorPrimary;
+            @include font-default(13px, 500, 15.85px, $textColorWhite);
+            @include whiteBlackButtonHover;
         }
+    }
+}
+
+@media (max-width: $md4 + px) {
+    .root {
+        padding-left: 17px;
     }
 }

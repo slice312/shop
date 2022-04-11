@@ -1,32 +1,26 @@
-import {SLIDER_IMAGES_RECEIVED} from "src/shared/state/actionTypes";
+import {HOME_AD_SLIDE_IMAGES_RECEIVED} from "src/shared/state/actionTypes";
 import {Api} from "src/shared/utils/api";
 
 
-/**
- * /TODO
- * @param {any[]} images
- * @return {{payload, type: string}}
- */
-export const sliderImagesReceived = (images) =>
-    ({type: SLIDER_IMAGES_RECEIVED, payload: images});
+export const slideImagesReceived = (slides) => ({type: HOME_AD_SLIDE_IMAGES_RECEIVED, payload: slides});
 
 
 /**
  * ThunkCreator.
- * Загружает картинки для слайдера на главной странице.
+ * Загружает рекламные слайды для главной страницы.
  */
-export const loadHomeSliderImages = () => {
+export const loadHomeAdSlideImages = () => {
     return async (dispatch, getState) => {
         try {
-            const response = await Api.getHomeSliderImages();
+            const response = await Api.getHomeAdSlideImages();
             if (response.status === 200) {
-                console.log("loadHomeSlideCards success", response.data);
-                dispatch(sliderImagesReceived(response.data.images));
+                console.log("loadHomeAdSlideImages success", response.data);
+                dispatch(slideImagesReceived(response.data));
             } else {
-                console.error("loadHomeSlideCards error", response.status);
+                console.error("loadHomeAdSlideImages error", response.status);
             }
         } catch (err) {
-            console.error("loadHomeSlideCards error", err);
+            console.error("loadHomeAdSlideImages error", err);
         }
     };
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import {AdvantageCard} from "./AdvantageCard";
 import css from "./styles.module.scss";
 import payMoneyIcon from "src/assets/icons/pay-money.svg";
 import truckIcon from "src/assets/icons/truck.svg";
@@ -7,30 +8,6 @@ import shoppingBagIcon from "src/assets/icons/shopping-bag-2.svg";
 
 
 export const Advantages = () => {
-    const cards = [
-        {
-            title: "Удобные способы оплаты",
-            image: payMoneyIcon,
-            description: "Мы предлагаем возможность безналичной оплаты"
-        },
-        {
-            title: "Cвоевременная доставка",
-            image: truckIcon,
-            description: "100% гарантия возврата товара - 14 дней на возврат, без скандалов и истерик."
-        },
-        {
-            title: "Профессиональная консультация",
-            image: supportIcon,
-            description: "Мы проконсультируем и индивидуально подойдем к Вашему заказу"
-        },
-        {
-            title: "Акции и бонусы для покупателей",
-            image: shoppingBagIcon,
-            description: "Промокоды со скидками для постоянных клиентов, акции на новые позиции"
-        }
-    ];
-
-
     return (
         <div className={css.root}>
             <div className={css.title}>
@@ -38,7 +15,7 @@ export const Advantages = () => {
             </div>
             <div className={css.cards}>
                 {
-                    cards.map((data, i) => <AdvantageCard key={i} {...data}/>)
+                    cards.map((x, i) => <AdvantageCard key={i} {...x}/>)
                 }
             </div>
         </div>
@@ -46,18 +23,25 @@ export const Advantages = () => {
 };
 
 
-const AdvantageCard = ({title, image, description}) => {
-    return (
-        <div className={css.card}>
-            <div className={css.container}>
-                <img src={image} alt="image"/>
-                <div className={css.title}>
-                    {title}
-                </div>
-                <div className={css.description}>
-                    {description}
-                </div>
-            </div>
-        </div>
-    );
-};
+const cards = [
+    {
+        title: "Удобные способы оплаты",
+        image: payMoneyIcon,
+        description: "Мы предлагаем возможность безналичной оплаты"
+    },
+    {
+        title: "Cвоевременная доставка",
+        image: truckIcon,
+        description: "100% гарантия возврата товара - 14 дней на возврат, без скандалов и истерик."
+    },
+    {
+        title: "Профессиональная консультация",
+        image: supportIcon,
+        description: "Мы проконсультируем и индивидуально подойдем к Вашему заказу"
+    },
+    {
+        title: "Акции и бонусы для покупателей",
+        image: shoppingBagIcon,
+        description: "Промокоды со скидками для постоянных клиентов, акции на новые позиции"
+    }
+];

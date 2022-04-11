@@ -6,6 +6,7 @@ import {Bestsellers} from "./Bestsellers";
 import {Novelties} from "./Novelties";
 import {Collections} from "./Collections";
 import {Advantages} from "./Advantages";
+import css from "./styles.module.scss";
 
 
 export const Home = () => {
@@ -17,7 +18,7 @@ export const Home = () => {
 
 
     return (
-        <div>
+        <div className={css.root}>
             <Slider/>
             <Bestsellers/>
             <Novelties/>

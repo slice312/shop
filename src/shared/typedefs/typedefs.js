@@ -10,9 +10,9 @@
 
 /**
  * @global
- * @typedef SlideImage - Комунальная услуга
- * @property {string} src - Ссылка на картинку
- * @property {string} url - Ссылка на редирект
+ * @typedef AdSlideImage - Рекламный слайд
+ * @property {string} image - Ссылка на изображение
+ * @property {string} link - Ссылка на редирект
  */
 
 

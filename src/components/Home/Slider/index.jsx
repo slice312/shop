@@ -1,18 +1,19 @@
 import React from "react";
-import {Carousel} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {loadHomeSliderImages} from "src/shared/state/slider/actions";
+import {Carousel} from "react-bootstrap";
+import {Utils} from "src/shared/utils";
+import {loadHomeAdSlideImages} from "src/shared/state/slider/actions";
 import "./styles.scss";
-
 
 
 export const Slider = () => {
     const dispatch = useDispatch();
-    const images = useSelector(state => state.homeSlider.images);
+    const images = useSelector(state => state.homeAdSlides.slides);
 
     React.useEffect(() => {
-        dispatch(loadHomeSliderImages());
+        dispatch(loadHomeAdSlideImages());
     }, [dispatch]);
+
 
     return (
         <div className="home__slider">
@@ -21,7 +22,10 @@ export const Slider = () => {
                     images.map((x, i) => {
                         return (
                             <Carousel.Item key={i}>
-                                <img className="d-block w-100" src={x.image} alt={x.image}/>
+                                <img className="slideImg"
+                                     src={x.image} alt={x.image}
+                                     onClick={() => Utils.openUrlInNewWindow(x.link)}
+                                />
                             </Carousel.Item>
                         );
                     })

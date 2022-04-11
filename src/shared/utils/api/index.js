@@ -9,8 +9,12 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  */
 
 
-const getHomeSliderImages = async () => {
-    return await axiosInstance.get("slider/images");
+/**
+ * Получение рекламных слайдов.
+ * @returns {Promise<AxiosResponse<AdSlideImage[]>>}
+ */
+const getHomeAdSlideImages = async () => {
+    return await axiosInstance.get("home/ad-slides");
 };
 
 /**
@@ -110,7 +114,8 @@ const getPublicOffer = async () => {
 // TODO: тут у меня нейминг неправильный, всеему остальному коду не нужно знать какой http глагол использутся
 // поэтому просто переименовать на логичные именя описаывающие действия
 export const Api = {
-    getHomeSliderImages,
+    getHomeAdSlideImages,
+
     getBestsellers,
     getNovelties,
     getProduct,

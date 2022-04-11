@@ -7,10 +7,9 @@ import {DB} from "src/assets/mock/db";
 
 export const mockIt = (instance) => {
     const mockApi = new MockAdapter(instance, {delayResponse: 100});
-    mockApi.onGet("slider/images")
+    mockApi.onGet("home/ad-slides")
         .reply(config => {
-            const data = {images: DB.slides};
-            return [200, data];
+            return [200, DB.slides];
         });
 
 

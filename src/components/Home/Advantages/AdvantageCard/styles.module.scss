@@ -1,0 +1,35 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.card {
+    padding: 24px 12px 49px 12px;
+    background-color: $colorWhite;
+
+    .container {
+        width: 262px;
+        height: 175px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .title {
+            margin-top: 28px;
+            @include font-default(14px, 500, 17.07px);
+        }
+
+        .description {
+            margin-top: 10px;
+            @include font-default(14px, 400, 24.5px, $textColorGray);
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: $md4 + px) {
+    .card {
+        .container {
+            width: 100%;
+        }
+    }
+}

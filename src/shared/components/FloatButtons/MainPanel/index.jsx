@@ -1,5 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import {Utils} from "src/shared/utils";
 import {RequestCallbackModal} from "src/shared/components/RequestCallbackModal";
 import css from "./styles.module.scss";
 import telegramIcon from "src/assets/icons/telegram-fill.svg";
@@ -11,8 +12,8 @@ export const MainPanel = () => {
     const {telegramUrl, whatsappUrl} = useSelector(state => state.siteCommonInfo);
     const [isOpenCallModal, setIsOpenCallModal] = React.useState(false);
 
-    const telegramRedirectClick = () => window.open(telegramUrl, "_blank", "noopener");
-    const whatsappRedirectClick = () => window.open(whatsappUrl, "_blank", "noopener");
+    const telegramRedirectClick = () => Utils.openUrlInNewWindow(telegramUrl);
+    const whatsappRedirectClick = () => Utils.openUrlInNewWindow(whatsappUrl);
     const btnTelephoneClick = () => setIsOpenCallModal(true);
 
 
