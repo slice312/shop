@@ -24,8 +24,8 @@
     .root {
         padding: 0 17px;
 
-        .container {
-            width: 100%;
+        .title {
+            @include font-default(18px, 500, 21.94px);
         }
     }
 }

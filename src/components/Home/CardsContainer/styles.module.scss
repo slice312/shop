@@ -29,4 +29,8 @@
     .root {
         padding-left: 17px;
     }
+
+    .title {
+        @include font-default(18px, 500, 21.94px);
+    }
 }

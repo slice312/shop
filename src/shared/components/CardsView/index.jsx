@@ -1,18 +1,21 @@
 import React from "react";
 import {isMobile} from "react-device-detect";
-import {DesktopView} from "./DesktopView";
-import {MobileView} from "./MobileView";
+
+const MobileView = React.lazy(() => import("./MobileView")
+    .then(module => ({default: module.MobileView})));
+
+const DesktopView = React.lazy(() => import("./DesktopView")
+    .then(module => ({default: module.DesktopView})));
 
 
 export const CardsView = ({cards, CardElement}) => {
-    // TODO: React.lazy почитать сделать так же, если оно тут подойдет
     return (
-        <React.Fragment>
+        <React.Suspense fallback={null}>
             {
                 isMobile
                     ? <MobileView cards={cards} CardElement={CardElement}/>
                     : <DesktopView cards={cards} CardElement={CardElement}/>
             }
-        </React.Fragment>
+        </React.Suspense>
     );
 };

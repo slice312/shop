@@ -2,10 +2,6 @@
 @import "src/shared/styles/mixins";
 
 
-$fontTitle: 500 normal 15px $fontFamily;
-$fontButton: 500 normal 14px $fontFamily;
-
-
 .root {
     width: 286px;
     height: 374px;
@@ -14,7 +10,6 @@ $fontButton: 500 normal 14px $fontFamily;
         .buttonDiv {
             color: $colorPrimary;
             background-color: $colorWhite;
-            cursor: pointer;
 
             img {
                 filter: brightness(0%);
@@ -28,21 +23,20 @@ $fontButton: 500 normal 14px $fontFamily;
         justify-content: center;
 
         .title {
-            @include font-face($fontTitle, $colorWhite, 18.29px);
             position: absolute;
             bottom: 12px;
+            @include font-default(15px, 500, 18.29px, $textColorWhite);
         }
     }
 
     .buttonDiv {
+        height: 44px;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
-        height: 44px;
         background-color: $colorPrimary;
-        @include font-face($fontButton, $colorWhite, 17.07px);
-        color: $colorWhite;
+        @include font-default(14px, 500, 17.07px, $textColorWhite);
 
         img {
             width: 20px;

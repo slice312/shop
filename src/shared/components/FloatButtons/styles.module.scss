@@ -1,8 +1,11 @@
+@import "src/shared/styles/mixins";
+
+
 .root {
     position: fixed;
-    z-index: 2;
     right: 5%;
     bottom: 5%;
+    z-index: 2;
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -11,8 +14,11 @@
         width: 44px;
         height: 44px;
         border-radius: 6px;
-        &:hover {
-            transform: scale(1.15);
+
+        @include ifHover {
+            &:hover {
+                transform: scale(1.15);
+            }
         }
     }
 }

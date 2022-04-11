@@ -1,17 +1,21 @@
 import React from "react";
 import {isMobile} from "react-device-detect";
-import {MobileView} from "./MobileView";
-import {DesktopView} from "./DesktopView";
+
+const MobileView = React.lazy(() => import("./MobileView")
+    .then(module => ({default: module.MobileView})));
+
+const DesktopView = React.lazy(() => import("./DesktopView")
+    .then(module => ({default: module.DesktopView})));
 
 
 export const OrderInfo = () => {
     return (
-        <React.Fragment>
+        <React.Suspense fallback={null}>
             {
                 isMobile
                     ? <MobileView/>
                     : <DesktopView/>
             }
-        </React.Fragment>
+        </React.Suspense>
     );
 };

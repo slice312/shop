@@ -1,9 +1,16 @@
 import React from "react";
+import PropTypes from "prop-types";
 import css from "./styles.module.scss";
 import arrowUpIcon from "src/assets/icons/arrow-up.svg";
 import xmarkIcon from "src/assets/icons/x-mark.svg";
 import chatIcon from "src/assets/icons/chat.svg";
 
+
+const propTypes = {
+    mainPanelIsOpen: PropTypes.bool.isRequired,
+    onChatClick: PropTypes.func,
+    onArrowUpClick: PropTypes.func
+};
 
 export const ControlPanel = ({mainPanelIsOpen, onChatClick, onArrowUpClick}) => {
     return (
@@ -25,3 +32,5 @@ export const ControlPanel = ({mainPanelIsOpen, onChatClick, onArrowUpClick}) => 
         </div>
     );
 };
+
+ControlPanel.propTypes = propTypes;
