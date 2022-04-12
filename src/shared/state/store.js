@@ -19,7 +19,7 @@ const enhancer = composeEnhancers(
 );
 
 const reducers = combineReducers({
-    siteCommonInfo: commonSiteInfoReducer,
+    commonSiteInfo: commonSiteInfoReducer,
     homeAdSlides: homeAdSlideImagesReducer,
     productsState: productsReducer,
     collections: collectionsReducer,

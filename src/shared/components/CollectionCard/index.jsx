@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {useNavigate} from "react-router-dom";
+import {Utils} from "src/shared/utils";
 import css from "./styles.module.scss";
 import arrowIcon from "src/assets/icons/arrow-right-white.svg";
 
@@ -12,8 +12,8 @@ const propTypes = {
 };
 
 export const CollectionCard = ({id, title, image}) => {
-    const navigate = useNavigate();
-    const redirectToCollectionPage = () => navigate(`/collections/${id}`);
+    const {navigateToCollectionPage} = Utils.Hooks.useProjectNavigation();
+    const redirectToCollectionPage = () => navigateToCollectionPage(id);
 
     return (
         <div className={css.root} onClick={redirectToCollectionPage}>

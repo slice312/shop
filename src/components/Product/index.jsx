@@ -12,7 +12,7 @@ import css from "./styles.module.scss";
 const PRODUCTS_LIMIT = 5
 
 // TODO: тут надо отдельно сделать компонент для мобилки
-
+// TODO: стили щрифты проверить, падинги проблема
 export const Product = () => {
     const params = useParams();
     const dispatch = useDispatch();

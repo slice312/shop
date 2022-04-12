@@ -13,8 +13,12 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
 /**
  * @global
  * @typedef CommonSiteInfo - Общая информация о сайте
- * @property {string} headerLogo - Ссылка на картинку лого сайта
- * @property {string} phoneNumber - Номер телефона
+ * @property {string} companyName - Подпись компании или название
+ * @property {string} headerLogo - Лого для хедера
+ * @property {string} footerLogo - Лого для футера
+ * @property {string} mainPhoneNumber - Основной номер телефона
+ * @property {string} extraPhoneNumbers - Доп. номера телефонов
+ * @property {string} email - Email
  * @property {string} telegramUrl - Ссылка на telegram
  * @property {string} whatsappUrl - Ссылка на whatsapp
  */
@@ -75,7 +79,7 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  * @property {string} description - Описание товара
  */
 
-//</editor-fold desc="my desc">
+//</editor-fold desc="typedefs">
 
 
 /**
@@ -154,9 +158,23 @@ const getNews = async (limit, offset = 0) => {
 
 
 const setProductFavoriteFlag = async (productId, isFavorite) => {
-        return await axiosInstance.put(`products/${productId}?favorite=${isFavorite}`);
+    return await axiosInstance.put(`products/${productId}?favorite=${isFavorite}`);
 };
 
+// TODO: comment
+const getProductsByName = async (name) => {
+    return await axiosInstance.get(`products?name=${name}`);
+};
+
+
+/**
+ *
+ * @param {string[]} productsIds
+ * @returns {Promise<void>}
+ */
+const getProductsByIds = async (productsIds) => {
+    return await axiosInstance.post("products/get", productsIds);
+};
 
 /**
  * Заказать обратный звонок.
@@ -217,6 +235,9 @@ export const Api = {
     getProductsByCollection,
     getCollections,
     getNews,
+
+    getProductsByName,
+    getProductsByIds,
 
     product: {
         setProductFavoriteFlag

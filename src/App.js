@@ -12,10 +12,11 @@ import {News} from "./components/News";
 import {Product} from "./components/Product";
 import {Basket} from "./components/Basket";
 import {Collection} from "./components/Collection";
-import {setCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
+import {loadCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
 import {FloatButtons} from "src/shared/components/FloatButtons";
 import {PublicOffer} from "./components/PublicOffer";
 import {Help} from "./components/Help";
+import {SearchResult} from "./components/SearchResult";
 
 import {useLocation} from "react-router-dom";
 import css from "./App.module.scss";
@@ -24,7 +25,7 @@ import css from "./App.module.scss";
 export const App = () => {
     console.log("App render");
     const dispatch = useDispatch();
-    React.useEffect(() => void dispatch(setCommonSiteInfo()), [dispatch]);
+    React.useEffect(() => void dispatch(loadCommonSiteInfo()), [dispatch]);
 
     const location = useLocation();
 
@@ -49,6 +50,7 @@ export const App = () => {
                         <Route path="/basket" element={<Basket/>}/>
                         <Route path="/public-offer" element={<PublicOffer/>}/>
                         <Route path="/help" element={<Help/>}/>
+                        <Route path="/search" element={<SearchResult/>}/>
                     </Routes>
                 </div>
             </div>

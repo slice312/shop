@@ -1,5 +1,5 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import {Utils} from "src/shared/utils";
 import {Modal} from "react-bootstrap";
 import cn from "classnames";
 import lo from "lodash";
@@ -10,7 +10,7 @@ import emptyHeartIcon from "src/assets/icons/empty-heart-white.svg";
 
 
 export const Description = ({product, onChangedFavorite}) => {
-    const navigate = useNavigate();
+    const {navigateToBasket} = Utils.Hooks.useProjectNavigation();
     const [selectedImage, setSelectedImage] = React.useState("");
     const [selectedColor, setSelectedColor] = React.useState("");
     const [inBasket, setInBasket] = React.useState(false); // TODO: после реализации устанавливать по local storage
@@ -26,7 +26,7 @@ export const Description = ({product, onChangedFavorite}) => {
     const addRemoveFromBasket = () => {
         console.log("addRemoveFromBasket");
         if (inBasket)
-            navigate("/basket");
+            navigateToBasket();
         setInBasket(true);
     };
     

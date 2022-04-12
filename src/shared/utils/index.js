@@ -1,3 +1,5 @@
+import React from "react";
+import {useNavigate} from "react-router-dom";
 
 
 /**
@@ -9,7 +11,6 @@
 const hasFlag = (enm, flag) => {
     return ((enm & flag) === flag);
 };
-
 
 
 export const Enum = {
@@ -28,6 +29,40 @@ const filterProductsByCategory = (products, category) => {
 };
 
 
+const useProjectNavigation = () => {
+    const navigate = useNavigate();
+
+    const navigateToProductPage = (productId) => navigate(`/products/${productId}`);
+
+    const navigateToCollectionPage = (collectionId) => navigate(`/collections/${collectionId}`);
+
+    const navigateToBasket = () => navigate(`/basket`);
+
+    const navigateToSearch = (args) => navigate(`/search`, args);
+
+
+    return {
+        navigateToProductPage,
+        navigateToCollectionPage,
+        navigateToBasket,
+        navigateToSearch
+    };
+};
+
+
+function useOutsideAlerter(ref, callback) {
+    React.useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (ref.current && !ref.current.contains(event.target))
+                callback?.();
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [ref]);
+}
+
+
 /**
  * Открывает ссылку в новом окне.
  * @param {string} url
@@ -43,6 +78,10 @@ const openUrlInNewWindow = (url) => {
  */
 export const Utils = {
     Enum,
+    Hooks: {
+        useProjectNavigation,
+        useOutsideAlerter
+    },
     filterProductsByCategory,
-    openUrlInNewWindow
+    openUrlInNewWindow,
 };

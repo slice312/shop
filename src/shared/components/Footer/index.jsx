@@ -12,7 +12,7 @@ import whatsappIcon from "src/assets/icons/whatsapp.svg";
 
 // TODO: отрефакторить
 export const Footer = () => {
-    const info = useSelector(state => state.siteCommonInfo);
+    const info = useSelector(state => state.commonSiteInfo);
 
     return (
         <div className={css.root}>

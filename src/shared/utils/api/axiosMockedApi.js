@@ -46,19 +46,7 @@ export const mockIt = (instance) => {
             return [200, data];
         });
 
-    // запрос к продуктам
-    mockApi
-        .onGet(/products\/(?!collection)/)
-        .reply(config => {
-            const params = /products\/(.+)/
-                .exec(config.url);
-            const id = params[1];
-            const product = DB.cards.find(x => x.id === id);
-            if (product)
-                return [200, product];
-            else
-                return [404, null];
-        });
+
 
     // запрос к продуктам с фильтрацией по коллекции
     mockApi
@@ -117,7 +105,54 @@ export const mockIt = (instance) => {
                 return [404, `product with id ${productId} not found`];
         });
 
+    /**
+     * @link {Api.getProduct}
+     */
+    mockApi
+        .onGet(/products\/(?!collection)/)
+        .reply(config => {
+            const params = /products\/(.+)/
+                .exec(config.url);
+            const id = params[1];
+            const product = DB.cards.find(x => x.id === id);
+            if (product)
+                return [200, product];
+            else
+                return [404, null];
+        });
 
+
+    /**
+     * @link {Api.getProductsByName}
+     */
+    mockApi
+        .onGet(/products\?name=.*/)
+        .reply(config => {
+            const url = new URL(`${config.baseURL}/${config.url}`);
+            const name = url.searchParams.get("name").toUpperCase();
+            const result = DB.cards
+                .filter(x => x.title.toUpperCase().includes(name))
+                .map(x => ({id: x.id, title: x.title}));
+            const data = {
+                matches: result,
+                count: result.length
+            };
+            return [200, data];
+        });
+
+    /**
+     * @link {Api.getProductsByIds}
+     */
+    mockApi
+        .onPost(/products\/get/)
+        .reply(config => {
+            const ids = JSON.parse(config.data);
+            const existedProducts = lo.intersectionWith(DB.cards, ids,
+                (x, y) => x.id === y);
+
+            return [200, existedProducts];
+        });
+    //<editor-fold desc="SiteService">
     /**
      * @link {Api.SiteService.sendRequestCallback}
      */
@@ -160,6 +195,8 @@ export const mockIt = (instance) => {
         .reply(config => {
             return [200, DB.about];
         });
+    //</editor-fold desc="SiteService">
+
 };
 
 

@@ -9,7 +9,7 @@ import telephoneIcon from "src/assets/icons/telephone.svg";
 
 
 export const MainPanel = () => {
-    const {telegramUrl, whatsappUrl} = useSelector(state => state.siteCommonInfo);
+    const {telegramUrl, whatsappUrl} = useSelector(state => state.commonSiteInfo);
     const [isOpenCallModal, setIsOpenCallModal] = React.useState(false);
 
     const telegramRedirectClick = () => Utils.openUrlInNewWindow(telegramUrl);

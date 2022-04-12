@@ -1,16 +1,15 @@
-import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {productFavoriteToggle} from "src/shared/state/products/actions";
+import {Utils} from "src/shared/utils";
 import {ProductCard} from "src/shared/components/ProductCard";
 
 
 export const ProductCardWrapper = ({product}) => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    const {navigateToProductPage} = Utils.Hooks.useProjectNavigation();
 
+    const redirectToProductPage = () => navigateToProductPage(product.id);
     const favoriteToggle = () => dispatch(productFavoriteToggle(product.id));
-
-    const redirectToProductPage = () => navigate(`/products/${product.id}`);
 
     return (
         <ProductCard product={product}
