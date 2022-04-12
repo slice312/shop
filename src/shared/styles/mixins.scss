@@ -32,7 +32,7 @@
     @include ifHover {
         &:hover {
             background-color: $colorGray;
-            color: $textColorPrimary;
+            color: $textColorWhite;
             @content;
         }
     }

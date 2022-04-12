@@ -9,7 +9,7 @@ export const PublicOffer = () => {
     React.useEffect(() => {
         (async () => {
             try {
-                const response = await Api.siteService.getPublicOffer();
+                const response = await Api.SiteService.getPublicOffer();
                 if (response.status === 200) {
                     console.log("getPublicOfferText success");
                     setText(response.data);

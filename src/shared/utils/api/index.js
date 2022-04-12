@@ -105,6 +105,14 @@ const getPublicOffer = async () => {
     return await axiosInstance.get("public-offer");
 };
 
+/**
+ * Получение FAQ.
+ * @returns {Promise<AxiosResponse<FaqRecord[]>>}
+ */
+const getFaq = async () => {
+    return await axiosInstance.get("faq");
+};
+
 // TODO: ПОИСК https://stackoverflow.com/questions/51726391/how-to-create-a-search-field-in-reactjs
 // TODO: ПОИСК https://github.com/WebDevSimplified/React-Infinite-Scrolling/blob/master/src/useBookSearch.js
 // axios cancelation token
@@ -127,9 +135,10 @@ export const Api = {
         setProductFavoriteFlag
     },
 
-    siteService: {
+    SiteService: {
         putRequestCallBack,
         getCommonSiteInfo,
-        getPublicOffer
+        getPublicOffer,
+        getFaq
     }
 };

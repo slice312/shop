@@ -1,18 +1,15 @@
 
 
 /**
- *
- * @param {number} enm
- * @param {number} flag
- * @return {boolean}
+ * Проверка наличия флага в перечислении.
+ * @param {number} enm - перечисление, несколько флагов
+ * @param {number} flag - перечисление, флаг
+ * @return {boolean} - результат
  */
 const hasFlag = (enm, flag) => {
     return ((enm & flag) === flag);
 };
 
-const addFlag = (enm, flag) => {
-    return ((enm & flag) === flag);
-};
 
 
 export const Enum = {

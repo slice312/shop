@@ -20,7 +20,7 @@ export const InputForm = ({onSubmit, onClose}) => {
         setIsNotFilled(false);
 
         try {
-            const response = await Api.siteService.putRequestCallBack(phoneNumber, name);
+            const response = await Api.SiteService.putRequestCallBack(phoneNumber, name);
             if (response.status === 200) {
                 console.log("putRequestCallBack success", response.data);
                 onSubmit();

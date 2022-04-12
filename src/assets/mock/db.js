@@ -755,13 +755,46 @@ const news = [
 ];
 
 
+const FAQ_TEXT = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquet laoreet a,
+neque, gravida urna libero iaculis lacus. Pellentesque pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit. Ut cras ut rhoncus
+ fermentum pharetra a sit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ Aliquet laoreet a, neque, gravida urna libero iaculis lacus. Pellentesque 
+ pellentesque massa ornare sit pellentesque elit nulla. Id est tellus maecenas ornare velit.`;
+
+const faq = [
+    {
+        question: "Как я могу заказать одежду?",
+        answer: FAQ_TEXT
+    },
+    {
+        question: "Как осуществляется доставка?",
+        answer: FAQ_TEXT
+    },
+    {
+        question: "Где производятся вещи?",
+        answer: FAQ_TEXT
+    },
+    {
+        question: "Как будет упакован заказ?",
+        answer: FAQ_TEXT
+    },
+    {
+        question: "Есть ли возврат, при условии если одежда пришла не того размера?",
+        answer: FAQ_TEXT
+    },
+    {
+        question: "Как я могу оставить заявку на обратную связь",
+        answer: FAQ_TEXT
+    }
+];
+
+
 export const DB = {
     commonSiteInfo,
     publicOfferText,
     slides,
     cards,
     collections,
-    news
+    news,
+    faq
 };
-
-window.DB = DB;

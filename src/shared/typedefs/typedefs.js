@@ -7,6 +7,12 @@
  * @property {string} whatsappUrl - Ссылка на whatsapp
  */
 
+/**
+ * @global
+ * @typedef FaqRecord - FAQ
+ * @property {string} question - Вопрос
+ * @property {string} answer - Ответ
+ */
 
 /**
  * @global
@@ -36,7 +42,7 @@
 
 /**
  * @global
- * @typedef ProductInfo - Карточка товара (одежда) //TODO rename to ProductInfo
+ * @typedef ProductInfo - Карточка товара (одежда)
  * @property {string} id - Уникальный ключ (GUID)
  * @property {string} collectionId - Внешней ключ (GUID) к коллекции {@link CollectionInfo}
  * @property {string} title - Название
@@ -52,5 +58,6 @@
  * @property {string} fabricStructure - Состав ткани
  * @property {string} description - Описание товара
  */
+
 
 export {};

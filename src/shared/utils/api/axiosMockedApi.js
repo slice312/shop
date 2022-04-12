@@ -131,6 +131,16 @@ export const mockIt = (instance) => {
             else
                 return [404, `product with id ${productId} not found`];
         });
+
+
+    /**
+     * @link {Api.SiteService.getFaq}
+     */
+    mockApi
+        .onGet(/faq/)
+        .reply(config => {
+            return [200, DB.faq];
+        });
 };
 
 
