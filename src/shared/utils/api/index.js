@@ -170,10 +170,12 @@ const getProductsByName = async (name) => {
 /**
  *
  * @param {string[]} productsIds
+ * @param {number} limit - Максимальное кол-во объектов в ответе
+ * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
  * @returns {Promise<void>}
  */
-const getProductsByIds = async (productsIds) => {
-    return await axiosInstance.post("products/get", productsIds);
+const getProductsByIds = async (productsIds, limit, offset) => {
+    return await axiosInstance.post(`products/get?limit=${limit}&offset=${offset}`, productsIds);
 };
 
 /**

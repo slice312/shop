@@ -8,7 +8,7 @@ import css from "./styles.module.scss";
 
 
 const COLLECTION_BATCH_SIZE = 8;
-const VISIBLE_PAGE_QTY = 4;
+const PAGE_SIZE = 4;
 
 
 export const Collections = () => {
@@ -20,7 +20,7 @@ export const Collections = () => {
         dispatch(loadCollections(COLLECTION_BATCH_SIZE, pageIndex * COLLECTION_BATCH_SIZE));
     }, [dispatch, pageIndex]);
 
-    const totalPageQty = Math.ceil(totalQty / COLLECTION_BATCH_SIZE)
+    const totalItemsQty = Math.ceil(totalQty / COLLECTION_BATCH_SIZE)
 
     return (
         <div className={css.root}>
@@ -30,8 +30,8 @@ export const Collections = () => {
             <CardsView cards={collections} CardElement={CollectionCard}/>
             <div className={css.paginator}>
                 <PaginationControl
-                    pageSize={VISIBLE_PAGE_QTY}
-                    totalItemsQty={totalPageQty}
+                    pageSize={PAGE_SIZE}
+                    totalItemsQty={totalItemsQty}
                     activeItemIndex={pageIndex}
                     onActiveItemChanged={i => setPageIndex(i)}
                 />

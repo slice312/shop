@@ -809,3 +809,5 @@ export const DB = {
     faq,
     about
 };
+
+window.DB = DB;

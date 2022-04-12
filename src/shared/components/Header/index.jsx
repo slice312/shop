@@ -7,7 +7,7 @@ import {Link, useNavigate} from "react-router-dom";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 import {Utils} from "src/shared/utils";
-import * as KeyCode  from "keycode-js";
+import * as KeyCode from "keycode-js";
 
 
 // TODO: отрефакторить
@@ -16,10 +16,14 @@ export const Header = () => {
     const [searchResult, setSearchResult] = React.useState({});
     const [isShowSearchResult, setIsShowSearchResult] = React.useState(false);
 
+
+    const inputRef = React.useRef(null);
+
     const {navigateToProductPage, navigateToSearch} = Utils.Hooks.useProjectNavigation();
 
     const searchInputHandle = (e) => {
         setIsShowSearchResult(true);
+
         const text = e.target.value;
         if (!text) {
             setSearchResult({});
@@ -42,16 +46,25 @@ export const Header = () => {
 
     const searchSubmitByIconButton = () => {
         if (searchResult.count)
-            navigateToSearch({state: {searchResult}});
+            navigateToSearchResult();
     };
 
     const searchSubmitByEnter = (e) => {
         if (e.type === "keydown" && e.code === KeyCode.CODE_ENTER) {
             if (searchResult.count) {
-                navigateToSearch({state: {searchResult}});
+                navigateToSearchResult();
                 setIsShowSearchResult(false);
             }
         }
+    };
+
+    const navigateToSearchResult = () => {
+        navigateToSearch({
+           state: {
+               query: inputRef.current.value,
+               result: searchResult
+           }
+        });
     };
 
     const searchResultRef = React.useRef(null);
@@ -85,7 +98,8 @@ export const Header = () => {
                 <div className={css.group2_right}>
                     <div className={css.group2_right_item1}>
                         <div className={css.inputWrap}>
-                            <input type="text"
+                            <input ref={inputRef}
+                                   type="text"
                                    placeholder="Поиск"
                                    onChange={searchInputHandle}
                                    onKeyDown={searchSubmitByEnter}

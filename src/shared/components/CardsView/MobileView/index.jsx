@@ -13,11 +13,11 @@ export const MobileView = ({cards, CardElement}) => {
                 rows.map((row, rowN) => {
                     return (
                         <div key={rowN}>
-                            <Swiper slidesPerView={1.27}>
+                            <Swiper slidesPerView={1.15}>
                                 {
                                     row.map((card, cardN) => {
                                         return (
-                                            <SwiperSlide key={cardN}>
+                                            <SwiperSlide key={cardN} className={css.slide}>
                                                 <CardElement {...card}/>
                                             </SwiperSlide>
                                         );

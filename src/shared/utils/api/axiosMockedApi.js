@@ -4,7 +4,6 @@ import lo from "lodash";
 import {DB} from "src/assets/mock/db";
 
 
-
 export const mockIt = (instance) => {
     const mockApi = new MockAdapter(instance, {delayResponse: 100});
     mockApi.onGet("home/ad-slides")
@@ -23,8 +22,9 @@ export const mockIt = (instance) => {
         };
     };
 
-
-
+    const getURL = (config) => {
+        return new URL(`${config.baseURL}/${config.url}`);
+    };
 
 
     // запрос к карточкам товаров Хиты продаж и Новинки
@@ -40,12 +40,11 @@ export const mockIt = (instance) => {
         .onGet(/products\/novelties\?limit=.+&offset=.+/)
         .reply(config => {
             const params = parseQueryParams(config);
-            const data = lo.chain(DB.cards.slice())
+            const data = lo.chain(DB.cards.slice()) // TODO: зачем
                 .drop(params.offset)
                 .take(params.limit);
             return [200, data];
         });
-
 
 
     // запрос к продуктам с фильтрацией по коллекции
@@ -100,8 +99,7 @@ export const mockIt = (instance) => {
             if (product) {
                 product.isFavorite = isFavorite === "true";
                 return [200, "success"];
-            }
-            else
+            } else
                 return [404, `product with id ${productId} not found`];
         });
 
@@ -128,7 +126,7 @@ export const mockIt = (instance) => {
     mockApi
         .onGet(/products\?name=.*/)
         .reply(config => {
-            const url = new URL(`${config.baseURL}/${config.url}`);
+            const url = getURL(config);
             const name = url.searchParams.get("name").toUpperCase();
             const result = DB.cards
                 .filter(x => x.title.toUpperCase().includes(name))
@@ -144,12 +142,17 @@ export const mockIt = (instance) => {
      * @link {Api.getProductsByIds}
      */
     mockApi
-        .onPost(/products\/get/)
+        .onPost(/products\/get\?limit=.+&offset=.+/)
         .reply(config => {
-            const ids = JSON.parse(config.data);
-            const existedProducts = lo.intersectionWith(DB.cards, ids,
-                (x, y) => x.id === y);
+            const url = getURL(config);
+            const limit = Number(url.searchParams.get("limit"));
+            const offset = Number(url.searchParams.get("offset"));
 
+            const ids = JSON.parse(config.data);
+            const existedProducts = lo.chain(DB.cards)
+                .intersectionWith(ids, (x, y) => x.id === y)
+                .drop(offset)
+                .take(limit);
             return [200, existedProducts];
         });
     //<editor-fold desc="SiteService">

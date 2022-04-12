@@ -7,6 +7,7 @@ import arrowLeftIcon from "src/assets/icons/arrow-left-black.svg";
 import arrowRightIcon from "src/assets/icons/arrow-right-black.svg";
 
 
+// TODO: я тут ошибся с индексами страни и последней страницей и в clamp ошибки
 export class PaginationControl extends React.Component {
     static propTypes = {
         pageSize: PropTypes.number.isRequired,
@@ -30,7 +31,7 @@ export class PaginationControl extends React.Component {
 
 
     prevPageClick() {
-        const itemIndex = lo.clamp(this.pageIndex * this.props.pageSize - 4, 0, this.props.totalItemsQty - 1);
+        const itemIndex = lo.clamp(this.pageIndex * this.props.pageSize - 4, 0, this.props.totalItemsQty - 1); // TODO: почему 4 в константу
         this.props.onActiveItemChanged(itemIndex);
     }
 
@@ -46,7 +47,7 @@ export class PaginationControl extends React.Component {
 
         buttons.push(
             <div key="arrowLeft" className={css.item} onClick={this.prevPageClick}>
-                <img src={arrowLeftIcon} alt="arrowLeftIcon"/>
+                <img src={arrowLeftIcon} alt={arrowLeftIcon}/>
             </div>
         );
 
@@ -74,8 +75,8 @@ export class PaginationControl extends React.Component {
                 <div key="3dots" className={cn(css.item, css.dots)}>
                     ...
                 </div>,
-                <div key="totalQty" className={css.item} onClick={() => this.props.onActiveItemChanged(this.props.totalItemsQty - 1)}>
-                    {this.props.totalItemsQty}
+                <div key="totalPageQty" className={css.item} onClick={() => this.props.onActiveItemChanged(this.props.totalItemsQty - 1)}>
+                    {Math.ceil(this.props.totalItemsQty / this.props.pageSize)}
                 </div>
             );
         }

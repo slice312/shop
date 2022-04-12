@@ -4,6 +4,7 @@
 
 .root {
     flex-basis: 286px;
+    //flex-grow: 1; // TODO: чекнуть, за рамки вылезает не надо
     @include hoverCard;
 
     .photo {

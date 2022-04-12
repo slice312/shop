@@ -2,5 +2,10 @@
 @import "src/shared/styles/mixins";
 
 .root {
+    padding: 11px 0 64px 0;
+
+    .title {
+        @include font-default(24px, 500, 29.26px)
+    }
 
 }
