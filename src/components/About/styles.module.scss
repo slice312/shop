@@ -2,15 +2,12 @@
 @import "src/shared/styles/mixins";
 
 
-$fontTitle: 500 normal 24px $fontFamily;
-$fontDescription: 500 normal 15px $fontFamily;
-
-
 .root {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 24px;
+    padding: 12px 0 72px 0;
 
     .images {
         display: flex;
@@ -47,12 +44,31 @@ $fontDescription: 500 normal 15px $fontFamily;
             padding: 12px 24px;
 
             .title {
-                @include font-face($fontTitle, $textColorPrimary, 29px);
                 align-self: flex-start;
+                @include font-default(24px, 500, 29.26px);
             }
 
             .description {
-                @include font-face($fontDescription, $textColorGray, 24px);
+                @include font-default(15px, 500, 24px, $textColorGray);
+            }
+        }
+    }
+}
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        padding: 24px 16px 64px 16px;
+
+        .text {
+            .container {
+                .title {
+                    @include font-default(18px, 500, 21.94px);
+                }
+
+                .description {
+                    @include font-default(12px, 300, 19.2px, $textColorGray);
+                }
             }
         }
     }

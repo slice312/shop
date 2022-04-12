@@ -4,9 +4,78 @@ import {mockIt} from "./axiosMockedApi";
 mockIt(axiosInstance); // TODO: удалить после реализации API
 
 
+//<editor-fold desc="typedefs">
+
 /**
  * @typedef {import("axios").AxiosResponse} AxiosResponse
  */
+
+/**
+ * @global
+ * @typedef CommonSiteInfo - Общая информация о сайте
+ * @property {string} headerLogo - Ссылка на картинку лого сайта
+ * @property {string} phoneNumber - Номер телефона
+ * @property {string} telegramUrl - Ссылка на telegram
+ * @property {string} whatsappUrl - Ссылка на whatsapp
+ */
+
+/**
+ * @global
+ * @typedef FaqRecord - FAQ
+ * @property {string} question - Вопрос
+ * @property {string} answer - Ответ
+ */
+
+/**
+ * @global
+ * @typedef AboutInfo - Информация о нас (о магазине)
+ * @property {string} text - Вопрос
+ * @property {string[]} images - Ссылки на изображения
+ */
+
+/**
+ * @global
+ * @typedef AdSlideImage - Рекламный слайд
+ * @property {string} image - Ссылка на изображение
+ * @property {string} link - Ссылка на редирект
+ */
+
+/**
+ * @global
+ * @typedef NewsInfo - Новости
+ * @property {string} title - Заголовок
+ * @property {string} image - Ссылка на картинку
+ * @property {string} text - Текст новости
+ */
+
+/**
+ * @global
+ * @typedef CollectionInfo - Коллекция
+ * @property {string} id - Уникальный ключ (GUID)
+ * @property {string} title - Заголовок
+ * @property {string} image - Ссылка на картинку
+ */
+
+/**
+ * @global
+ * @typedef ProductInfo - Карточка товара (одежда)
+ * @property {string} id - Уникальный ключ (GUID)
+ * @property {string} collectionId - Внешней ключ (GUID) к коллекции {@link CollectionInfo}
+ * @property {string} title - Название
+ * @property {string} vendorCode - Артикул
+ * @property {number} price - Цена
+ * @property {number} qty - Количество
+ * @property {number} discount - Скидка
+ * @property {boolean} isFavorite - Признак "Избранный"
+ * @property {string} size - Размер
+ * @property {string[]} images - Ссылки на изображения товара
+ * @property {string[]} colors - Цвета товара
+ * @property {string} material - Материал
+ * @property {string} fabricStructure - Состав ткани
+ * @property {string} description - Описание товара
+ */
+
+//</editor-fold desc="my desc">
 
 
 /**
@@ -89,7 +158,13 @@ const setProductFavoriteFlag = async (productId, isFavorite) => {
 };
 
 
-const putRequestCallBack = async (phoneNumber, name) => {
+/**
+ * Заказать обратный звонок.
+ * @param {string} phoneNumber - Номер телефона
+ * @param {string} name - Имя заказавшего юзера
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+const sendRequestCallback = async (phoneNumber, name) => {
     return await axiosInstance.put(`callback?phone=${phoneNumber}&name=${name}`);
 };
 
@@ -101,6 +176,10 @@ const getCommonSiteInfo = async () => {
     return await axiosInstance.get("common-site-info");
 };
 
+/**
+ * Получение текста публичной оферты.
+ * @returns {Promise<AxiosResponse<string>>}
+ */
 const getPublicOffer = async () => {
     return await axiosInstance.get("public-offer");
 };
@@ -111,6 +190,14 @@ const getPublicOffer = async () => {
  */
 const getFaq = async () => {
     return await axiosInstance.get("faq");
+};
+
+/**
+ * Получение FAQ.
+ * @returns {Promise<AxiosResponse<AboutInfo>>}
+ */
+const getAboutInfo = async () => {
+    return await axiosInstance.get("about-info");
 };
 
 // TODO: ПОИСК https://stackoverflow.com/questions/51726391/how-to-create-a-search-field-in-reactjs
@@ -136,9 +223,12 @@ export const Api = {
     },
 
     SiteService: {
-        putRequestCallBack,
+        sendRequestCallback,
         getCommonSiteInfo,
         getPublicOffer,
-        getFaq
+        getFaq,
+        getAboutInfo
     }
 };
+
+

@@ -23,24 +23,9 @@ export const mockIt = (instance) => {
         };
     };
 
-    // запрос на получение общей информации сайта
-    mockApi
-        .onGet(/common-site-info/)
-        .reply(config => {
-            return [200, DB.commonSiteInfo];
-        });
 
-    // запрос на получение текста публичной оферты
-    mockApi
-        .onGet(/public-offer/)
-        .reply(config => {
-            return [200, DB.publicOfferText];
-        });
 
-    // запрос "заказать обратный звонок"
-    mockApi
-        .onPut(/callback\?phone=.+&name=.+/)
-        .reply(config => [200, {message: "success"}]);
+
 
     // запрос к карточкам товаров Хиты продаж и Новинки
     mockApi
@@ -134,12 +119,46 @@ export const mockIt = (instance) => {
 
 
     /**
+     * @link {Api.SiteService.sendRequestCallback}
+     */
+    mockApi
+        .onPut(/callback\?phone=.+&name=.+/)
+        .reply(config => [200, {message: "success"}]);
+
+    /**
+     * @link {Api.SiteService.getCommonSiteInfo}
+     */
+    mockApi
+        .onGet(/common-site-info/)
+        .reply(config => {
+            return [200, DB.commonSiteInfo];
+        });
+
+    /**
+     * @link {Api.SiteService.getPublicOffer}
+     */
+    mockApi
+        .onGet(/public-offer/)
+        .reply(config => {
+            return [200, DB.publicOfferText];
+        });
+
+    /**
      * @link {Api.SiteService.getFaq}
      */
     mockApi
         .onGet(/faq/)
         .reply(config => {
             return [200, DB.faq];
+        });
+
+    /**
+     * @link {Api.SiteService.getAboutInfo}
+     */
+    mockApi
+        .onGet(/about-info/)
+        .reply(config => {
+            return [200, DB.about];
         });
 };
 
