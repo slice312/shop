@@ -5,6 +5,13 @@ import array from "lodash/array";
 import css from "./styles.module.scss";
 
 
+/**
+ * Mobile Adapter for DesktopView
+ * @param cards
+ * @param CardElement
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const MobileView = ({cards, CardElement}) => {
     const rows = array.chunk(cards, 4);
     return (

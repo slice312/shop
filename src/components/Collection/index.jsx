@@ -42,8 +42,8 @@ export const Collection = () => {
                 <PaginationControl
                     pageSize={PRODUCTS_BATCH_SIZE}
                     totalItemsQty={totalProductsQty}
-                    activeItemIndex={pageIndex}
-                    onActiveItemChanged={i => setPageIndex(i)}
+                    activePageIndex={pageIndex}
+                    onActivePageChanged={i => setPageIndex(i)}
                 />
             </div>
             <Novelties/>

@@ -18,7 +18,7 @@ export const CollectionCard = ({id, title, image}) => {
     return (
         <div className={css.root} onClick={redirectToCollectionPage}>
             <div className={css.photo}>
-                <img src={image} alt={image}/>
+                <img className={css.image} src={image} alt={image}/>
                 <div className={css.title}>
                     {title}
                 </div>

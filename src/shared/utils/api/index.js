@@ -11,7 +11,6 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  */
 
 /**
- * @global
  * @typedef CommonSiteInfo - Общая информация о сайте
  * @property {string} companyName - Подпись компании или название
  * @property {string} headerLogo - Лого для хедера
@@ -24,28 +23,24 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  */
 
 /**
- * @global
  * @typedef FaqRecord - FAQ
  * @property {string} question - Вопрос
  * @property {string} answer - Ответ
  */
 
 /**
- * @global
  * @typedef AboutInfo - Информация о нас (о магазине)
  * @property {string} text - Вопрос
  * @property {string[]} images - Ссылки на изображения
  */
 
 /**
- * @global
  * @typedef AdSlideImage - Рекламный слайд
  * @property {string} image - Ссылка на изображение
  * @property {string} link - Ссылка на редирект
  */
 
 /**
- * @global
  * @typedef NewsInfo - Новости
  * @property {string} title - Заголовок
  * @property {string} image - Ссылка на картинку
@@ -53,7 +48,6 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  */
 
 /**
- * @global
  * @typedef CollectionInfo - Коллекция
  * @property {string} id - Уникальный ключ (GUID)
  * @property {string} title - Заголовок
@@ -61,7 +55,6 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  */
 
 /**
- * @global
  * @typedef ProductInfo - Карточка товара (одежда)
  * @property {string} id - Уникальный ключ (GUID)
  * @property {string} collectionId - Внешней ключ (GUID) к коллекции {@link CollectionInfo}
@@ -77,6 +70,12 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  * @property {string} material - Материал
  * @property {string} fabricStructure - Состав ткани
  * @property {string} description - Описание товара
+ */
+
+/**
+ * @typedef ProductsResponse
+ * @property {ProductInfo[]} products
+ * @property {number} totalQty
  */
 
 //</editor-fold desc="typedefs">
@@ -101,6 +100,7 @@ const getBestsellers = async (limit, offset = 0) => {
 };
 
 /**
+ * // TODO: переделать ответ на ProductsResponse
  * Получение товаров категории "Новинки".
  * @param {number} limit - Максимальное кол-во объектов в ответе
  * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
@@ -114,11 +114,7 @@ const getProduct = async (productId) => {
     return await axiosInstance.get(`products/${productId}`);
 };
 
-/**
- * @typedef ProductsResponse
- * @property {ProductInfo[]} products
- * @property {number} totalQty
- */
+
 /**
  * Получение товаров по коллекции.
  * @param {string} collectionId - Id коллекции
@@ -186,6 +182,18 @@ const getProductsByIds = async (productsIds, limit, offset) => {
 };
 
 /**
+ * Получение избранных товраов.
+ * @param {number} limit
+ * @param {number} offset
+ * @returns {Promise<AxiosResponse<ProductsResponse>>}
+ */
+const getFavoriteProducts = async (limit, offset) => {
+    offset = (offset) ? offset : 0;
+    limit = (limit) ? limit : 0;
+    return await axiosInstance.get(`products/favorites?limit=${limit}&offset=${offset}`);
+};
+
+/**
  * Заказать обратный звонок.
  * @param {string} phoneNumber - Номер телефона
  * @param {string} name - Имя заказавшего юзера
@@ -248,6 +256,7 @@ export const Api = {
 
     getProductsByName,
     getProductsByIds,
+    getFavoriteProducts,
 
     product: {
         setProductFavoriteFlag

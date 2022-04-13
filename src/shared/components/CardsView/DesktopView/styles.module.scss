@@ -1,5 +1,6 @@
 .root {
     display: flex;
     flex-wrap: wrap;
+    //justify-content: space-between; // TODO: из-за этого карты по сторонам растягиваются если их 2, ченкть
     gap: 8px;
 }

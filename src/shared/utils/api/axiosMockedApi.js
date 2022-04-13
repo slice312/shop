@@ -14,7 +14,7 @@ export const mockIt = (instance) => {
 
 
     //TODO: найти либу для парса
-    const parseQueryParams = (config) => {
+    const parseQueryLimitOffsetParams = (config) => {
         const params = /limit=(\d+)&offset=(\d+)/
             .exec(config.url);
         return {
@@ -32,7 +32,7 @@ export const mockIt = (instance) => {
     mockApi
         .onGet(/products\/bestsellers\?limit=.+&offset=.+/)
         .reply(config => {
-            const params = parseQueryParams(config);
+            const params = parseQueryLimitOffsetParams(config);
             const data = lo.chain(DB.cards)
                 .drop(params.offset)
                 .take(params.limit);
@@ -40,7 +40,7 @@ export const mockIt = (instance) => {
         })
         .onGet(/products\/novelties\?limit=.+&offset=.+/)
         .reply(config => {
-            const params = parseQueryParams(config);
+            const params = parseQueryLimitOffsetParams(config);
             const data = lo.chain(DB.cards.slice()) // TODO: зачем
                 .drop(params.offset)
                 .take(params.limit);
@@ -48,13 +48,15 @@ export const mockIt = (instance) => {
         });
 
 
-    // запрос к продуктам с фильтрацией по коллекции
+    /**
+     * @link {Api.getProductsByCollection}
+     */
     mockApi
         .onGet(/products\/collection\/(.+)/) // TODO: offset тут пока не исользуются
         .reply(config => {
             const id = /collection\/(.+)\?/
                 .exec(config.url)[1]
-            const params = parseQueryParams(config);
+            const params = parseQueryLimitOffsetParams(config);
             const data = {
                 products: lo.chain(DB.cards.filter(x => x.collectionId === id))
                     .drop(params.offset)
@@ -73,7 +75,7 @@ export const mockIt = (instance) => {
         .onGet(/collections\?/)
         .reply(config => {
 
-            const params = parseQueryParams(config);
+            const params = parseQueryLimitOffsetParams(config);
             const data = {
                 collections: lo.chain(DB.collections)
                     .drop(params.offset)
@@ -83,11 +85,34 @@ export const mockIt = (instance) => {
             return [200, data];
         });
 
+    /**
+     * @link {Api.getFavoriteProducts}
+     */
+    mockApi
+        .onGet(/products\/favorites/)
+        .reply(config => {
+            const url = getURL(config);
+            const limit = Number(url.searchParams.get("limit")) || Number.MAX_SAFE_INTEGER;
+            const offset = Number(url.searchParams.get("offset"));
+            const favorites = DB.cards
+                .filter(x => x.isFavorite);
+
+            const data = {
+                products: lo.chain(favorites)
+                    .drop(offset)
+                    .take(limit),
+                totalQty: favorites.length
+            };
+            return [200, data];
+        });
+
+
+
     // запрос к новостям
     mockApi
         .onGet(/news\?limit=.+&offset=.+/)
         .reply(config => {
-            const params = parseQueryParams(config);
+            const params = parseQueryLimitOffsetParams(config);
             const data = array.take(DB.news, params.limit);
             return [200, data];
         });
@@ -160,6 +185,7 @@ export const mockIt = (instance) => {
                 .take(limit);
             return [200, existedProducts];
         });
+
     //<editor-fold desc="SiteService">
     /**
      * @link {Api.SiteService.sendRequestCallback}

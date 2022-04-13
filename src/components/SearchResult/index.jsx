@@ -31,6 +31,7 @@ export const SearchResult = () => {
                 .drop(pageIndex * PAGE_SIZE)
                 .take(PAGE_SIZE)
                 .map(x => x.id);
+            // TODO: thunk
             const response = await Api.getProductsByIds(ids);
             if (response.status === 200) {
                 dispatch(productsSet(response.data));

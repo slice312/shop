@@ -3,6 +3,7 @@ import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import css from "./styles.module.scss";
 
 
+// TODO: props
 export const SimilarProducts = ({products}) => {
 
     return (

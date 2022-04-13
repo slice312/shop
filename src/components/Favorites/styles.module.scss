@@ -1,0 +1,38 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    display: flex;
+    flex-direction: column;
+    padding: 11px 0 64px 0;
+
+    .title {
+        @include font-default(24px, 500, 29.26px);
+    }
+
+    .qtyLabel {
+        margin-top: 12px;
+        @include font-default(14px, 500, 17.07px, $textColorGray);
+    }
+
+    .cardsView {
+        margin-top: 16px;
+        gap: 8px;
+    }
+}
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        padding: 24px 16px 64px 16px;
+
+        .title {
+            @include font-default(16px, 500, 19.5px);
+        }
+
+        .qtyLabel {
+            @include font-default(12px, 500, 15px, $textColorGray);
+        }
+    }
+}

@@ -7,7 +7,8 @@ const MobileView = React.lazy(() => import("./MobileView")
 const DesktopView = React.lazy(() => import("./DesktopView")
     .then(module => ({default: module.DesktopView})));
 
-
+// TODO: этот контейнер в декстопе везде можеть использоваться
+// а мобильная версия где-то эта используется, а где-то подругому
 export const CardsView = ({cards, CardElement}) => {
     return (
         <React.Suspense fallback={null}>

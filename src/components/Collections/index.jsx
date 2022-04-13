@@ -30,10 +30,11 @@ export const Collections = () => {
             <CardsView cards={collections} CardElement={CollectionCard}/>
             <div className={css.paginator}>
                 <PaginationControl
+                    className={css.paginator}
                     pageSize={PAGE_SIZE}
                     totalItemsQty={totalItemsQty}
-                    activeItemIndex={pageIndex}
-                    onActiveItemChanged={i => setPageIndex(i)}
+                    activePageIndex={pageIndex}
+                    onActivePageChanged={i => setPageIndex(i)}
                 />
             </div>
         </div>

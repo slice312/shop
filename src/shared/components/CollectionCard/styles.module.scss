@@ -3,8 +3,7 @@
 
 
 .root {
-    width: 286px;
-    height: 374px;
+    flex-basis: 286px;
 
     @include hoverCard {
         .buttonDiv {
@@ -21,6 +20,11 @@
         position: relative;
         display: flex;
         justify-content: center;
+
+        .image {
+            width: 100%;
+            aspect-ratio: 0.865;
+        }
 
         .title {
             position: absolute;
