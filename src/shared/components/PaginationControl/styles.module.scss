@@ -2,40 +2,45 @@
 @import "src/shared/styles/mixins";
 
 
-$fontTitle: 500 normal 24px $fontFamily;
-$fontPageButton: 500 normal 16px Inter;
-
-
-.pagesContainer {
+.root {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     gap: 10px;
 
     .item {
+        width: 44px;
+        height: 44px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 44px;
-        height: 44px;
-        @include font-face($fontPageButton, $textColorGray, 19.36px);
+
+        @include font-default(16px, 500, 19.5px, $textColorGray);
         background-color: $colorWhite;
         cursor: pointer;
 
         &.active {
             background-color: $colorPrimary;
-            color: $colorWhite;
+            color: $textColorWhite;
         }
 
-        @include ifHover {
-            &:hover:not(.active):not(.dots){
-                background-color: $colorGray;
-                color: $colorWhite;
-            }
-        }
+        @include hoverWhiteBlackButton;
     }
 
     .dots {
         cursor: default;
+    }
+}
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        gap: 6px;
+
+        .item {
+            width: 32px;
+            height: 32px;
+            @include font-default(12px, 500, 14.63px, $textColorGray);
+        }
     }
 }

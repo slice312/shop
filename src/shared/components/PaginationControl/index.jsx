@@ -7,82 +7,104 @@ import arrowLeftIcon from "src/assets/icons/arrow-left-black.svg";
 import arrowRightIcon from "src/assets/icons/arrow-right-black.svg";
 
 
-// TODO: я тут ошибся с индексами страни и последней страницей и в clamp ошибки
+const CHUNK_SIZE = 4;
+
+/**
+ * Контрол для управления пагинацией.
+ * Генерирует кнопки, для переключения страниц, под указанное кол-во элементов и размер страницы.
+ */
 export class PaginationControl extends React.Component {
     static propTypes = {
+        /** Размер страницы, кол-во элементов на одной странице */
         pageSize: PropTypes.number.isRequired,
-        totalItemsQty:  PropTypes.number.isRequired,
-        activeItemIndex:  PropTypes.number.isRequired,
-        onActiveItemChanged:  PropTypes.func.isRequired,
+        /** Общее кол-во элементов, которое нужно распределить по страницам */
+        totalItemsQty: PropTypes.number.isRequired,
+        /** Индекс выбранной страницы */
+        activePageIndex: PropTypes.number.isRequired,
+        /** Колбек при выборе страницы */
+        onActivePageChanged: PropTypes.func.isRequired,
+        /** Имя классс, используется в самом верхнем контейнере контрола */
+        className: PropTypes.string
     }
 
     constructor(props) {
         super(props);
-        this.prevPageClick = this.prevPageClick.bind(this);
-        this.nextPageClick = this.nextPageClick.bind(this);
-        // TODO: дублирование логики убрать
-        this.pageIndex = Math.floor(this.props.activeItemIndex / this.props.pageSize);
+        this.prevChunkClick = this.prevChunkClick.bind(this);
+        this.nextChunkClick = this.nextChunkClick.bind(this);
+        this.state = {
+            chunkIndex: this.getChunkIndex(),
+            totalPageQty: this.getTotalPageQty()
+        };
     }
 
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.pageIndex = Math.floor(this.props.activeItemIndex / this.props.pageSize);
+        const index = this.getChunkIndex();
+        const totalPageQty = this.getTotalPageQty();
+
+        if (prevState.chunkIndex !== index) {
+            this.setState({
+                chunkIndex: index,
+                totalPageQty
+            });
+        }
     }
 
 
-    prevPageClick() {
-        const itemIndex = lo.clamp(this.pageIndex * this.props.pageSize - 4, 0, this.props.totalItemsQty - 1); // TODO: почему 4 в константу
-        this.props.onActiveItemChanged(itemIndex);
+    getChunkIndex() {
+        return Math.floor(this.props.activePageIndex / this.props.pageSize);
     }
 
 
-    nextPageClick() {
-        const itemIndex = lo.clamp(this.pageIndex * this.props.pageSize + 4, 0, this.props.totalItemsQty - 1);
-        this.props.onActiveItemChanged(itemIndex);
+    getTotalPageQty() {
+        return Math.ceil(this.props.totalItemsQty / this.props.pageSize);
     }
 
 
-    getButtons ()  {
+    prevChunkClick() {
+        const prevPageIndex = lo.clamp(this.state.chunkIndex * this.props.pageSize - CHUNK_SIZE,
+            0,
+            this.state.totalPageQty - 1);
+        this.props.onActivePageChanged(prevPageIndex);
+    }
+
+
+    nextChunkClick() {
+        const nextPageIndex = lo.clamp(this.state.chunkIndex * this.props.pageSize + CHUNK_SIZE,
+            0,
+            this.state.totalPageQty - 1);
+        this.props.onActivePageChanged(nextPageIndex);
+    }
+
+
+    getAllButtons() {
         const buttons = [];
 
         buttons.push(
-            <div key="arrowLeft" className={css.item} onClick={this.prevPageClick}>
+            <div key="arrowLeft" className={css.item} onClick={this.prevChunkClick}>
                 <img src={arrowLeftIcon} alt={arrowLeftIcon}/>
             </div>
         );
 
-        const startIndexInPage = this.pageIndex * this.props.pageSize
-        const itemsQtyInPage = lo.clamp(this.props.totalItemsQty - startIndexInPage, 0, 4);
+        const startIndexInPage = this.state.chunkIndex * this.props.pageSize
+        buttons.push(...this.getChunkButtons(startIndexInPage));
 
-        const elements = lo.range(itemsQtyInPage)
-            .map((_, i) => {
-                const num = startIndexInPage + i;
-                return (
-                    <div key={num}
-                         className={cn(css.item, (num === this.props.activeItemIndex) ? css.active : null)}
-                         onClick={() => this.props.onActiveItemChanged(num)}
-                    >
-                        {num + 1}
-                    </div>
-                );
-            });
-
-        buttons.push(...elements);
-
-
-        if (startIndexInPage + this.props.pageSize < this.props.totalItemsQty) {
+        if (startIndexInPage + CHUNK_SIZE < this.state.totalPageQty) {
             buttons.push(
                 <div key="3dots" className={cn(css.item, css.dots)}>
                     ...
                 </div>,
-                <div key="totalPageQty" className={css.item} onClick={() => this.props.onActiveItemChanged(this.props.totalItemsQty - 1)}>
-                    {Math.ceil(this.props.totalItemsQty / this.props.pageSize)}
+                <div key="totalPageQty"
+                     className={css.item}
+                     onClick={() => this.props.onActivePageChanged(this.props.totalItemsQty - 1)}
+                >
+                    {this.state.totalPageQty}
                 </div>
             );
         }
 
         buttons.push(
-            <div key="arrowRight" className={css.item} onClick={this.nextPageClick}>
+            <div key="arrowRight" className={css.item} onClick={this.nextChunkClick}>
                 <img src={arrowRightIcon} alt="arrowRightIcon"/>
             </div>
         );
@@ -91,13 +113,29 @@ export class PaginationControl extends React.Component {
     };
 
 
-    render () {
-        const buttons = this.getButtons()
+    getChunkButtons(startIndexInPage) {
+        const pageQtyInChunk = lo.clamp(this.state.totalPageQty - startIndexInPage, 0, CHUNK_SIZE);
 
+        return lo.range(pageQtyInChunk)
+            .map((_, i) => {
+                const num = startIndexInPage + i;
+                return (
+                    <div key={num}
+                         className={cn(css.item, (num === this.props.activePageIndex) ? css.active : null)}
+                         onClick={() => this.props.onActivePageChanged(num)}
+                    >
+                        {num + 1}
+                    </div>
+                );
+            });
+    }
+
+
+    render() {
         return (
-            <div className={css.pagesContainer}>
+            <div className={cn(css.root, this.props.className)}>
                 {
-                    buttons
+                    this.getAllButtons()
                 }
             </div>
         );
