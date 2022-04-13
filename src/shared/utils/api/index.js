@@ -146,6 +146,11 @@ const getCollections = async (limit, offset = 0) => {
     return await axiosInstance.get(`collections?limit=${limit}&offset=${offset}`);
 };
 
+const getCollectionsNotEmpty = async (limit, offset = 0) => {
+    return await axiosInstance.get(`collections?notEmpty&limit=${limit}&offset=${offset}`);
+};
+
+
 /**
  * Получение новостей.
  * @param {number} limit - Максимальное кол-во объектов в ответе
@@ -170,11 +175,13 @@ const getProductsByName = async (name) => {
 /**
  *
  * @param {string[]} productsIds
- * @param {number} limit - Максимальное кол-во объектов в ответе
- * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
- * @returns {Promise<void>}
+ * @param {number?} limit - Максимальное кол-во объектов в ответе
+ * @param {number?} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @returns {Promise<AxiosResponse<any>>}
  */
 const getProductsByIds = async (productsIds, limit, offset) => {
+    offset = (offset) ? offset : 0;
+    limit = (limit) ? limit : 0;
     return await axiosInstance.post(`products/get?limit=${limit}&offset=${offset}`, productsIds);
 };
 
@@ -236,6 +243,7 @@ export const Api = {
     getProduct,
     getProductsByCollection,
     getCollections,
+    getCollectionsNotEmpty,
     getNews,
 
     getProductsByName,

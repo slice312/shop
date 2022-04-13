@@ -2,6 +2,7 @@ import MockAdapter from "axios-mock-adapter";
 import array from "lodash/array";
 import lo from "lodash";
 import {DB} from "src/assets/mock/db";
+import {number} from "prop-types";
 
 
 export const mockIt = (instance) => {
@@ -64,10 +65,14 @@ export const mockIt = (instance) => {
             return [200, data];
         });
 
-    // запрос к коллекциям
+    /**
+     * @link {Api.getCollections}
+     * @link {Api.getCollectionsNotEmpty} TODO: сделать
+     */
     mockApi
-        .onGet(/collections\?limit=.+&offset=.+/)
+        .onGet(/collections\?/)
         .reply(config => {
+
             const params = parseQueryParams(config);
             const data = {
                 collections: lo.chain(DB.collections)
@@ -145,7 +150,7 @@ export const mockIt = (instance) => {
         .onPost(/products\/get\?limit=.+&offset=.+/)
         .reply(config => {
             const url = getURL(config);
-            const limit = Number(url.searchParams.get("limit"));
+            const limit = Number(url.searchParams.get("limit")) || Number.MAX_SAFE_INTEGER;
             const offset = Number(url.searchParams.get("offset"));
 
             const ids = JSON.parse(config.data);

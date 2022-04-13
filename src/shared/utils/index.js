@@ -1,5 +1,8 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {Api} from "src/shared/utils/api";
+import lo from "lodash";
+import {DB} from "src/assets/mock/db";
 
 
 /**
@@ -26,6 +29,16 @@ export const Enum = {
  */
 const filterProductsByCategory = (products, category) => {
     return products.filter(x => Enum.hasFlag(x.category, category));
+};
+
+// TODO: какая-то хитрая функция получения рандомных товаров
+const getRandomProducts = async (qty) => {
+    // const response = await Api.getCollectionsNotEmpty(qty, 0);
+    // return response;
+     const promise = new Promise(resolve =>
+         setTimeout(() => resolve(lo.take(DB.cards, qty)), 500)
+     );
+    return await promise;
 };
 
 
@@ -82,6 +95,9 @@ export const Utils = {
         useProjectNavigation,
         useOutsideAlerter
     },
-    filterProductsByCategory,
+    Data: {
+        filterProductsByCategory,
+        getRandomProducts
+    },
     openUrlInNewWindow,
 };

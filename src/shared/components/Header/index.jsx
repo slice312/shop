@@ -45,16 +45,13 @@ export const Header = () => {
 
 
     const searchSubmitByIconButton = () => {
-        if (searchResult.count)
-            navigateToSearchResult();
+        navigateToSearchResult();
     };
 
     const searchSubmitByEnter = (e) => {
         if (e.type === "keydown" && e.code === KeyCode.CODE_ENTER) {
-            if (searchResult.count) {
-                navigateToSearchResult();
-                setIsShowSearchResult(false);
-            }
+            navigateToSearchResult();
+            setIsShowSearchResult(false);
         }
     };
 
@@ -65,6 +62,11 @@ export const Header = () => {
                result: searchResult
            }
         });
+    };
+
+    const searchResultItemClicked = (id) => {
+        navigateToProductPage(id);
+        setIsShowSearchResult(false);
     };
 
     const searchResultRef = React.useRef(null);
@@ -91,7 +93,7 @@ export const Header = () => {
 
             <div className={css.secondRow}>
                 <div className={css.group2_left}>
-                    <Link to="/">
+                    <Link to="/" onClick={() => inputRef.current.value = ""}>
                         <img src={headerLogo} alt="headerLogo"/>
                     </Link>
                 </div>
@@ -116,7 +118,7 @@ export const Header = () => {
                                                     return (
                                                         <div key={i}
                                                              className={css.searchItem}
-                                                             onClick={() => navigateToProductPage(x.id)}
+                                                             onClick={() => searchResultItemClicked(x.id)}
                                                         >
                                                             {x.title}
                                                         </div>

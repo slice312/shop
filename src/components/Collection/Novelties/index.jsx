@@ -13,7 +13,7 @@ const PRODUCTS_LIMIT = 5;
 export const Novelties = () => {
     const dispatch = useDispatch();
     const {products, noveltiesIsFetching} = useSelector(state => state.productsState);
-    const noveltiesCards = Utils.filterProductsByCategory(products, Categories.Novelties);
+    const noveltiesCards = Utils.Data.filterProductsByCategory(products, Categories.Novelties);
 
     console.log(noveltiesCards);
     React.useEffect(() => {

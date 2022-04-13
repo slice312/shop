@@ -14,7 +14,7 @@ const NEXT_CARDS_BATCH_SIZE = 8;
 export const Novelties = () => {
     const dispatch = useDispatch();
     const {products, noveltiesIsFetching} = useSelector(state => state.productsState);
-    const noveltiesCards = Utils.filterProductsByCategory(products, Categories.Novelties);
+    const noveltiesCards = Utils.Data.filterProductsByCategory(products, Categories.Novelties);
 
     React.useEffect(() => {
         if (!noveltiesCards.length && !noveltiesIsFetching)

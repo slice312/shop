@@ -1,0 +1,23 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    .emptyResultText {
+        margin-top: 16px;
+        @include font-default(16px, 400, 19.5px);
+    }
+
+    .mayBeOffer {
+        margin-top: 48px;
+        @include font-default(24px, 500, 26.26px);
+        opacity: 0.1;
+    }
+
+    .cardContainer {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+}

@@ -13,7 +13,7 @@ const CARDS_BATCH_SIZE = 8;
 export const Bestsellers = () => {
     const dispatch = useDispatch();
     const {products, bestSellersIsFetching} = useSelector(state => state.productsState);
-    const bestsellerCards = Utils.filterProductsByCategory(products, Categories.Bestsellers);
+    const bestsellerCards = Utils.Data.filterProductsByCategory(products, Categories.Bestsellers);
 
     React.useEffect(() => {
         if (!bestsellerCards.length && !bestSellersIsFetching)

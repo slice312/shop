@@ -2,37 +2,25 @@
 @import "src/shared/styles/mixins";
 
 
-
 .root {
     display: flex;
     flex-direction: row;
-    //padding: 18px 16px 64px 16px;
-    gap: 8px;
-    justify-content: center;
-
     flex-wrap: wrap;
-
 
     .wrap {
     }
-
 }
+
 
 @media (max-width: $md4 + px) {
     .root {
         display: flex;
         flex-direction: column;
         justify-content: center;
-
-
-        padding: 18px 16px 64px 16px;
-
         flex-wrap: nowrap;
-
 
         .wrap {
             width: 100%;
         }
     }
-
 }

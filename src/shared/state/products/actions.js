@@ -37,7 +37,7 @@ export const pushProductsBestsellers = (batchSize) => {
         try {
             dispatch({type: PRODUCTS_BESTSELLERS_IS_FETCHING, payload: true}); // TODO: action creator private
             const state = getState();
-            const loaded = Utils.filterProductsByCategory(state.productsState.products, Categories.Bestsellers)
+            const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Bestsellers)
                 .length;
             const response = await Api.getBestsellers(batchSize, loaded);
             if (response.status === 200) {
@@ -65,7 +65,7 @@ export const pushProductNovelties = (batchSize) => {
         try {
             dispatch({type: PRODUCTS_NOVELTIES_IS_FETCHING, payload: true});
             const state = getState();
-            const loaded = Utils.filterProductsByCategory(state.productsState.products, Categories.Novelties)
+            const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Novelties)
                 .length;
             const response = await Api.getNovelties(batchSize, loaded);
             if (response.status === 200) {
