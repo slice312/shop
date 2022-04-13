@@ -4,7 +4,7 @@ import lo from "lodash";
 import {DB} from "src/assets/mock/db";
 import {number} from "prop-types";
 
-
+// TODO: новости надо ограничить
 export const mockIt = (instance) => {
     const mockApi = new MockAdapter(instance, {delayResponse: 100});
     mockApi.onGet("home/ad-slides")
@@ -56,11 +56,14 @@ export const mockIt = (instance) => {
         .reply(config => {
             const id = /collection\/(.+)\?/
                 .exec(config.url)[1]
-            const params = parseQueryLimitOffsetParams(config);
+            const url = getURL(config);
+            const limit = Number(url.searchParams.get("limit")) || Number.MAX_SAFE_INTEGER;
+            const offset = Number(url.searchParams.get("offset"));
+
             const data = {
                 products: lo.chain(DB.cards.filter(x => x.collectionId === id))
-                    .drop(params.offset)
-                    .take(params.limit),
+                    .drop(offset)
+                    .take(limit),
                 totalQty: DB.cards.length
             };
 
@@ -69,10 +72,9 @@ export const mockIt = (instance) => {
 
     /**
      * @link {Api.getCollections}
-     * @link {Api.getCollectionsNotEmpty} TODO: сделать
      */
     mockApi
-        .onGet(/collections\?/)
+        .onGet(/collections(?!\?notEmpty)/)
         .reply(config => {
 
             const params = parseQueryLimitOffsetParams(config);
@@ -84,6 +86,28 @@ export const mockIt = (instance) => {
             };
             return [200, data];
         });
+
+    /**
+     * @link {Api.getCollectionsNotEmpty}
+     */
+    mockApi
+        .onGet(/collections\?notEmpty/)
+        .reply(config => {
+            const url = getURL(config);
+            const limit = Number(url.searchParams.get("limit")) || Number.MAX_SAFE_INTEGER;
+            const offset = Number(url.searchParams.get("offset"));
+
+            const collections = lo.intersectionWith(DB.collections, DB.cards,
+                (collection, product) => collection.id === product.collectionId);
+            const data = {
+                collections: lo.chain(collections)
+                    .drop(offset)
+                    .take(limit),
+                totalQty: collections.length
+            };
+            return [200, data];
+        });
+
 
     /**
      * @link {Api.getFavoriteProducts}
@@ -98,10 +122,8 @@ export const mockIt = (instance) => {
                 .filter(x => x.isFavorite);
 
             const data = {
-                products: lo.chain(favorites)
-                    .drop(offset)
-                    .take(limit),
-                totalQty: favorites.length
+                products:[],// TODO: вернуть lo.chain(favorites)                    .drop(offset)                    .take(limit),
+                totalQty: 0// favorites.length TODO: вернуть
             };
             return [200, data];
         });

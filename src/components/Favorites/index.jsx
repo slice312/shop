@@ -1,36 +1,41 @@
-import css from "./styles.module.scss";
-import {AdaptiveCardsView} from "../../shared/components/AdaptiveCardsView";
-import {ProductCardWrapper} from "../../shared/components/ProductCardWrapper";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {productsReducer} from "../../shared/state/products/reducer";
-import {Api} from "src/shared/utils/api";
-import lo from "lodash";
-import {productsSet} from "../../shared/state/products/actions";
+import {isMobile} from "react-device-detect";
+import InfiniteScroll from "react-infinite-scroller";
+import {
+    setFavoriteProducts,
+    pushFavoriteProducts,
+    setRandomProducts
+} from "src/shared/state/products/actions";
+import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
+import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
+import css from "./styles.module.scss";
 
 
-const PRODUCT_LIMIT = 12;
+const PAGE_SIZE = (isMobile) ? 4 : 12;
+const RANDOM_PRODUCT_LIMIT = 5;
+
 
 export const Favorites = () => {
     const dispatch = useDispatch();
     const products = useSelector(state => state.productsState.products);
-    const [totalFavoritesQty, setTotalFavoritesQty] = React.useState(0);
+    const totalQtyOnServer = useSelector(state => state.productsState.totalQtyOnServer);
+    const productsIsFetching = useSelector(state => state.productsState.productsIsFetching);
 
     React.useEffect(() => {
-        (async () => {
-            try {
-                const response = await Api.getFavoriteProducts(PRODUCT_LIMIT, 0);
-                if (response.status === 200) {
-                    dispatch(productsSet(response.data.products));
-                    setTotalFavoritesQty(response.data.totalQty)
-                    console.log("getFavoriteProducts success", response.data);
-                } else
-                    console.log("getFavoriteProducts error", response.status);
-            } catch (err) {
-                console.error("getFavoriteProducts error", err);
-            }
-        })();
-    }, [])
+        const responseCallback = response => {
+            if (!response.data.totalQty)
+                dispatch(setRandomProducts(RANDOM_PRODUCT_LIMIT));
+        };
+
+        dispatch(setFavoriteProducts(PAGE_SIZE, 0, responseCallback));
+    }, []);
+
+
+    const loadMore = () => {
+        if (products.length < totalQtyOnServer && !productsIsFetching)
+            dispatch(pushFavoriteProducts(PAGE_SIZE));
+    };
 
     return (
         <div className={css.root}>
@@ -38,12 +43,37 @@ export const Favorites = () => {
                 Избранное
             </div>
             <div className={css.qtyLabel}>
-                Товаров в избарнном: {totalFavoritesQty}
+                Товаров в избарнном: {totalQtyOnServer}
             </div>
-            <AdaptiveCardsView className={css.cardsView}
-                               cards={products}
-                               CardElement={ProductCardWrapper}
-            />
+            {
+                (totalQtyOnServer)
+                    ? (
+                        <InfiniteScroll
+                            pageStart={0}
+                            loadMore={loadMore}
+                            hasMore={true}
+                            loader={null}
+                        >
+                            <AdaptiveCardsView className={css.cardsView}
+                                               cards={products}
+                                               CardElement={ProductCardWrapper}
+                            />
+                        </InfiniteScroll>
+
+                    )
+                    : (
+                        <React.Fragment>
+                            <div className={css.mayBeOffer}>
+                                Возможно Вас заинтересует
+                            </div>
+                            <div className={css.cardContainer}>
+                                {
+                                    products.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
+                                }
+                            </div>
+                        </React.Fragment>
+                    )
+            }
         </div>
     );
 };

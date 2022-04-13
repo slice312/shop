@@ -20,6 +20,20 @@
         margin-top: 16px;
         gap: 8px;
     }
+    .mayBeOffer {
+        margin-top: 48px;
+        @include font-default(24px, 500, 26.26px);
+        opacity: 0.1;
+    }
+
+    .cardContainer {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+    }
+
+
 }
 
 

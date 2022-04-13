@@ -3,8 +3,7 @@ import {Utils} from "src/shared/utils";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import css from "./styles.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {productsSet} from "src/shared/state/products/actions";
-
+import {productsSet, setRandomProducts} from "src/shared/state/products/actions";
 
 const RANDOM_PRODUCT_LIMIT = 5;
 
@@ -13,10 +12,7 @@ export const EmptyResult = () => {
     const products = useSelector(state => state.productsState.products);
 
     React.useEffect(() => {
-        (async () => {
-            const products = await Utils.Data.getRandomProducts(RANDOM_PRODUCT_LIMIT);
-            dispatch(productsSet(products));
-        })();
+        dispatch(setRandomProducts(RANDOM_PRODUCT_LIMIT));
     }, [])
 
     return (

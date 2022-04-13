@@ -31,16 +31,6 @@ const filterProductsByCategory = (products, category) => {
     return products.filter(x => Enum.hasFlag(x.category, category));
 };
 
-// TODO: какая-то хитрая функция получения рандомных товаров
-const getRandomProducts = async (qty) => {
-    // const response = await Api.getCollectionsNotEmpty(qty, 0);
-    // return response;
-     const promise = new Promise(resolve =>
-         setTimeout(() => resolve(lo.take(DB.cards, qty)), 500)
-     );
-    return await promise;
-};
-
 
 const useProjectNavigation = () => {
     const navigate = useNavigate();
@@ -96,8 +86,7 @@ export const Utils = {
         useOutsideAlerter
     },
     Data: {
-        filterProductsByCategory,
-        getRandomProducts
+        filterProductsByCategory
     },
     openUrlInNewWindow,
 };

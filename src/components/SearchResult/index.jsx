@@ -10,7 +10,6 @@ import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
 import {EmptyResult} from "./EmptyResult";
 import css from "./styles.module.scss";
-import {DB} from "src/assets/mock/db";
 
 const PAGE_SIZE = (isMobile) ? 4 : 12;
 
@@ -23,15 +22,16 @@ export const SearchResult = () => {
 
 
     const fetchProducts = async () => {
-        if (!result)
+        if (!result?.matches?.length)
             return;
         try {
-            console.log("LOAD pageIndex", pageIndex);
+            // TODO: какая-то херня, в консоле 2 POST запроса логируется, а эта надпись только 1 раз
+            console.log("LOAD SUKA pageIndex", pageIndex);
             const ids = lo.chain(result.matches)
                 .drop(pageIndex * PAGE_SIZE)
                 .take(PAGE_SIZE)
                 .map(x => x.id);
-            // TODO: thunk
+
             const response = await Api.getProductsByIds(ids);
             if (response.status === 200) {
                 dispatch(productsSet(response.data));
@@ -58,6 +58,7 @@ export const SearchResult = () => {
     }, [pageIndex]);
 
 
+    console.log("SEARCH RESULT", result);
     return (
         <div className={css.root}>
             <div className={css.query}>

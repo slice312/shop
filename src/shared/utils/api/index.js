@@ -78,6 +78,12 @@ mockIt(axiosInstance); // TODO: удалить после реализации A
  * @property {number} totalQty
  */
 
+/**
+ * @typedef CollectionsResponse
+ * @property {CollectionInfo[]} collections
+ * @property {number} totalQty
+ */
+
 //</editor-fold desc="typedefs">
 
 
@@ -119,29 +125,31 @@ const getProduct = async (productId) => {
  * Получение товаров по коллекции.
  * @param {string} collectionId - Id коллекции
  * @param {number} limit - Максимальное кол-во объектов в ответе
- * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @param {number?} offset - Смещение, сервер пропускает первые N объектов в ответе
  * @returns {Promise<AxiosResponse<ProductsResponse>>}
  */
-const getProductsByCollection = async (collectionId, limit, offset) => {
+const getProductsByCollection = async (collectionId, limit, offset = 0) => {
     return await axiosInstance.get(`products/collection/${collectionId}?limit=${limit}&offset=${offset}`);
 };
 
 
-/**
- * @typedef CollectionsResponse
- * @property {CollectionInfo[]} collections
- * @property {number} totalQty
- */
+
 /**
  * Получение коллекций товаров.
  * @param {number} limit - Максимальное кол-во объектов в ответе
- * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @param {number?} offset - Смещение, сервер пропускает первые N объектов в ответе
  * @return {Promise<AxiosResponse<CollectionsResponse>>}
  */
 const getCollections = async (limit, offset = 0) => {
     return await axiosInstance.get(`collections?limit=${limit}&offset=${offset}`);
 };
 
+/**
+ *
+ * @param {number} limit - Максимальное кол-во объектов в ответе
+ * @param {number} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @return {Promise<AxiosResponse<CollectionsResponse>>}
+ */
 const getCollectionsNotEmpty = async (limit, offset = 0) => {
     return await axiosInstance.get(`collections?notEmpty&limit=${limit}&offset=${offset}`);
 };
@@ -175,20 +183,18 @@ const getProductsByName = async (name) => {
  * @param {number?} offset - Смещение, сервер пропускает первые N объектов в ответе
  * @returns {Promise<AxiosResponse<any>>}
  */
-const getProductsByIds = async (productsIds, limit, offset) => {
-    offset = (offset) ? offset : 0;
+const getProductsByIds = async (productsIds, limit, offset = 0) => {
     limit = (limit) ? limit : 0;
     return await axiosInstance.post(`products/get?limit=${limit}&offset=${offset}`, productsIds);
 };
 
 /**
- * Получение избранных товраов.
- * @param {number} limit
- * @param {number} offset
- * @returns {Promise<AxiosResponse<ProductsResponse>>}
+ * Получение избранных товаров.
+ * @param {number?} limit - Максимальное кол-во объектов в ответе
+ * @param {number?} offset - Смещение, сервер пропускает первые N объектов в ответе
+ * @returns {Promise<AxiosResponse<ProductsResponse>>} - Список товаров, общее кол-во в базе
  */
-const getFavoriteProducts = async (limit, offset) => {
-    offset = (offset) ? offset : 0;
+const getFavoriteProducts = async (limit, offset = 0) => {
     limit = (limit) ? limit : 0;
     return await axiosInstance.get(`products/favorites?limit=${limit}&offset=${offset}`);
 };

@@ -1,6 +1,9 @@
 import {
     PRODUCTS_RESET,
     PRODUCTS_SET,
+    PRODUCTS_IS_FETCHING,
+    PRODUCTS_ON_SERVER_QTY_SET,
+    PRODUCTS_PUSHED,
     PRODUCTS_BESTSELLERS_IS_FETCHING,
     PRODUCTS_BESTSELLERS_PUSHED,
     PRODUCTS_NOVELTIES_IS_FETCHING,
@@ -16,7 +19,12 @@ export const productsReset = () => ({type: PRODUCTS_RESET});
 
 export const productsSet = (products) => ({type: PRODUCTS_SET, payload: products});
 
+const productsIsFetching = (isFetching) => ({type: PRODUCTS_IS_FETCHING, payload: isFetching});
 
+const productsOnServerQtySet = (qty) => ({type: PRODUCTS_ON_SERVER_QTY_SET, payload: qty});
+
+const productsPushed = (products) =>
+    ({type: PRODUCTS_PUSHED, payload: products});
 
 const bestsellersPushed = (products) =>
     ({type: PRODUCTS_BESTSELLERS_PUSHED, payload: products});
@@ -29,17 +37,16 @@ const productFavoriteToggled = (productId) => ({type: PRODUCT_FAVORITE_TOGGLED, 
 
 
 /**
- * ThunkCreator.
- * Загружает карточки товаров в категории "Хиты продаж".
+ * Загружает карточки товаров в категории "Хиты продаж" {@link Categories.Bestsellers}, добавляет к существующим.
  */
-export const pushProductsBestsellers = (batchSize) => {
+export const pushProductsBestsellers = (limit) => {
     return async (dispatch, getState) => {
         try {
             dispatch({type: PRODUCTS_BESTSELLERS_IS_FETCHING, payload: true}); // TODO: action creator private
             const state = getState();
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Bestsellers)
                 .length;
-            const response = await Api.getBestsellers(batchSize, loaded);
+            const response = await Api.getBestsellers(limit, loaded);
             if (response.status === 200) {
                 console.log("pushProductsBestsellers success", response.data);
                 dispatch(bestsellersPushed(response.data));
@@ -57,17 +64,16 @@ export const pushProductsBestsellers = (batchSize) => {
 
 
 /**
- * ThunkCreator.
- * Загружает карточки товаров в категории "Новинки".
+ * Загружает карточки товаров в категории "Новинки" {@link Categories.Novelties}, добавляет к существующим.
  */
-export const pushProductNovelties = (batchSize) => {
+export const pushProductNovelties = (limit) => {
     return async (dispatch, getState) => {
         try {
             dispatch({type: PRODUCTS_NOVELTIES_IS_FETCHING, payload: true});
             const state = getState();
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Novelties)
                 .length;
-            const response = await Api.getNovelties(batchSize, loaded);
+            const response = await Api.getNovelties(limit, loaded);
             if (response.status === 200) {
                 console.log("pushProductNovelties success", response.data);
                 dispatch(noveltiesPushed(response.data));
@@ -84,6 +90,66 @@ export const pushProductNovelties = (batchSize) => {
 };
 
 
+
+/**
+ * Загружает избранные товары, существующие удаляются.
+ * @param {number} limit - Ограничение
+ * @param {number?} offset - Смещение, по умолчанию 0
+ * @param {function(AxiosResponse<ProductsResponse>)?} responseCallback
+ */
+export const setFavoriteProducts = (limit, offset = 0, responseCallback) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(productsIsFetching(true));
+
+            const response = await Api.getFavoriteProducts(limit, offset);
+            if (response.status === 200) {
+                dispatch(productsSet(response.data.products));
+                dispatch(productsOnServerQtySet(response.data.totalQty))
+                console.log("setFavoriteProducts success", response.data);
+                responseCallback?.(response);
+            } else
+                console.log("setFavoriteProducts error", response.status);
+        } catch (err) {
+            console.error("setFavoriteProducts error", err);
+        } finally {
+            dispatch(productsIsFetching(false));
+        }
+    };
+};
+
+/**
+ * Загружает избранные товары, добавляет к существующим.
+ * @param {number} limit - Ограничение
+ */
+export const pushFavoriteProducts = (limit) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(productsIsFetching(true));
+            const state = getState();
+            const loaded = state.productsState.products
+                .filter(x => x.product.isFavorite)
+                .length;
+            const response = await Api.getFavoriteProducts(limit, loaded);
+            if (response.status === 200) {
+                console.log("pushFavoriteProducts success", response.data);
+                dispatch(productsPushed(response.data.products));
+            } else {
+                console.error("pushFavoriteProducts error", response.status);
+            }
+        } catch (err) {
+            console.error("pushFavoriteProducts error", err);
+        } finally {
+            dispatch(productsIsFetching(false));
+        }
+    };
+};
+
+
+/**
+ * Добавляет или удаляет товар из избранного.
+ * @param {string} productId - Id товара
+ */
 export const productFavoriteToggle = (productId) => {
     return async (dispatch, getState) => {
         try {
@@ -112,7 +178,6 @@ export const productFavoriteToggle = (productId) => {
  * @param {string} collectionId
  * @param {number} limit
  * @param {number} offset
- * @param {function(AxiosResponse<ProductsResponse>)?} responseCallback
  */
 export const setProductsByCollection = (collectionId, limit, offset, responseCallback) => {
     return async (dispatch, getState) => {
@@ -133,4 +198,32 @@ export const setProductsByCollection = (collectionId, limit, offset, responseCal
 };
 
 
+/**
+ * Загружает указанное кол-во рандомных товаров, по 1 товару с коллекци.
+ * @param {number} qty - Кол-во товаров
+ */
+export const setRandomProducts = (qty) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(productsIsFetching(true));
+            // TODO: исправить через запрос на пачку по массиву коллекций
+            const response = await Api.getCollectionsNotEmpty(qty);
+            const {collections} = response.data;
+
+            const products = [];
+            for (const coll of collections) {
+                const {data: productsData} = await Api.getProductsByCollection(coll.id, 1);
+                if (productsData.products.length)
+                    products.push(productsData.products[0]);
+            }
+
+            dispatch(productsSet(products));
+            console.error("setRandomProducts success", products);
+        } catch (err) {
+            console.error("setRandomProducts error", err);
+        } finally {
+            dispatch(productsIsFetching(false));
+        }
+    };
+};
 

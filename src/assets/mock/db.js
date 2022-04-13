@@ -166,7 +166,7 @@ const cards = [
     },
     {
         id: "ea3bc321-36ea-4699-a932-2f07181f78e2",
-        collectionId: "7c2e5296-9591-4966-a142-3127c6dd64c6",
+        collectionId: "414a7f58-1ef5-4b1b-9785-876cb05e1809",
         title: "Красное",
         vendorCode: "Платье PL984/dakota",
         price: 5700,
@@ -210,7 +210,7 @@ const cards = [
     },
     {
         id: "88bbba72-2b4e-401d-ba88-1518393c5dc0",
-        collectionId: "7c2e5296-9591-4966-a142-3127c6dd64c6",
+        collectionId: "9774232c-609f-4a1a-ad13-5354d7755bdd",
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 1365,
@@ -232,7 +232,7 @@ const cards = [
     },
     {
         id: "72b9c4de-fd30-4f25-bc35-3955c2ba7c98",
-        collectionId: "7c2e5296-9591-4966-a142-3127c6dd64c6",
+        collectionId: "ab33cb91-5840-4c85-bacc-fa3585e0a2e7",
         title: "Вечернее платье",
         vendorCode: "Платье PL984/dakota",
         price: 3700,
@@ -625,6 +625,314 @@ const cards = [
             `https://i.ibb.co/dcfzGZk/card8.png`,
             `https://i.ibb.co/dcfzGZk/card8.png`,
             `https://i.ibb.co/dcfzGZk/card8.png`
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "6b360c44-2d76-4e5f-8fe2-1b27f84198ff",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы Расты",
+        vendorCode: "Платье PL984/dakota",
+        price: 5000,
+        qty: 4,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "e1ce402c-d5bf-47ee-ab62-b06e08eb7319",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы тул",
+        vendorCode: "Платье PL984/dakota",
+        price: 5000,
+        qty: 3,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "76dd56a8-1aee-41f5-bb5e-44a685c0f21b",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы худси",
+        vendorCode: "Платье PL984/dakota",
+        price: 3444,
+        qty: 10,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "21c897c7-6e13-4c32-b31b-c0cfcf322276",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы кальмары",
+        vendorCode: "Платье PL984/dakota",
+        price: 36434,
+        qty: 3,
+        discount: 3,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "1d497db7-0050-4467-b2cf-8edcc87a927b",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы красные",
+        vendorCode: "Платье PL984/dakota",
+        price: 4600,
+        qty: 12,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "6bdc1b06-d3b8-4a75-93af-b1139da19077",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы Белые",
+        vendorCode: "Платье PL984/dakota",
+        price: 4700,
+        qty: 3,
+        discount: 13,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "630c44ba-c3f1-4f34-9fd0-42e88bd7d972",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы велосити",
+        vendorCode: "Платье PL984/dakota",
+        price: 3500,
+        qty: 7,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "031f3440-2363-4c36-94b5-a943d2c1bfaf",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Моснерат",
+        vendorCode: "Платье PL984/dakota",
+        price: 4500,
+        qty: 3,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "2fa9c4c5-ae33-4b18-b45f-2bfca379c63d",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Кеды",
+        vendorCode: "Платье PL984/dakota",
+        price: 4444,
+        qty: 3,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "b1e6acec-8d42-4664-be9a-262bc2848046",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Вансы",
+        vendorCode: "Платье PL984/dakota",
+        price: 10000,
+        qty: 3,
+        discount: 5,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "5a72f5f7-a324-4af5-867b-104de0035367",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Попсы",
+        vendorCode: "Платье PL984/dakota",
+        price: 8000,
+        qty: 3,
+        discount: 10,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "ba47248d-e6f8-45cc-8be9-62efeb9f9cc2",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Мопсы",
+        vendorCode: "Платье PL984/dakota",
+        price: 3123,
+        qty: 3,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "0820f087-7112-4f6e-b25b-beaf070cd4e0",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы Джерси",
+        vendorCode: "Платье PL984/dakota",
+        price: 7665,
+        qty: 3,
+        discount: 0,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/0Bq336j/card3.png`,
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "894b72a0-f67c-4132-8d19-9a0c4c9078b6",
+        collectionId: "95860924-6788-4d9a-bf54-7bb4c601ff57",
+        title: "Джинсы Дакоты",
+        vendorCode: "Платье PL984/dakota",
+        price: 7633,
+        qty: 3,
+        discount: 15,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
         ],
         colors: ["#B5A8A1", "#AB844A",
             "#6977F0", "#FFFFFF", "#141414", "#FF0000"],

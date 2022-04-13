@@ -31,7 +31,7 @@ export const News = () => {
                     pageStart={0}
                     loadMore={loadMore}
                     hasMore={true}
-                    loader={<div className="loader" key={0}>Loading ...</div>}
+                    loader={null}
                 >
                     {
                         news.map((x, i) =>

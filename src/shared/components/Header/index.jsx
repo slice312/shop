@@ -76,9 +76,9 @@ export const Header = () => {
         <header className={css.root}>
             <div className={css.topRow}>
                 <div className={css.pageLinks}>
-                    <Link to="/about"> О нас </Link>
-                    <Link to="/collections"> Коллекции </Link>
-                    <Link to="/news"> Новости </Link>
+                    <Link to="/about">О нас</Link>
+                    <Link to="/collections">Коллекции</Link>
+                    <Link to="/news">Новости</Link>
                 </div>
 
                 <div className={css.telephone}>
@@ -133,7 +133,7 @@ export const Header = () => {
                     </div>
                     <div className={css.group2_right_item2}>
                         <img src={emptyHeartIcon} alt="emptyHeartIcon"/>
-                        <span>Избранное</span>
+                        <Link to="/favorites">Избранное</Link>
                     </div>
                     <div className={css.group2_right_item3}>
                         <img src={shoppingBagIcon} alt="shoppingBagIcon"/>

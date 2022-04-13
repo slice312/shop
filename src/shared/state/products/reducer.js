@@ -2,13 +2,16 @@ import {createReducer} from "@reduxjs/toolkit";
 import lo from "lodash";
 import {Categories} from "src/shared/constants";
 import {
-    PRODUCT_FAVORITE_TOGGLED,
+    PRODUCTS_RESET,
+    PRODUCTS_SET,
+    PRODUCTS_IS_FETCHING,
+    PRODUCTS_ON_SERVER_QTY_SET,
+    PRODUCTS_PUSHED,
     PRODUCTS_BESTSELLERS_IS_FETCHING,
     PRODUCTS_BESTSELLERS_PUSHED,
     PRODUCTS_NOVELTIES_IS_FETCHING,
     PRODUCTS_NOVELTIES_PUSHED,
-    PRODUCTS_RESET,
-    PRODUCTS_SET
+    PRODUCT_FAVORITE_TOGGLED
 } from "src/shared/state/actionTypes";
 import {Enum} from "src/shared/utils";
 
@@ -20,12 +23,16 @@ import {Enum} from "src/shared/utils";
  */
 /**
  * @property {ProductCardInfo[]} products
+ * @property {number} totalQtyOnServer
+ * @property {boolean} productsIsFetching
  * @property {boolean} bestSellersIsFetching
  * @property {boolean} noveltiesIsFetching
  */
 const initialState = {
     products: [],
-    bestSellersIsFetching: false,
+    totalQtyOnServer: 0,
+    productsIsFetching: false,
+    bestSellersIsFetching: false, // TODO: а это нельзя заменить на одну перменную isFetching?
     noveltiesIsFetching: false
 };
 
@@ -44,9 +51,21 @@ const productsSet = (state, action) => ({
         }))
 });
 
-const setBestsellersFetching = (state, action) => ({
+const caseProductsIsFetching = (state, action) => ({
     ...state,
     bestSellersIsFetching: action.payload
+});
+
+const caseProductsOnServerQtySet = (state, action) => ({
+    ...state,
+    totalQtyOnServer: action.payload
+});
+
+
+
+const setBestsellersFetching = (state, action) => ({
+    ...state,
+    productsIsFetching: action.payload
 });
 
 
@@ -86,6 +105,21 @@ const productsPushed = (state, action, category) => {
         products
     };
 };
+
+
+const caseProductsPushed = (state, action) => ({
+    ...state,
+    products: [...state.products, ...convertToProductCardInfo(action.payload)]
+});
+
+const convertToProductCardInfo = (productsRaw) => {
+    return productsRaw.map(x => ({
+            product: x,
+            category: Categories.None
+        }));
+};
+
+
 
 
 const productCardInfoEqualityComparer = (obj1, obj2) => {
@@ -133,6 +167,9 @@ export const productsReducer = createReducer(initialState, builder => {
     return builder
         .addCase(PRODUCTS_RESET, productsReset)
         .addCase(PRODUCTS_SET, productsSet)
+        .addCase(PRODUCTS_IS_FETCHING, caseProductsIsFetching)
+        .addCase(PRODUCTS_ON_SERVER_QTY_SET, caseProductsOnServerQtySet)
+        .addCase(PRODUCTS_PUSHED, caseProductsPushed)
         .addCase(PRODUCTS_BESTSELLERS_IS_FETCHING, setBestsellersFetching)
         .addCase(PRODUCTS_BESTSELLERS_PUSHED, productsBestsellersPushed)
         .addCase(PRODUCTS_NOVELTIES_IS_FETCHING, setNoveltiesFetching)
