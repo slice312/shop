@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {isMobile} from "react-device-detect";
+
 import {setRandomProducts} from "src/shared/state/products/actions";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
@@ -29,10 +30,11 @@ export const EmptyResult = () => {
             </div>
             {
                 isMobile
-                    ? (<MobileSlideCardsView className={css.mobileCardContainer}
-                                             products={products}
-                                             CardElement={ProductCardWrapper}
-                                             chunkSize={5}
+                    ? (<MobileSlideCardsView
+                            className={css.mobileCardContainer}
+                            products={products}
+                            CardElement={ProductCardWrapper}
+                            chunkSize={5}
                         />
                     )
                     : (

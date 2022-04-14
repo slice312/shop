@@ -15,3 +15,12 @@
         gap: 8px;
     }
 }
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        .title {
+            @include font-default(18px, 500, 21.94px);
+        }
+    }
+}

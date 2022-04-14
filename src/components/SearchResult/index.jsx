@@ -3,6 +3,7 @@ import {useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {isMobile} from "react-device-detect";
 import lo from "lodash";
+
 import {productsSet} from "src/shared/state/products/actions";
 import {Api} from "src/shared/utils/api";
 import {PaginationControl} from "src/shared/components/PaginationControl";
@@ -69,7 +70,7 @@ export const SearchResult = () => {
                 (result?.matches?.length)
                     ? (
                         <React.Fragment>
-                            <AdaptiveCardsView className={css.cardsView}
+                            <AdaptiveCardsView className={css.cardsContainer}
                                                cards={products}
                                                CardElement={ProductCardWrapper}
                             />

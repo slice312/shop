@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {CardsView} from "src/shared/components/CardsView";
+import {isMobile} from "react-device-detect";
+
+import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
 import css from "./styles.module.scss";
 
 
@@ -24,7 +26,23 @@ export const CardsContainer = (
             <div className={css.title}>
                 <h2>{title}</h2>
             </div>
-            <CardsView cards={cards} CardElement={CardElement}/>
+            {
+                isMobile
+                    ? (<MobileSlideCardsView
+                            className={css.randomMobileCardsContainer}
+                            products={cards}
+                            CardElement={CardElement}
+                            chunkSize={5}
+                        />
+                    )
+                    : (
+                        <div className={css.randomCardsContainer}>
+                            {
+                                cards.map((x, i) => <CardElement key={i} {...x}/>)
+                            }
+                        </div>
+                    )
+            }
             <div className={css.buttonDiv}>
                 <button type="button" onClick={onButtonLoadClick}>Еще</button>
             </div>
