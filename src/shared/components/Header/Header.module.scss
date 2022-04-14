@@ -9,49 +9,56 @@ $font_type1: 500 normal 16px $fontFamily;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-}
 
-.topRow {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 22px 0 22px 0;
-
-    .pageLinks {
+    .topRow {
         display: flex;
         flex-direction: row;
-        gap: 24px;
+        justify-content: space-between;
+        padding: 22px 0 22px 0;
 
-        a {
-            @include font-face($font_type0, $textColorPrimary, 21px);
-            text-decoration: none;
+        .pageLinks {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+
+            a {
+                @include font-face($font_type0, $textColorPrimary, 21px);
+                text-decoration: none;
+            }
+        }
+
+        .telephone {
+            .label {
+                @include font-default(17px, 400, 20.72px, $textColorGray);
+            }
+            .value {
+                margin-left: 6px;
+                @include font-default(17px, 400, 20.72px);
+            }
         }
     }
 
-    .telephone {
-        @include font-face($font_type0, $textColorPrimary, 21px);
+    .secondRow {
+        display: flex;
+        flex-direction: row;
 
-        .grayTxt {
-            @include font-face($font_type0, #979797, 21px);
-            margin-left: 6px;
+        .logo {
+            padding: 9px 0;
+
+            img {
+                height: 70px;
+                background-color: transparent;
+            }
         }
+
+
     }
 }
 
 
-.secondRow {
-    display: flex;
-    flex-direction: row;
-}
 
-.group2_left {
-    padding: 9px 0;
 
-    img {
-        height: 70px;
-        background-color: transparent;
-    }
-}
+
 
 .group2_right {
     display: flex;
@@ -106,10 +113,10 @@ $font_type1: 500 normal 16px $fontFamily;
         }
 
         @include ifHover {
-           &:hover {
-               background-color: $colorGray;
-               border-radius: 50%;
-           }
+            &:hover {
+                background-color: $colorGray;
+                border-radius: 50%;
+            }
         }
     }
 
@@ -125,7 +132,7 @@ $font_type1: 500 normal 16px $fontFamily;
         border: 1px solid #EEEEEE;
 
 
-        .searchItem{
+        .searchItem {
             display: flex;
             align-items: center;
             padding: 16px 20px;
@@ -139,8 +146,8 @@ $font_type1: 500 normal 16px $fontFamily;
                 &:hover {
                     //background: rgb(229,230,231);
                     //background: linear-gradient(90deg, rgba(229,230,231,1) 0%, rgba(204,204,215,1) 67%, rgba(224,224,228,1) 75%);
-                    background: rgb(229,230,231);
-                    background: linear-gradient(90deg, rgba(229,230,231,1) 0%, rgba(225,225,233,1) 67%, rgba(224,224,228,1) 75%);
+                    background: rgb(229, 230, 231);
+                    background: linear-gradient(90deg, rgba(229, 230, 231, 1) 0%, rgba(225, 225, 233, 1) 67%, rgba(224, 224, 228, 1) 75%);
                 }
             }
         }
@@ -157,9 +164,35 @@ $font_type1: 500 normal 16px $fontFamily;
     margin-left: 34px;
     padding: 32px 0;
 
-    img {
-        height: 24px;
-        width: 24px;
+    .basketIcon {
+        position: relative;
+
+        img {
+
+            height: 24px;
+            width: 24px;
+        }
+    }
+
+    .shoppingBagIcon {
+        position: relative;
+
+        img {
+
+            height: 24px;
+            width: 24px;
+        }
+    }
+
+
+    .redCircle {
+        background: $colorRed;
+        position: absolute;
+        width: 9.28px;
+        height: 9.28px;
+        border-radius: 50%;
+        right: 0;
+        top: 0;
     }
 
     a {

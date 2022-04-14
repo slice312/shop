@@ -32,6 +32,16 @@ const filterProductsByCategory = (products, category) => {
 };
 
 
+/*
+        const item = localStorage.getItem(key);
+        if (item) {
+            const qty = Number.parseInt(item);
+            localStorage.setItem(key, (qty + 1).toString());
+        } else {
+            localStorage.setItem(key, (1).toString());
+        }
+ */
+
 const useProjectNavigation = () => {
     const navigate = useNavigate();
 

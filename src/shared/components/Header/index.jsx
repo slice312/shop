@@ -82,17 +82,17 @@ export const Header = () => {
                 </div>
 
                 <div className={css.telephone}>
-                    <span className={css.grayTxt}>
+                    <span className={css.label}>
                         Тел:
                     </span>
-                    <span>
+                    <span className={css.value}>
                         {mainPhoneNumber}
                     </span>
                 </div>
             </div>
 
             <div className={css.secondRow}>
-                <div className={css.group2_left}>
+                <div className={css.logo}>
                     <Link to="/" onClick={() => inputRef.current.value = ""}>
                         <img src={headerLogo} alt="headerLogo"/>
                     </Link>
@@ -132,11 +132,17 @@ export const Header = () => {
                         </div>
                     </div>
                     <div className={css.group2_right_item2}>
-                        <img src={emptyHeartIcon} alt="emptyHeartIcon"/>
+                        <div className={css.basketIcon}>
+                            <img  src={emptyHeartIcon} alt="emptyHeartIcon"/>
+                            <div className={css.redCircle}/>
+                        </div>
                         <Link to="/favorites">Избранное</Link>
                     </div>
                     <div className={css.group2_right_item3}>
-                        <img src={shoppingBagIcon} alt="shoppingBagIcon"/>
+                        <div className={css.shoppingBagIcon}>
+                            <img src={shoppingBagIcon} alt="shoppingBagIcon"/>
+                            <div className={css.redCircle}/>
+                        </div>
                         <span>Корзина</span>
                     </div>
                 </div>

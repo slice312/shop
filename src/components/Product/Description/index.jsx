@@ -13,21 +13,35 @@ export const Description = ({product, onChangedFavorite}) => {
     const {navigateToBasket} = Utils.Hooks.useProjectNavigation();
     const [selectedImage, setSelectedImage] = React.useState("");
     const [selectedColor, setSelectedColor] = React.useState("");
-    const [inBasket, setInBasket] = React.useState(false); // TODO: после реализации устанавливать по local storage
+
+    const [inBasket, setInBasket] = React.useState(false);
 
     React.useEffect(() => {
         if (product.colors?.length)
             setSelectedColor(product.colors[0]);
     }, [product])
 
+
+    React.useEffect(() => {
+        const key = `${product.id}_${selectedColor}`;
+        const item = localStorage.getItem(key);
+        if (item)
+            setInBasket(true)
+        else
+            setInBasket(false);
+    }, [selectedColor]);
+
+
     const openImage = (imgSrc) => setSelectedImage(imgSrc);
 
-    // TODO: реализовать добавление в корзину
-    const addRemoveFromBasket = () => {
-        console.log("addRemoveFromBasket");
+    const addToBasketOrRedirect = () => {
         if (inBasket)
             navigateToBasket();
-        setInBasket(true);
+        else {
+            const key = `${product.id}_${selectedColor}`;
+            localStorage.setItem(key, (1).toString());
+            setInBasket(true);
+        }
     };
     
     const priceWithDiscount = Math.round(product.price - product.price * product.discount / 100);
@@ -99,7 +113,7 @@ export const Description = ({product, onChangedFavorite}) => {
                     </div>
                     <div className={css.buttons}>
                         <div className={cn(css.buttonShoppingBag, css.buttonHovered)}
-                             onClick={addRemoveFromBasket}
+                             onClick={addToBasketOrRedirect}
                         >
                             <img src={shoppingBagIcon} alt="shoppingBagIcon"/>
                             <span>

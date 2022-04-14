@@ -23,6 +23,7 @@ export const SearchResult = () => {
     const [pageIndex, setPageIndex] = React.useState(0);
 
 
+    // TODO: в санки закинуть
     const fetchProducts = async () => {
         if (!result?.matches?.length)
             return;

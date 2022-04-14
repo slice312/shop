@@ -1,5 +1,6 @@
 import React from "react";
 import {Alert} from "react-bootstrap";
+
 import {Api} from  "src/shared/utils/api";
 import css from "./styles.module.scss";
 import xmarkIcon from "src/assets/icons/x-mark.svg";
@@ -35,6 +36,12 @@ export const InputForm = ({onSubmit, onClose}) => {
     };
 
 
+    const inputPhoneNumberHandle = (e) => {
+        const regex = /[()\-+\d ]+/
+        if (regex.test(e.target.value))
+            setPhoneNumber(e.target.value)
+    };
+
     return (
         <div className={css.root}>
             <button className={css.closeButton} type="button" onClick={onClose}>
@@ -64,7 +71,7 @@ export const InputForm = ({onSubmit, onClose}) => {
                     <input type="text"
                            placeholder="Номер телефона"
                            value={phoneNumber}
-                           onChange={(e) => setPhoneNumber(e.target.value)}
+                           onChange={inputPhoneNumberHandle}
                     />
                 </div>
                 {
