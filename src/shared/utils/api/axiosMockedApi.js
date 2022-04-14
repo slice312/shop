@@ -6,7 +6,7 @@ import {number} from "prop-types";
 
 // TODO: новости надо ограничить
 export const mockIt = (instance) => {
-    const mockApi = new MockAdapter(instance, {delayResponse: 100});
+    const mockApi = new MockAdapter(instance, {delayResponse: 5});
     mockApi.onGet("home/ad-slides")
         .reply(config => {
             return [200, DB.slides];
@@ -52,29 +52,34 @@ export const mockIt = (instance) => {
      * @link {Api.getProductsByCollection}
      */
     mockApi
-        .onGet(/products\/collection\/(.+)/) // TODO: offset тут пока не исользуются
+        .onGet(/products\/collection\/.+/)
         .reply(config => {
             const id = /collection\/(.+)\?/
                 .exec(config.url)[1]
+
             const url = getURL(config);
             const limit = Number(url.searchParams.get("limit")) || Number.MAX_SAFE_INTEGER;
             const offset = Number(url.searchParams.get("offset"));
 
+            const products = DB.cards
+                .filter(x => x.collectionId === id);
+
             const data = {
-                products: lo.chain(DB.cards.filter(x => x.collectionId === id))
+                products: lo.chain(products)
                     .drop(offset)
                     .take(limit),
-                totalQty: DB.cards.length
+                totalQty: products.length
             };
 
             return [200, data];
         });
 
+
     /**
      * @link {Api.getCollections}
      */
     mockApi
-        .onGet(/collections(?!\?notEmpty)/)
+        .onGet(/collections\?(?!notEmpty)/)
         .reply(config => {
 
             const params = parseQueryLimitOffsetParams(config);
@@ -86,6 +91,7 @@ export const mockIt = (instance) => {
             };
             return [200, data];
         });
+
 
     /**
      * @link {Api.getCollectionsNotEmpty}
@@ -106,6 +112,23 @@ export const mockIt = (instance) => {
                 totalQty: collections.length
             };
             return [200, data];
+        });
+
+    /**
+     * @link {Api.Collections.getCollection}
+     */
+    mockApi
+        .onGet(/collections\/(?!\?)/)
+        .reply(config => {
+            const collectionId = /collections\/(.+)/
+                .exec(config.url)[1];
+
+            const collection = DB.collections
+                .find(x => x.id === collectionId);
+
+            return (collection)
+                ? [200, collection]
+                : [404, null];
         });
 
 

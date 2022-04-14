@@ -132,7 +132,14 @@ const getProductsByCollection = async (collectionId, limit, offset = 0) => {
     return await axiosInstance.get(`products/collection/${collectionId}?limit=${limit}&offset=${offset}`);
 };
 
-
+/**
+ * Получить коллекцию по id.
+ * @param {string} collectionId - Id коллекции
+ * @returns {Promise<AxiosResponse<CollectionInfo>>}
+ */
+const getCollection = async (collectionId) => {
+    return await axiosInstance.get(`collections/${collectionId}`);
+};
 
 /**
  * Получение коллекций товаров.
@@ -263,6 +270,14 @@ export const Api = {
     getProductsByName,
     getProductsByIds,
     getFavoriteProducts,
+
+    Collections: {
+        getCollection
+    },
+
+    Products: {
+
+    },
 
     product: {
         setProductFavoriteFlag

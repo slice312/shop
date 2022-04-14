@@ -7,8 +7,6 @@ const MobileView = React.lazy(() => import("./MobileView")
 const DesktopView = React.lazy(() => import("./DesktopView")
     .then(module => ({default: module.DesktopView})));
 
-// TODO: этот контейнер в декстопе везде можеть использоваться
-// а мобильная версия где-то эта используется, а где-то подругому
 
 // TODO: рещил удалить это, оставить только MobileView как shared, а Desktop контайнер простой и специцфичный под
 // разные страницы, его лучше на месте реализовывать

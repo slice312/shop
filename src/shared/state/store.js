@@ -7,7 +7,6 @@ import {collectionsReducer} from "./collections/reducer";
 import {newsReducer} from "./news/reducer";
 
 
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
@@ -22,7 +21,7 @@ const reducers = combineReducers({
     commonSiteInfo: commonSiteInfoReducer,
     homeAdSlides: homeAdSlideImagesReducer,
     productsState: productsReducer,
-    collections: collectionsReducer,
+    collectionsState: collectionsReducer,
     news: newsReducer
 });
 

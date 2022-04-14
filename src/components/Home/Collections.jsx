@@ -1,36 +1,35 @@
 import React from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {pushCollections, collectionsReset} from "src/shared/state/collections/actions";
+
+import {pushCollections, loadCollections} from "src/shared/state/collections/actions";
 import {CollectionCard} from "src/shared/components/CollectionCard";
 import {CardsContainer} from "./CardsContainer";
 
 
-const START_COLLECTION_BATCH_SIZE = 4;
-const NEXT_COLLECTION_BATCH_SIZE = 8;
+const START_PAGE_SIZE = 4;
+const NEXT_PAGE_SIZE = 8;
 
 
 export const Collections = () => {
-    const collectionCards = useSelector(state => state.collections.collections);
     const dispatch = useDispatch();
+    const {collections, collectionsIsFetching} = useSelector(state => state.collectionsState);
 
     React.useEffect(() => {
-        if (!collectionCards?.length)
-            dispatch(pushCollections(START_COLLECTION_BATCH_SIZE));
-
-        return () => void dispatch(collectionsReset());
+        dispatch(loadCollections(START_PAGE_SIZE));
     }, [dispatch]);
 
 
-    const loadMoreClick = () => {
-        dispatch(pushCollections(NEXT_COLLECTION_BATCH_SIZE));
+    const loadMore = () => {
+        if (!collectionsIsFetching)
+            dispatch(pushCollections(NEXT_PAGE_SIZE));
     };
 
 
     return (
         <CardsContainer
             title="Коллекции"
-            cards={collectionCards}
-            onButtonLoadClick={loadMoreClick}
+            cards={collections}
+            onButtonLoadClick={loadMore}
             CardElement={CollectionCard}
         />
     );

@@ -1,25 +1,30 @@
 import React from "react";
-import lo from "lodash";
-import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
-import css from "./styles.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {Utils} from "src/shared/utils";
-import {Categories} from "src/shared/constants";
+import {isMobile} from "react-device-detect";
+import lo from "lodash";
+
 import {pushProductNovelties} from "src/shared/state/products/actions";
+import {Categories} from "src/shared/constants";
+import {Utils} from "src/shared/utils";
+import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
+import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
+import css from "./styles.module.scss";
 
 
 const PRODUCTS_LIMIT = 5;
 
+
 export const Novelties = () => {
     const dispatch = useDispatch();
-    const {products, noveltiesIsFetching} = useSelector(state => state.productsState);
+    const {products, productsIsFetching} = useSelector(state => state.productsState);
     const noveltiesCards = Utils.Data.filterProductsByCategory(products, Categories.Novelties);
 
-    console.log(noveltiesCards);
     React.useEffect(() => {
-        if (!noveltiesCards.length && !noveltiesIsFetching)
+        if (!noveltiesCards.length && !productsIsFetching)
             dispatch(pushProductNovelties(PRODUCTS_LIMIT));
-    }, [noveltiesCards]);
+    }, [products, productsIsFetching]);
+
+    const novelties = lo.take(noveltiesCards, PRODUCTS_LIMIT);
 
 
     return (
@@ -27,12 +32,23 @@ export const Novelties = () => {
             <div className={css.title}>
                 Новинки
             </div>
-            <div className={css.cardContainer}>
-                {
-                    lo.take(noveltiesCards, PRODUCTS_LIMIT)
-                        .map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
-                }
-            </div>
+            {
+                isMobile
+                    ? (<MobileSlideCardsView
+                            className={css.mobileCardContainer}
+                            products={novelties}
+                            CardElement={ProductCardWrapper}
+                            chunkSize={5}
+                        />
+                    )
+                    : (
+                        <div className={css.cardContainer}>
+                            {
+                                novelties.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
+                            }
+                        </div>
+                    )
+            }
         </div>
     );
 };

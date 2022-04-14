@@ -301,7 +301,7 @@ const cards = [
     {
         id: "3dbeaf30-4381-4bdf-853d-68f4f96f4174",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 1",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -325,7 +325,7 @@ const cards = [
     {
         id: "8ee88921-612c-4b92-b4ad-77c5a7fc75e5",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 2",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -349,7 +349,7 @@ const cards = [
     {
         id: "b90c3263-549d-43c2-9fe7-5eaf8aafbcf3",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 3",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -373,7 +373,7 @@ const cards = [
     {
         id: "fcf7c99b-ef0b-4f60-a2b4-186632ac034f",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 4",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -397,7 +397,7 @@ const cards = [
     {
         id: "68c3f570-b7d8-434d-8cfe-4e14b3d81d2a",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 4",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -421,7 +421,7 @@ const cards = [
     {
         id: "befeeab2-914f-418e-83bb-32bb4271f820",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 6",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -445,7 +445,7 @@ const cards = [
     {
         id: "84a23cc7-5392-4664-9286-477d659ba5c2",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 7",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -469,7 +469,7 @@ const cards = [
     {
         id: "179a606d-6f10-4f9f-b7ad-453290bfc389",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 8",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -493,7 +493,7 @@ const cards = [
     {
         id: "9ebc1e18-1e9b-45e4-8737-0732a4a1c08d",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 9",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -517,7 +517,7 @@ const cards = [
     {
         id: "f9f82961-bc48-4dd8-9d8a-4bb0cc1fb27a",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 10",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -541,7 +541,7 @@ const cards = [
     {
         id: "f943ab3f-0ce3-4074-ba0e-7615269484bc",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 11",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -565,7 +565,7 @@ const cards = [
     {
         id: "cb315340-12f7-46c0-b328-72e5dab929c0",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 12",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -589,7 +589,7 @@ const cards = [
     {
         id: "ed3c61e0-eadb-43d3-9d07-d345e319dca8",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 13",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -613,7 +613,7 @@ const cards = [
     {
         id: "fb57d5cd-69b1-456b-b4e9-ce4068bc8896",
         collectionId: "340b401f-b19e-4326-9501-55e0494b10e8",
-        title: "Кековое платье",
+        title: "Кековое платье 14",
         vendorCode: "Платье PL984/dakota",
         price: 5440,
         qty: 5,
@@ -926,6 +926,28 @@ const cards = [
         title: "Джинсы Дакоты",
         vendorCode: "Платье PL984/dakota",
         price: 7633,
+        qty: 3,
+        discount: 15,
+        isFavorite: true,
+        size: "42-50",
+        images: [
+            `https://i.ibb.co/dcfzGZk/card8.png`,
+            `https://i.ibb.co/0Bq336j/card3.png`,
+        ],
+        colors: ["#B5A8A1", "#AB844A",
+            "#6977F0", "#FFFFFF", "#141414", "#FF0000"],
+        material: "Полиэстер",
+        fabricStructure: "Полиэстер",
+        description: " За последние 35 лет бренд Bonucci из обычного производителя одежды " +
+            "превратился в широко узнаваемую марку, а его продукция – в синоним высокого" +
+            " качества и актуального стиля."
+    },
+    {
+        id: "4036bb6f-9f8b-44b6-ba05-49868c84681f",
+        collectionId: "7c2e5296-9591-4966-a142-3127c6dd64c6",
+        title: "Розетки",
+        vendorCode: "Платье PL984/dakota",
+        price: 6633,
         qty: 3,
         discount: 15,
         isFavorite: true,

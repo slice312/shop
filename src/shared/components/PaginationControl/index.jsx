@@ -2,16 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import cn from "classnames";
 import lo from "lodash";
+
 import css from "./styles.module.scss";
 import arrowLeftIcon from "src/assets/icons/arrow-left-black.svg";
 import arrowRightIcon from "src/assets/icons/arrow-right-black.svg";
 
 
-const CHUNK_SIZE = 4;
+const DEFAULT_CHUNK_SIZE = 4;
 
 /**
  * Контрол для управления пагинацией.
  * Генерирует кнопки, для переключения страниц, под указанное кол-во элементов и размер страницы.
+ * Кнопки с номерами переключаю на выбранную страницу.
+ * Стрелки вправо/влево переключают на страницы вперед/назад на {@link chunkSize}.
  */
 export class PaginationControl extends React.Component {
     static propTypes = {
@@ -24,30 +27,16 @@ export class PaginationControl extends React.Component {
         /** Колбек при выборе страницы */
         onActivePageChanged: PropTypes.func.isRequired,
         /** Имя классс, используется в самом верхнем контейнере контрола */
-        className: PropTypes.string
+        className: PropTypes.string,
+        /** Кол-во одновременно видимых кнопок (страниц) */
+        chunkSize : PropTypes.number
     }
 
     constructor(props) {
         super(props);
         this.prevChunkClick = this.prevChunkClick.bind(this);
         this.nextChunkClick = this.nextChunkClick.bind(this);
-        this.state = {
-            chunkIndex: this.getChunkIndex(),
-            totalPageQty: this.getTotalPageQty()
-        };
-    }
-
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        const index = this.getChunkIndex();
-        const totalPageQty = this.getTotalPageQty();
-
-        if (prevState.chunkIndex !== index) {
-            this.setState({
-                chunkIndex: index,
-                totalPageQty
-            });
-        }
+        this.chunkSize = (props.chunkSize) ? props.chunkSize : DEFAULT_CHUNK_SIZE;
     }
 
 
@@ -62,17 +51,17 @@ export class PaginationControl extends React.Component {
 
 
     prevChunkClick() {
-        const prevPageIndex = lo.clamp(this.state.chunkIndex * this.props.pageSize - CHUNK_SIZE,
+        const prevPageIndex = lo.clamp(this.getChunkIndex() * this.props.pageSize - this.chunkSize,
             0,
-            this.state.totalPageQty - 1);
+            this.getTotalPageQty() - 1);
         this.props.onActivePageChanged(prevPageIndex);
     }
 
 
     nextChunkClick() {
-        const nextPageIndex = lo.clamp(this.state.chunkIndex * this.props.pageSize + CHUNK_SIZE,
+        const nextPageIndex = lo.clamp(this.getChunkIndex() * this.props.pageSize + this.chunkSize,
             0,
-            this.state.totalPageQty - 1);
+            this.getTotalPageQty() - 1);
         this.props.onActivePageChanged(nextPageIndex);
     }
 
@@ -86,10 +75,10 @@ export class PaginationControl extends React.Component {
             </div>
         );
 
-        const startIndexInPage = this.state.chunkIndex * this.props.pageSize
+        const startIndexInPage = this.getChunkIndex() * this.props.pageSize
         buttons.push(...this.getChunkButtons(startIndexInPage));
 
-        if (startIndexInPage + CHUNK_SIZE < this.state.totalPageQty) {
+        if (startIndexInPage + this.chunkSize < this.getTotalPageQty()) {
             buttons.push(
                 <div key="3dots" className={cn(css.item, css.dots)}>
                     ...
@@ -98,7 +87,7 @@ export class PaginationControl extends React.Component {
                      className={css.item}
                      onClick={() => this.props.onActivePageChanged(this.props.totalItemsQty - 1)}
                 >
-                    {this.state.totalPageQty}
+                    {this.getTotalPageQty()}
                 </div>
             );
         }
@@ -114,8 +103,7 @@ export class PaginationControl extends React.Component {
 
 
     getChunkButtons(startIndexInPage) {
-        const pageQtyInChunk = lo.clamp(this.state.totalPageQty - startIndexInPage, 0, CHUNK_SIZE);
-
+        const pageQtyInChunk = lo.clamp(this.getTotalPageQty() - startIndexInPage, 0, this.chunkSize);
         return lo.range(pageQtyInChunk)
             .map((_, i) => {
                 const num = startIndexInPage + i;

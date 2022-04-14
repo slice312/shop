@@ -7,9 +7,13 @@
         @include font-default(24px, 500, 29.26px);
     }
 
+    .mobileCardContainer {
+        margin-top: 16px;
+        margin-right: -16px;
+    }
+
     .cardContainer {
         margin-top: 16px;
-        margin-bottom: 64px;
         display: flex;
         flex-direction: row;
         gap: 8px;

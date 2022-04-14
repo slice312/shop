@@ -1,42 +1,43 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {isMobile} from "react-device-detect";
+
 import {loadCollections} from "src/shared/state/collections/actions";
-import {PaginationControl} from "src/shared/components/PaginationControl";
-import {CardsView} from "src/shared/components/CardsView";
+import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
 import {CollectionCard} from "src/shared/components/CollectionCard";
+import {PaginationControl} from "src/shared/components/PaginationControl";
 import css from "./styles.module.scss";
 
 
-const COLLECTION_BATCH_SIZE = 8;
-const PAGE_SIZE = 4;
+const PAGE_SIZE = (isMobile) ? 4 : 8;
 
 
 export const Collections = () => {
     const dispatch = useDispatch();
-    const {collections, totalQty} = useSelector(state => state.collections);
+    const {collections, totalQtyOnServer} = useSelector(state => state.collectionsState);
     const [pageIndex, setPageIndex] = React.useState(0);
 
     React.useEffect(() => {
-        dispatch(loadCollections(COLLECTION_BATCH_SIZE, pageIndex * COLLECTION_BATCH_SIZE));
+        dispatch(loadCollections(PAGE_SIZE, pageIndex * PAGE_SIZE));
     }, [dispatch, pageIndex]);
 
-    const totalItemsQty = Math.ceil(totalQty / COLLECTION_BATCH_SIZE)
 
     return (
         <div className={css.root}>
             <div className={css.title}>
                 Коллекции
             </div>
-            <CardsView cards={collections} CardElement={CollectionCard}/>
-            <div className={css.paginator}>
-                <PaginationControl
-                    className={css.paginator}
-                    pageSize={PAGE_SIZE}
-                    totalItemsQty={totalItemsQty}
-                    activePageIndex={pageIndex}
-                    onActivePageChanged={i => setPageIndex(i)}
-                />
-            </div>
+            <AdaptiveCardsView className={css.cardsContainer}
+                               cards={collections}
+                               CardElement={CollectionCard}
+            />
+            <PaginationControl
+                className={css.paginator}
+                pageSize={PAGE_SIZE}
+                totalItemsQty={totalQtyOnServer}
+                activePageIndex={pageIndex}
+                onActivePageChanged={i => setPageIndex(i)}
+            />
         </div>
     );
 };

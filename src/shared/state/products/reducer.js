@@ -31,7 +31,7 @@ import {Enum} from "src/shared/utils";
 const initialState = {
     products: [],
     totalQtyOnServer: 0,
-    productsIsFetching: false,
+    productsIsFetching: false,  // TODO: можно наверное, надо чекнуть, пока это только работает для загрузки на странице Избранное
     bestSellersIsFetching: false, // TODO: а это нельзя заменить на одну перменную isFetching?
     noveltiesIsFetching: false
 };

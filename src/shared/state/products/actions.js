@@ -69,14 +69,16 @@ export const pushProductsBestsellers = (limit) => {
 export const pushProductNovelties = (limit) => {
     return async (dispatch, getState) => {
         try {
-            dispatch({type: PRODUCTS_NOVELTIES_IS_FETCHING, payload: true});
+            dispatch(productsIsFetching(true));
+
             const state = getState();
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Novelties)
                 .length;
             const response = await Api.getNovelties(limit, loaded);
+
             if (response.status === 200) {
-                console.log("pushProductNovelties success", response.data);
                 dispatch(noveltiesPushed(response.data));
+                console.log("pushProductNovelties success", response.data);
             } else {
                 console.error("pushProductNovelties error", response.status);
             }
@@ -84,7 +86,7 @@ export const pushProductNovelties = (limit) => {
             console.error("pushProductNovelties error", err);
         }
         finally {
-            dispatch({type: PRODUCTS_NOVELTIES_IS_FETCHING, payload: false});
+            dispatch(productsIsFetching(false));
         }
     };
 };
@@ -158,8 +160,8 @@ export const productFavoriteToggle = (productId) => {
             if (product) {
                 const response = await Api.product.setProductFavoriteFlag(productId, !product.product.isFavorite);
                 if (response.status === 200) {
-                    console.log("productFavoriteToggle success", response.data);
                     dispatch(productFavoriteToggled(productId));
+                    console.log("productFavoriteToggle success", response.data);
                 } else {
                     console.error("productFavoriteToggle error", response.status);
                 }
@@ -174,25 +176,29 @@ export const productFavoriteToggle = (productId) => {
 
 
 /**
- *
- * @param {string} collectionId
- * @param {number} limit
- * @param {number} offset
+ * Загружает товары для коллекции, перезаписывая старый state.
+ * @param {string} collectionId - Id коллекции
+ * @param {number} limit - Ограничение на кол-во в ответе
+ * @param {number?} offset - Смещение, по умолчанию 0
  */
-export const setProductsByCollection = (collectionId, limit, offset, responseCallback) => {
+export const loadProductsByCollection = (collectionId, limit, offset= 0) => {
     return async (dispatch, getState) => {
         try {
+            dispatch(productsIsFetching(true));
+
             const response = await Api.getProductsByCollection(collectionId, limit, offset);
+
             if (response.status === 200) {
-                console.log("setProductsByCollection success");
                 dispatch(productsSet(response.data.products));
-                responseCallback?.(response);
-                // totalPageQty = response.data.totalQty; // TODO: всчего количество итемов, rename
+                dispatch(productsOnServerQtySet(response.data.totalQty))
+                console.log("loadProductsByCollection success");
             } else {
-                console.error("setProductsByCollection error", response.status);
+                console.error("loadProductsByCollection error", response.status);
             }
         } catch (err) {
-            console.error("setProductsByCollection error", err);
+            console.error("loadProductsByCollection error", err);
+        } finally {
+            dispatch(productsIsFetching(false));
         }
     };
 };

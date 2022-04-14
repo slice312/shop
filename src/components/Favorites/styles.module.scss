@@ -13,7 +13,7 @@
 
     .qtyLabel {
         margin-top: 12px;
-        @include font-default(14px, 500, 17.07px, $textColorGray);
+        @include font-default(16px, 500, 19.5px);
     }
 
     .cardsView {
@@ -25,6 +25,11 @@
         margin-top: 48px;
         @include font-default(24px, 500, 26.26px);
         opacity: 0.1;
+    }
+
+    .randomMobileCardsContainer {
+        margin-top: 16px;
+        margin-right: -16px;
     }
 
     .randomCardsContainer {
@@ -45,7 +50,12 @@
         }
 
         .qtyLabel {
-            @include font-default(12px, 500, 15px, $textColorGray);
+            @include font-default(13px, 400, 15.85px);
+        }
+
+        .mayBeOffer {
+            @include font-default(16px, 500, 19.5px);
+            opacity: 1;
         }
     }
 }

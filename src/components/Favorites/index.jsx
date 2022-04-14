@@ -45,7 +45,11 @@ export const Favorites = () => {
                 Избранное
             </div>
             <div className={css.qtyLabel}>
-                Товаров в избарнном: {totalQtyOnServer}
+                {
+                    (totalQtyOnServer)
+                        ? `Товаров в избранном: ${totalQtyOnServer}`
+                        : "У вас пока нет избранных товаров"
+                }
             </div>
             {
                 (totalQtyOnServer)
@@ -82,9 +86,11 @@ export const RandomProductCardsView = ({products}) => {
             </div>
             {
                 isMobile
-                    ? (<MobileSlideCardsView products={products}
-                                             CardElement={ProductCardWrapper}
-                                             chunkSize={5}
+                    ? (<MobileSlideCardsView
+                            className={css.randomMobileCardsContainer}
+                            products={products}
+                            CardElement={ProductCardWrapper}
+                            chunkSize={5}
                         />
                     )
                     : (
