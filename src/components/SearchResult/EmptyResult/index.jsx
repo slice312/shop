@@ -1,11 +1,14 @@
 import React from "react";
-import {Utils} from "src/shared/utils";
-import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
-import css from "./styles.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {productsSet, setRandomProducts} from "src/shared/state/products/actions";
+import {isMobile} from "react-device-detect";
+import {setRandomProducts} from "src/shared/state/products/actions";
+import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
+import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
+import css from "./styles.module.scss";
+
 
 const RANDOM_PRODUCT_LIMIT = 5;
+
 
 export const EmptyResult = () => {
     const dispatch = useDispatch();
@@ -13,7 +16,8 @@ export const EmptyResult = () => {
 
     React.useEffect(() => {
         dispatch(setRandomProducts(RANDOM_PRODUCT_LIMIT));
-    }, [])
+    }, []);
+
 
     return (
         <div className={css.root}>
@@ -23,11 +27,22 @@ export const EmptyResult = () => {
             <div className={css.mayBeOffer}>
                 Возможно Вас заинтересует
             </div>
-            <div className={css.cardContainer}>
-                {
-                    products.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
-                }
-            </div>
+            {
+                isMobile
+                    ? (<MobileSlideCardsView className={css.mobileCardContainer}
+                                             products={products}
+                                             CardElement={ProductCardWrapper}
+                                             chunkSize={5}
+                        />
+                    )
+                    : (
+                        <div className={css.cardContainer}>
+                            {
+                                products.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
+                            }
+                        </div>
+                    )
+            }
         </div>
     );
 };

@@ -20,4 +20,25 @@
         flex-direction: row;
         gap: 8px;
     }
+
+    .mobileCardContainer {
+        margin-top: 16px;
+    }
+}
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        margin-right: -16px;
+
+        .emptyResultText {
+            @include font-default(13px, 400, 15.85px);
+        }
+
+        .mayBeOffer {
+            margin-top: 32px;
+            @include font-default(16px, 500, 19.5px);
+            opacity: 1;
+        }
+    }
 }

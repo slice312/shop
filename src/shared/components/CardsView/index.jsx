@@ -9,6 +9,9 @@ const DesktopView = React.lazy(() => import("./DesktopView")
 
 // TODO: этот контейнер в декстопе везде можеть использоваться
 // а мобильная версия где-то эта используется, а где-то подругому
+
+// TODO: рещил удалить это, оставить только MobileView как shared, а Desktop контайнер простой и специцфичный под
+// разные страницы, его лучше на месте реализовывать
 export const CardsView = ({cards, CardElement}) => {
     return (
         <React.Suspense fallback={null}>

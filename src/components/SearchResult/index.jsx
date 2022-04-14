@@ -11,6 +11,7 @@ import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
 import {EmptyResult} from "./EmptyResult";
 import css from "./styles.module.scss";
 
+
 const PAGE_SIZE = (isMobile) ? 4 : 12;
 
 
@@ -58,7 +59,6 @@ export const SearchResult = () => {
     }, [pageIndex]);
 
 
-    console.log("SEARCH RESULT", result);
     return (
         <div className={css.root}>
             <div className={css.query}>

@@ -199,7 +199,7 @@ export const setProductsByCollection = (collectionId, limit, offset, responseCal
 
 
 /**
- * Загружает указанное кол-во рандомных товаров, по 1 товару с коллекци.
+ * Загружает указанное кол-во рандомных товаров, по 1 товару с коллекции.
  * @param {number} qty - Кол-во товаров
  */
 export const setRandomProducts = (qty) => {
@@ -218,7 +218,7 @@ export const setRandomProducts = (qty) => {
             }
 
             dispatch(productsSet(products));
-            console.error("setRandomProducts success", products);
+            console.log("setRandomProducts success", products);
         } catch (err) {
             console.error("setRandomProducts error", err);
         } finally {
@@ -226,4 +226,3 @@ export const setRandomProducts = (qty) => {
         }
     };
 };
-

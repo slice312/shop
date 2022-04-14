@@ -8,6 +8,7 @@ import {
     setRandomProducts
 } from "src/shared/state/products/actions";
 import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
+import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import css from "./styles.module.scss";
 
@@ -37,6 +38,7 @@ export const Favorites = () => {
             dispatch(pushFavoriteProducts(PAGE_SIZE));
     };
 
+
     return (
         <div className={css.root}>
             <div className={css.title}>
@@ -47,33 +49,52 @@ export const Favorites = () => {
             </div>
             {
                 (totalQtyOnServer)
-                    ? (
-                        <InfiniteScroll
-                            pageStart={0}
-                            loadMore={loadMore}
-                            hasMore={true}
-                            loader={null}
-                        >
-                            <AdaptiveCardsView className={css.cardsView}
-                                               cards={products}
-                                               CardElement={ProductCardWrapper}
-                            />
-                        </InfiniteScroll>
-
-                    )
-                    : (
-                        <React.Fragment>
-                            <div className={css.mayBeOffer}>
-                                Возможно Вас заинтересует
-                            </div>
-                            <div className={css.cardContainer}>
-                                {
-                                    products.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
-                                }
-                            </div>
-                        </React.Fragment>
-                    )
+                    ? <InfiniteScrollContainer products={products} onLoad={loadMore}/>
+                    : <RandomProductCardsView products={products}/>
             }
         </div>
+    );
+};
+
+
+export const InfiniteScrollContainer = ({products, onLoad}) => {
+    return (
+        <InfiniteScroll
+            pageStart={0}
+            loadMore={onLoad}
+            hasMore={true}
+            loader={null}
+        >
+            <AdaptiveCardsView className={css.cardsView}
+                               cards={products}
+                               CardElement={ProductCardWrapper}
+            />
+        </InfiniteScroll>
+    );
+};
+
+
+export const RandomProductCardsView = ({products}) => {
+    return (
+        <React.Fragment>
+            <div className={css.mayBeOffer}>
+                Возможно Вас заинтересует
+            </div>
+            {
+                isMobile
+                    ? (<MobileSlideCardsView products={products}
+                                             CardElement={ProductCardWrapper}
+                                             chunkSize={5}
+                        />
+                    )
+                    : (
+                        <div className={css.randomCardsContainer}>
+                            {
+                                products.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
+                            }
+                        </div>
+                    )
+            }
+        </React.Fragment>
     );
 };

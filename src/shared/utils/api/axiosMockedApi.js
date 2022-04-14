@@ -122,8 +122,10 @@ export const mockIt = (instance) => {
                 .filter(x => x.isFavorite);
 
             const data = {
-                products:[],// TODO: вернуть lo.chain(favorites)                    .drop(offset)                    .take(limit),
-                totalQty: 0// favorites.length TODO: вернуть
+                products: lo.chain(favorites)
+                    .drop(offset)
+                    .take(limit),
+                totalQty: favorites.length
             };
             return [200, data];
         });
@@ -252,7 +254,6 @@ export const mockIt = (instance) => {
             return [200, DB.about];
         });
     //</editor-fold desc="SiteService">
-
 };
 
 
