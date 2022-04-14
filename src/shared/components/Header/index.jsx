@@ -143,7 +143,7 @@ export const Header = () => {
                             <img src={shoppingBagIcon} alt="shoppingBagIcon"/>
                             <div className={css.redCircle}/>
                         </div>
-                        <span>Корзина</span>
+                        <Link to="/basket">Корзина</Link>
                     </div>
                 </div>
 

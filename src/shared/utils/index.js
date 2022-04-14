@@ -87,6 +87,17 @@ const openUrlInNewWindow = (url) => {
 
 
 /**
+ * Создает ключ для товара в корзине, для сохранения в {@link localStorage}.
+ * @param {string} productId - Id товара
+ * @param {string} color - Цвет товара
+ * @return {string} - Ключ товара в корзине
+ */
+const getBasketItemKey = (productId, color) => {
+    return `${productId}|${color}`;
+};
+
+
+/**
  * Объект, содержащий общие методы для всего проекта.
  */
 export const Utils = {
@@ -99,4 +110,5 @@ export const Utils = {
         filterProductsByCategory
     },
     openUrlInNewWindow,
+    getBasketItemKey
 };

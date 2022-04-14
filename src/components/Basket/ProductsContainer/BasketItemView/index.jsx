@@ -1,20 +1,53 @@
-import React from "react";
+import React from "react"
+import PropTypes from "prop-types";
 import css from "./styles.module.scss";
+
 import xmarkIcon from "src/assets/icons/x-mark.svg";
 import minusIcon from "src/assets/icons/minus.svg";
 import plusIcon from "src/assets/icons/plus.svg";
 
 
-export const BasketItem = ({image, title, size, price, discount, color}) => {
+const propTypes = {
+    basketItem: PropTypes.shape({
+        productId: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+        qty: PropTypes.number.isRequired,
+    }),
+    title: PropTypes.string,
+    image: PropTypes.string,
+    size: PropTypes.string,
+    price: PropTypes.number,
+    discount: PropTypes.number,
+    onDeleteClick: PropTypes.func.isRequired,
+    onPlusClick: PropTypes.func.isRequired,
+    onMinusClick: PropTypes.func.isRequired,
+};
+
+export const BasketItemView = (
+    {
+        basketItem,
+        title,
+        image,
+        size,
+        price,
+        discount,
+        onDeleteClick,
+        onPlusClick,
+        onMinusClick
+    }) => {
+
     const priceWithDiscount = Math.round(price - price * discount / 100);
 
+
     return (
-        <div className={css.item}>
+        <div className={css.root}>
             <div>
                 <img src={image} alt={image}/>
             </div>
-            <div className={css.buttonClose}>
-                <img src={xmarkIcon} alt="xmarkIcon"/>
+            <div className={css.buttonClose}
+                 onClick={() => onDeleteClick(basketItem)}
+            >
+                <img src={xmarkIcon} alt={xmarkIcon}/>
             </div>
 
             <div className={css.description}>
@@ -28,7 +61,7 @@ export const BasketItem = ({image, title, size, price, discount, color}) => {
                 <div className={css.color}>
                     <div>Цвет:</div>
                     <div className={css.colorValueWrap}>
-                        <div className={css.colorValue} style={{backgroundColor: color}}/>
+                        <div className={css.colorValue} style={{backgroundColor: basketItem.color}}/>
                     </div>
                 </div>
                 <div className={css.price}>
@@ -37,13 +70,17 @@ export const BasketItem = ({image, title, size, price, discount, color}) => {
                 </div>
 
                 <div className={css.qtyButtons}>
-                    <div className={css.button}>
+                    <div className={css.button}
+                         onClick={() => onMinusClick(basketItem)}
+                    >
                         <img className={css.minusIcon} src={minusIcon} alt={minusIcon}/>
                     </div>
                     <div className={css.qtyLabel}>
-                        1
+                        {basketItem.qty}
                     </div>
-                    <div className={css.button}>
+                    <div className={css.button}
+                         onClick={() => onPlusClick(basketItem)}
+                    >
                         <img className={css.plusIcon} src={plusIcon} alt={plusIcon}/>
                     </div>
                 </div>
@@ -51,3 +88,5 @@ export const BasketItem = ({image, title, size, price, discount, color}) => {
         </div>
     );
 };
+
+BasketItemView.propTypes = propTypes;

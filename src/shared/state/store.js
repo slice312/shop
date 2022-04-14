@@ -4,6 +4,8 @@ import {commonSiteInfoReducer} from "./commonSiteInfo/reducer";
 import {homeAdSlideImagesReducer} from "./slider/reducer";
 import {productsReducer} from "./products/reducer";
 import {collectionsReducer} from "./collections/reducer";
+import {basketReducer} from "./basket/reducer";
+import {basketMiddleWare} from "./basket/middleware";
 import {newsReducer} from "./news/reducer";
 
 
@@ -13,15 +15,18 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
     })
     : compose;
 
+
 const enhancer = composeEnhancers(
-    applyMiddleware(thunkMiddleWare)
+    applyMiddleware(thunkMiddleWare, basketMiddleWare)
 );
+
 
 const reducers = combineReducers({
     commonSiteInfo: commonSiteInfoReducer,
     homeAdSlides: homeAdSlideImagesReducer,
     productsState: productsReducer,
     collectionsState: collectionsReducer,
+    basket: basketReducer,
     news: newsReducer
 });
 

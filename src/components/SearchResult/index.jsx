@@ -40,9 +40,9 @@ export const SearchResult = () => {
                 dispatch(productsSet(response.data));
                 console.log("getProductsByIds success", response.data);
             } else
-                console.log("getProductsByIds error", response.status);
+                console.error("getProductsByIds", response.status);
         } catch (err) {
-            console.error("getProductsByIds error", err);
+            console.error("getProductsByIds", err);
         }
     };
 

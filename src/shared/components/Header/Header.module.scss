@@ -217,8 +217,10 @@ $font_type1: 500 normal 16px $fontFamily;
         width: 24px;
     }
 
-    span {
+    a {
         margin-left: 10px;
+        @include font-default(16px, 500, 19.5px);
+        text-decoration: none;
     }
 }
 

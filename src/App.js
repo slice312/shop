@@ -3,6 +3,8 @@ import {Routes, Route} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {isMobile} from "react-device-detect";
 
+import {loadCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
+import {restoreBasket} from "src/shared/state/basket/actions";
 import {Header} from "./shared/components/Header";
 import {Footer} from "./shared/components/Footer";
 import {Home} from "./components/Home";
@@ -13,7 +15,6 @@ import {Product} from "./components/Product";
 import {Basket} from "./components/Basket";
 import {Favorites} from "./components/Favorites";
 import {Collection} from "./components/Collection";
-import {loadCommonSiteInfo} from "src/shared/state/commonSiteInfo/actions"
 import {FloatButtons} from "src/shared/components/FloatButtons";
 import {PublicOffer} from "./components/PublicOffer";
 import {Help} from "./components/Help";
@@ -26,7 +27,11 @@ import css from "./App.module.scss";
 export const App = () => {
     console.log("App render");
     const dispatch = useDispatch();
-    React.useEffect(() => void dispatch(loadCommonSiteInfo()), [dispatch]);
+
+    React.useEffect(() => {
+        dispatch(loadCommonSiteInfo())
+        dispatch(restoreBasket())
+    }, []);
 
     const location = useLocation();
 

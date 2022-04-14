@@ -1,9 +1,13 @@
 import React from "react";
-import {Utils} from "src/shared/utils";
+import {useDispatch, useSelector} from "react-redux";
 import {Modal} from "react-bootstrap";
 import cn from "classnames";
 import lo from "lodash";
+
+import {basketItemSet} from "src/shared/state/basket/actions";
+import {Utils} from "src/shared/utils";
 import css from "./styles.module.scss"
+
 import shoppingBagIcon from "src/assets/icons/shopping-bag-white.svg";
 import filledHeartIcon from "src/assets/icons/filled-heart-white.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart-white.svg";
@@ -11,9 +15,12 @@ import emptyHeartIcon from "src/assets/icons/empty-heart-white.svg";
 
 export const Description = ({product, onChangedFavorite}) => {
     const {navigateToBasket} = Utils.Hooks.useProjectNavigation();
+
+    const dispatch = useDispatch();
+    const basketItems  = useSelector(state => state.basket.items);
+
     const [selectedImage, setSelectedImage] = React.useState("");
     const [selectedColor, setSelectedColor] = React.useState("");
-
     const [inBasket, setInBasket] = React.useState(false);
 
     React.useEffect(() => {
@@ -23,13 +30,11 @@ export const Description = ({product, onChangedFavorite}) => {
 
 
     React.useEffect(() => {
-        const key = `${product.id}_${selectedColor}`;
-        const item = localStorage.getItem(key);
-        if (item)
-            setInBasket(true)
-        else
-            setInBasket(false);
+        const isExist = basketItems
+            .some(x => x.productId === product.id && x.color === selectedColor);
+        setInBasket(isExist);
     }, [selectedColor]);
+
 
 
     const openImage = (imgSrc) => setSelectedImage(imgSrc);
@@ -38,8 +43,11 @@ export const Description = ({product, onChangedFavorite}) => {
         if (inBasket)
             navigateToBasket();
         else {
-            const key = `${product.id}_${selectedColor}`;
-            localStorage.setItem(key, (1).toString());
+            dispatch(basketItemSet({
+                productId: product.id,
+                color: selectedColor,
+                qty: 1
+            }));
             setInBasket(true);
         }
     };
@@ -54,7 +62,10 @@ export const Description = ({product, onChangedFavorite}) => {
                     {
                         lo.take(product.images, 8)
                             .map((x, i) =>
-                                <img key={i} src={x} alt={x} onClick={() => openImage(x)}/>
+                                <img key={i}
+                                     src={x} alt={x}
+                                     onClick={() => openImage(x)}
+                                />
                             )
                     }
                 </div>
