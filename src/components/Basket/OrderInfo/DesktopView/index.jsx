@@ -2,16 +2,10 @@ import React from "react";
 import css from "./styles.module.scss";
 
 
-export const DesktopView = () => {
-    const productKindQty = 4;
-    const totalProductQty = 20;
-    const totalDiscountAmount = 125;
-    const totalAmount = 6825;
-    const totalAmountWithDiscount = totalAmount - totalDiscountAmount;
+export const DesktopView = ({info, onMakeOrder}) => {
 
-    const makeOrder = () => {
+    const amountWithDiscount = info.amount - info.discountAmount;
 
-    };
 
     return (
         <div className={css.root}>
@@ -26,10 +20,10 @@ export const DesktopView = () => {
                     <span>Скидка:</span>
                 </div>
                 <div className={css.values}>
-                    <span>{productKindQty} шт</span>
-                    <span>{totalProductQty} шт</span>
-                    <span>{totalAmount} сом</span>
-                    <span>{totalDiscountAmount} сом</span>
+                    <span>{info.productsModelQty} шт</span>
+                    <span>{info.productsQty} шт</span>
+                    <span>{info.amount} сом</span>
+                    <span>{info.discountAmount} сом</span>
                 </div>
             </div>
             <div className={css.lineDiv}>
@@ -40,12 +34,12 @@ export const DesktopView = () => {
                     <span>Итого к оплате:</span>
                 </div>
                 <div className={css.values}>
-                    <span>{totalAmountWithDiscount} сом</span>
+                    <span>{amountWithDiscount} сом</span>
                 </div>
             </div>
 
             <div className={css.buttonDiv}>
-                <button type="button" onClick={makeOrder}>
+                <button type="button" onClick={onMakeOrder}>
                     Оформить заказ
                 </button>
             </div>

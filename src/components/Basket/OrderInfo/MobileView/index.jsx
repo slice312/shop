@@ -2,7 +2,7 @@ import React from "react";
 import css from "./styles.module.scss";
 
 
-export const MobileView = () => {
+export const MobileView = ({info, onMakeOrder}) => {
 
     const [isShowAdditionalInfo, setIsShowAdditionalInfo] = React.useState(false);
 
@@ -15,8 +15,9 @@ export const MobileView = () => {
 
     return (
         <React.Fragment>
-            {isShowAdditionalInfo ? <AdditionalPanel/> : null}
-            <MainPanel isShowAdditionalInfo={isShowAdditionalInfo}
+            {isShowAdditionalInfo ? <AdditionalPanel info={info}/> : null}
+            <MainPanel info={info}
+                       isShowAdditionalInfo={isShowAdditionalInfo}
                        onToggleAdditionalPanel={toggleAdditionalPanel}/>
             <div className={css.fakeContainer}/>
         </React.Fragment>
@@ -24,11 +25,8 @@ export const MobileView = () => {
 };
 
 
-const AdditionalPanel = () => {
-    const totalAmount = 6825;
-    const totalAmountWithDiscount = 6700;
+const AdditionalPanel = ({info}) => {
 
-    const totalQty = "4 линеек (20 шт.)"
     return (
         <div className={css.additionalFixed}>
             <div className={css.title}>
@@ -40,8 +38,8 @@ const AdditionalPanel = () => {
                     <span>Стоимость:</span>
                 </div>
                 <div className={css.values}>
-                    <span>{totalQty}</span>
-                    <span>{totalAmount} шт</span>
+                    <span>{`${info.productsModelQty} линеек (${info.productsQty} шт.)`}</span>
+                    <span>{info.amount} сом</span>
                 </div>
             </div>
             <hr className={css.line}/>
@@ -50,8 +48,8 @@ const AdditionalPanel = () => {
 };
 
 
-const MainPanel = ({isShowAdditionalInfo, onToggleAdditionalPanel}) => {
-    const totalAmountWithDiscount = 6700;
+const MainPanel = ({info, isShowAdditionalInfo, onToggleAdditionalPanel}) => {
+    const amountWithDiscount = info.amount - info.discountAmount;
 
     return (
         <div className={css.mainFixed}>
@@ -60,7 +58,7 @@ const MainPanel = ({isShowAdditionalInfo, onToggleAdditionalPanel}) => {
                     <span>Итого к оплате:</span>
                 </div>
                 <div className={css.values}>
-                    <span>{totalAmountWithDiscount} сом</span>
+                    <span>{amountWithDiscount} сом</span>
                 </div>
             </div>
             <div className={css.buttonInfo} onClick={onToggleAdditionalPanel}>

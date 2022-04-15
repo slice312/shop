@@ -32,15 +32,6 @@ const filterProductsByCategory = (products, category) => {
 };
 
 
-/*
-        const item = localStorage.getItem(key);
-        if (item) {
-            const qty = Number.parseInt(item);
-            localStorage.setItem(key, (qty + 1).toString());
-        } else {
-            localStorage.setItem(key, (1).toString());
-        }
- */
 
 const useProjectNavigation = () => {
     const navigate = useNavigate();
@@ -48,6 +39,8 @@ const useProjectNavigation = () => {
     const navigateToProductPage = (productId) => navigate(`/products/${productId}`);
 
     const navigateToCollectionPage = (collectionId) => navigate(`/collections/${collectionId}`);
+
+    const navigateToFavorites = () => navigate(`/favorites`);
 
     const navigateToBasket = () => navigate(`/basket`);
 
@@ -57,6 +50,7 @@ const useProjectNavigation = () => {
     return {
         navigateToProductPage,
         navigateToCollectionPage,
+        navigateToFavorites,
         navigateToBasket,
         navigateToSearch
     };

@@ -2,24 +2,28 @@ import React from "react";
 import {BasketItemView} from "./BasketItemView";
 import css from "./styles.module.scss";
 import {useDispatch, useSelector} from "react-redux";
-import {loadProductsFromBasket, basketItemRemoved, basketItemSet} from "src/shared/state/basket/actions";
+import {
+    loadProductsFromBasket,
+    basketItemRemoved,
+    basketItemSet
+} from "src/shared/state/basket/actions";
+import {calculateBasket} from "src/shared/state/order/actions";
 
 
 export const ProductsContainer = () => {
     const dispatch = useDispatch();
     const basketItems = useSelector(state => state.basket.items);
-    const products = useSelector(state => state.productsState.products);
+    const productsInfo = useSelector(state => state.productsState.products);
 
     React.useEffect(() => {
         dispatch(loadProductsFromBasket());
-    }, []);
+    }, [basketItems]);
 
-    const productsInfo = React.useMemo(() => {
-        const map = new Map();
-        for (const p of products)
-            map.set(p.product.id, p.product);
-        return map
-    }, [products]);
+    React.useEffect(() => {
+        dispatch(calculateBasket());
+    }, [productsInfo, basketItems]);
+
+
 
 
     const onDeleteClick = (basketItem) => {
@@ -49,18 +53,18 @@ export const ProductsContainer = () => {
         <div className={css.root}>
             {
                 basketItems.map((basketItem, i) => {
-                    const info = productsInfo.get(basketItem.productId)
+                    const info = productsInfo.find(x => x.product.id === basketItem.productId)
                     if (!info)
                         return null;
                     return (
                         <BasketItemView
                             key={i}
                             basketItem={basketItem}
-                            title={info.title}
-                            image={info.images?.[0]}
-                            size={info.size}
-                            price={info.price}
-                            discount={info.discount}
+                            title={info.product.title}
+                            image={info.product.images?.[0]}
+                            size={info.product.size}
+                            price={info.product.price}
+                            discount={info.product.discount}
                             onDeleteClick={onDeleteClick}
                             onPlusClick={onPlusClick}
                             onMinusClick={onMinusClick}

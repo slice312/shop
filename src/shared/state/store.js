@@ -6,6 +6,7 @@ import {productsReducer} from "./products/reducer";
 import {collectionsReducer} from "./collections/reducer";
 import {basketReducer} from "./basket/reducer";
 import {basketMiddleWare} from "./basket/middleware";
+import {orderReducer} from "./order/reducer";
 import {newsReducer} from "./news/reducer";
 
 
@@ -27,6 +28,7 @@ const reducers = combineReducers({
     productsState: productsReducer,
     collectionsState: collectionsReducer,
     basket: basketReducer,
+    order: orderReducer,
     news: newsReducer
 });
 
