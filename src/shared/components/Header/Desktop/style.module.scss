@@ -1,0 +1,103 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    display: flex;
+    flex-direction: column;
+    background-color: $colorWhite;
+
+    .navbarUp {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 22px 0 22px 0;
+
+        .pageLinks {
+            display: flex;
+            flex-direction: row;
+            gap: 24px;
+
+            a {
+                @include font-default(17px, 400, 20.72px);
+                text-decoration: none;
+            }
+        }
+
+        .telephone {
+            .label {
+                @include font-default(17px, 400, 20.72px, $textColorGray);
+            }
+
+            .value {
+                margin-left: 6px;
+                @include font-default(17px, 400, 20.72px);
+            }
+        }
+    }
+
+
+    .navbarDown {
+        height: 88px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-top: 1px solid #F8F8F8;
+        border-bottom: 1px solid #F8F8F8;
+
+        .logo {
+            width: 162px;
+            height: 70px;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .inputWrap {
+            margin-left: 34px;
+            height: 44px;
+            flex-grow: 1;
+        }
+
+        .iconButton {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+
+            .label {
+                margin-left: 10px;
+                @include font-default(16px, 500, 19.5px);
+                text-decoration: none;
+            }
+
+            .icon {
+                position: relative;
+
+                img {
+                    height: 24px;
+                    width: 24px;
+                }
+            }
+
+            .redCircleNotify {
+                background: $colorRed;
+                position: absolute;
+                width: 9.28px;
+                height: 9.28px;
+                border-radius: 50%;
+                right: 0;
+                top: 0;
+            }
+        }
+
+        .favorite {
+            margin-left: 34px;
+        }
+
+        .basket {
+            margin-left: 40px;
+        }
+    }
+}

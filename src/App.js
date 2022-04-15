@@ -65,6 +65,7 @@ export const App = () => {
             <div className={css.footerContainer}>
                 <div className={css.limitContainer}>
                     {
+                        // в мобильной версии корзины футера нет
                         (location.pathname === "/basket" && isMobile)
                             ? null
                             : <Footer/>
