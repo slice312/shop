@@ -1,0 +1,88 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+
+    .container {
+        width: 440px;
+        height: 672px;
+        background: #fff;
+        padding: 32px 24px;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            @include font-default(20px, 600, 24.38px);
+        }
+
+        .body {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+
+            .field {
+                width: 100%;
+
+                .label {
+                    width: 100%;
+                    @include font-default(13px, 500, 15.95px, $textColorGray);
+                }
+                input {
+                    margin-top: 4px;
+                    width: 100%;
+                    height: 44px;
+                    border: 1px solid #E7E7E7;
+                    padding-left: 12px;
+                    @include font-default(14px, 500, 17.07px);
+
+                }
+            }
+
+            .field2 {
+                display: flex;
+                width: 100%;
+
+                .label {
+                    width: 100%;
+                    @include font-default(13px, 500, 15.95px, $textColorGray);
+                }
+                input {
+                    margin-top: 4px;
+                    width: 100%;
+                    height: 44px;
+                    border: 1px solid #E7E7E7;
+                    padding-left: 12px;
+                    @include font-default(14px, 500, 17.07px);
+
+                }
+            }
+        }
+
+        .checkbox {
+
+            button {
+                width: 100%;
+                height: 44px;
+                border: none;
+                font-size: 14px;
+                font-weight: 500;
+                color: #fff;
+            }
+        }
+    }
+}

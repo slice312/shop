@@ -1,9 +1,9 @@
 import React from "react";
 import css from "./styles.module.scss";
+import {OrderModal} from "src/shared/components/OrderModal";
 
 
 export const DesktopView = ({info, onMakeOrder}) => {
-
     const amountWithDiscount = info.amount - info.discountAmount;
 
 
@@ -43,6 +43,7 @@ export const DesktopView = ({info, onMakeOrder}) => {
                     Оформить заказ
                 </button>
             </div>
+            <OrderModal/>
         </div>
     );
 };
