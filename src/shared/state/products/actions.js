@@ -4,9 +4,7 @@ import {
     PRODUCTS_IS_FETCHING,
     PRODUCTS_ON_SERVER_QTY_SET,
     PRODUCTS_PUSHED,
-    PRODUCTS_BESTSELLERS_IS_FETCHING,
     PRODUCTS_BESTSELLERS_PUSHED,
-    PRODUCTS_NOVELTIES_IS_FETCHING,
     PRODUCTS_NOVELTIES_PUSHED,
     PRODUCT_FAVORITE_TOGGLED
 } from "src/shared/state/actionTypes";
@@ -42,22 +40,24 @@ const productFavoriteToggled = (productId) => ({type: PRODUCT_FAVORITE_TOGGLED, 
 export const pushProductsBestsellers = (limit) => {
     return async (dispatch, getState) => {
         try {
-            dispatch({type: PRODUCTS_BESTSELLERS_IS_FETCHING, payload: true}); // TODO: action creator private
+            dispatch(productsIsFetching(true));
+
             const state = getState();
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Bestsellers)
                 .length;
+
             const response = await Api.getBestsellers(limit, loaded);
             if (response.status === 200) {
                 console.log("pushProductsBestsellers success", response.data);
                 dispatch(bestsellersPushed(response.data));
             } else {
-                console.error("pushProductsBestsellers error", response.status);
+                console.error("pushProductsBestsellers", response.status);
             }
         } catch (err) {
-            console.error("pushProductsBestsellers error", err);
+            console.error("pushProductsBestsellers", err);
         }
         finally {
-            dispatch({type: PRODUCTS_BESTSELLERS_IS_FETCHING, payload: false});
+            dispatch(productsIsFetching(false));
         }
     };
 };
@@ -74,16 +74,16 @@ export const pushProductNovelties = (limit) => {
             const state = getState();
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Novelties)
                 .length;
-            const response = await Api.getNovelties(limit, loaded);
 
+            const response = await Api.getNovelties(limit, loaded);
             if (response.status === 200) {
                 dispatch(noveltiesPushed(response.data));
                 console.log("pushProductNovelties success", response.data);
             } else {
-                console.error("pushProductNovelties error", response.status);
+                console.error("pushProductNovelties", response.status);
             }
         } catch (err) {
-            console.error("pushProductNovelties error", err);
+            console.error("pushProductNovelties", err);
         }
         finally {
             dispatch(productsIsFetching(false));
@@ -111,9 +111,9 @@ export const setFavoriteProducts = (limit, offset = 0, responseCallback) => {
                 console.log("setFavoriteProducts success", response.data);
                 responseCallback?.(response);
             } else
-                console.log("setFavoriteProducts error", response.status);
+                console.error("setFavoriteProducts", response.status);
         } catch (err) {
-            console.error("setFavoriteProducts error", err);
+            console.error("setFavoriteProducts", err);
         } finally {
             dispatch(productsIsFetching(false));
         }
@@ -128,19 +128,21 @@ export const pushFavoriteProducts = (limit) => {
     return async (dispatch, getState) => {
         try {
             dispatch(productsIsFetching(true));
+
             const state = getState();
             const loaded = state.productsState.products
                 .filter(x => x.product.isFavorite)
                 .length;
+
             const response = await Api.getFavoriteProducts(limit, loaded);
             if (response.status === 200) {
                 console.log("pushFavoriteProducts success", response.data);
                 dispatch(productsPushed(response.data.products));
             } else {
-                console.error("pushFavoriteProducts error", response.status);
+                console.error("pushFavoriteProducts", response.status);
             }
         } catch (err) {
-            console.error("pushFavoriteProducts error", err);
+            console.error("pushFavoriteProducts", err);
         } finally {
             dispatch(productsIsFetching(false));
         }
@@ -157,19 +159,20 @@ export const productFavoriteToggle = (productId) => {
         try {
             const state = getState();
             const product = state.productsState.products.find(x => x.product.id === productId);
+
             if (product) {
                 const response = await Api.product.setProductFavoriteFlag(productId, !product.product.isFavorite);
                 if (response.status === 200) {
                     dispatch(productFavoriteToggled(productId));
                     console.log("productFavoriteToggle success", response.data);
                 } else {
-                    console.error("productFavoriteToggle error", response.status);
+                    console.error("productFavoriteToggle", response.status);
                 }
             } else
                 console.error("productFavoriteToggle", "productId not found in state");
 
         } catch (err) {
-            console.error("productFavoriteToggle error", err);
+            console.error("productFavoriteToggle", err);
         }
     };
 };
@@ -193,10 +196,10 @@ export const loadProductsByCollection = (collectionId, limit, offset= 0) => {
                 dispatch(productsOnServerQtySet(response.data.totalQty))
                 console.log("loadProductsByCollection success");
             } else {
-                console.error("loadProductsByCollection error", response.status);
+                console.error("loadProductsByCollection", response.status);
             }
         } catch (err) {
-            console.error("loadProductsByCollection error", err);
+            console.error("loadProductsByCollection", err);
         } finally {
             dispatch(productsIsFetching(false));
         }
@@ -226,7 +229,7 @@ export const setRandomProducts = (qty) => {
             dispatch(productsSet(products));
             console.log("setRandomProducts success", products);
         } catch (err) {
-            console.error("setRandomProducts error", err);
+            console.error("setRandomProducts", err);
         } finally {
             dispatch(productsIsFetching(false));
         }
