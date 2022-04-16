@@ -48,10 +48,6 @@
                 }
             }
 
-            img.svgIcon {
-                filter: brightness(10);
-            }
-
             .blockTitle {
                 margin-bottom: 16px;
                 @include font-default(16px, 600, 19.5px, $colorWhite);

@@ -43,7 +43,6 @@ export const DesktopView = ({info, onMakeOrder}) => {
                     Оформить заказ
                 </button>
             </div>
-            <OrderModal/>
         </div>
     );
 };

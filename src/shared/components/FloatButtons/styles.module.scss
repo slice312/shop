@@ -3,7 +3,11 @@
 
 .root {
     position: fixed;
-    right: 5%;
+    //width: 100vw;
+    //height: 100vh;
+    //right: 0;
+    //bottom: 0;
+    right: calc(max-width);
     bottom: 5%;
     z-index: 2;
     display: flex;

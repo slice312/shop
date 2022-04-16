@@ -1,99 +1,174 @@
 import React from "react";
-import Select from "react-select";
+import ReactFlagsSelect from "react-flags-select";
+import cn from "classnames";
 import css from "./styles.module.scss";
+import {Link} from "react-router-dom";
+import {Utils} from "src/shared/utils";
+import * as KeyCode from "keycode-js";
+import {SuccessView} from "./SuccessView";
+import closeIcon from "src/assets/icons/x-mark.svg";
 
 
-const data = [
-    {
-        value: 1,
-        text: 'Up Arrow',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
-        </svg>
-    },
-    {
-        value: 2,
-        text: 'Down Arrow',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
-        </svg>
-    },
-    {
-        value: 3,
-        text: 'Left Arrow',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
-        </svg>
-    },
-    {
-        value: 4,
-        text: 'Right Arrow',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                   class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
-            <path fill-rule="evenodd"
-                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
-        </svg>
-    }
-];
+const countryCodes = {
+    KG: "+996",
+    RU: "+7",
+    KZ: "+7",
+    US: "+775",
+    GB: "+50"
+};
 
-// https://www.cluemediator.com/how-to-add-an-icon-in-the-react-select-dropdown
-export const OrderModal = () => {
 
-    const [selectedOption, setSelectedOption] = React.useState(null);
+export const OrderModal = ({onCloseClick}) => {
+    const [selected, setSelected] = React.useState("KG");
+
+
+    const nameRef = React.useRef(null);
+    const surnameRef = React.useRef(null);
+    const emailRef = React.useRef(null);
+    const phoneRef = React.useRef(null);
+    const countryRef = React.useRef(null);
+    const cityRef = React.useRef(null);
+
+    const [isNameEmpty, setIsNameEmpty] = React.useState(false);
+    const [isSurnameEmpty, setIsSurnameEmpty] = React.useState(false);
+    const [isEmailEmpty, setIsEmailEmpty] = React.useState(false);
+    const [isPhoneEmpty, setIsPhoneEmpty] = React.useState(false);
+    const [isCountryEmpty, setIsCountryEmpty] = React.useState(false);
+    const [isCityEmpty, setIsCityEmpty] = React.useState(false);
+    const [publicOfferChecked, setPublicOfferChecked] = React.useState(false);
+
+    const [success, setSuccess] = React.useState(false);
+
+
+    const makeOrder = () => {
+        validate();
+        const isOk = !(isNameEmpty && isSurnameEmpty && isEmailEmpty && isPhoneEmpty
+            && isCountryEmpty && isCityEmpty && publicOfferChecked);
+
+        console.log("makeOrder", isOk);
+        setSuccess(isOk);
+    };
+
+    const validate = () => {
+        setIsNameEmpty(!nameRef.current.value);
+        setIsSurnameEmpty(!surnameRef.current.value);
+        setIsEmailEmpty(!emailRef.current.value);
+        setIsPhoneEmpty(!phoneRef.current.value); // TODO сделать
+        setIsCountryEmpty(!countryRef.current.value);
+        setIsCityEmpty(!cityRef.current.value);
+    };
+
+    const inputPhoneNumberHandle = (e) => {
+        if (e.code !== KeyCode.CODE_BACK_SPACE && !Utils.isValidPhoneNumber(e.key)) {
+            e.preventDefault();
+        }
+    };
+
 
     return (
         <div className={css.root}>
-            <div className={css.container}>
-                <div className={css.header}>
-                    Оформление заказа
-                </div>
-                <div className={css.body}>
-                    <div className={css.field}>
-                        <div className={css.label}>Ваше имя</div>
-                        <input type="text" placeholder={"Иван"}/>
-                    </div>
-                    <div className={css.field}>
-                        <div className={css.label}>Ваше фамилия</div>
-                        <input type="text" placeholder={"Иванов"}/>
-                    </div>
-                    <div className={css.field}>
-                        <div className={css.label}>Электронная почта</div>
-                        <input type="text" placeholder={"example.a@"}/>
-                    </div>
-                    <div className={css.field2}>
-                        <div className={css.label}>Ваш номер телефонаa</div>
-                        <Select
-                            placeholder="Select Option"
-                            value={selectedOption}
-                            options={data}
-                            getOptionLabel={e => (
-                                <div style={{display: 'flex', alignItems: 'center'}}>
-                                    {e.icon}
-                                    <span style={{marginLeft: 5}}>{e.text}</span>
+            {
+                success ? <SuccessView onButtonClick={() => console.log("A")}/>
+                    :
+                    (
+                        <div className={css.container}>
+
+                            <div className={css.header}>
+                                <div className={css.title}>
+                                    Оформление заказа
                                 </div>
-                            )}
-                        />
-                        <input type="text" placeholder={"7001122"}/>
-                    </div>
-                    <div className={css.field}>
-                        <div className={css.label}>Страна</div>
-                        <input type="text" placeholder={"Россия"}/>
-                    </div>
-                    <div className={css.field}>
-                        <div className={css.label}>Город</div>
-                        <input type="text" placeholder={"Москва"}/>
-                    </div>
-                    <div className={css.field}>
-                        <input type="checkbox"/>
-                    </div>
-                </div>
-            </div>
+                                <div className={css.closeIcon} onClick={onCloseClick}>
+                                    <img src={closeIcon} alt={closeIcon}/>
+                                </div>
+                            </div>
+                            <div className={css.body}>
+                                <div className={css.field}>
+                                    <div className={cn(css.fieldLabel, isNameEmpty && css.errorFieldLabel)}>
+                                        Ваше имя
+                                    </div>
+                                    <input ref={nameRef}
+                                           className={cn(css.inputField, isNameEmpty && css.errorInputField)}
+                                           type="text"
+                                           placeholder="Введите имя"
+                                    />
+                                </div>
+                                <div className={css.field}>
+                                    <div className={cn(css.fieldLabel, isSurnameEmpty && css.errorFieldLabel)}>
+                                        Ваша фамилия
+                                    </div>
+                                    <input ref={surnameRef}
+                                           className={cn(css.inputField, isSurnameEmpty && css.errorInputField)}
+                                           type="text"
+                                           placeholder="Введите фамилию"
+                                    />
+                                </div>
+                                <div className={css.field}>
+                                    <div className={cn(css.fieldLabel, isEmailEmpty && css.errorFieldLabel)}>
+                                        Электронная почта
+                                    </div>
+                                    <input ref={emailRef}
+                                           className={cn(css.inputField, isEmailEmpty && css.errorInputField)}
+                                           type="text"
+                                           placeholder="example@gmail.com"
+                                    />
+                                </div>
+                                <div className={css.phoneField}>
+                                    <div className={cn(css.fieldLabel, isPhoneEmpty && css.errorFieldLabel)}>
+                                        Ваш номер телефона
+                                    </div>
+                                    <div className={cn(css.inputWrap, isPhoneEmpty && css.errorInputField)}>
+                                        <div className={cn(css.dropDownWrap)}>
+                                            <ReactFlagsSelect
+                                                countries={["KG", "RU", "KZ", "US", "GB"]}
+                                                customLabels={countryCodes}
+                                                selected={selected}
+
+                                                onSelect={(code) => setSelected(code)}
+                                            />
+                                        </div>
+                                        <input ref={phoneRef}
+                                               className={cn(css.inputField, css.inputPhone, isPhoneEmpty && css.errorInputField)}
+                                               type="text"
+                                               placeholder="Введите номер телефона"
+                                               onKeyDown={inputPhoneNumberHandle}
+                                        />
+                                    </div>
+                                </div>
+                                <div className={css.field}>
+                                    <div className={cn(css.fieldLabel, isCountryEmpty && css.errorFieldLabel)}>Страна
+                                    </div>
+                                    <input ref={countryRef}
+                                           className={cn(css.inputField, isCountryEmpty && css.errorInputField)}
+                                           type="text"
+                                           placeholder="Кыргызстан"
+                                    />
+                                </div>
+                                <div className={css.field}>
+                                    <div className={cn(css.fieldLabel, isCityEmpty && css.errorFieldLabel)}>
+                                        Город
+                                    </div>
+                                    <input ref={cityRef}
+                                           className={cn(css.inputField, isCityEmpty && css.errorInputField)}
+                                           type="text"
+                                           placeholder="Бишкек"
+                                    />
+                                </div>
+                                <div className={css.checkbox}>
+                                    <input type="checkbox"
+                                           onClick={() => setPublicOfferChecked(prev => !prev)}
+                                           checked={publicOfferChecked}
+                                           onChange={(e) => console.log("checkbox", e)}
+                                    />
+                                    <span>Согласен с условиями</span> &nbsp;
+                                    <Link to="/public-offer">публичной офферты</Link>
+                                </div>
+                                <div className={css.button} onClick={makeOrder}>
+                                    Заказать
+                                </div>
+                            </div>
+                        </div>
+                    )
+            }
         </div>
     );
-};
+}

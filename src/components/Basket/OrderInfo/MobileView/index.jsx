@@ -1,5 +1,6 @@
 import React from "react";
 import css from "./styles.module.scss";
+import {OrderModal} from "src/shared/components/OrderModal";
 
 
 export const MobileView = ({info, onMakeOrder}) => {
@@ -8,11 +9,6 @@ export const MobileView = ({info, onMakeOrder}) => {
 
     const toggleAdditionalPanel = () => setIsShowAdditionalInfo(prev => !prev);
 
-    const totalAmount = 6825;
-    const totalAmountWithDiscount = 6700;
-
-    const totalQty = "4 линеек (20 шт.)"
-
     return (
         <React.Fragment>
             {isShowAdditionalInfo ? <AdditionalPanel info={info}/> : null}
@@ -20,6 +16,8 @@ export const MobileView = ({info, onMakeOrder}) => {
                        isShowAdditionalInfo={isShowAdditionalInfo}
                        onToggleAdditionalPanel={toggleAdditionalPanel}/>
             <div className={css.fakeContainer}/>
+            <OrderModal/>
+
         </React.Fragment>
     );
 };

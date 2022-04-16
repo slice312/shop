@@ -6,6 +6,7 @@ import css from "./styles.module.scss";
 import xmarkIcon from "src/assets/icons/x-mark.svg";
 import userIcon from  "src/assets/icons/user-outlined.svg";
 import telephoneIcon from "src/assets/icons/telephone-outlined.svg";
+import {Utils} from "../../../utils";
 
 
 export const InputForm = ({onSubmit, onClose}) => {
@@ -37,8 +38,7 @@ export const InputForm = ({onSubmit, onClose}) => {
 
 
     const inputPhoneNumberHandle = (e) => {
-        const regex = /[()\-+\d ]+/
-        if (regex.test(e.target.value))
+        if (Utils.isValidPhoneNumber(e.target.value))
             setPhoneNumber(e.target.value)
     };
 

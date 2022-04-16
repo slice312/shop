@@ -80,6 +80,11 @@ const openUrlInNewWindow = (url) => {
 };
 
 
+const isValidPhoneNumber = (phoneNumber) => {
+    const regex = /[()\-+\d ]+/;
+    return regex.test(phoneNumber);
+};
+
 /**
  * Создает ключ для товара в корзине, для сохранения в {@link localStorage}.
  * @param {string} productId - Id товара
@@ -89,6 +94,7 @@ const openUrlInNewWindow = (url) => {
 const getBasketItemKey = (productId, color) => {
     return `${productId}|${color}`;
 };
+
 
 
 /**
@@ -104,5 +110,6 @@ export const Utils = {
         filterProductsByCategory
     },
     openUrlInNewWindow,
+    isValidPhoneNumber,
     getBasketItemKey
 };

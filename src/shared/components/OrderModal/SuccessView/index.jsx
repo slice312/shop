@@ -4,6 +4,7 @@ import checkCircleIcon from "src/assets/icons/check-circle.svg";
 
 
 export const SuccessView = ({onButtonClick}) => {
+    console.log("SuccessView");
     return (
         <div className={css.root}>
             <img src={checkCircleIcon} alt={checkCircleIcon}/>
