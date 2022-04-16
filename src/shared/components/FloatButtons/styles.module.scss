@@ -1,13 +1,10 @@
+@import "src/shared/styles/global";
 @import "src/shared/styles/mixins";
 
 
 .root {
     position: fixed;
-    //width: 100vw;
-    //height: 100vh;
-    //right: 0;
-    //bottom: 0;
-    right: calc(max-width);
+    right: calc((100vw - #{$maxWidthContainer + px}) / 2);
     bottom: 5%;
     z-index: 2;
     display: flex;
