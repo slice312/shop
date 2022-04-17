@@ -1,7 +1,7 @@
 import {axiosInstance} from "./axiosInstance";
 import {mockIt} from "./axiosMockedApi";
 
-mockIt(axiosInstance); // TODO: удалить после реализации API
+mockIt(axiosInstance); // TODO: удалить после реализации бекенда
 
 
 //<editor-fold desc="typedefs">

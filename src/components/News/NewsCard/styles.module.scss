@@ -2,10 +2,6 @@
 @import "src/shared/styles/mixins";
 
 
-$fontNewsTitle: 600 normal 16px $fontFamily;
-$fontNewsText: 300 normal 14px $fontFamily;
-
-
 .card {
     display: flex;
     flex-direction: row;
@@ -26,13 +22,12 @@ $fontNewsText: 300 normal 14px $fontFamily;
         padding-left: 16px;
 
         .title {
-            @include font-face($fontNewsTitle, $textColorPrimary, 19.5px);
+            @include font-default(16px, 500, 19.5px);
         }
 
         .text {
-            @include font-face($fontNewsText, #5B5B5B, 23.1px);
             margin-top: 6px;
-
+            @include font-default(14px, 300, 23.1px);
         }
     }
 }

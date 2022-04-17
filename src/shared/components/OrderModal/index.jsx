@@ -1,11 +1,14 @@
 import React from "react";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import ReactFlagsSelect from "react-flags-select";
 import cn from "classnames";
-import css from "./styles.module.scss";
-import {Link} from "react-router-dom";
-import {Utils} from "src/shared/utils";
 import * as KeyCode from "keycode-js";
-import {SuccessView} from "./SuccessView";
+
+import {Utils} from "src/shared/utils";
+import {ModalSuccessView} from "src/shared/components/ModalSuccessView";
+import css from "./styles.module.scss";
+
 import closeIcon from "src/assets/icons/x-mark.svg";
 
 
@@ -18,9 +21,12 @@ const countryCodes = {
 };
 
 
-export const OrderModal = ({onCloseClick}) => {
-    const [selected, setSelected] = React.useState("KG");
+const propTypes = {
+    onClose: PropTypes.func.isRequired
+};
 
+export const OrderModal = ({onClose}) => {
+    const [selected, setSelected] = React.useState("KG");
 
     const nameRef = React.useRef(null);
     const surnameRef = React.useRef(null);
@@ -35,17 +41,13 @@ export const OrderModal = ({onCloseClick}) => {
     const [isPhoneEmpty, setIsPhoneEmpty] = React.useState(false);
     const [isCountryEmpty, setIsCountryEmpty] = React.useState(false);
     const [isCityEmpty, setIsCityEmpty] = React.useState(false);
-    const [publicOfferChecked, setPublicOfferChecked] = React.useState(false);
 
+    const [publicOfferChecked, setPublicOfferChecked] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
 
 
     const makeOrder = () => {
-        validate();
-        const isOk = !(isNameEmpty && isSurnameEmpty && isEmailEmpty && isPhoneEmpty
-            && isCountryEmpty && isCityEmpty && publicOfferChecked);
-
-        console.log("makeOrder", isOk);
+        const isOk = validate();
         setSuccess(isOk);
     };
 
@@ -53,10 +55,19 @@ export const OrderModal = ({onCloseClick}) => {
         setIsNameEmpty(!nameRef.current.value);
         setIsSurnameEmpty(!surnameRef.current.value);
         setIsEmailEmpty(!emailRef.current.value);
-        setIsPhoneEmpty(!phoneRef.current.value); // TODO сделать
+        setIsPhoneEmpty(!phoneRef.current.value);
         setIsCountryEmpty(!countryRef.current.value);
         setIsCityEmpty(!cityRef.current.value);
+
+        return nameRef.current.value
+            && surnameRef.current.value
+            && emailRef.current.value
+            && phoneRef.current.value
+            && countryRef.current.value
+            && cityRef.current.value
+            && publicOfferChecked
     };
+
 
     const inputPhoneNumberHandle = (e) => {
         if (e.code !== KeyCode.CODE_BACK_SPACE && !Utils.isValidPhoneNumber(e.key)) {
@@ -68,16 +79,16 @@ export const OrderModal = ({onCloseClick}) => {
     return (
         <div className={css.root}>
             {
-                success ? <SuccessView onButtonClick={() => console.log("A")}/>
-                    :
-                    (
+                success
+                    ? <Success onClose={onClose}/>
+                    : (
                         <div className={css.container}>
 
                             <div className={css.header}>
                                 <div className={css.title}>
                                     Оформление заказа
                                 </div>
-                                <div className={css.closeIcon} onClick={onCloseClick}>
+                                <div className={css.closeIcon} onClick={onClose}>
                                     <img src={closeIcon} alt={closeIcon}/>
                                 </div>
                             </div>
@@ -157,7 +168,7 @@ export const OrderModal = ({onCloseClick}) => {
                                     <input type="checkbox"
                                            onClick={() => setPublicOfferChecked(prev => !prev)}
                                            checked={publicOfferChecked}
-                                           onChange={(e) => console.log("checkbox", e)}
+                                           onChange={e => setPublicOfferChecked(e.target.checked)}
                                     />
                                     <span>Согласен с условиями</span> &nbsp;
                                     <Link to="/public-offer">публичной офферты</Link>
@@ -171,4 +182,28 @@ export const OrderModal = ({onCloseClick}) => {
             }
         </div>
     );
-}
+};
+
+OrderModal.propTypes = propTypes;
+
+
+const Success = ({onClose}) => {
+
+    const {navigateToHome} = Utils.Hooks.useProjectNavigation();
+
+    return (
+        <ModalSuccessView
+            title="Спасибо"
+            Text={
+                <div>
+                    Ваша заявка была принята ожидайте, <br/>
+                    скоро Вам перезвонят
+                </div>
+            }
+            onClose={() => {
+                onClose();
+                navigateToHome();
+            }}
+        />
+    );
+};

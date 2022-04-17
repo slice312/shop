@@ -33,7 +33,7 @@ export const OrderInfo = () => {
             }
             {
                 (isShowModal)
-                    ? <OrderModal onCloseClick={closeOrder}/>
+                    ? <OrderModal onClose={closeOrder}/>
                     : null
             }
         </React.Suspense>

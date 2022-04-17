@@ -14,7 +14,6 @@
     justify-content: center;
     align-items: center;
 
-
     .container {
         width: 440px;
         height: 672px;
@@ -151,11 +150,11 @@
 
                 span {
                     margin-left: 6px;
-                    @include font-default(15px, 500, 18.15px);
+                    @include font-face("Inter", 15px, 500, 18.15px);
                 }
 
                 a {
-                    @include font-default(15px, 500, 18.15px, #2F80ED);
+                    @include font-face("Inter", 15px, 500, 18.15px, #2F80ED);
                 }
             }
 

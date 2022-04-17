@@ -40,6 +40,8 @@ const useProjectNavigation = () => {
 
     const navigateToCollectionPage = (collectionId) => navigate(`/collections/${collectionId}`);
 
+    const navigateToHome = () => navigate(`/`);
+
     const navigateToFavorites = () => navigate(`/favorites`);
 
     const navigateToBasket = () => navigate(`/basket`);
@@ -50,6 +52,7 @@ const useProjectNavigation = () => {
     return {
         navigateToProductPage,
         navigateToCollectionPage,
+        navigateToHome,
         navigateToFavorites,
         navigateToBasket,
         navigateToSearch
@@ -80,6 +83,11 @@ const openUrlInNewWindow = (url) => {
 };
 
 
+/**
+ *
+ * @param {string} phoneNumber
+ * @return {boolean}
+ */
 const isValidPhoneNumber = (phoneNumber) => {
     const regex = /[()\-+\d ]+/;
     return regex.test(phoneNumber);

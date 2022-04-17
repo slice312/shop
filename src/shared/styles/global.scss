@@ -2,10 +2,14 @@
 @import "./null";
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+
 
 // Шрифт по умолчанию
-$fontFamily: "Montserrat"; // TODO: rename
+$defaultFontFamily: "Montserrat";
 
+
+// Цвета:
 $colorMainBackground: #F6F7F7;
 $colorRed: #E5271B;
 $colorPrimary: #1D1D1B;
@@ -17,8 +21,7 @@ $textColorGray: #979797;
 $textColorWhite: #FFFFFF;
 
 
-
-// Переменные
+// Брекпоинты:
 $minWidth: 320px;
 $maxWidthContainer: 1195;
 $md1: $maxWidthContainer + 12;

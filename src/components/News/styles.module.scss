@@ -2,11 +2,6 @@
 @import "src/shared/styles/mixins";
 
 
-$fontTitle: 500 normal 24px $fontFamily;
-$fontNewsTitle: 600 normal 16px $fontFamily;
-$fontNewsText: 300 normal 14px $fontFamily;
-
-
 .root {
     display: flex;
     flex-direction: column;
@@ -14,7 +9,7 @@ $fontNewsText: 300 normal 14px $fontFamily;
 
 
     .title {
-        @include font-face($fontTitle, $textColorPrimary, 29px);
+        @include font-default(24px, 500, 29.26px);
         margin-bottom: 18px;
     }
 

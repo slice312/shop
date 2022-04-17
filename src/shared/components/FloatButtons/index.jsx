@@ -4,7 +4,6 @@ import {ControlPanel} from "./ControlPanel";
 import css from "./styles.module.scss";
 
 
-// TODO: надо как-то придумать fixed позиционирование но относительно документа
 export const FloatButtons = () => {
     const [isOpen, setIsOpen] = React.useState(false);
 

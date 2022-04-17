@@ -1,21 +1,19 @@
 @import "./global";
 
-// TODO: удалить
-@mixin font-face($font, $color, $lineHeight, $letterSpacing: 0px) {
-    font: $font;
-    color: $color;
-    line-height: $lineHeight;
-    letter-spacing: $letterSpacing;
-}
 
-
-@mixin font-default($size, $weight, $lineHeight, $color: $textColorPrimary) {
+@mixin font-face($fontFamily, $size, $weight, $lineHeight, $color: $textColorPrimary) {
     font-family: $fontFamily;
     font-size: $size;
     font-weight: $weight;
     line-height: $lineHeight;
     color: $color;
 }
+
+
+@mixin font-default($size, $weight, $lineHeight, $color: $textColorPrimary) {
+    @include font-face($defaultFontFamily, $size, $weight, $lineHeight, $color);
+}
+
 
 /**
    Применят css праивила если устройство поддерживает hover эффект,
@@ -27,6 +25,7 @@
     }
 }
 
+
 // Дефолтный hover эффект для черных кнопок с белым шрифтом.
 @mixin hoverWhiteBlackButton {
     @include ifHover {
@@ -37,6 +36,7 @@
         }
     }
 }
+
 
 // Дефолтный hover эффект для карточек товаров, коллекций.
 @mixin hoverCard {

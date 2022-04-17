@@ -23,3 +23,12 @@
         }
     }
 }
+
+
+@media (max-width: $md4 +px) {
+    .root {
+        right: 3%;
+        bottom: 2%;
+        transform: scale(0.65);
+    }
+}

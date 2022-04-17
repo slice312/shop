@@ -1,12 +1,13 @@
 import React from "react";
 import {Alert} from "react-bootstrap";
 
+import {Utils} from "src/shared/utils";
 import {Api} from  "src/shared/utils/api";
 import css from "./styles.module.scss";
+
 import xmarkIcon from "src/assets/icons/x-mark.svg";
 import userIcon from  "src/assets/icons/user-outlined.svg";
 import telephoneIcon from "src/assets/icons/telephone-outlined.svg";
-import {Utils} from "../../../utils";
 
 
 export const InputForm = ({onSubmit, onClose}) => {
@@ -47,9 +48,9 @@ export const InputForm = ({onSubmit, onClose}) => {
             <button className={css.closeButton} type="button" onClick={onClose}>
                 <img src={xmarkIcon} alt="xmarkIcon"/>
             </button>
-            <p className={css.header}>Если у Вас остались вопросы</p>
-            <p className={css.subHeader}>Оставьте заявку и мы обязательно</p>
-            <p className={css.subHeader}>Вам перезвоним</p>
+            <div className={css.header}>Если у Вас остались вопросы</div>
+            <div className={css.subHeader}>Оставьте заявку и мы обязательно</div>
+            <div className={css.subHeader}>Вам перезвоним</div>
 
             <div className={css.inputs}>
                 <div className={css.input}>
@@ -80,7 +81,7 @@ export const InputForm = ({onSubmit, onClose}) => {
                         : null
                 }
 
-                <button type="button" onClick={onBtnRequestCallClick}>
+                <button className={css.button} type="button" onClick={onBtnRequestCallClick}>
                     Заказать звонок
                 </button>
             </div>

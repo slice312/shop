@@ -1,17 +1,27 @@
 import React from "react";
 import {Modal} from "react-bootstrap";
-import {SuccessView} from "./SuccessView";
+import {ModalSuccessView} from "src/shared/components/ModalSuccessView";
 import {InputForm} from "./InputForm";
 
 
 export const RequestCallbackModal = ({onClose}) => {
     const [success, setSuccess] = React.useState(false);
 
+
     return (
         <Modal show={true}>
             {
                 success
-                    ? <SuccessView onButtonClick={onClose}/>
+                    ? <ModalSuccessView
+                        title="Спасибо"
+                        Text={
+                            <div>
+                                Ваша заявка была принята ожидайте, <br/>
+                                скоро Вам перезвонят
+                            </div>
+                        }
+                        onClose={onClose}
+                    />
                     : <InputForm onSubmit={() => setSuccess(true)}
                                  onClose={onClose}
                     />

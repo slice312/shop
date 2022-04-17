@@ -2,22 +2,18 @@
 @import "src/shared/styles/mixins";
 
 
-$fontTitle: 500 normal 24px $fontFamily;
-$fontText: 300 normal 14px $fontFamily;
-
-
 .root {
     padding-top: 12px;
 
     .title {
-        @include font-face($fontTitle, $textColorPrimary, 29px);
+        @include font-default(24px, 500, 29.26px);
     }
 
     .text {
-        @include font-face($fontText, #5B5B5B, 23px);
-        background-color: $colorWhite;
-        padding: 16px;
         margin-top: 18px;
+        padding: 16px;
+        background-color: $colorWhite;
+        @include font-default(14px, 300, 23.1px, #5B5B5B);
         white-space:pre-wrap;
         word-wrap:break-word;
     }
