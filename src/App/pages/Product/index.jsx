@@ -23,8 +23,8 @@ export const Product = () => {
     React.useEffect(() => {
         (async () => {
             try {
-                const productResp = await Api.getProduct(params.id);
-                const byCollectionResp = await Api
+                const productResp = await Api.Products.getProduct(params.id);
+                const byCollectionResp = await Api.Products
                     .getProductsByCollection(productResp.data.collectionId, PRODUCTS_LIMIT + 1, 0);
                 const arr = [productResp.data, ...byCollectionResp.data.products.filter(x => x.id !== productResp.data.id)];
                 dispatch(productsSet(arr));

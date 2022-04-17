@@ -3,6 +3,7 @@
 
 
 .card {
+    margin-top: 12px;
     display: flex;
     flex-direction: row;
     padding: 16px;
@@ -39,8 +40,14 @@
         align-items: center;
 
         .image {
+            width: 100%;
 
+            img {
+                width: 100%;
+
+            }
         }
+
         .textBlock {
             margin-top: 16px;
         }

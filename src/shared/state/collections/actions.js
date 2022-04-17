@@ -23,7 +23,7 @@ export const loadCollections = (limit, offset = 0) => {
         try {
             dispatch(collectionsIsFetching(true));
 
-            const response = await Api.getCollections(limit, offset);
+            const response = await Api.Collections.getCollections(limit, offset);
 
             if (response.status === 200) {
                 dispatch(collectionsReset());
@@ -52,7 +52,7 @@ export const pushCollections = (limit) => {
 
             const state = getState();
             const loaded = state.collectionsState.collections.length;
-            const response = await Api.getCollections(limit, loaded);
+            const response = await Api.Collections.getCollections(limit, loaded);
 
             if (response.status === 200) {
                 dispatch(collectionsPushed(response.data));

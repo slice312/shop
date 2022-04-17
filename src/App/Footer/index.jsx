@@ -51,7 +51,7 @@ export const Footer = () => {
                         <div className={css.blockTitle}>Мы в социальных сетях</div>
                         <div>
                             <div>
-                                <a href={info.telegramUrl}
+                                <a href={info.instagramUrl}
                                    className={css.blockItem}
                                    target="_blank" rel="noopener noreferrer">
                                     <img src={instagramIcon} alt={instagramIcon}/>

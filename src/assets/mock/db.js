@@ -14,6 +14,7 @@ const commonSiteInfo = {
     email: "zeon_shop@gmail.com",
     telegramUrl: `https://t.me/s/sputnik_kgz_main`,
     whatsappUrl: `https://wa.me`,
+    instagramUrl: `https://www.instagram.com/zeon.ithub/?hl=ru`
 };
 
 
@@ -1164,4 +1165,4 @@ export const DB = {
     about
 };
 
-window.DB = DB; // TODO: удалить
+window.DB = DB;

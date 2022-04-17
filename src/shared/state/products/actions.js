@@ -46,7 +46,7 @@ export const pushProductsBestsellers = (limit) => {
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Bestsellers)
                 .length;
 
-            const response = await Api.getBestsellers(limit, loaded);
+            const response = await Api.Products.getBestsellers(limit, loaded);
             if (response.status === 200) {
                 console.log("pushProductsBestsellers success", response.data);
                 dispatch(bestsellersPushed(response.data));
@@ -75,7 +75,7 @@ export const pushProductNovelties = (limit) => {
             const loaded = Utils.Data.filterProductsByCategory(state.productsState.products, Categories.Novelties)
                 .length;
 
-            const response = await Api.getNovelties(limit, loaded);
+            const response = await Api.Products.getNovelties(limit, loaded);
             if (response.status === 200) {
                 dispatch(noveltiesPushed(response.data));
                 console.log("pushProductNovelties success", response.data);
@@ -104,7 +104,7 @@ export const setFavoriteProducts = (limit, offset = 0, responseCallback) => {
         try {
             dispatch(productsIsFetching(true));
 
-            const response = await Api.getFavoriteProducts(limit, offset);
+            const response = await Api.Products.getFavoriteProducts(limit, offset);
             if (response.status === 200) {
                 dispatch(productsSet(response.data.products));
                 dispatch(productsOnServerQtySet(response.data.totalQty))
@@ -134,7 +134,7 @@ export const pushFavoriteProducts = (limit) => {
                 .filter(x => x.product.isFavorite)
                 .length;
 
-            const response = await Api.getFavoriteProducts(limit, loaded);
+            const response = await Api.Products.getFavoriteProducts(limit, loaded);
             if (response.status === 200) {
                 console.log("pushFavoriteProducts success", response.data);
                 dispatch(productsPushed(response.data.products));
@@ -161,7 +161,7 @@ export const productFavoriteToggle = (productId) => {
             const product = state.productsState.products.find(x => x.product.id === productId);
 
             if (product) {
-                const response = await Api.product.setProductFavoriteFlag(productId, !product.product.isFavorite);
+                const response = await Api.Products.setProductFavoriteFlag(productId, !product.product.isFavorite);
                 if (response.status === 200) {
                     dispatch(productFavoriteToggled(productId));
                     console.log("productFavoriteToggle success", response.data);
@@ -189,7 +189,7 @@ export const loadProductsByCollection = (collectionId, limit, offset= 0) => {
         try {
             dispatch(productsIsFetching(true));
 
-            const response = await Api.getProductsByCollection(collectionId, limit, offset);
+            const response = await Api.Products.getProductsByCollection(collectionId, limit, offset);
 
             if (response.status === 200) {
                 dispatch(productsSet(response.data.products));
@@ -216,12 +216,12 @@ export const setRandomProducts = (qty) => {
         try {
             dispatch(productsIsFetching(true));
             // TODO: исправить через запрос на пачку по массиву коллекций
-            const response = await Api.getCollectionsNotEmpty(qty);
+            const response = await Api.Collections.getCollectionsNotEmpty(qty);
             const {collections} = response.data;
 
             const products = [];
             for (const coll of collections) {
-                const {data: productsData} = await Api.getProductsByCollection(coll.id, 1);
+                const {data: productsData} = await Api.Products.getProductsByCollection(coll.id, 1);
                 if (productsData.products.length)
                     products.push(productsData.products[0]);
             }

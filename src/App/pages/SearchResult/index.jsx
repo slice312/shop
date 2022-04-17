@@ -23,19 +23,16 @@ export const SearchResult = () => {
     const [pageIndex, setPageIndex] = React.useState(0);
 
 
-    // TODO: в санки закинуть
     const fetchProducts = async () => {
         if (!result?.matches?.length)
             return;
         try {
-            // TODO: какая-то херня, в консоле 2 POST запроса логируется, а эта надпись только 1 раз
-            console.log("LOAD SUKA pageIndex", pageIndex);
             const ids = lo.chain(result.matches)
                 .drop(pageIndex * PAGE_SIZE)
                 .take(PAGE_SIZE)
                 .map(x => x.id);
 
-            const response = await Api.getProductsByIds(ids);
+            const response = await Api.Products.getProductsByIds(ids);
             if (response.status === 200) {
                 dispatch(productsSet(response.data));
                 console.log("getProductsByIds success", response.data);

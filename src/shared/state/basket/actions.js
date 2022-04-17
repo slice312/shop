@@ -64,7 +64,7 @@ export const loadProductsFromBasket = () => {
         try {
             const {basket} = getState();
             const productIds = lo.uniq(basket.items.map(x => x.productId));
-            const response = await Api.getProductsByIds(productIds);
+            const response = await Api.Products.getProductsByIds(productIds);
             if (response.status === 200) {
                 dispatch(productsSet(response.data));
                 console.log("loadProductsFromBasket success", response.data);

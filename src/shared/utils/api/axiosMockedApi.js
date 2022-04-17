@@ -2,7 +2,6 @@ import MockAdapter from "axios-mock-adapter";
 import array from "lodash/array";
 import lo from "lodash";
 import {DB} from "src/assets/mock/db";
-import {number} from "prop-types";
 
 // TODO: новости надо ограничить
 export const mockIt = (instance) => {
@@ -13,7 +12,6 @@ export const mockIt = (instance) => {
         });
 
 
-    //TODO: найти либу для парса
     const parseQueryLimitOffsetParams = (config) => {
         const params = /limit=(\d+)&offset=(\d+)/
             .exec(config.url);
@@ -49,7 +47,7 @@ export const mockIt = (instance) => {
 
 
     /**
-     * @link {Api.getProductsByCollection}
+     * @link {Api.Products.getProductsByCollection}
      */
     mockApi
         .onGet(/products\/collection\/.+/)
@@ -76,7 +74,7 @@ export const mockIt = (instance) => {
 
 
     /**
-     * @link {Api.getCollections}
+     * @link {Api.Collections.getCollections}
      */
     mockApi
         .onGet(/collections\?(?!notEmpty)/)
@@ -94,7 +92,7 @@ export const mockIt = (instance) => {
 
 
     /**
-     * @link {Api.getCollectionsNotEmpty}
+     * @link {Api.Collections.getCollectionsNotEmpty}
      */
     mockApi
         .onGet(/collections\?notEmpty/)
@@ -133,7 +131,7 @@ export const mockIt = (instance) => {
 
 
     /**
-     * @link {Api.getFavoriteProducts}
+     * @link {Api.Products.getFavoriteProducts}
      */
     mockApi
         .onGet(/products\/favorites/)
@@ -165,12 +163,13 @@ export const mockIt = (instance) => {
         });
 
 
-    // TODO поправить
-    // putRequestCallBack
+    /**
+     * {@link Api.Products.setProductFavoriteFlag}
+     */
     mockApi
         .onPut(/products\/.+\?favorite=.+/)
         .reply(config => {
-            const [_, productId, isFavorite] = /products\/(.+)\?favorite=(.+)/
+            const [, productId, isFavorite] = /products\/(.+)\?favorite=(.+)/
                 .exec(config.url);
             const product = DB.cards.find(x => x.id === productId);
             if (product) {
@@ -181,7 +180,7 @@ export const mockIt = (instance) => {
         });
 
     /**
-     * @link {Api.getProduct}
+     * @link {Api.Products.getProduct}
      */
     mockApi
         .onGet(/products\/(?!collection)/)
@@ -198,7 +197,7 @@ export const mockIt = (instance) => {
 
 
     /**
-     * @link {Api.getProductsByName}
+     * @link {Api.Products.getProductsByName}
      */
     mockApi
         .onGet(/products\?name=.*/)
@@ -216,7 +215,7 @@ export const mockIt = (instance) => {
         });
 
     /**
-     * @link {Api.getProductsByIds}
+     * @link {Api.Products.getProductsByIds}
      */
     mockApi
         .onPost(/products\/get\?limit=.+&offset=.+/)

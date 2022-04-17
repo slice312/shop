@@ -3,9 +3,8 @@
 
 
 .root {
-    display: flex;
-    flex-direction: column;
     padding-top: 12px;
+    background-color: $colorMainBackground;
 
 
     .title {
@@ -14,8 +13,5 @@
     }
 
     .news {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
     }
 }

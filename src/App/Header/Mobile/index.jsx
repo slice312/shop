@@ -1,6 +1,8 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+
+import {Utils} from "src/shared/utils"
 import css from "./styles.module.scss";
 
 import menuIcon from "src/assets/icons/menu-burger.svg";
@@ -13,9 +15,13 @@ import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 export const Mobile = () => {
     const {headerLogo, mainPhoneNumber} = useSelector(state => state.commonSiteInfo);
 
-
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
     const [isSearchOpen, setIsSearchOpen] = React.useState(false)
+
+    const location = useLocation();
+    React.useEffect(() => void setIsMenuOpen(false), [location]);
+    const menuRef = React.useRef(null);
+    Utils.Hooks.useOutsideAlerter(menuRef, () => setIsMenuOpen(false));
 
     return (
         <div className={css.root}>
@@ -37,7 +43,7 @@ export const Mobile = () => {
             {
                 (isMenuOpen)
                     ? (<div className={css.menuDrawer}>
-                            <div className={css.menuContainer}>
+                            <div ref={menuRef} className={css.menuContainer} >
                                 <div className={css.menuHeader}>
                                     <div className={css.title}>Меню</div>
                                     <div className={css.icon24} onClick={() => setIsMenuOpen(false)}>

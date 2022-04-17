@@ -20,6 +20,7 @@ mockIt(axiosInstance); // TODO: удалить после реализации �
  * @property {string} email - Email
  * @property {string} telegramUrl - Ссылка на telegram
  * @property {string} whatsappUrl - Ссылка на whatsapp
+ * @property {string} instagramUrl - Ссылка на whatsapp
  */
 
 /**
@@ -280,38 +281,30 @@ const getAboutInfo = async () => {
     return await axiosInstance.get("about-info");
 };
 
-// TODO: ПОИСК https://stackoverflow.com/questions/51726391/how-to-create-a-search-field-in-reactjs
-// TODO: ПОИСК https://github.com/WebDevSimplified/React-Infinite-Scrolling/blob/master/src/useBookSearch.js
-// axios cancelation token
 
-
-// TODO: разбить на группы
-// TODO: тут у меня нейминг неправильный, всеему остальному коду не нужно знать какой http глагол использутся
-// поэтому просто переименовать на логичные именя описаывающие действия
 export const Api = {
     getHomeAdSlideImages,
 
-    getBestsellers,
-    getNovelties,
-    getProduct,
-    getProductsByCollection,
-    getCollections,
-    getCollectionsNotEmpty,
     getNews,
 
-    getProductsByName,
-    getProductsByIds,
-    getFavoriteProducts,
 
     Collections: {
-        getCollection
+        getCollections,
+        getCollection,
+        getCollectionsNotEmpty,
     },
 
-    Products: {},
-
-    product: {
-        setProductFavoriteFlag
+    Products: {
+        getBestsellers,
+        getNovelties,
+        setProductFavoriteFlag,
+        getProductsByCollection,
+        getProduct,
+        getProductsByName,
+        getProductsByIds,
+        getFavoriteProducts
     },
+
 
     SiteService: {
         sendRequestCallback,

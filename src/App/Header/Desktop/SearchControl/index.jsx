@@ -25,7 +25,7 @@ export const SearchControl = ({className}) => {
 
         (async () => {
             try {
-                const response = await Api.getProductsByName(text);
+                const response = await Api.Products.getProductsByName(text);
                 if (response.status === 200) {
                     setSearchResult(response.data);
                     console.log("getProductsByName success", response.data);
