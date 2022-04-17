@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import {Utils} from "src/shared/utils";
 import css from "./styles.module.scss";
+
 import arrowIcon from "src/assets/icons/arrow-right-white.svg";
 
 

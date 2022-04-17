@@ -4,6 +4,7 @@ import cn from "classnames";
 import lo from "lodash";
 
 import css from "./styles.module.scss";
+
 import arrowLeftIcon from "src/assets/icons/arrow-left-black.svg";
 import arrowRightIcon from "src/assets/icons/arrow-right-black.svg";
 

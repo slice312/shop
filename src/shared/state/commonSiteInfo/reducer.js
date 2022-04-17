@@ -14,6 +14,7 @@ const initialState = {
     email: "",
     telegramUrl: "",
     whatsappUrl: "",
+    instagramUrl: "" // TODO: добавить в футере в db.js и в typedef
 };
 
 

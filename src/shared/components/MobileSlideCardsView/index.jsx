@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import cn from "classnames";
 import {Swiper, SwiperSlide} from "swiper/react";
 import "swiper/scss";
 import array from "lodash/array";
+import cn from "classnames";
+
 import css from "./styles.module.scss";
 
 

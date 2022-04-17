@@ -1,0 +1,19 @@
+@import "src/shared/styles/global";
+
+
+.limitContainer {
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+}
+
+.headerContainer {
+    background-color: $colorWhite;
+}
+
+.contentContainer {
+    background-color: $colorMainBackground;
+}
+
+.footerContainer {
+    background-color: $colorPrimary;
+}

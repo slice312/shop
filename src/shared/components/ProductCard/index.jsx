@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import {ImageSlides} from "./ImageSlides";
 import css from "./styles.module.scss";
+
 import filledHearIcon from "src/assets/icons/filled-heart.svg";
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";
 
