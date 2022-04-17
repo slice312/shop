@@ -3,27 +3,45 @@ import {
     BASKET_RESET,
     BASKET_SET,
     BASKET_ITEM_SET,
-    BASKET_ITEM_REMOVED
+    BASKET_ITEM_REMOVED,
+    BASKET_CALCULATED
 } from "src/shared/state/actionTypes";
 
 
+
+
 /**
- * @typedef BasketItem
- * @property {string} productId - Id товара
- * @property {string} color - Цвет товара
- * @property {number} qty - Кол-во
+ * @typedef BasketInfo
+ * @property {number} productsModelQty - Кол-во линеек
+ * @property {number} productsQty - Кол-во товаров
+ * @property {number} amount - Общая сумма заказа
+ * @property {number} discountAmount - Общая сумма скидки
  */
+
 /**
  * @property {BasketItem[]} items
+ * @property {BasketInfo} basketInfo
  */
 const initialState = {
-    items: []
+    items: [],
+    basketInfo: {
+        productsModelQty: 0,
+        productsQty: 0,
+        amount: 0,
+        discountAmount: 0
+    }
 };
 
 
 const caseBasketReset = (state, action) => ({
     ...state,
-    items: []
+    items: [],
+    basketInfo: {
+        productsModelQty: 0,
+        productsQty: 0,
+        amount: 0,
+        discountAmount: 0
+    }
 });
 
 const caseBasketSet = (state, action) => ({
@@ -67,11 +85,18 @@ const caseBasketItemRemoved = (state, action) => {
 };
 
 
+const caseBasketCalculated = (state, action) => ({
+    ...state,
+    basketInfo: action.payload
+});
+
+
 export const basketReducer = createReducer(initialState, builder => {
     return builder
         .addCase(BASKET_RESET, caseBasketReset)
         .addCase(BASKET_SET, caseBasketSet)
         .addCase(BASKET_ITEM_SET, caseBasketItemSet)
         .addCase(BASKET_ITEM_REMOVED, caseBasketItemRemoved)
+        .addCase(BASKET_CALCULATED, caseBasketCalculated)
         .addDefaultCase(state => state);
 });

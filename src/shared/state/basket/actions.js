@@ -3,7 +3,8 @@ import {
     BASKET_RESET,
     BASKET_SET,
     BASKET_ITEM_SET,
-    BASKET_ITEM_REMOVED
+    BASKET_ITEM_REMOVED,
+    BASKET_CALCULATED
 } from "src/shared/state/actionTypes";
 import {productsSet} from "src/shared/state/products/actions";
 import {Api} from "src/shared/utils/api";
@@ -25,6 +26,11 @@ export const basketItemSet = (item) => ({type: BASKET_ITEM_SET, payload: item});
  * @param {BasketItem} item
  */
 export const basketItemRemoved = (item) => ({type: BASKET_ITEM_REMOVED, payload: item});
+
+/**
+ * @param {BasketInfo} basketInfo
+ */
+export const basketCalculated = (basketInfo) => ({type: BASKET_CALCULATED, payload: basketInfo});
 
 
 /**
@@ -67,5 +73,36 @@ export const loadProductsFromBasket = () => {
         } catch (err) {
             console.error("loadProductFromBasket", err);
         }
+    };
+};
+
+
+export const calculateBasket = () => {
+    return (dispatch, getState) => {
+
+        const state = getState();
+        const basketItems =  state.basket.items;
+        const productsInfo = state.productsState.products;
+
+        const productsModelQty = productsInfo.length;
+        let productsQty = 0;
+        let amount = 0;
+        let discountAmount = 0
+
+        for (const item of basketItems) {
+            productsQty += item.qty;
+            const info = productsInfo.find(x => x.product.id === item.productId);
+            if (info) {
+                amount += info.product.price * item.qty;
+                discountAmount += info.product.price * info.product.discount / 100 * item.qty;
+            }
+        }
+
+        dispatch(basketCalculated({
+            productsModelQty,
+            productsQty,
+            amount,
+            discountAmount
+        }));
     };
 };

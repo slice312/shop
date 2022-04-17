@@ -22,10 +22,11 @@ const countryCodes = {
 
 
 const propTypes = {
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    onCreateOrder: PropTypes.func.isRequired
 };
 
-export const ModalOrder = ({onClose}) => {
+export const ModalOrder = ({onClose, onCreateOrder}) => {
     const [selected, setSelected] = React.useState("KG");
 
     const nameRef = React.useRef(null);
@@ -49,6 +50,17 @@ export const ModalOrder = ({onClose}) => {
     const makeOrder = () => {
         const isOk = validate();
         setSuccess(isOk);
+
+        if (isOk) {
+            onCreateOrder({
+                name: nameRef.current.value,
+                surname: surnameRef.current.value,
+                email: emailRef.current.value,
+                phone: `${countryCodes[selected]} ${phoneRef.current.value}`,
+                country: countryRef.current.value,
+                city: cityRef.current.value
+            });
+        }
     };
 
     const validate = () => {
@@ -133,7 +145,6 @@ export const ModalOrder = ({onClose}) => {
                                                 countries={["KG", "RU", "KZ", "US", "GB"]}
                                                 customLabels={countryCodes}
                                                 selected={selected}
-
                                                 onSelect={(code) => setSelected(code)}
                                             />
                                         </div>

@@ -1,11 +1,17 @@
 import React from "react";
+import {BasketInfoPropType} from "src/shared/constants/propTypes";
 import css from "./styles.module.scss";
 import {ModalOrder} from "src/shared/components/modals/ModalOrder";
+import PropTypes from "prop-types";
 
 
-export const DesktopView = ({info, onMakeOrder}) => {
+const propTypes = {
+    info :BasketInfoPropType.isRequired,
+    onCreateOrder: PropTypes.func.isRequired
+};
+
+export const DesktopView = ({info, onCreateOrder}) => {
     const amountWithDiscount = info.amount - info.discountAmount;
-
 
     return (
         <div className={css.root}>
@@ -39,10 +45,12 @@ export const DesktopView = ({info, onMakeOrder}) => {
             </div>
 
             <div className={css.buttonDiv}>
-                <button type="button" onClick={onMakeOrder}>
+                <button type="button" onClick={onCreateOrder}>
                     Оформить заказ
                 </button>
             </div>
         </div>
     );
 };
+
+DesktopView.propTypes = propTypes;

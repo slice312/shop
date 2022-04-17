@@ -73,6 +73,24 @@ mockIt(axiosInstance); // TODO: удалить после реализации �
  */
 
 /**
+ * @typedef OrderInfo - Информация о заказе
+ * @property {string} name - Имя
+ * @property {string} surname - Фамилия
+ * @property {string} email - Email
+ * @property {string} phone - Телефон
+ * @property {string} country - Страна
+ * @property {string} city - Город
+ */
+
+/**
+ * @typedef BasketItem
+ * @property {string} productId - Id товара
+ * @property {string} color - Цвет товара
+ * @property {number} qty - Кол-во
+ */
+
+
+/**
  * @typedef ProductsResponse
  * @property {ProductInfo[]} products
  * @property {number} totalQty
@@ -217,6 +235,20 @@ const sendRequestCallback = async (phoneNumber, name) => {
 };
 
 /**
+ * Заказать товары
+ * @param {OrderInfo} orderInfo
+ * @param {BasketItem[]} basketItems
+ * @return Promise<AxiosResponse<string>>
+ */
+const sendOrderInfo = async (orderInfo, basketItems) => {
+    return await axiosInstance.post("order", {
+        orderInfo,
+        basketItems
+    });
+};
+
+
+/**
  * Получение общей информации о сайте.
  * @return {Promise<AxiosResponse<CommonSiteInfo>>}
  */
@@ -275,9 +307,7 @@ export const Api = {
         getCollection
     },
 
-    Products: {
-
-    },
+    Products: {},
 
     product: {
         setProductFavoriteFlag
@@ -285,6 +315,7 @@ export const Api = {
 
     SiteService: {
         sendRequestCallback,
+        sendOrderInfo,
         getCommonSiteInfo,
         getPublicOffer,
         getFaq,

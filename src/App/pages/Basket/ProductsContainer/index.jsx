@@ -6,7 +6,7 @@ import {
     basketItemRemoved,
     basketItemSet
 } from "src/shared/state/basket/actions";
-import {calculateBasket} from "src/shared/state/order/actions";
+import {calculateBasket} from "src/shared/state/basket/actions";
 import {BasketItemView} from "./BasketItemView";
 import css from "./styles.module.scss";
 

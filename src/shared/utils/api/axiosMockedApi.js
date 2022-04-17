@@ -242,6 +242,14 @@ export const mockIt = (instance) => {
         .reply(config => [200, {message: "success"}]);
 
     /**
+     * @link {Api.SiteService.sendOrderInfo}
+     */
+    mockApi
+        .onPost(/order/)
+        .reply(config => [200, {message: "success"}]);
+
+
+    /**
      * @link {Api.SiteService.getCommonSiteInfo}
      */
     mockApi
