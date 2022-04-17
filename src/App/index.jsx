@@ -8,6 +8,8 @@ import {restoreBasket} from "src/shared/state/basket/actions";
 import {Router} from "./Router";
 import {FloatButtons} from "src/App/FloatButtons";
 import {Header} from "./Header";
+import {BreadcrumbsProvider} from "src/shared/components/Breadcrumbs"
+import {Breadcrumbs} from "./BreadCrumbs";
 import {Footer} from "./Footer";
 import css from "./styles.module.scss";
 
@@ -24,14 +26,17 @@ export const App = () => {
 
 
     return (
-        <React.Fragment>
+        <BreadcrumbsProvider>
             <FloatButtons/>
 
             <div className={css.headerContainer}>
                 <div className={css.limitContainer}>
                     <Header/>
+                    <Breadcrumbs/>
                 </div>
             </div>
+
+
 
             <div className={css.contentContainer}>
                 <div className={css.limitContainer}>
@@ -49,7 +54,7 @@ export const App = () => {
                     }
                 </div>
             </div>
-        </React.Fragment>
+        </BreadcrumbsProvider>
     );
 };
 

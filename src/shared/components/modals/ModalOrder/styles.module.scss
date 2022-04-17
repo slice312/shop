@@ -61,7 +61,7 @@
 
             .fieldLabel {
                 width: 100%;
-                @include font-default(13px, 500, 15.95px, $textColorGray);
+                @include font-default(13px, 500, 15.85px, $textColorGray);
 
                 &.errorFieldLabel {
                     color: $colorRed;
@@ -181,6 +181,44 @@
     .root {
         .container {
             width: 90%;
+
+            .header {
+                .title {
+                    @include font-default(16px, 600, 19.5px);
+                }
+            }
+
+            .body {
+                .fieldLabel {
+                    @include font-default(12px, 400, 14.63px, $textColorGray);
+                }
+
+                .inputField {
+                    @include font-default(12px, 500, 14.63px);
+                }
+
+                .phoneField {
+                    .inputWrap {
+                        .dropDownWrap {
+                            span {
+                                @include font-default(12px, 500, 14.63px);
+                            }
+                        }
+                    }
+                }
+
+
+                .checkbox {
+
+                    span {
+                        @include font-face("Inter", 12px, 500, 14.52px);
+                    }
+
+                    a {
+                        @include font-face("Inter", 12px, 500, 14.52px, #2F80ED);
+                    }
+                }
+            }
         }
     }
 }

@@ -18,3 +18,15 @@
         word-wrap:break-word;
     }
 }
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        padding-left: 10px;
+        padding-top: 10px;
+
+        .title {
+            @include font-default(17px, 500, 21px);
+        }
+    }
+}

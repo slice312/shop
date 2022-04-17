@@ -8,6 +8,7 @@ import {Api} from "src/shared/utils/api";
 import {Description} from "./Description";
 import {SimilarProducts} from "./SimilarProducts";
 import css from "./styles.module.scss";
+import {useBreadcrumbs} from "../../../shared/components/Breadcrumbs";
 
 
 const PRODUCTS_LIMIT = 5
@@ -44,6 +45,21 @@ export const Product = () => {
 
 
     const mainProduct = lo.first(products);
+
+    const breadcrumbs = useBreadcrumbs();
+    React.useEffect(() => {
+        if (mainProduct) {
+            (async () => {
+                const response = await Api.Collections.getCollection(mainProduct.product.collectionId);
+                const data = response.data;
+                const collectionsCrumb = {title: "Коллекции", url: "collections"};
+                const collectionCrumb = {title: data.title, url: `collections/${data.id}`};
+                const productCrumb = {title: mainProduct.product.title, url: `products/${mainProduct.product.id}`};
+                breadcrumbs.setCrumbs(collectionsCrumb, collectionCrumb, productCrumb);
+            })();
+        }
+    }, [products]);
+
 
     return (
         <div className={css.root}>

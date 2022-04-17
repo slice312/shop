@@ -1,0 +1,54 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    background-color: $colorWhite;
+
+    .container {
+        height: 60px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .delimiter {
+            margin: 0 16px;
+            @include font-default(14px, 500, 17.07px);
+        }
+
+
+        .crumb {
+            a {
+                @include font-default(14px, 500, 17.07px);
+                text-decoration: none;
+            }
+
+            &.active a {
+                color: $textColorGray;
+            }
+        }
+    }
+}
+
+
+@media (max-width: $md4 + px) {
+    .root {
+        .container {
+            height: 64px;
+            padding: 22px 16px;
+            overflow: scroll;
+            overflow-anchor: none;
+            .delimiter {
+                @include font-default(12px, 500, 14.63px);
+            }
+
+            .crumb {
+                white-space: nowrap;
+
+                a {
+                    @include font-default(12px, 500, 14.63px);
+                }
+            }
+        }
+    }
+}

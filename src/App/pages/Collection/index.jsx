@@ -6,6 +6,7 @@ import lo from "lodash";
 
 import {loadProductsByCollection} from "src/shared/state/products/actions";
 import {Api} from "src/shared/utils/api";
+import {useBreadcrumbs} from "src/shared/components/Breadcrumbs";
 import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import {PaginationControl} from "src/shared/components/PaginationControl";
@@ -17,7 +18,8 @@ const PAGE_SIZE = (isMobile) ? 4 : 12;
 
 
 export const Collection = () => {
-    const {id: collectionId} = useParams();
+    const params = useParams();
+    const collectionId = params.id;
     const dispatch = useDispatch();
 
     const {products, totalQtyOnServer} = useSelector(state => state.productsState);
@@ -40,7 +42,13 @@ export const Collection = () => {
         dispatch(loadProductsByCollection(collectionId, PAGE_SIZE, pageIndex * PAGE_SIZE));
     }, [dispatch, pageIndex]);
 
+
     const productsByCollection = products.filter(x => x.product.collectionId === collectionId);
+
+    const breadcrumbs = useBreadcrumbs();
+    React.useEffect(() => {
+        breadcrumbs.setCrumbs({title: collection.title, url: `collections/${collection.id}`});
+    }, [collection, params]);
 
 
     return (
