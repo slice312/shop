@@ -1,27 +1,25 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Modal} from "react-bootstrap";
-import cn from "classnames";
-import lo from "lodash";
+import {isMobile} from "react-device-detect";
 
+import {productFavoriteToggle} from "src/shared/state/products/actions";
 import {basketItemSet} from "src/shared/state/basket/actions";
 import {Utils} from "src/shared/utils";
-import css from "./styles.module.scss"
 
-import shoppingBagIcon from "src/assets/icons/shopping-bag-white.svg";
-import filledHeartIcon from "src/assets/icons/filled-heart-white.svg";
-import emptyHeartIcon from "src/assets/icons/empty-heart-white.svg";
+const MobileView = React.lazy(() => import("./MobileView")
+    .then(module => ({default: module.MobileView})));
+
+const DesktopView = React.lazy(() => import("./DesktopView")
+    .then(module => ({default: module.DesktopView})));
 
 
-export const Description = ({product, onChangedFavorite}) => {
-    const {navigateToBasket} = Utils.Hooks.useProjectNavigation();
-
+export const Description = ({product}) => {
     const dispatch = useDispatch();
     const basketItems  = useSelector(state => state.basket.items);
 
-    const [selectedImage, setSelectedImage] = React.useState("");
     const [selectedColor, setSelectedColor] = React.useState("");
     const [inBasket, setInBasket] = React.useState(false);
+
 
     React.useEffect(() => {
         if (product.colors?.length)
@@ -36,8 +34,7 @@ export const Description = ({product, onChangedFavorite}) => {
     }, [selectedColor]);
 
 
-
-    const openImage = (imgSrc) => setSelectedImage(imgSrc);
+    const {navigateToBasket} = Utils.Hooks.useProjectNavigation();
 
     const addToBasketOrRedirect = () => {
         if (inBasket)
@@ -52,101 +49,30 @@ export const Description = ({product, onChangedFavorite}) => {
         }
     };
     
-    const priceWithDiscount = Math.round(product.price - product.price * product.discount / 100);
-
+    const onChangeFavorite = () => dispatch(productFavoriteToggle(product.id));
 
     return (
-        <React.Fragment>
-            <div className={css.root}>
-                <div className={css.column1}>
-                    {
-                        lo.take(product.images, 8)
-                            .map((x, i) =>
-                                <img key={i}
-                                     src={x} alt={x}
-                                     onClick={() => openImage(x)}
-                                />
-                            )
-                    }
-                </div>
-                <div className={css.column2}>
-                    <div className={css.title}>
-                        {product.title}
-                    </div>
-                    <div className={css.vendor}>
-                        <span className={css.vendorLabel}>Артикул:</span>
-                        <span className={css.vendorValue}>{product.vendorCode}</span>
-                    </div>
-                    <div className={css.color}>
-                        <span className={css.colorLabel}>Цвет:</span>
-                        <span className={css.colorButtons}>
-                        {
-                            product.colors?.map((x, i) =>
-                                <div key={i} className={cn(css.buttonDiv, x === selectedColor ? css.active : null)}>
-                                    <button type="button"
-                                            style={{backgroundColor: x}}
-                                            onClick={() => setSelectedColor(x)}
-                                    />
-                                </div>
-                            )
-                        }
-                    </span>
-                    </div>
-                    <div className={css.price}>
-                        <span>{priceWithDiscount || 0}</span>
-                        <span className={css.oldPrice}>{product.price || 0} с</span>
-                    </div>
-                    <div className={css.description}>
-                        <div className={css.title}>О товаре:</div>
-                        <div className={css.text}>{product.description}</div>
-                    </div>
-                    <div className={css.props}>
-                        <div>
-                            <div>
-                                <span className={css.propsLabel}>Размерный ряд:</span>
-                                <span className={css.propsValue}>{product.size}</span>
-                            </div>
-                            <div>
-                                <span className={css.propsLabel}>Количество в линейке:</span>
-                                <span className={css.propsValue}>{product.qty}</span>
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                <span className={css.propsLabel}>Состав ткани:</span>
-                                <span className={css.propsValue}>{product.fabricStructure}</span>
-                            </div>
-                            <div>
-                                <span className={css.propsLabel}>Материал:</span>
-                                <span className={css.propsValue}>{product.material}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={css.buttons}>
-                        <div className={cn(css.buttonShoppingBag, css.buttonHovered)}
-                             onClick={addToBasketOrRedirect}
-                        >
-                            <img src={shoppingBagIcon} alt="shoppingBagIcon"/>
-                            <span>
-                                {inBasket ? "Перейти в корзину" : "Добавить в корзину"}
-                            </span>
-                        </div>
-                        <div className={cn(css.buttonFavorite, css.buttonHovered)} onClick={onChangedFavorite}>
-                            {
-                                product.isFavorite
-                                    ? <img src={filledHeartIcon} alt="filledHeartIcon"/>
-                                    : <img src={emptyHeartIcon} alt="emptyHeartIcon"/>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <React.Suspense fallback={null}>
             {
-                <Modal show={!!selectedImage}
-                       onHide={() => setSelectedImage("")}>
-                    <img src={selectedImage} alt={selectedImage}/>
-                </Modal>
+                isMobile
+                    ? <MobileView
+                        product={product}
+                        selectedColor={selectedColor}
+                        inBasket={inBasket}
+                        onChangeColor={color => setSelectedColor(color)}
+                        onChangeFavorite={onChangeFavorite}
+                        addToBasketOrRedirect={addToBasketOrRedirect}
+                    />
+                    : <DesktopView
+                        product={product}
+                        selectedColor={selectedColor}
+                        inBasket={inBasket}
+                        onChangeColor={color => setSelectedColor(color)}
+                        onChangeFavorite={onChangeFavorite}
+                        addToBasketOrRedirect={addToBasketOrRedirect}
+                    />
             }
-        </React.Fragment>
+
+        </React.Suspense>
     );
 };

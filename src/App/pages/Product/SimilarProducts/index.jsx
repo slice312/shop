@@ -15,7 +15,7 @@ export const SimilarProducts = ({products}) => {
             </div>
             {
                 isMobile
-                    ? (<MobileSlideCardsView className={""}
+                    ? (<MobileSlideCardsView className={css.mobileCardContainer}
                                              products={products}
                                              CardElement={ProductCardWrapper}
                                              chunkSize={5}

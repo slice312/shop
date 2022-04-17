@@ -1,0 +1,184 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+
+.root {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .column1 {
+        width: 624px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        img {
+            margin-bottom: 10px;
+            width: 308px;
+            height: 492px;
+
+            &:nth-child(n+5) {
+                width: 150px;
+                height: 240px;
+            }
+
+            @include hoverCard;
+        }
+    }
+
+    .column2 {
+        .container {
+            width: 520px;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            background-color: $colorWhite;
+
+            .title {
+                @include font-default(24px, 500, 29.26px);
+            }
+
+            .vendor {
+                margin-top: 18px;
+
+                .vendorLabel {
+                    @include font-default(14px, 500, 14px);
+                }
+
+                .vendorValue {
+                    margin-left: 6px;
+                    @include font-default(14px, 400, 14px);
+                }
+            }
+
+            .color {
+                margin-top: 12px;
+                display: flex;
+                flex-direction: row;
+
+                .colorLabel {
+                    @include font-default(14px, 500, 17.07px);
+                }
+
+                .colorButtons {
+                    margin-left: 5px;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 12px;
+
+                    .buttonDiv {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 18px;
+                        height: 18px;
+
+                        button {
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 6px;
+                            border: 1px solid #D1D1D1;
+                        }
+
+                        &.active {
+                            border: 1px solid #D6D6D6;
+                        }
+                    }
+                }
+            }
+
+            .price {
+                margin-top: 18px;
+                @include font-default(24px, 400, 29.26px);
+
+                .oldPrice {
+                    margin-left: 6px;
+                    @include font-default(16px, 500, 19.5px, $textColorGray);
+                    text-decoration: line-through;
+                }
+            }
+
+            .description {
+                margin-top: 18px;
+
+                .title {
+                    @include font-default(16px, 500, 19.5px);
+                }
+
+                .text {
+                    margin-top: 6px;
+                    @include font-default(14px, 400, 25.2px, #6A6A6A);
+                }
+            }
+
+            .props {
+                margin-top: 16px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                .propsLabel {
+                    @include font-default(14px, 500, 17.07px);
+                }
+
+                .propsValue {
+                    margin-left: 6px;
+                    @include font-default(14px, 400, 17.07px);
+                }
+            }
+
+            .buttons {
+                margin-top: 20px;
+                display: flex;
+                flex-direction: row;
+
+                img {
+                    width: 24px;
+                    height: 21px;
+                }
+
+                .buttonHovered {
+                    @include ifHover {
+                        &:hover {
+                            background-color: $colorGray;
+
+                            span {
+                                color: $textColorPrimary;
+                            }
+
+                            img {
+                                filter: brightness(45%);
+                            }
+                        }
+                    }
+                }
+
+                .buttonShoppingBag {
+                    width: 428px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: $colorPrimary;
+
+                    span {
+                        margin-left: 5px;
+                        @include font-default(14px, 500, 17.07px, $colorWhite);
+                    }
+                }
+
+                .buttonFavorite {
+                    margin-left: 6px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 10px;
+                    background-color: $colorPrimary;
+                }
+            }
+        }
+    }
+}

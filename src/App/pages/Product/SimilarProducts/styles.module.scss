@@ -3,24 +3,35 @@
 
 
 .root {
+    margin-top: 32px;
+
     .title {
         @include font-default(24px, 500, 29.26px);
     }
 
     .cardContainer {
         margin-top: 16px;
-        margin-bottom: 64px;
         display: flex;
         flex-direction: row;
         gap: 8px;
+    }
+
+    .mobileCardContainer {
     }
 }
 
 
 @media (max-width: $md4 + px) {
     .root {
+        margin-right: -16px;
+
         .title {
+            text-align: center;
             @include font-default(18px, 500, 21.94px);
+        }
+
+        .mobileCardContainer {
+            margin-top: 16px;
         }
     }
 }

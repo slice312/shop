@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import lo from "lodash";
 
-import {productFavoriteToggle, productsSet} from "src/shared/state/products/actions";
+import {productsSet} from "src/shared/state/products/actions";
 import {Api} from "src/shared/utils/api";
 import {Description} from "./Description";
 import {SimilarProducts} from "./SimilarProducts";
@@ -12,8 +12,7 @@ import css from "./styles.module.scss";
 
 const PRODUCTS_LIMIT = 5
 
-// TODO: тут надо отдельно сделать компонент для мобилки
-// TODO: стили щрифты проверить, падинги проблема
+
 export const Product = () => {
     const params = useParams();
     const dispatch = useDispatch();
@@ -48,9 +47,7 @@ export const Product = () => {
 
     return (
         <div className={css.root}>
-            <Description product={mainProduct?.product ?? {}}
-                         onChangedFavorite={() => dispatch(productFavoriteToggle(mainProduct.product.id))}
-            />
+            <Description product={mainProduct?.product ?? {}}/>
             <SimilarProducts products={lo.drop(products, 1)}/>
         </div>
     );
