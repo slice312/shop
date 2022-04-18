@@ -83,12 +83,12 @@
                     flex-direction: column;
                     gap: 20px;
                     padding-top: 14px;
-
                     border-top: 1px solid #D3D3D3;
 
                     div {
                         display: flex;
                         align-items: center;
+
                         img {
                             width: 16px;
                             height: 16px;
@@ -115,7 +115,11 @@
 
                     .value {
                         margin-left: 6px;
-                        @include font-default(15px, 400, 18.29px);
+
+                        a {
+                            @include font-default(15px, 400, 18.29px);
+                            text-decoration: none;
+                        }
                     }
                 }
             }

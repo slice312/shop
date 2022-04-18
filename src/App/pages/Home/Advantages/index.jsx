@@ -1,14 +1,26 @@
 import React from "react";
+import lo from "lodash";
+
+import {Api} from "src/shared/utils/api";
 import {AdvantageCard} from "./AdvantageCard";
 import css from "./styles.module.scss";
 
-import payMoneyIcon from "src/assets/icons/pay-money.svg";
-import truckIcon from "src/assets/icons/truck.svg";
-import supportIcon from "src/assets/icons/support.svg";
-import shoppingBagIcon from "src/assets/icons/shopping-bag-2.svg";
-
 
 export const Advantages = () => {
+    const [cards, setCards] = React.useState([]);
+
+    React.useEffect(() => {
+        (async () => {
+            try {
+                const response = await Api.Common.getUsAdvantages();
+                setCards(lo.take(response.data, 4));
+            } catch (err) {
+                console.error("getUsAdvantages", err);
+            }
+        })();
+    }, []);
+
+
     return (
         <div className={css.root}>
             <div className={css.title}>
@@ -22,27 +34,3 @@ export const Advantages = () => {
         </div>
     );
 };
-
-
-const cards = [
-    {
-        title: "Удобные способы оплаты",
-        image: payMoneyIcon,
-        description: "Мы предлагаем возможность безналичной оплаты"
-    },
-    {
-        title: "Cвоевременная доставка",
-        image: truckIcon,
-        description: "100% гарантия возврата товара - 14 дней на возврат, без скандалов и истерик."
-    },
-    {
-        title: "Профессиональная консультация",
-        image: supportIcon,
-        description: "Мы проконсультируем и индивидуально подойдем к Вашему заказу"
-    },
-    {
-        title: "Акции и бонусы для покупателей",
-        image: shoppingBagIcon,
-        description: "Промокоды со скидками для постоянных клиентов, акции на новые позиции"
-    }
-];

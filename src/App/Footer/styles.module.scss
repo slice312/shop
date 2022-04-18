@@ -35,7 +35,6 @@
             }
 
             .contacts {
-
             }
 
             .social {
@@ -47,7 +46,7 @@
 
             .blockTitle {
                 margin-bottom: 16px;
-                @include font-default(16px, 600, 19.5px, $colorWhite);
+                @include font-default(16px, 600, 19.5px, $textColorWhite);
             }
 
             .blockItem {
@@ -55,7 +54,12 @@
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                @include font-default(14px, 400, 17.07px, $colorWhite);
+                @include font-default(14px, 400, 17.07px, $textColorWhite);
+
+                a {
+                    @include font-default(14px, 400, 17.07px, $textColorWhite);
+                }
+
 
                 img {
                     margin-right: 6px;
@@ -65,7 +69,10 @@
 
                 @include ifHover {
                     &:hover {
-                        @include font-default(14px, 400, 17.07px, $colorGray);
+                        @include font-default(14px, 400, 17.07px, $textColorGray);
+                        a {
+                            @include font-default(14px, 400, 17.07px, $textColorGray);
+                        }
                         img {
                             filter: brightness(0.8);
                         }
@@ -99,11 +106,11 @@
                 .blockTitle {
                     margin-top: 24px;
                     margin-bottom: 18px;
-                    @include font-default(14px, 500, 17.07px, $colorWhite);
+                    @include font-default(14px, 500, 17.07px, $textColorWhite);
                 }
 
                 .blockItem {
-                    @include font-default(12px, 400, 14.63px, $colorWhite);
+                    @include font-default(12px, 400, 14.63px, $textColorWhite);
                 }
 
             }

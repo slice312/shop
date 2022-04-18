@@ -42,6 +42,13 @@ mockIt(axiosInstance); // TODO: удалить после реализации �
  */
 
 /**
+ * @typedef AdvantageInfo - Описание "Наших преимуществ"
+ * @property {string} title - Заголовок
+ * @property {string} image - Ссылка на изображение
+ * @property {string} description - Описание
+ */
+
+/**
  * @typedef NewsInfo - Новости
  * @property {string} title - Заголовок
  * @property {string} image - Ссылка на картинку
@@ -140,6 +147,14 @@ const getCommonSiteInfo = async () => {
  */
 const getAboutInfo = async () => {
     return await axiosInstance.get("about-info");
+};
+
+/**
+ * Получение "Наших преимуществ".
+ * @returns {Promise<AxiosResponse<AdvantageInfo[]>>}
+ */
+const getUsAdvantages = async () => {
+    return await axiosInstance.get("advantages");
 };
 
 /**
@@ -318,6 +333,7 @@ export const Api = {
         getNews,
         getCommonSiteInfo,
         getAboutInfo,
+        getUsAdvantages,
         getFaq,
         getPublicOffer
     },

@@ -70,7 +70,9 @@ export const Mobile = () => {
                                     <div>Свяжитесь с нами:</div>
                                     <div className={css.telephone}>
                                         <span className={css.label}>Тел:</span>
-                                        <span className={css.value}>{mainPhoneNumber}</span>
+                                        <span className={css.value}>
+                                            <a href={`tel:+${mainPhoneNumber}`}>{mainPhoneNumber}</a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>

@@ -31,20 +31,19 @@ export const Footer = () => {
                         <div className={css.blockTitle}>Контакты</div>
                         {
                             lo.take(info.extraPhoneNumbers, 2)
-                                .map((x, i) => {
+                                .map((phone, i) => {
                                         return (
                                             <div key={i} className={css.blockItem}>
                                                 <img src={telephoneIcon} alt={telephoneIcon}/>
-                                                <span>{x}</span>
+                                                <a href={`tel:+${phone}`}>{phone}</a>
                                             </div>
                                         );
                                     }
                                 )
                         }
-
                         <div className={css.blockItem}>
                             <img src={emailIcon} alt={emailIcon}/>
-                            <span>{info.email}</span>
+                            <a href={`mailto:${info.email}`}>{info.email}</a>
                         </div>
                     </div>
                     <div className={css.social}>

@@ -32,7 +32,7 @@ export const Desktop = () => {
                         Тел:
                     </span>
                     <span className={css.value}>
-                        {mainPhoneNumber}
+                        <a href={`tel:+${mainPhoneNumber}`}>{mainPhoneNumber}</a>
                     </span>
                 </div>
             </div>

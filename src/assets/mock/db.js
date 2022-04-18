@@ -1,3 +1,8 @@
+import payMoneyIcon from "src/assets/icons/pay-money.svg";
+import truckIcon from "src/assets/icons/truck.svg";
+import supportIcon from "src/assets/icons/support.svg";
+import shoppingBagIcon from "src/assets/icons/shopping-bag-2.svg";
+
 /**
  *
  * Пока загрузил картинки сюда https://trio-lyro.imgbb.com
@@ -9,7 +14,7 @@ const commonSiteInfo = {
     companyName: "Developed by Zeon 2022",
     headerLogo: `https://i.ibb.co/GccphHv/zeot-ithub-logo.png`,
     footerLogo: `https://i.ibb.co/kmBVMkG/zeot-ithub-logo-white.png`,
-    mainPhoneNumber: "+996 777 37 55 66",
+    mainPhoneNumber: "+996 777 38 27 50",
     extraPhoneNumbers: ["+996 500 123 456", "+996 555 123 456"],
     email: "zeon_shop@gmail.com",
     telegramUrl: `https://t.me/s/sputnik_kgz_main`,
@@ -54,6 +59,30 @@ const slides = [
         image: `https://i.ibb.co/MpsHH8m/slide1.png`,
         link: null
     },
+];
+
+
+const advantages = [
+    {
+        title: "Удобные способы оплаты",
+        image: payMoneyIcon,
+        description: "Мы предлагаем возможность безналичной оплаты"
+    },
+    {
+        title: "Cвоевременная доставка",
+        image: truckIcon,
+        description: "100% гарантия возврата товара - 14 дней на возврат, без скандалов и истерик."
+    },
+    {
+        title: "Профессиональная консультация",
+        image: supportIcon,
+        description: "Мы проконсультируем и индивидуально подойдем к Вашему заказу"
+    },
+    {
+        title: "Акции и бонусы для покупателей",
+        image: shoppingBagIcon,
+        description: "Промокоды со скидками для постоянных клиентов, акции на новые позиции"
+    }
 ];
 
 
@@ -1329,6 +1358,7 @@ export const DB = {
     commonSiteInfo,
     publicOfferText,
     slides,
+    advantages,
     cards,
     collections,
     news,

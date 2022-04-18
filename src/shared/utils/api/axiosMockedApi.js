@@ -60,6 +60,15 @@ const mockCommon = (mockApi) => {
         });
 
     /**
+     * @link {Api.Common.getUsAdvantages}
+     */
+    mockApi
+        .onGet(/advantages/)
+        .reply(config => {
+            return [200, DB.advantages];
+        });
+
+    /**
      * @link {Api.Common.getFaq}
      */
     mockApi

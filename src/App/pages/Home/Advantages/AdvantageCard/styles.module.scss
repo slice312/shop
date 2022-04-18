@@ -13,6 +13,11 @@
         flex-direction: column;
         align-items: center;
 
+        img {
+            width: 70px;
+            height: 70px;
+        }
+
         .title {
             margin-top: 28px;
             @include font-default(14px, 500, 17.07px);

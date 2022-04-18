@@ -31,7 +31,12 @@
 
             .value {
                 margin-left: 6px;
-                @include font-default(17px, 400, 20.72px);
+                cursor: pointer;
+
+                a {
+                    @include font-default(17px, 400, 20.72px);
+                    text-decoration: none;
+                }
             }
         }
     }
