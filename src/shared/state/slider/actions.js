@@ -12,7 +12,7 @@ export const slideImagesReceived = (slides) => ({type: HOME_AD_SLIDE_IMAGES_RECE
 export const loadHomeAdSlideImages = () => {
     return async (dispatch, getState) => {
         try {
-            const response = await Api.getHomeAdSlideImages();
+            const response = await Api.Common.getHomeAdSlideImages();
             if (response.status === 200) {
                 console.log("loadHomeAdSlideImages success", response.data);
                 dispatch(slideImagesReceived(response.data));

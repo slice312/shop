@@ -15,21 +15,42 @@ import {Categories} from "src/shared/constants";
 
 export const productsReset = () => ({type: PRODUCTS_RESET});
 
+/**
+ * @param {ProductInfo[]} products
+ */
 export const productsSet = (products) => ({type: PRODUCTS_SET, payload: products});
 
+/**
+ * @param {bool} isFetching
+ */
 const productsIsFetching = (isFetching) => ({type: PRODUCTS_IS_FETCHING, payload: isFetching});
 
+/**
+ * @param {number} qty
+ */
 const productsOnServerQtySet = (qty) => ({type: PRODUCTS_ON_SERVER_QTY_SET, payload: qty});
 
+/**
+ * @param {ProductInfo[]} products
+ */
 const productsPushed = (products) =>
     ({type: PRODUCTS_PUSHED, payload: products});
 
+/**
+ * @param {ProductInfo[]} products
+ */
 const bestsellersPushed = (products) =>
     ({type: PRODUCTS_BESTSELLERS_PUSHED, payload: products});
 
+/**
+ * @param {ProductInfo[]} products
+ */
 const noveltiesPushed = (products) =>
     ({type: PRODUCTS_NOVELTIES_PUSHED, payload: products});
 
+/**
+ * @param {string} productId
+ */
 const productFavoriteToggled = (productId) => ({type: PRODUCT_FAVORITE_TOGGLED, payload: productId});
 
 

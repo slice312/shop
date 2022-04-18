@@ -13,7 +13,7 @@ export const commonSiteInfoReceived = (info) =>
 export const loadCommonSiteInfo = () => {
     return async (dispatch, getState) => {
         try {
-            const response = await Api.SiteService.getCommonSiteInfo();
+            const response = await Api.Common.getCommonSiteInfo();
             if (response.status === 200) {
                 console.log("loadCommonSiteInfo success", response.data);
                 dispatch(commonSiteInfoReceived(response.data));

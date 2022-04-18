@@ -9,9 +9,11 @@ import {
     setRandomProducts
 } from "src/shared/state/products/actions";
 import {AdaptiveCardsView} from "src/shared/components/AdaptiveCardsView";
-import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
 import css from "./styles.module.scss";
+
+const MobileSlideCardsView = React.lazy(() => import("src/shared/components/MobileSlideCardsView")
+    .then(module => ({default: module.MobileSlideCardsView})));
 
 
 const PAGE_SIZE = (isMobile) ? 4 : 12;
@@ -81,7 +83,7 @@ export const InfiniteScrollContainer = ({products, onLoad}) => {
 
 export const RandomProductCardsView = ({products}) => {
     return (
-        <React.Fragment>
+        <React.Suspense fallback={null}>
             <div className={css.mayBeOffer}>
                 Возможно Вас заинтересует
             </div>
@@ -102,6 +104,6 @@ export const RandomProductCardsView = ({products}) => {
                         </div>
                     )
             }
-        </React.Fragment>
+        </React.Suspense>
     );
 };

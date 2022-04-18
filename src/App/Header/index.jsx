@@ -1,17 +1,22 @@
 import React from "react";
 import {isMobile} from "react-device-detect";
-import {Mobile} from "./Mobile";
-import {Desktop} from "./Desktop";
+
+const Mobile = React.lazy(() => import("./Mobile")
+    .then(module => ({default: module.Mobile})));
+
+const Desktop = React.lazy(() => import("./Desktop")
+    .then(module => ({default: module.Desktop})));
 
 
 export const Header = () => {
     return (
-        <React.Fragment>
+        <React.Suspense fallback={null}>
+
             {
                 isMobile
                     ? <Mobile/>
                     : <Desktop/>
             }
-        </React.Fragment>
+        </React.Suspense>
     );
 };

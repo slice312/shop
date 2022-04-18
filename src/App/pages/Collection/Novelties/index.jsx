@@ -7,8 +7,10 @@ import {pushProductNovelties} from "src/shared/state/products/actions";
 import {Categories} from "src/shared/constants";
 import {Utils} from "src/shared/utils";
 import {ProductCardWrapper} from "src/shared/components/ProductCardWrapper";
-import {MobileSlideCardsView} from "src/shared/components/MobileSlideCardsView";
 import css from "./styles.module.scss";
+
+const MobileSlideCardsView = React.lazy(() => import("src/shared/components/MobileSlideCardsView")
+    .then(module => ({default: module.MobileSlideCardsView})));
 
 
 const PRODUCTS_LIMIT = 5;
@@ -28,27 +30,29 @@ export const Novelties = () => {
 
 
     return (
-        <div className={css.root}>
-            <div className={css.title}>
-                Новинки
+        <React.Suspense fallback={null}>
+            <div className={css.root}>
+                <div className={css.title}>
+                    Новинки
+                </div>
+                {
+                    isMobile
+                        ? (<MobileSlideCardsView
+                                className={css.mobileCardContainer}
+                                products={novelties}
+                                CardElement={ProductCardWrapper}
+                                chunkSize={5}
+                            />
+                        )
+                        : (
+                            <div className={css.cardContainer}>
+                                {
+                                    novelties.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
+                                }
+                            </div>
+                        )
+                }
             </div>
-            {
-                isMobile
-                    ? (<MobileSlideCardsView
-                            className={css.mobileCardContainer}
-                            products={novelties}
-                            CardElement={ProductCardWrapper}
-                            chunkSize={5}
-                        />
-                    )
-                    : (
-                        <div className={css.cardContainer}>
-                            {
-                                novelties.map((x, i) => <ProductCardWrapper key={i} product={x.product}/>)
-                            }
-                        </div>
-                    )
-            }
-        </div>
+        </React.Suspense>
     );
 };

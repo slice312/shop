@@ -9,11 +9,11 @@ export const About = () => {
     React.useEffect(() => {
         (async () => {
             try {
-                const response = await Api.SiteService.getAboutInfo();
-                console.log("getAboutInfo success");
+                const response = await Api.Common.getAboutInfo();
                 setInfo(response.data);
+                console.log("getAboutInfo success");
             } catch (err) {
-                console.error("getAboutInfo error", err);
+                console.error("getAboutInfo", err);
             }
         })();
     }, []);
@@ -26,14 +26,14 @@ export const About = () => {
             <div className={css.images}>
                 <div className={css.column1}>
                     <div>
-                        <img src={img1} alt="womanHandImg"/>
+                        <img src={img1} alt={img1}/>
                     </div>
                     <div>
-                        <img src={img3} alt="womanBeachImg"/>
+                        <img src={img3} alt={img3}/>
                     </div>
                 </div>
                 <div className={css.column2}>
-                    <img src={img2} alt="womanFaceImg"/>
+                    <img src={img2} alt={img2}/>
                 </div>
             </div>
 

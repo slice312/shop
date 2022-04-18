@@ -6,7 +6,6 @@ import {basketReset} from "src/shared/state/basket/actions";
 import {Api} from "src/shared/utils/api";
 import {ModalOrder} from "src/shared/components/modals/ModalOrder";
 
-
 const MobileView = React.lazy(() => import("./MobileView")
     .then(module => ({default: module.MobileView})));
 
@@ -32,7 +31,7 @@ export const Info = () => {
 
     const sendOrder = async (orderInfo) => {
         try {
-            const response = await Api.SiteService.sendOrderInfo(orderInfo, basket.items);
+            const response = await Api.Service.sendOrderInfo(orderInfo, basket.items);
             dispatch(basketReset());
             return response.status === 200;
         }

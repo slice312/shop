@@ -13,11 +13,11 @@ export const Help = () => {
     React.useEffect(() => {
         (async () => {
             try {
-                const response = await Api.SiteService.getFaq();
+                const response = await Api.Common.getFaq();
                 console.log("getFaq success");
                 setFaqs(response.data);
             } catch (err) {
-                console.error("getFaq error", err);
+                console.error("getFaq", err);
             }
         })();
     }, []);
