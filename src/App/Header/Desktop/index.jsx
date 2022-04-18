@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import cn from "classnames";
 
 import {Utils} from "src/shared/utils";
-import {SearchControl} from "./SearchControl";
+import {SearchControl} from "src/shared/components/SearchControl";
 import css from "./style.module.scss";
 
 import emptyHeartIcon from "src/assets/icons/empty-heart.svg";

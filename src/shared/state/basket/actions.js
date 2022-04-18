@@ -59,6 +59,10 @@ export const restoreBasket = () => {
 };
 
 
+/**
+ * Загрузить товары с полным их описанием, по тем что лежат в корзине.
+ * В корзине лежат только id и color, без описания.
+ */
 export const loadProductsFromBasket = () => {
     return async (dispatch, getState) => {
         try {
@@ -77,6 +81,10 @@ export const loadProductsFromBasket = () => {
 };
 
 
+/**
+ * Подсчитать стоимость корзины.
+ * Поле {@link BasketInfo} basketInfo.
+ */
 export const calculateBasket = () => {
     return (dispatch, getState) => {
 

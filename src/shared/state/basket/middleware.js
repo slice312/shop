@@ -9,7 +9,6 @@ import {Utils} from "src/shared/utils";
 
 const caseBasketReset = () => {
     localStorage.clear();
-
 };
 
 const caseBasketSet = (action) => {
@@ -34,6 +33,9 @@ const caseBasketItemRemoved = (action) => {
 };
 
 
+/**
+ * MiddleWare для синхронизации состояния корзины с {@link localStorage}.
+ */
 export const basketMiddleWare = store => next => action => {
     if (action.type === BASKET_RESET)
         caseBasketReset();

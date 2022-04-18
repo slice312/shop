@@ -274,7 +274,7 @@ const getProductsByIds = async (productsIds, limit, offset = 0) => {
 /**
  * Добавление/удаление товара из избранных.
  * @param {string} productId - Id товара
- * @param {bool} isFavorite - Признак "Избранный"
+ * @param {boolean} isFavorite - Признак "Избранный"
  * @return {Promise<AxiosResponse<string>>}
  */
 const setProductFavoriteFlag = async (productId, isFavorite) => {

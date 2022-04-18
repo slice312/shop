@@ -21,7 +21,7 @@ export const productsReset = () => ({type: PRODUCTS_RESET});
 export const productsSet = (products) => ({type: PRODUCTS_SET, payload: products});
 
 /**
- * @param {bool} isFetching
+ * @param {boolean} isFetching
  */
 const productsIsFetching = (isFetching) => ({type: PRODUCTS_IS_FETCHING, payload: isFetching});
 
@@ -118,7 +118,7 @@ export const pushProductNovelties = (limit) => {
  * Загружает избранные товары, существующие удаляются.
  * @param {number} limit - Ограничение
  * @param {number?} offset - Смещение, по умолчанию 0
- * @param {function(AxiosResponse<ProductsResponse>)?} responseCallback
+ * @param {function(AxiosResponse<ProductsResponse>)?} responseCallback - Коллбек, который вызовется после успешного выполнения запроса
  */
 export const setFavoriteProducts = (limit, offset = 0, responseCallback) => {
     return async (dispatch, getState) => {
@@ -140,6 +140,7 @@ export const setFavoriteProducts = (limit, offset = 0, responseCallback) => {
         }
     };
 };
+
 
 /**
  * Загружает избранные товары, добавляет к существующим.

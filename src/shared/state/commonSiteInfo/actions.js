@@ -1,14 +1,15 @@
 import {COMMON_SITE_INFO_RECEIVED} from "src/shared/state/actionTypes";
 import {Api} from "src/shared/utils/api";
 
-
+/**
+ * @param {CommonSiteInfo} info
+ */
 export const commonSiteInfoReceived = (info) =>
     ({type: COMMON_SITE_INFO_RECEIVED, payload: info});
 
 
 /**
- * ThunkCreator.
- * Загружает коллекци.
+ * Загружает общую информацию о сайте.
  */
 export const loadCommonSiteInfo = () => {
     return async (dispatch, getState) => {
@@ -18,10 +19,10 @@ export const loadCommonSiteInfo = () => {
                 console.log("loadCommonSiteInfo success", response.data);
                 dispatch(commonSiteInfoReceived(response.data));
             } else {
-                console.error("loadCommonSiteInfo error", response.status);
+                console.error("loadCommonSiteInfo", response.status);
             }
         } catch (err) {
-            console.error("loadCommonSiteInfo error", err);
+            console.error("loadCommonSiteInfo", err);
         }
     };
 };

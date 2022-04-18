@@ -8,9 +8,15 @@ import {Api} from "src/shared/utils/api";
 
 export const collectionsReset = () => ({type: COLLECTIONS_RESET});
 
+/**
+ * @param {boolean} isFetching
+ */
 const collectionsIsFetching = (isFetching) => ({type: COLLECTIONS_IS_FETCHING, payload: isFetching});
 
-export const collectionsPushed = (data) => ({type: COLLECTIONS_PUSHED, payload: data});
+/**
+ * @param {CollectionInfo[]} collections
+ */
+export const collectionsPushed = (collections) => ({type: COLLECTIONS_PUSHED, payload: collections});
 
 
 /**
@@ -30,10 +36,10 @@ export const loadCollections = (limit, offset = 0) => {
                 dispatch(collectionsPushed(response.data));
                 console.log("loadCollections success", response.data);
             } else {
-                console.error("loadCollections error", response.status);
+                console.error("loadCollections", response.status);
             }
         } catch (err) {
-            console.error("loadCollections error", err);
+            console.error("loadCollections", err);
         } finally {
             dispatch(collectionsIsFetching(false));
         }
@@ -58,10 +64,10 @@ export const pushCollections = (limit) => {
                 dispatch(collectionsPushed(response.data));
                 console.log("pushCollections success", response.data);
             } else {
-                console.error("pushCollections error", response.status);
+                console.error("pushCollections", response.status);
             }
         } catch (err) {
-            console.error("pushCollections error", err);
+            console.error("pushCollections", err);
         } finally {
             dispatch(collectionsIsFetching(false));
         }

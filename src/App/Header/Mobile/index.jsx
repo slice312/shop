@@ -3,6 +3,7 @@ import {useSelector} from "react-redux";
 import {Link, useLocation} from "react-router-dom";
 
 import {Utils} from "src/shared/utils"
+import {SearchControl} from "src/shared/components/SearchControl";
 import css from "./styles.module.scss";
 
 import menuIcon from "src/assets/icons/menu-burger.svg";
@@ -80,24 +81,28 @@ export const Mobile = () => {
                 (isSearchOpen)
                     ? (
                         <div className={css.search}>
-                            <div className={css.inputWrap}>
-                                <input placeholder="Поиск" onChange={(e) => console.log("handkler")}/>
-                                <div className={css.icon24}>
-                                    <img src={searchIcon} alt={searchIcon}/>
-                                </div>
-                            </div>
-                            {/*{*/}
-                            {/*    searchValue ? (*/}
-                            {/*        <div className={css.searchResult}>*/}
-                            {/*            {*/}
-                            {/*                searchProducts ? searchProducts.map(item => (*/}
-                            {/*                    <div key={item.id}>{item.title}</div>*/}
-                            {/*                )) : null*/}
-                            {/*            }*/}
-                            {/*        </div>*/}
-                            {/*    ) : null*/}
-                            {/*}*/}
+                            <SearchControl className={css.inputWrap} afterSearch={() => setIsSearchOpen(false) }/>
                         </div>
+
+                    // <div className={css.search}>
+                    //         <div className={css.inputWrap}>
+                    //             <input placeholder="Поиск" onChange={(e) => console.log("handkler")}/>
+                    //             <div className={css.icon24}>
+                    //                 <img src={searchIcon} alt={searchIcon}/>
+                    //             </div>
+                    //         </div>
+                    //         {
+                    //             searchValue ? (
+                    //                 <div className={css.searchResult}>
+                    //                     {
+                    //                         searchProducts ? searchProducts.map(item => (
+                    //                             <div key={item.id}>{item.title}</div>
+                    //                         )) : null
+                    //                     }
+                    //                 </div>
+                    //             ) : null
+                    //         }
+                    //     </div>
                     ) : null
             }
         </div>

@@ -9,7 +9,7 @@ import css from "./styles.module.scss";
 import searchIcon from "src/assets/icons/search.svg";
 
 
-export const SearchControl = ({className}) => {
+export const SearchControl = ({className, afterSearch}) => {
     const [searchResult, setSearchResult] = React.useState({});
     const [isShowSearchResult, setIsShowSearchResult] = React.useState(false);
 
@@ -31,7 +31,7 @@ export const SearchControl = ({className}) => {
                     console.log("getProductsByName success", response.data);
                 }
             } catch (err) {
-                console.error("getProductsByName error", err);
+                console.error("getProductsByName", err);
             }
         })();
     };
@@ -41,7 +41,10 @@ export const SearchControl = ({className}) => {
     const {navigateToProductPage, navigateToSearch} = Utils.Hooks.useProjectNavigation();
 
     const searchResultRef = React.useRef(null);
-    Utils.Hooks.useOutsideAlerter(searchResultRef, () => setIsShowSearchResult(false));
+    Utils.Hooks.useOutsideAlerter(searchResultRef, () => {
+        console.log("OUT");
+        setIsShowSearchResult(false)
+    });
 
 
     const searchSubmitByIconButton = () => {
@@ -62,11 +65,13 @@ export const SearchControl = ({className}) => {
                 result: searchResult
             }
         });
+        afterSearch?.();
     };
 
     const searchResultItemClicked = (id) => {
         navigateToProductPage(id);
         setIsShowSearchResult(false);
+        afterSearch?.();
     };
 
 

@@ -6,7 +6,6 @@ export const slideImagesReceived = (slides) => ({type: HOME_AD_SLIDE_IMAGES_RECE
 
 
 /**
- * ThunkCreator.
  * Загружает рекламные слайды для главной страницы.
  */
 export const loadHomeAdSlideImages = () => {
@@ -17,10 +16,10 @@ export const loadHomeAdSlideImages = () => {
                 console.log("loadHomeAdSlideImages success", response.data);
                 dispatch(slideImagesReceived(response.data));
             } else {
-                console.error("loadHomeAdSlideImages error", response.status);
+                console.error("loadHomeAdSlideImages", response.status);
             }
         } catch (err) {
-            console.error("loadHomeAdSlideImages error", err);
+            console.error("loadHomeAdSlideImages", err);
         }
     };
 };
