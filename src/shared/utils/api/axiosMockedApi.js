@@ -243,7 +243,7 @@ const mockProducts = (mockApi) => {
             const url = getURL(config);
             const limit = Number(url.searchParams.get("limit")) || Number.MAX_SAFE_INTEGER;
             const offset = Number(url.searchParams.get("offset"));
-            const data = lo.chain(DB.cards.slice()) // TODO: зачем
+            const data = lo.chain(DB.cards)
                 .drop(offset)
                 .take(limit);
             return [200, data];

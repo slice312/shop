@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import cn from "classnames";
 import * as KeyCode from "keycode-js";
 
@@ -9,7 +10,12 @@ import css from "./styles.module.scss";
 import searchIcon from "src/assets/icons/search.svg";
 
 
-export const SearchControl = ({className, afterSearch}) => {
+const propTypes = {
+    className: PropTypes.string,
+    onRedirectToResult: PropTypes.func
+};
+
+export const SearchControl = ({className, onRedirectToResult}) => {
     const [searchResult, setSearchResult] = React.useState({});
     const [isShowSearchResult, setIsShowSearchResult] = React.useState(false);
 
@@ -41,21 +47,25 @@ export const SearchControl = ({className, afterSearch}) => {
     const {navigateToProductPage, navigateToSearch} = Utils.Hooks.useProjectNavigation();
 
     const searchResultRef = React.useRef(null);
-    Utils.Hooks.useOutsideAlerter(searchResultRef, () => {
-        console.log("OUT");
-        setIsShowSearchResult(false)
-    });
+    Utils.Hooks.useOutsideAlerter(searchResultRef,
+        () => setIsShowSearchResult(false));
 
 
     const searchSubmitByIconButton = () => {
         navigateToSearchResult();
+        submitSearch();
     };
 
     const searchSubmitByEnter = (e) => {
         if (e.type === "keydown" && e.code === KeyCode.CODE_ENTER) {
             navigateToSearchResult();
-            setIsShowSearchResult(false);
+            submitSearch();
         }
+    };
+
+    const searchResultItemClicked = (id) => {
+        submitSearch();
+        navigateToProductPage(id);
     };
 
     const navigateToSearchResult = () => {
@@ -65,16 +75,15 @@ export const SearchControl = ({className, afterSearch}) => {
                 result: searchResult
             }
         });
-        afterSearch?.();
     };
 
-    const searchResultItemClicked = (id) => {
-        navigateToProductPage(id);
+    const submitSearch = () => {
+        inputRef.current.value = "";
         setIsShowSearchResult(false);
-        afterSearch?.();
+        onRedirectToResult?.();
     };
 
-
+    
     return (
         <div className={cn(css.root, className)}>
             <input ref={inputRef}
@@ -109,3 +118,5 @@ export const SearchControl = ({className, afterSearch}) => {
         </div>
     );
 };
+
+SearchControl.propTypes = propTypes;

@@ -344,5 +344,3 @@ export const Api = {
         sendOrderInfo,
     }
 };
-
-

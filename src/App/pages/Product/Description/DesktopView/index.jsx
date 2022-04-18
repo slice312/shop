@@ -84,8 +84,8 @@ export const DesktopView = (
                             <div className={css.text}>{product.description}</div>
                         </div>
                         <div className={css.props}>
-                            <div>
-                                <div>
+                            <div className={css.propsColumn}>
+                                <div >
                                     <span className={css.propsLabel}>Размерный ряд:</span>
                                     <span className={css.propsValue}>{product.size}</span>
                                 </div>
@@ -94,7 +94,7 @@ export const DesktopView = (
                                     <span className={css.propsValue}>{product.qty}</span>
                                 </div>
                             </div>
-                            <div>
+                            <div className={css.propsColumn}>
                                 <div>
                                     <span className={css.propsLabel}>Состав ткани:</span>
                                     <span className={css.propsValue}>{product.fabricStructure}</span>

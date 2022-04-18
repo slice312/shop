@@ -120,6 +120,12 @@
                 flex-direction: row;
                 justify-content: space-between;
 
+                .propsColumn {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                }
+
                 .propsLabel {
                     @include font-default(14px, 500, 17.07px);
                 }

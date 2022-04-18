@@ -1,8 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {BasketInfoPropType} from "src/shared/constants/propTypes";
 import css from "./styles.module.scss";
-import {ModalOrder} from "src/shared/components/modals/ModalOrder";
-import PropTypes from "prop-types";
 
 
 const propTypes = {

@@ -1,15 +1,24 @@
 @import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
 
 
 .root {
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    .message {
+        @include font-default(16px, 500, 19.5px);
+    }
 }
 
 
 @media (max-width: $md4 + px) {
     .root {
         gap: 18px;
+
+        .message {
+            @include font-default(13px, 400, 15.85px);
+        }
     }
 }

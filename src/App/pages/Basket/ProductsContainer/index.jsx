@@ -25,8 +25,6 @@ export const ProductsContainer = () => {
     }, [productsInfo, basketItems]);
 
 
-
-
     const onDeleteClick = (basketItem) => {
         dispatch(basketItemRemoved(basketItem));
     };
@@ -72,6 +70,14 @@ export const ProductsContainer = () => {
                         />
                     );
                 })
+            }
+            {
+                (!basketItems.length)
+                    ? (<div className={css.message}>
+                            Корзина пуста
+                        </div>
+                    )
+                    : null
             }
         </div>
     );

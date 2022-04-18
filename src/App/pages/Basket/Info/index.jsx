@@ -13,7 +13,6 @@ const DesktopView = React.lazy(() => import("./DesktopView")
     .then(module => ({default: module.DesktopView})));
 
 
-
 export const Info = () => {
     const dispatch = useDispatch();
     const basket = useSelector(state => state.basket);
@@ -22,7 +21,8 @@ export const Info = () => {
     const [isShowModal, setIsShowModal] = React.useState(false);
 
     const openModalOrder = () => {
-        setIsShowModal(true);
+        if (basket.items.length)
+            setIsShowModal(true);
     };
 
     const closeModalOrder = () => {

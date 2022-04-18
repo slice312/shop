@@ -2,7 +2,7 @@ import React from "react";
 import {Accordion} from "react-bootstrap";
 
 import {Api} from "src/shared/utils/api";
-import css from "./styles.module.scss";
+import "./styles.scss";
 
 import image from "src/assets/img/help-page-img.png";
 
@@ -24,28 +24,28 @@ export const Help = () => {
 
 
     return (
-        <div className={css.root}>
-            <div className={css.image}>
+        <div className="help_page">
+            <div className="help_page__image">
                 <img src={image} alt={image}/>
             </div>
-            <div className={css.textBlock}>
-                <div className={css.title}>
+            <div className="help_page__textBlock">
+                <div className="title">
                     Помощь
                 </div>
-                <div className={css.faqBlock}>
+                <div className="faqBlock">
                     <Accordion alwaysOpen flush defaultActiveKey={"0"}>
                         {
                             faqs.map((x, i) => {
                                 return (
                                     <Accordion.Item key={i}
                                                     eventKey={i.toString()}
-                                                    className={css.item}
+                                                    className="item"
                                     >
                                         <Accordion.Header>
-                                            <span className={css.question}>{x.question}</span>
+                                            <span className="question">{x.question}</span>
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                            <div className={css.answer}>
+                                            <div className="answer">
                                                 {x.answer}
                                             </div>
                                         </Accordion.Body>

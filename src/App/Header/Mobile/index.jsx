@@ -44,7 +44,7 @@ export const Mobile = () => {
             {
                 (isMenuOpen)
                     ? (<div className={css.menuDrawer}>
-                            <div ref={menuRef} className={css.menuContainer} >
+                            <div ref={menuRef} className={css.menuContainer}>
                                 <div className={css.menuHeader}>
                                     <div className={css.title}>Меню</div>
                                     <div className={css.icon24} onClick={() => setIsMenuOpen(false)}>
@@ -81,28 +81,8 @@ export const Mobile = () => {
                 (isSearchOpen)
                     ? (
                         <div className={css.search}>
-                            <SearchControl className={css.inputWrap} afterSearch={() => setIsSearchOpen(false) }/>
+                            <SearchControl className={css.inputWrap} onRedirectToResult={() => setIsSearchOpen(false)}/>
                         </div>
-
-                    // <div className={css.search}>
-                    //         <div className={css.inputWrap}>
-                    //             <input placeholder="Поиск" onChange={(e) => console.log("handkler")}/>
-                    //             <div className={css.icon24}>
-                    //                 <img src={searchIcon} alt={searchIcon}/>
-                    //             </div>
-                    //         </div>
-                    //         {
-                    //             searchValue ? (
-                    //                 <div className={css.searchResult}>
-                    //                     {
-                    //                         searchProducts ? searchProducts.map(item => (
-                    //                             <div key={item.id}>{item.title}</div>
-                    //                         )) : null
-                    //                     }
-                    //                 </div>
-                    //             ) : null
-                    //         }
-                    //     </div>
                     ) : null
             }
         </div>

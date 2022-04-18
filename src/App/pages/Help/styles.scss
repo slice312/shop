@@ -2,21 +2,21 @@
 @import "src/shared/styles/mixins";
 
 
-.root {
+.help_page {
     display: flex;
     flex-direction: row;
     gap: 24px;
     flex-wrap: wrap;
     padding: 11px 0 72px 0;
 
-    .image {
+    .help_page__image {
         img {
             max-width: 100%;
             height: auto;
         }
     }
 
-    .textBlock {
+    .help_page__textBlock {
         width: 50%;
         flex-grow: 1;
         display: flex;
@@ -31,6 +31,29 @@
 
             .item {
                 margin-top: 12px;
+
+                &.accordion-item {
+                    border: 0;
+                }
+
+                .accordion-header {
+                    .accordion-button:not(.collapsed) {
+                        color: $colorWhite !important;
+                        background-color: $colorWhite !important;
+                        box-shadow: none !important;
+                    }
+
+                    button {
+                        box-shadow: none;
+                    }
+                }
+
+                .accordion-body {
+                    border-bottom: 2px !important;
+                    box-shadow: none !important;
+                    padding-top: 0 !important;
+                    padding-bottom: 0 !important;
+                }
 
                 .question {
                     @include font-default(16px, 400, 19.5px);

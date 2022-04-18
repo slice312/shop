@@ -5,10 +5,10 @@ import lo from "lodash";
 
 import {productsSet} from "src/shared/state/products/actions";
 import {Api} from "src/shared/utils/api";
+import {useBreadcrumbs} from "src/shared/components/Breadcrumbs";
 import {Description} from "./Description";
 import {SimilarProducts} from "./SimilarProducts";
 import css from "./styles.module.scss";
-import {useBreadcrumbs} from "../../../shared/components/Breadcrumbs";
 
 
 const PRODUCTS_LIMIT = 5
@@ -29,7 +29,7 @@ export const Product = () => {
                 const arr = [productResp.data, ...byCollectionResp.data.products.filter(x => x.id !== productResp.data.id)];
                 dispatch(productsSet(arr));
             } catch (err) {
-                console.error("products loading  error", err);
+                console.error("products loading", err);
             }
         })();
     }, [params]);

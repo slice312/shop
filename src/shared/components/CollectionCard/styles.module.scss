@@ -4,7 +4,8 @@
 
 .root {
     flex-basis: 286px;
-
+    cursor: pointer;
+    
     @include hoverCard {
         .buttonDiv {
             color: $colorPrimary;
