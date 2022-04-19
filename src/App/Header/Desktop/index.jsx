@@ -14,7 +14,9 @@ import shoppingBagIcon from "src/assets/icons/shopping-bag.svg";
 export const Desktop = () => {
     const {headerLogo, mainPhoneNumber} = useSelector(state => state.commonSiteInfo);
     const basketItems = useSelector(state => state.basket.items);
+    const products = useSelector(state => state.productsState.products);
 
+    const favorites = React.useMemo(() => products.filter(x => x.product.isFavorite), [products]);
     const {navigateToFavorites, navigateToBasket} = Utils.Hooks.useProjectNavigation();
 
 
@@ -49,7 +51,11 @@ export const Desktop = () => {
                 <div className={cn(css.iconButton, css.favorite)} onClick={navigateToFavorites}>
                     <div className={css.icon}>
                         <img src={emptyHeartIcon} alt={emptyHeartIcon}/>
-                        <div className={css.redCircleNotify}/>
+                        {
+                            (favorites.length)
+                                ? <div className={css.redCircleNotify}/>
+                                : null
+                        }
                     </div>
                     <span className={css.label}>Избранное</span>
                 </div>

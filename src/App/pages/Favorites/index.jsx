@@ -35,6 +35,12 @@ export const Favorites = () => {
         dispatch(setFavoriteProducts(PAGE_SIZE, 0, responseCallback));
     }, []);
 
+    const favorites = React.useMemo(() => products.filter(x => x.product.isFavorite),
+        [products]);
+
+    const [qty, setQty] = React.useState(favorites.length);
+
+    React.useEffect(() => void setQty(favorites.length), [favorites]);
 
     const loadMore = () => {
         if (products.length < totalQtyOnServer && !productsIsFetching)
@@ -49,14 +55,14 @@ export const Favorites = () => {
             </div>
             <div className={css.qtyLabel}>
                 {
-                    (totalQtyOnServer)
-                        ? `Товаров в избранном: ${totalQtyOnServer}`
+                    (qty)
+                        ? `Товаров в избранном: ${qty}`
                         : "У вас пока нет избранных товаров"
                 }
             </div>
             {
-                (totalQtyOnServer)
-                    ? <InfiniteScrollContainer products={products} onLoad={loadMore}/>
+                (qty)
+                    ? <InfiniteScrollContainer products={favorites} onLoad={loadMore}/>
                     : <RandomProductCardsView products={products}/>
             }
         </div>

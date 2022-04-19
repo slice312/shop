@@ -1,5 +1,8 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {COMMON_SITE_INFO_RECEIVED} from "src/shared/state/actionTypes";
+import {
+    COMMON_SITE_INFO_RECEIVED,
+    COMMON_SITE_INFO_FAVORITE_EXIST_SET
+} from "src/shared/state/actionTypes";
 
 
 /**
@@ -14,15 +17,24 @@ const initialState = {
     email: "",
     telegramUrl: "",
     whatsappUrl: "",
-    instagramUrl: ""
+    instagramUrl: "",
+    isFavoritesExist: false
 };
 
 
 const commonSiteInfoReceived = (state, action) => action.payload;
 
+const caseCommonSiteInfoFavoriteExistSet = (state, action) => ({
+    ...state,
+    isFavoritesExist: action.payload
+});
+
+
+
 
 export const commonSiteInfoReducer = createReducer(initialState, builder => {
     return builder
         .addCase(COMMON_SITE_INFO_RECEIVED, commonSiteInfoReceived)
+        .addCase(COMMON_SITE_INFO_FAVORITE_EXIST_SET, caseCommonSiteInfoFavoriteExistSet)
         .addDefaultCase(state => state);
 });

@@ -1,4 +1,7 @@
-import {COMMON_SITE_INFO_RECEIVED} from "src/shared/state/actionTypes";
+import {
+    COMMON_SITE_INFO_RECEIVED,
+    COMMON_SITE_INFO_FAVORITE_EXIST_SET
+} from "src/shared/state/actionTypes";
 import {Api} from "src/shared/utils/api";
 
 /**
@@ -6,6 +9,13 @@ import {Api} from "src/shared/utils/api";
  */
 export const commonSiteInfoReceived = (info) =>
     ({type: COMMON_SITE_INFO_RECEIVED, payload: info});
+
+/**
+ * @param {boolean} isFavoritesExist
+ */
+export const commonSiteInfoFavoriteExistSet = (isFavoritesExist) =>
+    ({type: COMMON_SITE_INFO_FAVORITE_EXIST_SET, payload: isFavoritesExist});
+
 
 
 /**

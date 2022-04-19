@@ -826,7 +826,7 @@ const cards = [
         price: 4500,
         qty: 3,
         discount: 0,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -848,7 +848,7 @@ const cards = [
         price: 4444,
         qty: 3,
         discount: 0,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/0Bq336j/card3.png`,
@@ -870,7 +870,7 @@ const cards = [
         price: 10000,
         qty: 3,
         discount: 5,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -892,7 +892,7 @@ const cards = [
         price: 8000,
         qty: 3,
         discount: 10,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/0Bq336j/card3.png`,
@@ -914,7 +914,7 @@ const cards = [
         price: 3123,
         qty: 3,
         discount: 0,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -958,7 +958,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -980,7 +980,7 @@ const cards = [
         price: 6633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1002,7 +1002,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1024,7 +1024,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1046,7 +1046,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1068,7 +1068,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1090,7 +1090,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1112,7 +1112,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1134,7 +1134,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
@@ -1156,7 +1156,7 @@ const cards = [
         price: 7633,
         qty: 3,
         discount: 15,
-        isFavorite: true,
+        isFavorite: false,
         size: "42-50",
         images: [
             `https://i.ibb.co/dcfzGZk/card8.png`,
