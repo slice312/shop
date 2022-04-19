@@ -1,0 +1,17 @@
+{
+  "name": "zeon-store-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server.js",
+    "build": "cd spa && npm run build",
+    "postinstall": "cd spa && npm install"
+  },
+  "type": "module",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.17.3",
+    "express-history-api-fallback": "^2.2.1",
+    "moment": "^2.29.3"
+  }
+}
