@@ -1,5 +1,5 @@
 {
-  "name": "zeon-shop",
+  "name": "zeon-store",
   "version": "1.0.0",
   "author": "slice312",
   "license": "MIT",
@@ -7,11 +7,6 @@
     "install-dependencies": "npm install && cd api && npm install && cd ../client && npm install",
     "build": "cd api && npm run build && cd ../client && npm run build",
     "start:production": "cd api && npm run start:production && cd ../client && npm run start:production"
-  },
-  "dependencies": {
-    "debug": "^4.3.4",
-    "http": "^0.0.1-security",
-    "path": "^0.12.7"
   },
   "repository": {
     "type": "git",

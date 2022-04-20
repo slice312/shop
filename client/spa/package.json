@@ -1,7 +1,9 @@
 {
   "name": "zeon-store-spa",
   "version": "1.0.0",
-  "private": true,
+  "author": "slice312",
+  "license": "MIT",
+  "description": "spa",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
     "@testing-library/jest-dom": "^5.16.2",

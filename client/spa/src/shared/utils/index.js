@@ -1,8 +1,5 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
-import {Api} from "src/shared/utils/api";
-import lo from "lodash";
-import {DB} from "src/assets/mock/db";
 
 
 /**

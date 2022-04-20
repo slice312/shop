@@ -1,13 +1,15 @@
 {
   "name": "zeon-store-client",
   "version": "1.0.0",
-  "private": true,
+  "author": "slice312",
+  "license": "MIT",
+  "description": "spa server",
+  "type": "module",
   "scripts": {
     "start": "node ./server.js",
     "build": "cd spa && npm run build",
     "postinstall": "cd spa && npm install"
   },
-  "type": "module",
   "dependencies": {
     "compression": "^1.7.4",
     "express": "^4.17.3",

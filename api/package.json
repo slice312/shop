@@ -1,0 +1,29 @@
+{
+  "name": "zeon-store-api",
+  "version": "1.0.0",
+  "author": "slice312",
+  "license": "MIT",
+  "description": "api server",
+  "scripts": {
+    "start": "echo (not implemented) use instead: npm run dev",
+    "build": "echo (not implemented) use instead: npm run dev \n'yarn clean && babel src --config-file ./babel.config.json -d dist'",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node --config-file ./babel.config.json src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.9",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "nodemon": "^2.0.15",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  }
+}

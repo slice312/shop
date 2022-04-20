@@ -12,10 +12,27 @@ import {BreadcrumbsProvider} from "src/shared/components/Breadcrumbs"
 import {Breadcrumbs} from "./BreadCrumbs";
 import {Footer} from "./Footer";
 import css from "./styles.module.scss";
+import axios from "axios";
 
 
 export const App = () => {
     const dispatch = useDispatch();
+
+    // TODO: удалить после того как разберусь с api на ноде
+    React.useEffect(() => {
+        (async () => {
+            const response = await axios.get(`http://192.168.31.150:8081/api/products`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    // "Access-Control-Allow-Origin": "*"
+                },
+            })
+
+            const data = response.data;
+            console.log(data);
+            debugger
+        })();
+    }, []);
 
     React.useEffect(() => {
         dispatch(loadCommonSiteInfo())
@@ -35,7 +52,6 @@ export const App = () => {
                     <Breadcrumbs/>
                 </div>
             </div>
-
 
 
             <div className={css.contentContainer}>
