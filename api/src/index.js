@@ -9,9 +9,9 @@ const app = express();
 app.use("/api", router)
 
 const server = http.createServer(app);
-
 server.on("listening", () => {
-    console.log(`Listening on port ${server.address().port}, ${moment().format("HH:mm:ss DD.MM.YYYY")}`);
+    const timestamp = moment().format("HH:mm:ss DD.MM.YYYY");
+    console.log(`Listening on port ${server.address().port}, ${timestamp}`);
 });
 
 server.listen(process.env.PORT || 8081);

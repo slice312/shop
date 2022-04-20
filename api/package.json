@@ -6,8 +6,9 @@
   "description": "api server",
   "scripts": {
     "start": "echo (not implemented) use instead: npm run dev",
-    "build": "echo (not implemented) use instead: npm run dev \n'yarn clean && babel src --config-file ./babel.config.json -d dist'",
-    "dev": "nodemon --exec ./node_modules/.bin/babel-node --config-file ./babel.config.json src/index.js"
+    "build": "babel src -d dist --source-maps",
+    "dev": "nodemon --exec ./node_modules/.bin/babel-node --config-file ./babel.config.json src/index.js",
+    "debug": "nodemon --exec ./node_modules/.bin/babel-node --config-file ./babel.config.json --inspect src/index.js"
   },
   "dependencies": {
     "express": "^4.17.3",

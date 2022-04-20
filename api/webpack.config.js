@@ -28,5 +28,5 @@ export default {
     },
     devServer: {
         contentBase: path.resolve(__dirname, "./dist"),
-    },
+    }
 };

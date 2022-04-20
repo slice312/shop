@@ -10,4 +10,4 @@ router.get("/products", (request, response) => {
     response.json(data);
 });
 
-export  {router};
+export {router};
