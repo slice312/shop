@@ -11,6 +11,7 @@
     "debug": "nodemon --exec ./node_modules/.bin/babel-node --config-file ./babel.config.json --inspect src/index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",

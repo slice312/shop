@@ -158,10 +158,9 @@ const mockProducts = (mockApi) => {
                 .exec(config.url);
             const id = params[1];
             const product = DB.cards.find(x => x.id === id);
-            if (product)
-                return [200, product];
-            else
-                return [404, null];
+            return product
+                ? [200, product]
+                : [404, null];
         });
 
     /**

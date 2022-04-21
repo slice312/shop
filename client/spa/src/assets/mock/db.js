@@ -65,22 +65,22 @@ const slides = [
 const advantages = [
     {
         title: "Удобные способы оплаты",
-        image: payMoneyIcon,
+        image: `https://i.ibb.co/0tNpWDg/pay-money.png`, // TODO: надо решить как со свего сервера отдавать ресурсы
         description: "Мы предлагаем возможность безналичной оплаты"
     },
     {
         title: "Cвоевременная доставка",
-        image: truckIcon,
+        image: `https://i.ibb.co/4M1Wwcf/truck.png`,
         description: "100% гарантия возврата товара - 14 дней на возврат, без скандалов и истерик."
     },
     {
         title: "Профессиональная консультация",
-        image: supportIcon,
+        image: `https://i.ibb.co/47XtD7q/support.png`,
         description: "Мы проконсультируем и индивидуально подойдем к Вашему заказу"
     },
     {
         title: "Акции и бонусы для покупателей",
-        image: shoppingBagIcon,
+        image: `https://i.ibb.co/5511qCs/shopping-bag-2.png`,
         description: "Промокоды со скидками для постоянных клиентов, акции на новые позиции"
     }
 ];

@@ -1,7 +1,6 @@
 import {axiosInstance} from "./axiosInstance";
-import {mockIt} from "./axiosMockedApi";
-
-mockIt(axiosInstance); // TODO: удалить после реализации бекенда
+// import {mockIt} from "./axiosMockedApi";
+// mockIt(axiosInstance); // TODO: удалить после реализации бекенда
 
 
 //<editor-fold desc="typedefs">
@@ -282,7 +281,7 @@ const getNovelties = async (limit, offset = 0) => {
  * @returns {Promise<AxiosResponse<ProductInfo[]>>}
  */
 const getProductsByIds = async (productsIds, limit, offset = 0) => {
-    limit = (limit) ? limit : 0;
+    // limit = (limit) ? limit : 0; // TODO: чекнуть
     return await axiosInstance.post(`products/get?limit=${limit}&offset=${offset}`, productsIds);
 };
 

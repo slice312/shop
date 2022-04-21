@@ -1,12 +1,22 @@
 import http from "http";
 import express from "express";
 import moment from "moment";
-import {router} from "./routes";
+import {DataRouter} from "./routes";
+import logger from "morgan";
+import cors from "cors";
 
 
 const app = express();
 
-app.use("/api", router)
+app.use(express.urlencoded({extended: false}));
+app.use(logger("dev"));
+app.use(express.json());
+app.use(cors());
+
+
+app.use("/api", DataRouter);
+
+// TODO use static
 
 const server = http.createServer(app);
 server.on("listening", () => {

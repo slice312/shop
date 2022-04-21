@@ -2,7 +2,8 @@ import axios from "axios";
 import moment from "moment";
 
 
-const WEB_API_URL = "192.168.13.109:80"; // TODO: в конфиг npm dotenv
+const WEB_API_URL = "localhost:8081";   // TODO: в конфиг npm dotenv
+
 
 const axiosInstance = axios.create({
     baseURL: `http://${WEB_API_URL}/api`,
@@ -10,7 +11,7 @@ const axiosInstance = axios.create({
     headers: {
         "Content-Type": "application/json"
     },
-    timeout: 15_000
+    timeout: 20_000
 });
 
 axiosInstance.interceptors.request.use(request => {

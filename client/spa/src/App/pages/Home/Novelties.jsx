@@ -16,10 +16,15 @@ export const Novelties = () => {
     const dispatch = useDispatch();
     const {products, productsIsFetching} = useSelector(state => state.productsState);
     const noveltiesCards = Utils.Data.filterProductsByCategory(products, Categories.Novelties);
+    const [requested, setRequested] = React.useState(false);
 
     React.useEffect(() => {
-        if (!noveltiesCards.length && !productsIsFetching)
-            dispatch(pushProductNovelties(CARDS_BATCH_SIZE));
+        if (!requested) {
+            if (!noveltiesCards.length && !productsIsFetching) {
+                dispatch(pushProductNovelties(CARDS_BATCH_SIZE));
+                setRequested(true);
+            }
+        }
     }, [products, productsIsFetching]);
 
 

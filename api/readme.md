@@ -14,3 +14,10 @@
 `    "debug": "nodemon --exec ./node_modules/.bin/babel-node --config-file ./babel.config.json --inspect src/index.js"` такой можно запустить через nodemon и в консоле будет сообщение о том что дебагер слушает порт.
 
 Дальше хз как, не разобрался как при атачить дебагер вебсторма
+
+<br/><br/>
+
+## Как дебажить в Visual Studio Code
++ https://stackoverflow.com/questions/38557822/debugging-in-visual-studio-code-with-babel-node
++ https://www.youtube.com/watch?v=YTVFqkqlNo8
+
