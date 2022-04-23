@@ -1,0 +1,42 @@
+@import "src/shared/styles/global";
+@import "src/shared/styles/mixins";
+
+.root {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0 64px 0;
+
+    .test {
+        height: 32px;
+    }
+
+    .container {
+        border: 1px solid black;
+
+        .captcha {
+
+        }
+
+        .box {
+            .field {
+                .label {
+
+                }
+
+                .control {
+
+                }
+            }
+
+            .buttons {
+                button {
+                    width: 200px;
+                    height: 40px;
+                    background-color: $colorPrimary;
+                    @include font-default(14px, 500, 20px, $textColorWhite);
+                    @include hoverWhiteBlackButton;
+                }
+            }
+        }
+    }
+}

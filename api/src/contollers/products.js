@@ -1,6 +1,8 @@
 import lo from "lodash";
 import {Utils} from "src/utils";
 import {DB} from "src/assets/mock/db";
+import {admin} from "src/config/firebase";
+import { getFirestore } from "firebase/firestore";
 
 
 const product = (request, response) => {
@@ -107,6 +109,9 @@ const productsByIds = (request, response) => {
 const setProductFavoriteFlag = (request, response) => {
     const productId = request.params.product_id;
     const isFavorite = request.query.favorite;
+
+    // TODO: push to firestore attach to user
+    const db = getFirestore(admin);
 
     const product = DB.cards.find(x => x.id === productId);
     if (product) {

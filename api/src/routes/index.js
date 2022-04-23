@@ -33,4 +33,8 @@ router.put("/callback", Service.requestCallback);
 router.post("/order", Service.orderInfo);
 
 
+router.get("/login", (request, response) => {
+    console.log(request.headers);
+});
+
 export const DataRouter = router;

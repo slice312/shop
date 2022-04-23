@@ -29,6 +29,8 @@ const propTypes = {
 export const ModalOrder = ({onClose, onCreateOrder}) => {
     const [selected, setSelected] = React.useState("KG");
 
+
+    // TODO: надо всю это херню с проверками переписать, как тут https://codesandbox.io/s/react-login-form-6y8kj?file=/src/useForm.jsx:453-459
     const nameRef = React.useRef(null);
     const surnameRef = React.useRef(null);
     const emailRef = React.useRef(null);

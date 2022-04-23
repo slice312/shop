@@ -7,6 +7,7 @@ import {
     BASKET_CALCULATED
 } from "src/shared/state/actionTypes";
 import {productsSet} from "src/shared/state/products/actions";
+import {BASKET_ITEM_LOCAL_STORAGE_PREFIX} from "src/shared/constants";
 import {Api} from "src/shared/utils/api";
 
 
@@ -40,7 +41,9 @@ export const restoreBasket = () => {
     return (dispatch, getState) => {
         try {
             const basketItems = Object.keys(localStorage)
+                .filter(key => key.startsWith(BASKET_ITEM_LOCAL_STORAGE_PREFIX))
                 .map(key => {
+
                     const [productId, color] = key.split("|");
                     return {
                         productId,

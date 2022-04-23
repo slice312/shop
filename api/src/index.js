@@ -4,6 +4,7 @@ import moment from "moment";
 import {DataRouter} from "./routes";
 import logger from "morgan";
 import cors from "cors";
+import {middleware} from "./middleware";
 
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(cors());
 
+app.use(middleware.decodeToken);
 
 app.use("/api", DataRouter);
 

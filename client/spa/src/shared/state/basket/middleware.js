@@ -4,15 +4,16 @@ import {
     BASKET_ITEM_SET,
     BASKET_ITEM_REMOVED
 } from "src/shared/state/actionTypes";
+import {BASKET_ITEM_LOCAL_STORAGE_PREFIX} from "src/shared/constants";
 import {Utils} from "src/shared/utils";
 
 
 const caseBasketReset = () => {
-    localStorage.clear();
+    clearBasketItems();
 };
 
 const caseBasketSet = (action) => {
-    localStorage.clear();
+    clearBasketItems();
     for (const item of action.payload) {
         const key = Utils.getBasketItemKey(item.productId, item.color);
         localStorage.setItem(key, item.qty);
@@ -23,13 +24,20 @@ const caseBasketItemAdded = (action) => {
     const {productId, color, qty} = action.payload;
     const key = Utils.getBasketItemKey(productId, color);
     localStorage.setItem(key, qty);
-    console.log(BASKET_ITEM_SET);
 };
 
 const caseBasketItemRemoved = (action) => {
     const {productId, color} = action.payload;
     const key = Utils.getBasketItemKey(productId, color);
     localStorage.removeItem(key);
+};
+
+const clearBasketItems = () => {
+    Object.keys(localStorage)
+        .forEach(key => {
+            if (key.startsWith(BASKET_ITEM_LOCAL_STORAGE_PREFIX))
+                localStorage.removeItem(key);
+        });
 };
 
 

@@ -143,7 +143,7 @@ const productFavoriteToggled = (state, action) => {
     };
 };
 
-
+// TODO: нейминг поменять для кейсов
 export const productsReducer = createReducer(initialState, builder => {
     return builder
         .addCase(PRODUCTS_RESET, productsReset)

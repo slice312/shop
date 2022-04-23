@@ -1,5 +1,6 @@
 import React from "react";
 import {useNavigate} from "react-router-dom";
+import {BASKET_ITEM_LOCAL_STORAGE_PREFIX} from "src/shared/constants";
 
 
 /**
@@ -99,7 +100,7 @@ const isValidPhoneNumber = (phoneNumber) => {
  * @return {string} - Ключ товара в корзине
  */
 const getBasketItemKey = (productId, color) => {
-    return `${productId}|${color}`;
+    return `${BASKET_ITEM_LOCAL_STORAGE_PREFIX}_${productId}|${color}`;
 };
 
 

@@ -11,3 +11,7 @@ export const Categories = Object.freeze({
     Bestsellers: 1,
     Novelties: 2
 });
+
+
+
+export const BASKET_ITEM_LOCAL_STORAGE_PREFIX = "__bi";

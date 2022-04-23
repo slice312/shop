@@ -13,6 +13,8 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "firebase": "^9.6.11",
+    "firebase-admin": "^10.1.0",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "morgan": "^1.10.0"
