@@ -61,10 +61,18 @@
                 }
 
 
+                // TODO: уадлить, заменить на блок svg снизу (селектор сделать по классу)
                 img {
                     margin-right: 6px;
                     width: 18px;
                     height: 18px;
+                }
+
+                svg  {
+                    margin-right: 6px;
+                    * {
+                        fill: red;
+                    }
                 }
 
                 @include ifHover {

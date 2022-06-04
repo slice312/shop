@@ -14,8 +14,8 @@ const DEFAULT_CHUNK_SIZE = 4;
 /**
  * Контрол для управления пагинацией.
  * Генерирует кнопки, для переключения страниц, под указанное кол-во элементов и размер страницы.
- * Кнопки с номерами переключаю на выбранную страницу.
- * Стрелки вправо/влево переключают на страницы вперед/назад на {@link chunkSize}.
+ * Кнопки с номерами переключают на выбранную страницу.
+ * Стрелки вправо/влево переключают страницы вперед/назад на {@link chunkSize}.
  */
 export class PaginationControl extends React.Component {
     static propTypes = {
@@ -27,7 +27,7 @@ export class PaginationControl extends React.Component {
         activePageIndex: PropTypes.number.isRequired,
         /** Колбек при выборе страницы */
         onActivePageChanged: PropTypes.func.isRequired,
-        /** Имя классс, используется в самом верхнем контейнере контрола */
+        /** Имя класса, используется в самом верхнем контейнере контрола */
         className: PropTypes.string,
         /** Кол-во одновременно видимых кнопок (страниц) */
         chunkSize : PropTypes.number

@@ -8,7 +8,7 @@ import telephoneIcon from "src/assets/icons/telephone-outlined.svg"
 import emailIcon from "src/assets/icons/email.svg";
 import telegramIcon from "src/assets/icons/telegram.svg";
 import instagramIcon from "src/assets/icons/instagram.svg";
-import whatsappIcon from "src/assets/icons/whatsapp.svg";
+import {ReactComponent as WhatsappIcon} from "src/assets/icons/whatsapp.svg";
 
 
 export const Footer = () => {
@@ -69,7 +69,8 @@ export const Footer = () => {
                                 <a href={info.telegramUrl}
                                    className={css.blockItem}
                                    target="_blank" rel="noopener noreferrer">
-                                    <img src={whatsappIcon} alt={whatsappIcon}/>
+                                    <WhatsappIcon width={18} height={18}/>
+                                    {/*<img src={whatsappIcon} alt={whatsappIcon}/> TODO: сделать так*/ }
                                     <span>Whatsapp</span>
                                 </a>
                             </div>
